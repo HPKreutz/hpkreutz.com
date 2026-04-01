@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — hpkreutz.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">HPK</a>
+    <div class="nav-links">
+      <a href="markets.html">Markets</a>
+      <a href="tools.html">Tools</a>
+      <a href="sports.html">Sports</a>
+      <a href="contact.html" class="nav-active">Contact</a>
+      <a href="dashboard.html" class="nav-cta">Dashboard →</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="page-hero">
+      <div class="page-tag">The Insurance Guys — Hays, KS</div>
+      <h1 class="page-title">Contact</h1>
+      <p class="page-sub">Independent broker for home, auto, commercial, life, and health insurance.</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-info-block">
+        <div class="contact-biz">The Insurance Guys</div>
+        <div class="contact-agent">Hayden Kreutzer — Independent Agent</div>
+        <p class="contact-bio">Independent broker serving Hays, KS and surrounding communities. Specializing in commercial lines, personal auto, home, and life insurance across 9+ locations in Kansas.</p>
+
+        <div class="contact-details">
+          <div class="contact-detail-row">
+            <span class="detail-icon">📞</span>
+            <div>
+              <div class="detail-label">Phone</div>
+              <a href="tel:+17852610315" class="detail-val">(785) 261-0315</a>
+            </div>
+          </div>
+          <div class="contact-detail-row">
+            <span class="detail-icon">✉️</span>
+            <div>
+              <div class="detail-label">Email</div>
+              <a href="mailto:hayden@tigks.com" class="detail-val">hayden@tigks.com</a>
+            </div>
+          </div>
+          <div class="contact-detail-row">
+            <span class="detail-icon">📍</span>
+            <div>
+              <div class="detail-label">Address</div>
+              <span class="detail-val">1204 Vine St, Hays KS 67601</span>
+            </div>
+          </div>
+          <div class="contact-detail-row">
+            <span class="detail-icon">🕐</span>
+            <div>
+              <div class="detail-label">Hours</div>
+              <span class="detail-val">Mon–Fri 8:30am–5pm &nbsp;·&nbsp; Sat–Sun Closed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-ext-links">
+          <a href="https://www.tigks.com" target="_blank" class="btn-primary">Visit tigks.com</a>
+          <a href="https://www.facebook.com/insuranceguysofkansas/" target="_blank" class="btn-ghost">Facebook →</a>
+          <a href="https://www.instagram.com/theinsuranceguysks/" target="_blank" class="btn-ghost">Instagram →</a>
+        </div>
+      </div>
+
+      <div class="contact-form-block">
+        <div class="form-title">Request a Quote</div>
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="form-name" placeholder="John Smith" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="form-email" placeholder="john@example.com" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="form-phone" placeholder="(785) 555-0100" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label>Insurance Type *</label>
+          <select id="form-type" class="form-input">
+            <option value="">Select type...</option>
+            <option>Auto</option>
+            <option>Home</option>
+            <option>Commercial / Business</option>
+            <option>Life</option>
+            <option>Health</option>
+            <option>Multiple / Bundle</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="form-message" placeholder="Tell me a little about what you're looking for..." class="form-input form-textarea"></textarea>
+        </div>
+        <button class="btn-primary full-width" onclick="submitForm()">Send Request</button>
+        <div id="form-success" class="form-success" style="display:none;">✓ Request sent! Hayden will follow up shortly.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-left">© 2026 hpkreutz.com — Hays, KS</div>
+    <div class="footer-right">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="https://www.tigks.com" target="_blank">TIG Insurance</a>
+    </div>
+  </footer>
+
+  <script>
+    function submitForm() {
+      const name  = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      const type  = document.getElementById('form-type').value;
+      if (!name || !email || !type) {
+        alert('Please fill in the required fields (name, email, insurance type).');
+        return;
+      }
+      const subject = encodeURIComponent('Insurance Quote Request — ' + type);
+      const body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Phone: ' + (document.getElementById('form-phone').value || 'N/A') + '\n' +
+        'Type: ' + type + '\n\n' +
+        'Message:\n' + (document.getElementById('form-message').value || 'N/A')
+      );
+      window.location.href = 'mailto:hayden@tigks.com?subject=' + subject + '&body=' + body;
+      document.getElementById('form-success').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
