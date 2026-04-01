@@ -7,7 +7,85 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f2eb; --bg2: #edeae0; --bg3: #e4e0d4;
+      --ink: #1a1a18; --ink2: #4a4a44; --ink3: #8a8a80;
+      --accent: #c8401a; --accent2: #a83212;
+      --border: rgba(26,26,24,0.1); --border2: rgba(26,26,24,0.22);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Epilogue', sans-serif; font-size: 15px; line-height: 1.6; color: var(--ink); background: var(--bg); }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 60px;
+      background: rgba(245,242,235,0.96); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a { font-size: 13px; color: var(--ink2); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: all 0.15s; }
+    .nav-links a:hover { background: var(--bg2); color: var(--ink); }
+    .nav-links a.active { color: var(--ink); font-weight: 500; background: var(--bg2); }
+    .nav-cta { background: var(--ink) !important; color: var(--bg) !important; border-radius: 6px !important; }
+    .nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
+
+    .page-wrap { max-width: 960px; margin: 0 auto; padding: 96px 48px 64px; }
+
+    .page-hero { margin-bottom: 44px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
+    .page-tag { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; }
+    .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 80px; line-height: 0.9; color: var(--ink); letter-spacing: 1px; margin-bottom: 14px; }
+    .page-sub { font-size: 15px; color: var(--ink2); font-weight: 300; line-height: 1.7; max-width: 500px; }
+
+    .section-block { margin-bottom: 44px; }
+    .section-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink3); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .team-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+    .team-card:hover { border-color: var(--border2); box-shadow: 0 4px 20px rgba(26,26,24,0.08); }
+
+    .team-card-top { display: flex; align-items: center; gap: 16px; padding: 20px 22px; border-bottom: 1px solid var(--border); background: var(--bg2); }
+
+    .team-logo { width: 58px; height: 58px; border-radius: 10px; background: white; border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .team-logo img { width: 42px; height: 42px; object-fit: contain; }
+    .team-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--ink2); letter-spacing: 1px; }
+
+    .team-info { flex: 1; min-width: 0; }
+    .team-name { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .team-meta { font-size: 12px; color: var(--ink3); }
+
+    .team-badge { font-size: 10px; padding: 3px 9px; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; white-space: nowrap; flex-shrink: 0; }
+    .badge-nfl  { background: #E8EEF5; color: #013369; border: 1px solid rgba(1,51,105,0.2); }
+    .badge-mlb  { background: #E6EDF8; color: #002D72; border: 1px solid rgba(0,45,114,0.2); }
+    .badge-miaa { background: #E6F2EC; color: #00643C; border: 1px solid rgba(0,100,60,0.2); }
+    .badge-big12{ background: #E6ECF8; color: #0038A8; border: 1px solid rgba(0,56,168,0.2); }
+    .badge-hs   { background: var(--bg3); color: var(--ink2); border: 1px solid var(--border2); }
+
+    .team-card-links { display: flex; background: var(--bg); }
+    .team-link { flex: 1; display: flex; align-items: center; justify-content: center; padding: 11px 6px; text-decoration: none; font-size: 12px; font-weight: 500; color: var(--ink2); border-right: 1px solid var(--border); transition: all 0.15s; letter-spacing: 0.02em; }
+    .team-link:last-child { border-right: none; }
+    .team-link:hover { background: var(--bg3); color: var(--ink); }
+    .team-link.primary { color: var(--accent); }
+    .team-link.primary:hover { background: var(--accent); color: #fff; }
+
+    .footer { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto; padding: 28px 48px; border-top: 1px solid var(--border); font-size: 12px; color: var(--ink3); }
+    .footer-right { display: flex; gap: 20px; }
+    .footer-right a { color: var(--ink3); text-decoration: none; transition: color 0.15s; }
+    .footer-right a:hover { color: var(--ink); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .page-wrap { padding: 82px 20px 48px; }
+      .page-title { font-size: 56px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -16,120 +94,162 @@
     <div class="nav-links">
       <a href="markets.html">Markets</a>
       <a href="tools.html">Tools</a>
-      <a href="sports.html" class="nav-active">Sports</a>
+      <a href="sports.html" class="active">Sports</a>
       <a href="contact.html">Contact</a>
       <a href="dashboard.html" class="nav-cta">Dashboard →</a>
     </div>
   </nav>
 
   <div class="page-wrap">
+
     <div class="page-hero">
       <div class="page-tag">Schedules & Scores</div>
       <h1 class="page-title">Sports</h1>
-      <p class="page-sub">Kansas City teams, local college, and high school athletics.</p>
+      <p class="page-sub">Kansas City teams, local college, and Hays high school athletics — schedules, rosters, and scores.</p>
     </div>
 
-    <div class="section-label">Kansas City</div>
-    <div class="sports-full-grid">
-      <div class="sport-full-card">
-        <div class="sport-full-header">
-          <div>
-            <div class="sport-full-team">Kansas City Chiefs</div>
-            <div class="sport-full-league">NFL · AFC West</div>
-          </div>
-          <div class="sport-badge-lg nfl">NFL</div>
-        </div>
-        <div class="sport-full-links">
-          <a href="https://www.nfl.com/teams/kansas-city-chiefs/schedule" target="_blank" class="sport-btn">Schedule →</a>
-          <a href="https://www.nfl.com/teams/kansas-city-chiefs/roster" target="_blank" class="sport-btn-ghost">Roster →</a>
-          <a href="https://www.espn.com/nfl/team/_/name/kc/kansas-city-chiefs" target="_blank" class="sport-btn-ghost">ESPN →</a>
-        </div>
-      </div>
+    <!-- KANSAS CITY -->
+    <div class="section-block">
+      <div class="section-label">Kansas City</div>
+      <div class="team-grid">
 
-      <div class="sport-full-card">
-        <div class="sport-full-header">
-          <div>
-            <div class="sport-full-team">Kansas City Royals</div>
-            <div class="sport-full-league">MLB · AL Central</div>
+        <div class="team-card">
+          <div class="team-card-top">
+            <div class="team-logo">
+              <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg" alt="Chiefs" onerror="this.parentElement.innerHTML='<span class=\'team-logo-text\'>KC</span>'" />
+            </div>
+            <div class="team-info">
+              <div class="team-name">Kansas City Chiefs</div>
+              <div class="team-meta">NFL · AFC West · Arrowhead Stadium</div>
+            </div>
+            <span class="team-badge badge-nfl">NFL</span>
           </div>
-          <div class="sport-badge-lg mlb">MLB</div>
+          <div class="team-card-links">
+            <a href="https://www.nfl.com/teams/kansas-city-chiefs/schedule" target="_blank" class="team-link primary">Schedule</a>
+            <a href="https://www.nfl.com/teams/kansas-city-chiefs/roster" target="_blank" class="team-link">Roster</a>
+            <a href="https://www.espn.com/nfl/team/_/name/kc/kansas-city-chiefs" target="_blank" class="team-link">ESPN</a>
+            <a href="https://www.chiefs.com" target="_blank" class="team-link">Official Site</a>
+          </div>
         </div>
-        <div class="sport-full-links">
-          <a href="https://www.mlb.com/royals/schedule" target="_blank" class="sport-btn">Schedule →</a>
-          <a href="https://www.mlb.com/royals/roster" target="_blank" class="sport-btn-ghost">Roster →</a>
-          <a href="https://www.espn.com/mlb/team/_/name/kc/kansas-city-royals" target="_blank" class="sport-btn-ghost">ESPN →</a>
-        </div>
-      </div>
-    </div>
 
-    <div class="section-label" style="margin-top:40px;">College</div>
-    <div class="sports-full-grid">
-      <div class="sport-full-card">
-        <div class="sport-full-header">
-          <div>
-            <div class="sport-full-team">FHSU Tigers</div>
-            <div class="sport-full-league">MIAA · Fort Hays State University</div>
+        <div class="team-card">
+          <div class="team-card-top">
+            <div class="team-logo">
+              <img src="https://upload.wikimedia.org/wikipedia/en/1/1a/Kansas_City_Royals_logo.svg" alt="Royals" onerror="this.parentElement.innerHTML='<span class=\'team-logo-text\'>KC</span>'" />
+            </div>
+            <div class="team-info">
+              <div class="team-name">Kansas City Royals</div>
+              <div class="team-meta">MLB · AL Central · Kauffman Stadium</div>
+            </div>
+            <span class="team-badge badge-mlb">MLB</span>
           </div>
-          <div class="sport-badge-lg cfb">MIAA</div>
+          <div class="team-card-links">
+            <a href="https://www.mlb.com/royals/schedule" target="_blank" class="team-link primary">Schedule</a>
+            <a href="https://www.mlb.com/royals/roster" target="_blank" class="team-link">Roster</a>
+            <a href="https://www.espn.com/mlb/team/_/name/kc/kansas-city-royals" target="_blank" class="team-link">ESPN</a>
+            <a href="https://www.mlb.com/royals" target="_blank" class="team-link">Official Site</a>
+          </div>
         </div>
-        <div class="sport-full-links">
-          <a href="https://fhsuathletics.com/sports/football" target="_blank" class="sport-btn">Football →</a>
-          <a href="https://fhsuathletics.com/sports/mbball" target="_blank" class="sport-btn-ghost">Basketball →</a>
-          <a href="https://fhsuathletics.com" target="_blank" class="sport-btn-ghost">All Sports →</a>
-        </div>
-      </div>
 
-      <div class="sport-full-card">
-        <div class="sport-full-header">
-          <div>
-            <div class="sport-full-team">Kansas Jayhawks</div>
-            <div class="sport-full-league">Big 12 · University of Kansas</div>
-          </div>
-          <div class="sport-badge-lg cfb">B12</div>
-        </div>
-        <div class="sport-full-links">
-          <a href="https://kuathletics.com/sports/football/schedule" target="_blank" class="sport-btn">Football →</a>
-          <a href="https://kuathletics.com/sports/mbball/schedule" target="_blank" class="sport-btn-ghost">Basketball →</a>
-          <a href="https://kuathletics.com" target="_blank" class="sport-btn-ghost">All Sports →</a>
-        </div>
       </div>
     </div>
 
-    <div class="section-label" style="margin-top:40px;">High School — Hays</div>
-    <div class="sports-full-grid">
-      <div class="sport-full-card">
-        <div class="sport-full-header">
-          <div>
-            <div class="sport-full-team">Hays High Indians</div>
-            <div class="sport-full-league">KSHSAA · USD 489</div>
-          </div>
-          <div class="sport-badge-lg hs">HS</div>
-        </div>
-        <div class="sport-full-links">
-          <a href="https://www.usd489.com/athletics" target="_blank" class="sport-btn">Athletics →</a>
-          <a href="https://www.kshsaa.org" target="_blank" class="sport-btn-ghost">KSHSAA →</a>
-        </div>
-      </div>
+    <!-- COLLEGE -->
+    <div class="section-block">
+      <div class="section-label">College</div>
+      <div class="team-grid">
 
-      <div class="sport-full-card">
-        <div class="sport-full-header">
-          <div>
-            <div class="sport-full-team">TMP-Marian Monarchs</div>
-            <div class="sport-full-league">KSHSAA · Thomas More Prep</div>
+        <div class="team-card">
+          <div class="team-card-top">
+            <div class="team-logo">
+              <img src="https://upload.wikimedia.org/wikipedia/en/7/7f/Fort_Hays_State_Tigers_logo.svg" alt="FHSU" onerror="this.parentElement.innerHTML='<span class=\'team-logo-text\'>FH</span>'" />
+            </div>
+            <div class="team-info">
+              <div class="team-name">FHSU Tigers</div>
+              <div class="team-meta">MIAA · Fort Hays State University</div>
+            </div>
+            <span class="team-badge badge-miaa">MIAA</span>
           </div>
-          <div class="sport-badge-lg hs">HS</div>
+          <div class="team-card-links">
+            <a href="https://fhsuathletics.com/sports/football" target="_blank" class="team-link primary">Football</a>
+            <a href="https://fhsuathletics.com/sports/mbball" target="_blank" class="team-link">Basketball</a>
+            <a href="https://fhsuathletics.com/sports/baseball" target="_blank" class="team-link">Baseball</a>
+            <a href="https://fhsuathletics.com" target="_blank" class="team-link">All Sports</a>
+          </div>
         </div>
-        <div class="sport-full-links">
-          <a href="https://www.tmpschools.org/athletics" target="_blank" class="sport-btn">Athletics →</a>
-          <a href="https://www.kshsaa.org" target="_blank" class="sport-btn-ghost">KSHSAA →</a>
+
+        <div class="team-card">
+          <div class="team-card-top">
+            <div class="team-logo">
+              <img src="https://upload.wikimedia.org/wikipedia/en/e/e8/Kansas_Jayhawks_logo.svg" alt="KU" onerror="this.parentElement.innerHTML='<span class=\'team-logo-text\'>KU</span>'" />
+            </div>
+            <div class="team-info">
+              <div class="team-name">Kansas Jayhawks</div>
+              <div class="team-meta">Big 12 · University of Kansas</div>
+            </div>
+            <span class="team-badge badge-big12">Big 12</span>
+          </div>
+          <div class="team-card-links">
+            <a href="https://kuathletics.com/sports/football/schedule" target="_blank" class="team-link primary">Football</a>
+            <a href="https://kuathletics.com/sports/mbball/schedule" target="_blank" class="team-link">Basketball</a>
+            <a href="https://kuathletics.com/sports/baseball/schedule" target="_blank" class="team-link">Baseball</a>
+            <a href="https://kuathletics.com" target="_blank" class="team-link">All Sports</a>
+          </div>
         </div>
+
+      </div>
+    </div>
+
+    <!-- HIGH SCHOOL -->
+    <div class="section-block">
+      <div class="section-label">High School — Hays, KS</div>
+      <div class="team-grid">
+
+        <div class="team-card">
+          <div class="team-card-top">
+            <div class="team-logo">
+              <span class="team-logo-text">HHS</span>
+            </div>
+            <div class="team-info">
+              <div class="team-name">Hays High Indians</div>
+              <div class="team-meta">KSHSAA · USD 489 · Class 5A</div>
+            </div>
+            <span class="team-badge badge-hs">5A</span>
+          </div>
+          <div class="team-card-links">
+            <a href="https://www.usd489.com/athletics" target="_blank" class="team-link primary">Athletics</a>
+            <a href="https://www.usd489.com/athletics" target="_blank" class="team-link">Football</a>
+            <a href="https://www.usd489.com/athletics" target="_blank" class="team-link">Basketball</a>
+            <a href="https://www.kshsaa.org" target="_blank" class="team-link">KSHSAA</a>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-card-top">
+            <div class="team-logo">
+              <span class="team-logo-text">TMP</span>
+            </div>
+            <div class="team-info">
+              <div class="team-name">TMP-Marian Monarchs</div>
+              <div class="team-meta">KSHSAA · Thomas More Prep · Class 3A</div>
+            </div>
+            <span class="team-badge badge-hs">3A</span>
+          </div>
+          <div class="team-card-links">
+            <a href="https://www.tmpschools.org/athletics" target="_blank" class="team-link primary">Athletics</a>
+            <a href="https://www.tmpschools.org/athletics" target="_blank" class="team-link">Football</a>
+            <a href="https://www.tmpschools.org/athletics" target="_blank" class="team-link">Basketball</a>
+            <a href="https://www.kshsaa.org" target="_blank" class="team-link">KSHSAA</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
   </div>
 
   <footer class="footer">
-    <div class="footer-left">© 2026 hpkreutz.com — Hays, KS</div>
+    <div>© 2026 hpkreutz.com — Hays, KS</div>
     <div class="footer-right">
       <a href="index.html">Home</a>
       <a href="dashboard.html">Dashboard</a>
