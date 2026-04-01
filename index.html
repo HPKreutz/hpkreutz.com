@@ -11,141 +11,158 @@
 </head>
 <body>
 
-  <div class="sidebar">
-    <div class="brand">HP<span>K</span></div>
-    <nav class="sidenav">
-      <button class="nav-btn active" data-tab="home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Home
-      </button>
-      <button class="nav-btn" data-tab="todo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        To-Do
-      </button>
-      <button class="nav-btn" data-tab="betting">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Betting
-      </button>
-      <button class="nav-btn" data-tab="work">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-        Work
-      </button>
-    </nav>
-    <div class="sidebar-footer">hpkreutz.com</div>
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen">
+    <div class="auth-box">
+      <div class="auth-brand">HP<span>K</span></div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth="login">Sign In</button>
+        <button class="auth-tab" data-auth="signup">Sign Up</button>
+      </div>
+      <div id="auth-error" class="auth-error"></div>
+      <input type="email" id="auth-email" placeholder="Email address" class="modal-input" />
+      <input type="password" id="auth-password" placeholder="Password" class="modal-input" />
+      <button class="primary-btn full" id="auth-submit">Sign In</button>
+      <p class="auth-sub" id="auth-sub-text">Don't have an account? <a href="#" id="auth-switch">Sign up</a></p>
+    </div>
   </div>
 
-  <div class="content">
+  <!-- MAIN APP -->
+  <div id="app" style="display:none; display:none;">
+    <div class="sidebar">
+      <div class="brand">HP<span>K</span></div>
+      <nav class="sidenav">
+        <button class="nav-btn active" data-tab="home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Home
+        </button>
+        <button class="nav-btn" data-tab="todo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          To-Do
+        </button>
+        <button class="nav-btn" data-tab="betting">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Betting
+        </button>
+        <button class="nav-btn" data-tab="work">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+          Work
+        </button>
+      </nav>
+      <button class="signout-btn" id="signout-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </button>
+      <div class="sidebar-footer" id="user-email-display"></div>
+    </div>
 
-    <!-- HOME TAB -->
-    <div class="tab active" id="tab-home">
-      <div class="page-header">
-        <div>
-          <h1 id="greeting">Good morning, Hayden.</h1>
-          <p class="subtext" id="date-display"></p>
-        </div>
-      </div>
+    <div class="content">
 
-      <div class="stats-row">
-        <div class="stat-card">
-          <div class="stat-label">Tasks Left</div>
-          <div class="stat-num" id="stat-tasks">0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Completed Today</div>
-          <div class="stat-num" id="stat-done">0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Work Items</div>
-          <div class="stat-num" id="stat-work">0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Personal Items</div>
-          <div class="stat-num" id="stat-personal">0</div>
-        </div>
-      </div>
-
-      <div class="home-grid">
-        <div class="home-widget">
-          <div class="widget-hdr">
-            <span class="widget-title">Recent To-Dos</span>
-            <button class="link-btn" onclick="switchTab('todo')">View all →</button>
+      <!-- HOME TAB -->
+      <div class="tab active" id="tab-home">
+        <div class="page-header">
+          <div>
+            <h1 id="greeting">Good morning, Hayden.</h1>
+            <p class="subtext" id="date-display"></p>
           </div>
-          <div id="home-todos"></div>
         </div>
-        <div class="home-widget">
-          <div class="widget-hdr">
-            <span class="widget-title">Betting Tracker</span>
-            <button class="link-btn" onclick="switchTab('betting')">View all →</button>
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">Tasks Left</div>
+            <div class="stat-num" id="stat-tasks">0</div>
           </div>
-          <div id="home-bets"></div>
+          <div class="stat-card">
+            <div class="stat-label">Completed</div>
+            <div class="stat-num" id="stat-done">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Work Items</div>
+            <div class="stat-num" id="stat-work">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Personal Items</div>
+            <div class="stat-num" id="stat-personal">0</div>
+          </div>
+        </div>
+        <div class="home-grid">
+          <div class="home-widget">
+            <div class="widget-hdr">
+              <span class="widget-title">Recent To-Dos</span>
+              <button class="link-btn" onclick="switchTab('todo')">View all →</button>
+            </div>
+            <div id="home-todos"></div>
+          </div>
+          <div class="home-widget">
+            <div class="widget-hdr">
+              <span class="widget-title">Betting Tracker</span>
+              <button class="link-btn" onclick="switchTab('betting')">View all →</button>
+            </div>
+            <div id="home-bets"></div>
+          </div>
         </div>
       </div>
+
+      <!-- TODO TAB -->
+      <div class="tab" id="tab-todo">
+        <div class="page-header">
+          <div>
+            <h1>To-Do List</h1>
+            <p class="subtext">Stay on top of work and personal tasks</p>
+          </div>
+          <button class="primary-btn" id="open-todo-modal">+ Add Task</button>
+        </div>
+        <div class="filter-row">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="work">Work</button>
+          <button class="filter-btn" data-filter="personal">Personal</button>
+          <button class="filter-btn" data-filter="done">Completed</button>
+        </div>
+        <div id="todo-list" class="todo-list"></div>
+      </div>
+
+      <!-- BETTING TAB -->
+      <div class="tab" id="tab-betting">
+        <div class="page-header">
+          <div>
+            <h1>Betting Tracker</h1>
+            <p class="subtext">Track your picks and results</p>
+          </div>
+          <button class="primary-btn" id="open-bet-modal">+ Add Bet</button>
+        </div>
+        <div class="bet-stats-row">
+          <div class="stat-card green">
+            <div class="stat-label">Total Won</div>
+            <div class="stat-num" id="bet-won">$0</div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-label">Total Lost</div>
+            <div class="stat-num" id="bet-lost">$0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Net Profit</div>
+            <div class="stat-num" id="bet-net">$0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Win Rate</div>
+            <div class="stat-num" id="bet-rate">0%</div>
+          </div>
+        </div>
+        <div id="bet-list" class="bet-list"></div>
+      </div>
+
+      <!-- WORK TAB -->
+      <div class="tab" id="tab-work">
+        <div class="page-header">
+          <div>
+            <h1>Work Notes</h1>
+            <p class="subtext">Client info, notes, and quick reference</p>
+          </div>
+          <button class="primary-btn" id="open-note-modal">+ Add Note</button>
+        </div>
+        <div id="note-list" class="note-list"></div>
+      </div>
+
     </div>
-
-    <!-- TODO TAB -->
-    <div class="tab" id="tab-todo">
-      <div class="page-header">
-        <div>
-          <h1>To-Do List</h1>
-          <p class="subtext">Stay on top of work and personal tasks</p>
-        </div>
-        <button class="primary-btn" id="open-todo-modal">+ Add Task</button>
-      </div>
-
-      <div class="filter-row">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="work">Work</button>
-        <button class="filter-btn" data-filter="personal">Personal</button>
-        <button class="filter-btn" data-filter="done">Completed</button>
-      </div>
-
-      <div id="todo-list" class="todo-list"></div>
-    </div>
-
-    <!-- BETTING TAB -->
-    <div class="tab" id="tab-betting">
-      <div class="page-header">
-        <div>
-          <h1>Betting Tracker</h1>
-          <p class="subtext">Track your picks and results</p>
-        </div>
-        <button class="primary-btn" id="open-bet-modal">+ Add Bet</button>
-      </div>
-
-      <div class="bet-stats-row">
-        <div class="stat-card green">
-          <div class="stat-label">Total Won</div>
-          <div class="stat-num" id="bet-won">$0</div>
-        </div>
-        <div class="stat-card red">
-          <div class="stat-label">Total Lost</div>
-          <div class="stat-num" id="bet-lost">$0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Net Profit</div>
-          <div class="stat-num" id="bet-net">$0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Win Rate</div>
-          <div class="stat-num" id="bet-rate">0%</div>
-        </div>
-      </div>
-
-      <div id="bet-list" class="bet-list"></div>
-    </div>
-
-    <!-- WORK TAB -->
-    <div class="tab" id="tab-work">
-      <div class="page-header">
-        <div>
-          <h1>Work Notes</h1>
-          <p class="subtext">Client info, notes, and quick reference</p>
-        </div>
-        <button class="primary-btn" id="open-note-modal">+ Add Note</button>
-      </div>
-      <div id="note-list" class="note-list"></div>
-    </div>
-
   </div>
 
   <!-- ADD TASK MODAL -->
@@ -219,6 +236,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
 </body>
 </html>
