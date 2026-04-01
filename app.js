@@ -10,8 +10,72 @@ let todos = [];
 let bets  = [];
 let notes = [];
 let currentUser = null;
+let useCloud = false;
  
-// ─── AUTH ─────────────────────────────────────────────────────────────────────
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+async function init() {
+  setGreeting();
+  const { data: { session } } = await sb.auth.getSession();
+  if (session?.user) {
+    await signInUser(session.user);
+  } else {
+    loadLocal();
+    updateAuthUI(null);
+  }
+}
+ 
+// ─── LOCAL STORAGE ────────────────────────────────────────────────────────────
+function loadLocal() {
+  todos = JSON.parse(localStorage.getItem('hpk-todos') || '[]');
+  bets  = JSON.parse(localStorage.getItem('hpk-bets')  || '[]');
+  notes = JSON.parse(localStorage.getItem('hpk-notes') || '[]');
+  renderAll();
+}
+ 
+function saveLocal() {
+  if (!useCloud) {
+    localStorage.setItem('hpk-todos', JSON.stringify(todos));
+    localStorage.setItem('hpk-bets',  JSON.stringify(bets));
+    localStorage.setItem('hpk-notes', JSON.stringify(notes));
+  }
+}
+ 
+// ─── AUTH UI ──────────────────────────────────────────────────────────────────
+function updateAuthUI(user) {
+  const statusEl = document.getElementById('auth-status');
+  const btnEl    = document.getElementById('auth-btn');
+  const emailEl  = document.getElementById('user-email-display');
+  const banner   = document.getElementById('cloud-banner');
+ 
+  if (user) {
+    statusEl.textContent = 'Signed in';
+    btnEl.textContent = 'Sign Out';
+    btnEl.className = 'auth-sidebar-btn signout';
+    emailEl.textContent = user.email;
+    if (banner) banner.classList.add('hidden');
+  } else {
+    statusEl.textContent = 'Guest mode';
+    btnEl.textContent = 'Sign In';
+    btnEl.className = 'auth-sidebar-btn';
+    emailEl.textContent = '';
+    if (banner) banner.classList.remove('hidden');
+  }
+}
+ 
+document.getElementById('auth-btn').addEventListener('click', () => {
+  if (currentUser) {
+    sb.auth.signOut();
+    currentUser = null;
+    useCloud = false;
+    todos = []; bets = []; notes = [];
+    loadLocal();
+    updateAuthUI(null);
+  } else {
+    openModal('auth-modal');
+  }
+});
+ 
+// ─── AUTH MODAL ───────────────────────────────────────────────────────────────
 let authMode = 'login';
  
 document.querySelectorAll('.auth-tab').forEach(tab => {
@@ -20,24 +84,10 @@ document.querySelectorAll('.auth-tab').forEach(tab => {
     document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById('auth-submit').textContent = authMode === 'login' ? 'Sign In' : 'Create Account';
-    document.getElementById('auth-sub-text').innerHTML = authMode === 'login'
-      ? 'Don\'t have an account? <a href="#" id="auth-switch">Sign up</a>'
-      : 'Already have an account? <a href="#" id="auth-switch">Sign in</a>';
     document.getElementById('auth-error').textContent = '';
     document.getElementById('auth-name').style.display = authMode === 'signup' ? 'block' : 'none';
-    bindAuthSwitch();
   });
 });
- 
-function bindAuthSwitch() {
-  const sw = document.getElementById('auth-switch');
-  if (sw) sw.addEventListener('click', e => {
-    e.preventDefault();
-    const other = authMode === 'login' ? 'signup' : 'login';
-    document.querySelector(`[data-auth="${other}"]`).click();
-  });
-}
-bindAuthSwitch();
  
 document.getElementById('auth-submit').addEventListener('click', async () => {
   const email    = document.getElementById('auth-email').value.trim();
@@ -63,53 +113,33 @@ document.getElementById('auth-submit').addEventListener('click', async () => {
   btn.disabled = false;
   btn.textContent = authMode === 'login' ? 'Sign In' : 'Create Account';
  
-  if (result.error) {
-    errEl.textContent = result.error.message;
-    return;
-  }
+  if (result.error) { errEl.textContent = result.error.message; return; }
  
   if (authMode === 'signup') {
     if (!result.data.session) {
-      errEl.style.color = 'var(--accent)';
+      errEl.style.color = 'var(--daccent)';
       errEl.textContent = 'Check your email to confirm your account!';
       return;
     }
     await sb.from('profiles').insert({ id: result.data.user.id, first_name: name });
   }
  
-  showApp(result.data.user);
+  closeModal('auth-modal');
+  await signInUser(result.data.user);
 });
  
-document.getElementById('signout-btn').addEventListener('click', async () => {
-  await sb.auth.signOut();
-  currentUser = null;
-  todos = []; bets = []; notes = [];
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('auth-screen').style.display = 'flex';
-  document.getElementById('auth-email').value = '';
-  document.getElementById('auth-password').value = '';
-});
- 
-sb.auth.onAuthStateChange((event, session) => {
-  if (session?.user) {
-    showApp(session.user);
-  }
-});
- 
-async function showApp(user) {
+async function signInUser(user) {
   currentUser = user;
-  document.getElementById('auth-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
-  document.getElementById('user-email-display').textContent = user.email;
- 
+  useCloud = true;
   const { data: profile } = await sb.from('profiles').select('first_name').eq('id', user.id).single();
   const name = profile?.first_name || user.email.split('@')[0];
   setGreeting(name);
-  await loadAll();
+  updateAuthUI(user);
+  await loadCloud();
 }
  
-// ─── LOAD ALL DATA ────────────────────────────────────────────────────────────
-async function loadAll() {
+// ─── CLOUD DATA ───────────────────────────────────────────────────────────────
+async function loadCloud() {
   const [t, b, n] = await Promise.all([
     sb.from('todos').select('*').order('created_at', { ascending: false }),
     sb.from('bets').select('*').order('created_at', { ascending: false }),
@@ -118,17 +148,14 @@ async function loadAll() {
   todos = t.data || [];
   bets  = b.data || [];
   notes = n.data || [];
-  renderHome();
-  renderTodos();
-  renderBets();
-  renderNotes();
+  renderAll();
 }
  
-// ─── GREETING & DATE ──────────────────────────────────────────────────────────
+// ─── GREETING ─────────────────────────────────────────────────────────────────
 function setGreeting(name) {
   const h = new Date().getHours();
   const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
-  document.getElementById('greeting').textContent = greet + ', ' + name + '.';
+  document.getElementById('greeting').textContent = name ? greet + ', ' + name + '.' : greet + '.';
   const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   document.getElementById('date-display').textContent = new Date().toLocaleDateString('en-US', opts);
 }
@@ -140,10 +167,17 @@ function switchTab(name) {
   document.getElementById('tab-' + name).classList.add('active');
   document.querySelector(`[data-tab="${name}"]`).classList.add('active');
 }
- 
 document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => switchTab(btn.dataset.tab));
 });
+ 
+// ─── RENDER ALL ───────────────────────────────────────────────────────────────
+function renderAll() {
+  renderHome();
+  renderTodos();
+  renderBets();
+  renderNotes();
+}
  
 // ─── TODO ─────────────────────────────────────────────────────────────────────
 let todoFilter = 'all';
@@ -175,15 +209,18 @@ function renderTodos() {
 }
  
 async function toggleTodo(id, done) {
-  await sb.from('todos').update({ done: !done }).eq('id', id);
   const t = todos.find(x => x.id === id);
-  if (t) t.done = !done;
+  if (!t) return;
+  t.done = !done;
+  if (useCloud) await sb.from('todos').update({ done: !done }).eq('id', id);
+  else saveLocal();
   renderTodos(); renderHome();
 }
  
 async function deleteTodo(id) {
-  await sb.from('todos').delete().eq('id', id);
   todos = todos.filter(x => x.id !== id);
+  if (useCloud) await sb.from('todos').delete().eq('id', id);
+  else saveLocal();
   renderTodos(); renderHome();
 }
  
@@ -200,14 +237,20 @@ document.getElementById('open-todo-modal').addEventListener('click', () => openM
 document.getElementById('save-todo').addEventListener('click', async () => {
   const text = document.getElementById('todo-input').value.trim();
   if (!text) return;
-  const { data } = await sb.from('todos').insert({
+  const item = {
+    id: Date.now().toString(),
     text,
     cat:  document.getElementById('todo-cat').value,
     date: document.getElementById('todo-date').value,
-    done: false,
-    user_id: currentUser.id
-  }).select().single();
-  if (data) todos.unshift(data);
+    done: false
+  };
+  if (useCloud) {
+    const { data } = await sb.from('todos').insert({ ...item, user_id: currentUser.id }).select().single();
+    if (data) { item.id = data.id; todos.unshift(data); }
+  } else {
+    todos.unshift(item);
+    saveLocal();
+  }
   renderTodos(); renderHome();
   closeModal('todo-modal');
   document.getElementById('todo-input').value = '';
@@ -218,14 +261,14 @@ document.getElementById('save-todo').addEventListener('click', async () => {
 function renderBets() {
   const list = document.getElementById('bet-list');
   if (bets.length === 0) {
-    list.innerHTML = '<div class="empty-state"><span>🎯</span>No bets tracked yet — add your first pick!</div>';
+    list.innerHTML = '<div class="empty-state"><span>🎯</span>No bets tracked yet!</div>';
   } else {
     list.innerHTML = bets.map(b => `
       <div class="bet-item">
         <span class="sport-badge">${escHtml(b.sport)}</span>
         <div class="bet-info">
           <div class="bet-matchup-text">${escHtml(b.matchup)}</div>
-          <div class="bet-pick-text">Pick: ${escHtml(b.pick || '')} &nbsp;·&nbsp; Odds: ${escHtml(b.odds || '')}</div>
+          <div class="bet-pick-text">Pick: ${escHtml(b.pick || '')} · Odds: ${escHtml(b.odds || '')}</div>
         </div>
         <div class="bet-right">
           <span class="bet-amount">$${parseFloat(b.amount || 0).toFixed(2)}</span>
@@ -239,15 +282,16 @@ function renderBets() {
 }
  
 async function deleteBet(id) {
-  await sb.from('bets').delete().eq('id', id);
   bets = bets.filter(x => x.id !== id);
+  if (useCloud) await sb.from('bets').delete().eq('id', id);
+  else saveLocal();
   renderBets(); renderHome();
 }
  
 function updateBetStats() {
   const won  = bets.filter(b => b.result === 'won');
   const lost = bets.filter(b => b.result === 'lost');
-  const totalWon  = won.reduce((s, b)  => s + calcPayout(b.amount, b.odds), 0);
+  const totalWon  = won.reduce((s, b) => s + calcPayout(b.amount, b.odds), 0);
   const totalLost = lost.reduce((s, b) => s + parseFloat(b.amount || 0), 0);
   const net   = totalWon - totalLost;
   const total = won.length + lost.length;
@@ -270,16 +314,22 @@ document.getElementById('open-bet-modal').addEventListener('click', () => openMo
 document.getElementById('save-bet').addEventListener('click', async () => {
   const matchup = document.getElementById('bet-matchup').value.trim();
   if (!matchup) return;
-  const { data } = await sb.from('bets').insert({
+  const item = {
+    id: Date.now().toString(),
     matchup,
-    sport:   document.getElementById('bet-sport').value,
-    pick:    document.getElementById('bet-pick').value.trim(),
-    odds:    document.getElementById('bet-odds').value.trim(),
-    amount:  document.getElementById('bet-amount').value,
-    result:  document.getElementById('bet-result').value,
-    user_id: currentUser.id
-  }).select().single();
-  if (data) bets.unshift(data);
+    sport:  document.getElementById('bet-sport').value,
+    pick:   document.getElementById('bet-pick').value.trim(),
+    odds:   document.getElementById('bet-odds').value.trim(),
+    amount: document.getElementById('bet-amount').value,
+    result: document.getElementById('bet-result').value
+  };
+  if (useCloud) {
+    const { data } = await sb.from('bets').insert({ ...item, user_id: currentUser.id }).select().single();
+    if (data) bets.unshift(data);
+  } else {
+    bets.unshift(item);
+    saveLocal();
+  }
   renderBets(); renderHome();
   closeModal('bet-modal');
   ['bet-matchup','bet-pick','bet-odds','bet-amount'].forEach(id => document.getElementById(id).value = '');
@@ -290,7 +340,7 @@ document.getElementById('save-bet').addEventListener('click', async () => {
 function renderNotes() {
   const list = document.getElementById('note-list');
   if (notes.length === 0) {
-    list.innerHTML = '<div class="empty-state"><span>📋</span>No work notes yet — add your first one!</div>';
+    list.innerHTML = '<div class="empty-state"><span>📋</span>No work notes yet!</div>';
     return;
   }
   list.innerHTML = notes.map(n => `
@@ -298,16 +348,15 @@ function renderNotes() {
       <button class="note-delete" onclick="deleteNote('${n.id}')">×</button>
       <div class="note-card-title">${escHtml(n.title)}</div>
       <div class="note-card-body">${escHtml(n.body || '')}</div>
-      <div class="note-card-footer">
-        <span class="tag tag-${n.tag}">${n.tag}</span>
-      </div>
+      <div class="note-card-footer"><span class="tag tag-${n.tag}">${n.tag}</span></div>
     </div>
   `).join('');
 }
  
 async function deleteNote(id) {
-  await sb.from('notes').delete().eq('id', id);
   notes = notes.filter(x => x.id !== id);
+  if (useCloud) await sb.from('notes').delete().eq('id', id);
+  else saveLocal();
   renderNotes();
 }
  
@@ -315,13 +364,19 @@ document.getElementById('open-note-modal').addEventListener('click', () => openM
 document.getElementById('save-note').addEventListener('click', async () => {
   const title = document.getElementById('note-title').value.trim();
   if (!title) return;
-  const { data } = await sb.from('notes').insert({
+  const item = {
+    id: Date.now().toString(),
     title,
-    body:    document.getElementById('note-body').value.trim(),
-    tag:     document.getElementById('note-tag').value,
-    user_id: currentUser.id
-  }).select().single();
-  if (data) notes.unshift(data);
+    body: document.getElementById('note-body').value.trim(),
+    tag:  document.getElementById('note-tag').value
+  };
+  if (useCloud) {
+    const { data } = await sb.from('notes').insert({ ...item, user_id: currentUser.id }).select().single();
+    if (data) notes.unshift(data);
+  } else {
+    notes.unshift(item);
+    saveLocal();
+  }
   renderNotes();
   closeModal('note-modal');
   document.getElementById('note-title').value = '';
@@ -333,28 +388,25 @@ function renderHome() {
   const homeTodos = document.getElementById('home-todos');
   const recent = todos.filter(t => !t.done).slice(0, 4);
   if (recent.length === 0) {
-    homeTodos.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0;">No open tasks — you\'re all caught up!</div>';
+    homeTodos.innerHTML = '<div style="color:var(--dmuted);font-size:13px;padding:8px 0;">No open tasks — you\'re all caught up!</div>';
   } else {
     homeTodos.innerHTML = recent.map(t => `
-      <div class="todo-item" style="background:var(--bg3);margin-bottom:6px;">
+      <div class="todo-item" style="background:var(--dbg3);margin-bottom:6px;">
         <div class="todo-check ${t.done ? 'checked' : ''}" onclick="toggleTodo('${t.id}', ${t.done})"></div>
         <span class="todo-text" style="font-size:13px;">${escHtml(t.text)}</span>
         <span class="tag tag-${t.cat}">${t.cat}</span>
       </div>
     `).join('');
   }
- 
   const homeBets = document.getElementById('home-bets');
   const recentBets = bets.slice(0, 4);
   if (recentBets.length === 0) {
-    homeBets.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0;">No bets tracked yet.</div>';
+    homeBets.innerHTML = '<div style="color:var(--dmuted);font-size:13px;padding:8px 0;">No bets tracked yet.</div>';
   } else {
     homeBets.innerHTML = recentBets.map(b => `
-      <div class="bet-item" style="background:var(--bg3);margin-bottom:6px;">
+      <div class="bet-item" style="background:var(--dbg3);margin-bottom:6px;">
         <span class="sport-badge">${escHtml(b.sport)}</span>
-        <div class="bet-info">
-          <div class="bet-matchup-text" style="font-size:13px;">${escHtml(b.matchup)}</div>
-        </div>
+        <div class="bet-info"><div class="bet-matchup-text" style="font-size:13px;">${escHtml(b.matchup)}</div></div>
         <span class="tag tag-${b.result}">${b.result}</span>
       </div>
     `).join('');
@@ -363,14 +415,10 @@ function renderHome() {
 }
  
 function updateStats() {
-  const open     = todos.filter(t => !t.done).length;
-  const done     = todos.filter(t => t.done).length;
-  const work     = todos.filter(t => t.cat === 'work' && !t.done).length;
-  const personal = todos.filter(t => t.cat === 'personal' && !t.done).length;
-  document.getElementById('stat-tasks').textContent    = open;
-  document.getElementById('stat-done').textContent     = done;
-  document.getElementById('stat-work').textContent     = work;
-  document.getElementById('stat-personal').textContent = personal;
+  document.getElementById('stat-tasks').textContent    = todos.filter(t => !t.done).length;
+  document.getElementById('stat-done').textContent     = todos.filter(t => t.done).length;
+  document.getElementById('stat-work').textContent     = todos.filter(t => t.cat === 'work' && !t.done).length;
+  document.getElementById('stat-personal').textContent = todos.filter(t => t.cat === 'personal' && !t.done).length;
 }
  
 // ─── MODALS ───────────────────────────────────────────────────────────────────
@@ -390,3 +438,6 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 function escHtml(str) {
   return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+ 
+// ─── START ────────────────────────────────────────────────────────────────────
+init();
