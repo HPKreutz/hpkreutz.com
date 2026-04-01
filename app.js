@@ -1,15 +1,121 @@
-// ─── STATE ───────────────────────────────────────────────────────────────────
-let todos = JSON.parse(localStorage.getItem('hpk-todos') || '[]');
-let bets  = JSON.parse(localStorage.getItem('hpk-bets')  || '[]');
-let notes = JSON.parse(localStorage.getItem('hpk-notes') || '[]');
+// ─── SUPABASE INIT ────────────────────────────────────────────────────────────
+const { createClient } = supabase;
+const sb = createClient(
+  'https://dnsxkbxpihvrtvrpfmnh.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRuc3hrYnhwaWh2cnR2cnBmbW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNjgyNDgsImV4cCI6MjA5MDY0NDI0OH0.A2-t2Y2oKeEEXjeWUmpA8SthuBAlGLToxw4OH9WYgXM'
+);
  
-function save() {
-  localStorage.setItem('hpk-todos', JSON.stringify(todos));
-  localStorage.setItem('hpk-bets',  JSON.stringify(bets));
-  localStorage.setItem('hpk-notes', JSON.stringify(notes));
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let todos = [];
+let bets  = [];
+let notes = [];
+let currentUser = null;
+ 
+// ─── AUTH ─────────────────────────────────────────────────────────────────────
+let authMode = 'login';
+ 
+document.querySelectorAll('.auth-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    authMode = tab.dataset.auth;
+    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('auth-submit').textContent = authMode === 'login' ? 'Sign In' : 'Create Account';
+    document.getElementById('auth-sub-text').innerHTML = authMode === 'login'
+      ? 'Don\'t have an account? <a href="#" id="auth-switch">Sign up</a>'
+      : 'Already have an account? <a href="#" id="auth-switch">Sign in</a>';
+    document.getElementById('auth-error').textContent = '';
+    bindAuthSwitch();
+  });
+});
+ 
+function bindAuthSwitch() {
+  const sw = document.getElementById('auth-switch');
+  if (sw) sw.addEventListener('click', e => {
+    e.preventDefault();
+    const other = authMode === 'login' ? 'signup' : 'login';
+    document.querySelector(`[data-auth="${other}"]`).click();
+  });
+}
+bindAuthSwitch();
+ 
+document.getElementById('auth-submit').addEventListener('click', async () => {
+  const email    = document.getElementById('auth-email').value.trim();
+  const password = document.getElementById('auth-password').value;
+  const errEl    = document.getElementById('auth-error');
+  const btn      = document.getElementById('auth-submit');
+ 
+  if (!email || !password) { errEl.textContent = 'Please enter email and password.'; return; }
+ 
+  btn.disabled = true;
+  btn.textContent = authMode === 'login' ? 'Signing in...' : 'Creating account...';
+  errEl.textContent = '';
+ 
+  let result;
+  if (authMode === 'login') {
+    result = await sb.auth.signInWithPassword({ email, password });
+  } else {
+    result = await sb.auth.signUp({ email, password });
+  }
+ 
+  btn.disabled = false;
+  btn.textContent = authMode === 'login' ? 'Sign In' : 'Create Account';
+ 
+  if (result.error) {
+    errEl.textContent = result.error.message;
+    return;
+  }
+ 
+  if (authMode === 'signup' && !result.data.session) {
+    errEl.style.color = 'var(--accent)';
+    errEl.textContent = 'Check your email to confirm your account!';
+    return;
+  }
+ 
+  showApp(result.data.user);
+});
+ 
+document.getElementById('signout-btn').addEventListener('click', async () => {
+  await sb.auth.signOut();
+  currentUser = null;
+  todos = []; bets = []; notes = [];
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('auth-screen').style.display = 'flex';
+  document.getElementById('auth-email').value = '';
+  document.getElementById('auth-password').value = '';
+});
+ 
+sb.auth.onAuthStateChange((event, session) => {
+  if (session?.user) {
+    showApp(session.user);
+  }
+});
+ 
+async function showApp(user) {
+  currentUser = user;
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  document.getElementById('user-email-display').textContent = user.email;
+  setGreeting();
+  await loadAll();
 }
  
-// ─── GREETING & DATE ─────────────────────────────────────────────────────────
+// ─── LOAD ALL DATA ────────────────────────────────────────────────────────────
+async function loadAll() {
+  const [t, b, n] = await Promise.all([
+    sb.from('todos').select('*').order('created_at', { ascending: false }),
+    sb.from('bets').select('*').order('created_at', { ascending: false }),
+    sb.from('notes').select('*').order('created_at', { ascending: false })
+  ]);
+  todos = t.data || [];
+  bets  = b.data || [];
+  notes = n.data || [];
+  renderHome();
+  renderTodos();
+  renderBets();
+  renderNotes();
+}
+ 
+// ─── GREETING & DATE ──────────────────────────────────────────────────────────
 function setGreeting() {
   const h = new Date().getHours();
   const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
@@ -18,13 +124,12 @@ function setGreeting() {
   document.getElementById('date-display').textContent = new Date().toLocaleDateString('en-US', opts);
 }
  
-// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+// ─── NAVIGATION ───────────────────────────────────────────────────────────────
 function switchTab(name) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
   document.querySelector(`[data-tab="${name}"]`).classList.add('active');
-  if (name === 'home') renderHome();
 }
  
 document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -44,12 +149,11 @@ function renderTodos() {
  
   if (filtered.length === 0) {
     list.innerHTML = '<div class="empty-state"><span>✓</span>Nothing here — add a task above!</div>';
-    return;
+    updateStats(); return;
   }
- 
   list.innerHTML = filtered.map(t => `
-    <div class="todo-item ${t.done ? 'done' : ''}" data-id="${t.id}">
-      <div class="todo-check ${t.done ? 'checked' : ''}" onclick="toggleTodo('${t.id}')"></div>
+    <div class="todo-item ${t.done ? 'done' : ''}">
+      <div class="todo-check ${t.done ? 'checked' : ''}" onclick="toggleTodo('${t.id}', ${t.done})"></div>
       <span class="todo-text">${escHtml(t.text)}</span>
       <div class="todo-meta">
         ${t.date ? `<span class="todo-date">${t.date}</span>` : ''}
@@ -61,14 +165,17 @@ function renderTodos() {
   updateStats();
 }
  
-function toggleTodo(id) {
+async function toggleTodo(id, done) {
+  await sb.from('todos').update({ done: !done }).eq('id', id);
   const t = todos.find(x => x.id === id);
-  if (t) { t.done = !t.done; save(); renderTodos(); renderHome(); }
+  if (t) t.done = !done;
+  renderTodos(); renderHome();
 }
  
-function deleteTodo(id) {
+async function deleteTodo(id) {
+  await sb.from('todos').delete().eq('id', id);
   todos = todos.filter(x => x.id !== id);
-  save(); renderTodos(); renderHome();
+  renderTodos(); renderHome();
 }
  
 document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -81,17 +188,18 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
  
 document.getElementById('open-todo-modal').addEventListener('click', () => openModal('todo-modal'));
-document.getElementById('save-todo').addEventListener('click', () => {
+document.getElementById('save-todo').addEventListener('click', async () => {
   const text = document.getElementById('todo-input').value.trim();
   if (!text) return;
-  todos.unshift({
-    id: Date.now().toString(),
+  const { data } = await sb.from('todos').insert({
     text,
-    cat: document.getElementById('todo-cat').value,
+    cat:  document.getElementById('todo-cat').value,
     date: document.getElementById('todo-date').value,
-    done: false
-  });
-  save(); renderTodos(); renderHome();
+    done: false,
+    user_id: currentUser.id
+  }).select().single();
+  if (data) todos.unshift(data);
+  renderTodos(); renderHome();
   closeModal('todo-modal');
   document.getElementById('todo-input').value = '';
   document.getElementById('todo-date').value = '';
@@ -108,7 +216,7 @@ function renderBets() {
         <span class="sport-badge">${escHtml(b.sport)}</span>
         <div class="bet-info">
           <div class="bet-matchup-text">${escHtml(b.matchup)}</div>
-          <div class="bet-pick-text">Pick: ${escHtml(b.pick)} &nbsp;·&nbsp; Odds: ${escHtml(b.odds)}</div>
+          <div class="bet-pick-text">Pick: ${escHtml(b.pick || '')} &nbsp;·&nbsp; Odds: ${escHtml(b.odds || '')}</div>
         </div>
         <div class="bet-right">
           <span class="bet-amount">$${parseFloat(b.amount || 0).toFixed(2)}</span>
@@ -121,9 +229,10 @@ function renderBets() {
   updateBetStats();
 }
  
-function deleteBet(id) {
+async function deleteBet(id) {
+  await sb.from('bets').delete().eq('id', id);
   bets = bets.filter(x => x.id !== id);
-  save(); renderBets(); renderHome();
+  renderBets(); renderHome();
 }
  
 function updateBetStats() {
@@ -131,10 +240,9 @@ function updateBetStats() {
   const lost = bets.filter(b => b.result === 'lost');
   const totalWon  = won.reduce((s, b)  => s + calcPayout(b.amount, b.odds), 0);
   const totalLost = lost.reduce((s, b) => s + parseFloat(b.amount || 0), 0);
-  const net  = totalWon - totalLost;
+  const net   = totalWon - totalLost;
   const total = won.length + lost.length;
   const rate  = total > 0 ? Math.round((won.length / total) * 100) : 0;
- 
   document.getElementById('bet-won').textContent  = '$' + totalWon.toFixed(2);
   document.getElementById('bet-lost').textContent = '$' + totalLost.toFixed(2);
   document.getElementById('bet-net').textContent  = (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2);
@@ -150,19 +258,20 @@ function calcPayout(amount, odds) {
 }
  
 document.getElementById('open-bet-modal').addEventListener('click', () => openModal('bet-modal'));
-document.getElementById('save-bet').addEventListener('click', () => {
+document.getElementById('save-bet').addEventListener('click', async () => {
   const matchup = document.getElementById('bet-matchup').value.trim();
   if (!matchup) return;
-  bets.unshift({
-    id: Date.now().toString(),
+  const { data } = await sb.from('bets').insert({
     matchup,
-    sport:  document.getElementById('bet-sport').value,
-    pick:   document.getElementById('bet-pick').value.trim(),
-    odds:   document.getElementById('bet-odds').value.trim(),
-    amount: document.getElementById('bet-amount').value,
-    result: document.getElementById('bet-result').value
-  });
-  save(); renderBets(); renderHome();
+    sport:   document.getElementById('bet-sport').value,
+    pick:    document.getElementById('bet-pick').value.trim(),
+    odds:    document.getElementById('bet-odds').value.trim(),
+    amount:  document.getElementById('bet-amount').value,
+    result:  document.getElementById('bet-result').value,
+    user_id: currentUser.id
+  }).select().single();
+  if (data) bets.unshift(data);
+  renderBets(); renderHome();
   closeModal('bet-modal');
   ['bet-matchup','bet-pick','bet-odds','bet-amount'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('bet-result').value = 'pending';
@@ -179,7 +288,7 @@ function renderNotes() {
     <div class="note-card">
       <button class="note-delete" onclick="deleteNote('${n.id}')">×</button>
       <div class="note-card-title">${escHtml(n.title)}</div>
-      <div class="note-card-body">${escHtml(n.body)}</div>
+      <div class="note-card-body">${escHtml(n.body || '')}</div>
       <div class="note-card-footer">
         <span class="tag tag-${n.tag}">${n.tag}</span>
       </div>
@@ -187,22 +296,24 @@ function renderNotes() {
   `).join('');
 }
  
-function deleteNote(id) {
+async function deleteNote(id) {
+  await sb.from('notes').delete().eq('id', id);
   notes = notes.filter(x => x.id !== id);
-  save(); renderNotes();
+  renderNotes();
 }
  
 document.getElementById('open-note-modal').addEventListener('click', () => openModal('note-modal'));
-document.getElementById('save-note').addEventListener('click', () => {
+document.getElementById('save-note').addEventListener('click', async () => {
   const title = document.getElementById('note-title').value.trim();
   if (!title) return;
-  notes.unshift({
-    id: Date.now().toString(),
+  const { data } = await sb.from('notes').insert({
     title,
-    body: document.getElementById('note-body').value.trim(),
-    tag:  document.getElementById('note-tag').value
-  });
-  save(); renderNotes();
+    body:    document.getElementById('note-body').value.trim(),
+    tag:     document.getElementById('note-tag').value,
+    user_id: currentUser.id
+  }).select().single();
+  if (data) notes.unshift(data);
+  renderNotes();
   closeModal('note-modal');
   document.getElementById('note-title').value = '';
   document.getElementById('note-body').value = '';
@@ -210,7 +321,6 @@ document.getElementById('save-note').addEventListener('click', () => {
  
 // ─── HOME ─────────────────────────────────────────────────────────────────────
 function renderHome() {
-  // Recent todos
   const homeTodos = document.getElementById('home-todos');
   const recent = todos.filter(t => !t.done).slice(0, 4);
   if (recent.length === 0) {
@@ -218,14 +328,13 @@ function renderHome() {
   } else {
     homeTodos.innerHTML = recent.map(t => `
       <div class="todo-item" style="background:var(--bg3);margin-bottom:6px;">
-        <div class="todo-check ${t.done ? 'checked' : ''}" onclick="toggleTodo('${t.id}')"></div>
+        <div class="todo-check ${t.done ? 'checked' : ''}" onclick="toggleTodo('${t.id}', ${t.done})"></div>
         <span class="todo-text" style="font-size:13px;">${escHtml(t.text)}</span>
         <span class="tag tag-${t.cat}">${t.cat}</span>
       </div>
     `).join('');
   }
  
-  // Recent bets
   const homeBets = document.getElementById('home-bets');
   const recentBets = bets.slice(0, 4);
   if (recentBets.length === 0) {
@@ -241,7 +350,6 @@ function renderHome() {
       </div>
     `).join('');
   }
- 
   updateStats();
 }
  
@@ -273,10 +381,3 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 function escHtml(str) {
   return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
- 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
-setGreeting();
-renderHome();
-renderTodos();
-renderBets();
-renderNotes();
