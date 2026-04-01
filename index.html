@@ -3,241 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hpkreutz.com</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>hpkreutz.com — Tools, Sports, and Everything In Between</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- AUTH SCREEN -->
-  <div id="auth-screen">
-    <div class="auth-box">
-      <div class="auth-brand">HP<span>K</span></div>
-      <div class="auth-tabs">
-        <button class="auth-tab active" data-auth="login">Sign In</button>
-        <button class="auth-tab" data-auth="signup">Sign Up</button>
-      </div>
-      <div id="auth-error" class="auth-error"></div>
-      <input type="text" id="auth-name" placeholder="First name" class="modal-input" style="display:none;" />
-      <input type="email" id="auth-email" placeholder="Email address" class="modal-input" />
-      <input type="password" id="auth-password" placeholder="Password" class="modal-input" />
-      <button class="primary-btn full" id="auth-submit">Sign In</button>
-      <p class="auth-sub" id="auth-sub-text">Don't have an account? <a href="#" id="auth-switch">Sign up</a></p>
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">HPK</a>
+    <div class="nav-links">
+      <a href="#tools">Tools</a>
+      <a href="#sports">Sports</a>
+      <a href="#markets">Markets</a>
+      <a href="#contact">Contact</a>
+      <a href="dashboard.html" class="nav-cta">Dashboard →</a>
     </div>
-  </div>
+  </nav>
 
-  <!-- MAIN APP -->
-  <div id="app" style="display:none; display:none;">
-    <div class="sidebar">
-      <div class="brand">HP<span>K</span></div>
-      <nav class="sidenav">
-        <button class="nav-btn active" data-tab="home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Home
-        </button>
-        <button class="nav-btn" data-tab="todo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-          To-Do
-        </button>
-        <button class="nav-btn" data-tab="betting">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          Betting
-        </button>
-        <button class="nav-btn" data-tab="work">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-          Work
-        </button>
-      </nav>
-      <button class="signout-btn" id="signout-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        Sign Out
-      </button>
-      <div class="sidebar-footer" id="user-email-display"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">hpkreutz.com</div>
+    <h1 class="hero-title">Tools, Sports,<br><em>and Everything</em><br>In Between.</h1>
+    <p class="hero-sub">A personal hub built for daily use — calculators, live markets, sports schedules, betting odds, and more.</p>
+    <div class="hero-btns">
+      <a href="#tools" class="btn-primary">Explore Tools</a>
+      <a href="dashboard.html" class="btn-ghost">My Dashboard</a>
     </div>
+  </section>
 
-    <div class="content">
+  <!-- WHAT'S HERE -->
+  <section class="section" id="tools">
+    <div class="section-label">What's Here</div>
+    <div class="cards-grid">
 
-      <!-- HOME TAB -->
-      <div class="tab active" id="tab-home">
-        <div class="page-header">
-          <div>
-            <h1 id="greeting">Good morning, Hayden.</h1>
-            <p class="subtext" id="date-display"></p>
-          </div>
+      <a href="dashboard.html" class="card">
+        <div class="card-icon">✓</div>
+        <div class="card-body">
+          <div class="card-title">Dashboard</div>
+          <div class="card-desc">To-do lists, betting tracker, and work notes — all in one place.</div>
         </div>
-        <div class="stats-row">
-          <div class="stat-card">
-            <div class="stat-label">Tasks Left</div>
-            <div class="stat-num" id="stat-tasks">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Completed</div>
-            <div class="stat-num" id="stat-done">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Work Items</div>
-            <div class="stat-num" id="stat-work">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Personal Items</div>
-            <div class="stat-num" id="stat-personal">0</div>
-          </div>
-        </div>
-        <div class="home-grid">
-          <div class="home-widget">
-            <div class="widget-hdr">
-              <span class="widget-title">Recent To-Dos</span>
-              <button class="link-btn" onclick="switchTab('todo')">View all →</button>
-            </div>
-            <div id="home-todos"></div>
-          </div>
-          <div class="home-widget">
-            <div class="widget-hdr">
-              <span class="widget-title">Betting Tracker</span>
-              <button class="link-btn" onclick="switchTab('betting')">View all →</button>
-            </div>
-            <div id="home-bets"></div>
-          </div>
-        </div>
-      </div>
+        <div class="card-arrow">→</div>
+      </a>
 
-      <!-- TODO TAB -->
-      <div class="tab" id="tab-todo">
-        <div class="page-header">
-          <div>
-            <h1>To-Do List</h1>
-            <p class="subtext">Stay on top of work and personal tasks</p>
-          </div>
-          <button class="primary-btn" id="open-todo-modal">+ Add Task</button>
+      <a href="markets.html" class="card">
+        <div class="card-icon">$</div>
+        <div class="card-body">
+          <div class="card-title">Markets</div>
+          <div class="card-desc">Live stock indices, oil, Bitcoin, gold, and more.</div>
         </div>
-        <div class="filter-row">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="work">Work</button>
-          <button class="filter-btn" data-filter="personal">Personal</button>
-          <button class="filter-btn" data-filter="done">Completed</button>
-        </div>
-        <div id="todo-list" class="todo-list"></div>
-      </div>
+        <div class="card-arrow">→</div>
+      </a>
 
-      <!-- BETTING TAB -->
-      <div class="tab" id="tab-betting">
-        <div class="page-header">
-          <div>
-            <h1>Betting Tracker</h1>
-            <p class="subtext">Track your picks and results</p>
-          </div>
-          <button class="primary-btn" id="open-bet-modal">+ Add Bet</button>
+      <a href="sports.html" class="card">
+        <div class="card-icon">⚡</div>
+        <div class="card-body">
+          <div class="card-title">Sports</div>
+          <div class="card-desc">Chiefs, Royals, FHSU, and Hays High schedules and scores.</div>
         </div>
-        <div class="bet-stats-row">
-          <div class="stat-card green">
-            <div class="stat-label">Total Won</div>
-            <div class="stat-num" id="bet-won">$0</div>
-          </div>
-          <div class="stat-card red">
-            <div class="stat-label">Total Lost</div>
-            <div class="stat-num" id="bet-lost">$0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Net Profit</div>
-            <div class="stat-num" id="bet-net">$0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Win Rate</div>
-            <div class="stat-num" id="bet-rate">0%</div>
-          </div>
-        </div>
-        <div id="bet-list" class="bet-list"></div>
-      </div>
+        <div class="card-arrow">→</div>
+      </a>
 
-      <!-- WORK TAB -->
-      <div class="tab" id="tab-work">
-        <div class="page-header">
-          <div>
-            <h1>Work Notes</h1>
-            <p class="subtext">Client info, notes, and quick reference</p>
-          </div>
-          <button class="primary-btn" id="open-note-modal">+ Add Note</button>
+      <a href="betting.html" class="card">
+        <div class="card-icon">◎</div>
+        <div class="card-body">
+          <div class="card-title">Betting Odds</div>
+          <div class="card-desc">Track your picks, log results, and see your win rate.</div>
         </div>
-        <div id="note-list" class="note-list"></div>
-      </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <a href="fitness.html" class="card">
+        <div class="card-icon">▲</div>
+        <div class="card-body">
+          <div class="card-title">Fitness</div>
+          <div class="card-desc">Log workouts, track progress, and stay on your program.</div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <a href="tools.html" class="card">
+        <div class="card-icon">#</div>
+        <div class="card-body">
+          <div class="card-title">Calculators</div>
+          <div class="card-desc">Loan, mortgage, retirement, and insurance calculators.</div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
 
     </div>
-  </div>
+  </section>
 
-  <!-- ADD TASK MODAL -->
-  <div class="modal-overlay" id="todo-modal">
-    <div class="modal">
-      <div class="modal-hdr">
-        <h2>Add Task</h2>
-        <button class="close-btn" data-close="todo-modal">✕</button>
-      </div>
-      <input type="text" id="todo-input" placeholder="What needs to get done?" class="modal-input" />
-      <div class="modal-row">
-        <select id="todo-cat" class="modal-select">
-          <option value="work">Work</option>
-          <option value="personal">Personal</option>
-        </select>
-        <input type="date" id="todo-date" class="modal-input half" />
-      </div>
-      <button class="primary-btn full" id="save-todo">Save Task</button>
+  <!-- MARKETS TICKER -->
+  <section class="ticker-section" id="markets">
+    <div class="section-label">Live Markets</div>
+    <div class="ticker-grid" id="ticker-grid">
+      <div class="ticker-card"><div class="ticker-name">S&P 500</div><div class="ticker-val" id="sp500">—</div></div>
+      <div class="ticker-card"><div class="ticker-name">Dow Jones</div><div class="ticker-val" id="dow">—</div></div>
+      <div class="ticker-card"><div class="ticker-name">NASDAQ</div><div class="ticker-val" id="nasdaq">—</div></div>
+      <div class="ticker-card"><div class="ticker-name">Bitcoin</div><div class="ticker-val" id="btc">—</div></div>
+      <div class="ticker-card"><div class="ticker-name">Gold</div><div class="ticker-val" id="gold">—</div></div>
+      <div class="ticker-card"><div class="ticker-name">Oil (WTI)</div><div class="ticker-val" id="oil">—</div></div>
     </div>
-  </div>
+    <p class="ticker-note">Market data updates on page load. <a href="markets.html">View full markets →</a></p>
+  </section>
 
-  <!-- ADD BET MODAL -->
-  <div class="modal-overlay" id="bet-modal">
-    <div class="modal">
-      <div class="modal-hdr">
-        <h2>Add Bet</h2>
-        <button class="close-btn" data-close="bet-modal">✕</button>
+  <!-- SPORTS -->
+  <section class="section" id="sports">
+    <div class="section-label">Sports</div>
+    <div class="sports-grid">
+      <div class="sport-card">
+        <div class="sport-team">Kansas City Chiefs</div>
+        <div class="sport-league">NFL</div>
+        <a href="https://www.nfl.com/teams/kansas-city-chiefs/schedule" target="_blank" class="sport-link">View Schedule →</a>
       </div>
-      <input type="text" id="bet-matchup" placeholder="Matchup (e.g. Chiefs vs Ravens)" class="modal-input" />
-      <div class="modal-row">
-        <select id="bet-sport" class="modal-select">
-          <option value="NFL">NFL</option>
-          <option value="NBA">NBA</option>
-          <option value="MLB">MLB</option>
-          <option value="NHL">NHL</option>
-          <option value="CFB">CFB</option>
-          <option value="Other">Other</option>
-        </select>
-        <input type="text" id="bet-pick" placeholder="Your pick" class="modal-input half" />
+      <div class="sport-card">
+        <div class="sport-team">Kansas City Royals</div>
+        <div class="sport-league">MLB</div>
+        <a href="https://www.mlb.com/royals/schedule" target="_blank" class="sport-link">View Schedule →</a>
       </div>
-      <div class="modal-row">
-        <input type="text" id="bet-odds" placeholder="Odds (e.g. -110)" class="modal-input half" />
-        <input type="number" id="bet-amount" placeholder="Wager ($)" class="modal-input half" />
+      <div class="sport-card">
+        <div class="sport-team">FHSU Tigers</div>
+        <div class="sport-league">MIAA</div>
+        <a href="https://fhsuathletics.com" target="_blank" class="sport-link">View Schedule →</a>
       </div>
-      <select id="bet-result" class="modal-select full">
-        <option value="pending">Pending</option>
-        <option value="won">Won</option>
-        <option value="lost">Lost</option>
-        <option value="push">Push</option>
-      </select>
-      <button class="primary-btn full" id="save-bet">Save Bet</button>
+      <div class="sport-card">
+        <div class="sport-team">Hays High Indians</div>
+        <div class="sport-league">KSHSAA</div>
+        <a href="https://www.usd489.com/athletics" target="_blank" class="sport-link">View Schedule →</a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ADD NOTE MODAL -->
-  <div class="modal-overlay" id="note-modal">
-    <div class="modal">
-      <div class="modal-hdr">
-        <h2>Add Work Note</h2>
-        <button class="close-btn" data-close="note-modal">✕</button>
+  <!-- CONTACT / TIG -->
+  <section class="section contact-section" id="contact">
+    <div class="section-label">Contact</div>
+    <div class="contact-card">
+      <div class="contact-left">
+        <div class="contact-biz">The Insurance Guys</div>
+        <div class="contact-role">Independent Insurance Agent — Hays, KS</div>
+        <p class="contact-desc">Independent broker for home, auto, commercial, life, and health insurance. Serving Hays and surrounding Kansas communities.</p>
+        <div class="contact-links">
+          <a href="https://www.tigks.com" target="_blank" class="contact-link">tigks.com →</a>
+        </div>
       </div>
-      <input type="text" id="note-title" placeholder="Title (e.g. J Corp Renewal)" class="modal-input" />
-      <textarea id="note-body" placeholder="Notes, details, follow-ups..." class="modal-textarea"></textarea>
-      <select id="note-tag" class="modal-select full">
-        <option value="client">Client</option>
-        <option value="prospect">Prospect</option>
-        <option value="follow-up">Follow-up</option>
-        <option value="general">General</option>
-      </select>
-      <button class="primary-btn full" id="save-note">Save Note</button>
+      <div class="contact-right">
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <a href="tel:+17852610315" class="contact-val">(785) 261-0315</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a href="mailto:hayden@tigks.com" class="contact-val">hayden@tigks.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Address</span>
+          <span class="contact-val">1204 Vine St, Hays KS 67601</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Hours</span>
+          <span class="contact-val">Mon–Fri 8:30am–5pm</span>
+        </div>
+        <a href="mailto:hayden@tigks.com" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a Quote</a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js"></script>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-left">© 2026 hpkreutz.com — Hays, KS</div>
+    <div class="footer-right">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="https://www.tigks.com" target="_blank">TIG Insurance</a>
+    </div>
+  </footer>
+
+  <script src="home.js"></script>
 </body>
 </html>
