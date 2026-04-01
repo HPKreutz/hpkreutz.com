@@ -7,65 +7,132 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f2eb; --bg2: #edeae0; --bg3: #e4e0d4;
+      --ink: #1a1a18; --ink2: #4a4a44; --ink3: #8a8a80;
+      --accent: #c8401a; --accent2: #a83212;
+      --border: rgba(26,26,24,0.1); --border2: rgba(26,26,24,0.22);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Epilogue', sans-serif; font-size: 15px; line-height: 1.6; color: var(--ink); background: var(--bg); }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; background: rgba(245,242,235,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a { font-size: 13px; color: var(--ink2); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: all 0.15s; }
+    .nav-links a:hover { background: var(--bg2); color: var(--ink); }
+    .nav-links a.active { color: var(--ink); font-weight: 500; background: var(--bg2); }
+    .nav-cta { background: var(--ink) !important; color: var(--bg) !important; border-radius: 6px !important; }
+    .nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
+
+    .page-wrap { max-width: 960px; margin: 0 auto; padding: 96px 48px 64px; }
+    .page-hero { margin-bottom: 44px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
+    .page-tag { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; }
+    .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 80px; line-height: 0.9; color: var(--ink); letter-spacing: 1px; margin-bottom: 14px; }
+    .page-sub { font-size: 15px; color: var(--ink2); font-weight: 300; line-height: 1.7; max-width: 500px; }
+
+    .section-block { margin-bottom: 44px; }
+    .section-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink3); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+
+    .market-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 8px; }
+    .market-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .market-grid.six { grid-template-columns: repeat(6, 1fr); }
+
+    .market-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; transition: border-color 0.15s; }
+    .market-card:hover { border-color: var(--border2); }
+    .market-name { font-size: 11px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+    .market-price { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--ink); letter-spacing: 0.5px; margin-bottom: 4px; }
+    .market-change { font-size: 12px; color: var(--ink3); font-weight: 400; }
+    .market-change.up { color: #1a6e33; }
+    .market-change.down { color: var(--accent); }
+    .market-loading { color: var(--ink3); font-size: 18px; }
+
+    .market-note { font-size: 12px; color: var(--ink3); margin-top: 6px; }
+
+    .footer { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto; padding: 28px 48px; border-top: 1px solid var(--border); font-size: 12px; color: var(--ink3); }
+    .footer-right { display: flex; gap: 20px; }
+    .footer-right a { color: var(--ink3); text-decoration: none; transition: color 0.15s; }
+    .footer-right a:hover { color: var(--ink); }
+
+    @media (max-width: 900px) {
+      .nav { padding: 0 20px; }
+      .page-wrap { padding: 82px 20px 48px; }
+      .page-title { font-size: 56px; }
+      .market-grid, .market-grid.six { grid-template-columns: repeat(3, 1fr); }
+      .footer { padding: 24px 20px; }
+    }
+    @media (max-width: 600px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .market-grid, .market-grid.three, .market-grid.six { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
 
   <nav class="nav">
     <a href="index.html" class="nav-logo">HPK</a>
     <div class="nav-links">
-      <a href="markets.html" class="nav-active">Markets</a>
+      <a href="markets.html" class="active">Markets</a>
       <a href="tools.html">Tools</a>
       <a href="sports.html">Sports</a>
-      <a href="contact.html">Contact</a>
-      <a href="dashboard.html" class="nav-cta">Dashboard →</a>
+      <a href="contact.html" class="nav-cta">Contact →</a>
     </div>
   </nav>
 
   <div class="page-wrap">
+
     <div class="page-hero">
-      <div class="page-tag">Live Markets</div>
+      <div class="page-tag">Live Data</div>
       <h1 class="page-title">Markets</h1>
-      <p class="page-sub">Indices, commodities, and crypto — updated on page load.</p>
+      <p class="page-sub">Indices, commodities, crypto, and individual stocks — updated on every page load.</p>
     </div>
 
-    <div class="section-label">Indices</div>
-    <div class="market-grid" id="indices-grid">
-      <div class="market-card" data-symbol="%5EGSPC"><div class="market-name">S&P 500</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="%5EDJI"><div class="market-name">Dow Jones</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="%5EIXIC"><div class="market-name">NASDAQ</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="%5ERUT"><div class="market-name">Russell 2000</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="%5EVIX"><div class="market-name">VIX</div><div class="market-price">—</div><div class="market-change">—</div></div>
+    <div class="section-block">
+      <div class="section-label">Indices</div>
+      <div class="market-grid">
+        <div class="market-card" data-symbol="%5EGSPC"><div class="market-name">S&amp;P 500</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="%5EDJI"><div class="market-name">Dow Jones</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="%5EIXIC"><div class="market-name">NASDAQ</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="%5ERUT"><div class="market-name">Russell 2000</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="%5EVIX"><div class="market-name">VIX</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+      </div>
     </div>
 
-    <div class="section-label" style="margin-top:40px;">Commodities & Crypto</div>
-    <div class="market-grid">
-      <div class="market-card" data-symbol="GC%3DF"><div class="market-name">Gold</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="SI%3DF"><div class="market-name">Silver</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="CL%3DF"><div class="market-name">Oil (WTI)</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="NG%3DF"><div class="market-name">Natural Gas</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="BTC-USD"><div class="market-name">Bitcoin</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="ETH-USD"><div class="market-name">Ethereum</div><div class="market-price">—</div><div class="market-change">—</div></div>
+    <div class="section-block">
+      <div class="section-label">Commodities & Crypto</div>
+      <div class="market-grid six">
+        <div class="market-card" data-symbol="GC%3DF"><div class="market-name">Gold</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="SI%3DF"><div class="market-name">Silver</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="CL%3DF"><div class="market-name">Oil (WTI)</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="NG%3DF"><div class="market-name">Natural Gas</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="BTC-USD"><div class="market-name">Bitcoin</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="ETH-USD"><div class="market-name">Ethereum</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+      </div>
     </div>
 
-    <div class="section-label" style="margin-top:40px;">Stocks</div>
-    <div class="market-grid">
-      <div class="market-card" data-symbol="AAPL"><div class="market-name">Apple</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="MSFT"><div class="market-name">Microsoft</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="NVDA"><div class="market-name">NVIDIA</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="AMZN"><div class="market-name">Amazon</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="TSLA"><div class="market-name">Tesla</div><div class="market-price">—</div><div class="market-change">—</div></div>
-      <div class="market-card" data-symbol="META"><div class="market-name">Meta</div><div class="market-price">—</div><div class="market-change">—</div></div>
+    <div class="section-block">
+      <div class="section-label">Stocks</div>
+      <div class="market-grid six">
+        <div class="market-card" data-symbol="AAPL"><div class="market-name">Apple</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="MSFT"><div class="market-name">Microsoft</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="NVDA"><div class="market-name">NVIDIA</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="AMZN"><div class="market-name">Amazon</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="TSLA"><div class="market-name">Tesla</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+        <div class="market-card" data-symbol="META"><div class="market-name">Meta</div><div class="market-price market-loading">—</div><div class="market-change">—</div></div>
+      </div>
+      <p class="market-note">Data sourced from Yahoo Finance. Updates on page load.</p>
     </div>
 
-    <p class="market-note">Data sourced from Yahoo Finance. Updates on page load.</p>
   </div>
 
   <footer class="footer">
-    <div class="footer-left">© 2026 hpkreutz.com — Hays, KS</div>
+    <div>© 2026 hpkreutz.com — Hays, KS</div>
     <div class="footer-right">
       <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
+      <a href="sports.html">Sports</a>
+      <a href="tools.html">Tools</a>
       <a href="contact.html">Contact</a>
     </div>
   </footer>
@@ -75,6 +142,8 @@
       const cards = document.querySelectorAll('.market-card[data-symbol]');
       for (const card of cards) {
         const symbol = card.dataset.symbol;
+        const priceEl  = card.querySelector('.market-price');
+        const changeEl = card.querySelector('.market-change');
         try {
           const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1d`);
           const data = await res.json();
@@ -83,19 +152,21 @@
           const prev  = result?.meta?.previousClose || result?.meta?.chartPreviousClose;
           if (price) {
             const change = price - prev;
-            const pct = ((change / prev) * 100).toFixed(2);
-            const isUp = change >= 0;
+            const pct    = ((change / prev) * 100).toFixed(2);
+            const isUp   = change >= 0;
             const isCrypto = symbol.includes('USD');
             const fmt = isCrypto
               ? '$' + price.toLocaleString('en-US', { maximumFractionDigits: 0 })
               : '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            card.querySelector('.market-price').textContent = fmt;
-            const changeEl = card.querySelector('.market-change');
-            changeEl.textContent = (isUp ? '+' : '') + change.toFixed(2) + ' (' + (isUp ? '+' : '') + pct + '%)';
-            changeEl.className = 'market-change ' + (isUp ? 'up' : 'down');
+            priceEl.textContent  = fmt;
+            priceEl.classList.remove('market-loading');
+            changeEl.textContent = (isUp ? '+' : '') + change.toFixed(2) + '  (' + (isUp ? '+' : '') + pct + '%)';
+            changeEl.className   = 'market-change ' + (isUp ? 'up' : 'down');
+          } else {
+            priceEl.textContent = 'N/A';
           }
         } catch(e) {
-          card.querySelector('.market-price').textContent = 'N/A';
+          priceEl.textContent = 'N/A';
         }
       }
     }

@@ -7,7 +7,83 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f2eb; --bg2: #edeae0; --bg3: #e4e0d4;
+      --ink: #1a1a18; --ink2: #4a4a44; --ink3: #8a8a80;
+      --accent: #c8401a; --accent2: #a83212;
+      --border: rgba(26,26,24,0.1); --border2: rgba(26,26,24,0.22);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Epilogue', sans-serif; font-size: 15px; line-height: 1.6; color: var(--ink); background: var(--bg); }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; background: rgba(245,242,235,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a { font-size: 13px; color: var(--ink2); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: all 0.15s; }
+    .nav-links a:hover { background: var(--bg2); color: var(--ink); }
+    .nav-links a.active { color: var(--ink); font-weight: 500; background: var(--bg2); }
+    .nav-cta { background: var(--ink) !important; color: var(--bg) !important; border-radius: 6px !important; }
+    .nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
+
+    .page-wrap { max-width: 960px; margin: 0 auto; padding: 96px 48px 64px; }
+    .page-hero { margin-bottom: 44px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
+    .page-tag { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; }
+    .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 80px; line-height: 0.9; color: var(--ink); letter-spacing: 1px; margin-bottom: 14px; }
+    .page-sub { font-size: 15px; color: var(--ink2); font-weight: 300; line-height: 1.7; max-width: 500px; }
+
+    .tool-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; transition: border-color 0.2s; }
+    .tool-card:hover { border-color: var(--border2); }
+    .tool-header { padding: 22px 26px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 14px; }
+    .tool-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .tool-title { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+    .tool-desc { font-size: 13px; color: var(--ink3); font-weight: 300; }
+    .tool-body { padding: 24px 26px; }
+
+    .calc-grid { display: grid; gap: 16px; margin-bottom: 20px; }
+    .g3 { grid-template-columns: repeat(3, 1fr); }
+    .g4 { grid-template-columns: repeat(4, 1fr); }
+    .g6 { grid-template-columns: repeat(6, 1fr); }
+
+    .calc-field label { display: block; font-size: 11px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 7px; }
+    .calc-field input, .calc-field select { width: 100%; background: var(--bg); border: 1px solid var(--border2); border-radius: 7px; padding: 10px 13px; color: var(--ink); font-family: 'Epilogue', sans-serif; font-size: 14px; outline: none; transition: border-color 0.15s; -webkit-appearance: none; }
+    .calc-field input:focus, .calc-field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(200,64,26,0.07); }
+    .calc-field input::placeholder { color: var(--ink3); }
+
+    .calc-btn { background: var(--ink); color: var(--bg); border: none; border-radius: 7px; padding: 11px 28px; font-family: 'Epilogue', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
+    .calc-btn:hover { background: var(--accent); }
+
+    .calc-result { display: none; margin-top: 20px; background: var(--bg); border: 1px solid var(--border2); border-radius: 10px; overflow: hidden; }
+    .calc-result.show { display: block; }
+    .result-header { padding: 11px 18px; background: var(--bg3); border-bottom: 1px solid var(--border); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink3); }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 18px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--ink2); }
+    .result-row:last-child { border-bottom: none; }
+    .result-row strong { color: var(--ink); font-weight: 500; }
+    .result-row.hl { background: rgba(200,64,26,0.04); }
+    .result-row.hl strong { color: var(--accent); font-size: 18px; font-weight: 600; }
+
+    .calc-note { font-size: 12px; color: var(--ink3); margin-top: 12px; line-height: 1.6; display: none; }
+    .calc-note a { color: var(--accent); text-decoration: none; }
+    .calc-note a:hover { text-decoration: underline; }
+
+    .footer { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto; padding: 28px 48px; border-top: 1px solid var(--border); font-size: 12px; color: var(--ink3); }
+    .footer-right { display: flex; gap: 20px; }
+    .footer-right a { color: var(--ink3); text-decoration: none; transition: color 0.15s; }
+    .footer-right a:hover { color: var(--ink); }
+
+    @media (max-width: 900px) {
+      .nav { padding: 0 20px; }
+      .page-wrap { padding: 82px 20px 48px; }
+      .page-title { font-size: 56px; }
+      .g3, .g4, .g6 { grid-template-columns: 1fr 1fr; }
+      .footer { padding: 24px 20px; }
+    }
+    @media (max-width: 480px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .g3, .g4, .g6 { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -15,161 +91,148 @@
     <a href="index.html" class="nav-logo">HPK</a>
     <div class="nav-links">
       <a href="markets.html">Markets</a>
-      <a href="tools.html" class="nav-active">Tools</a>
+      <a href="tools.html" class="active">Tools</a>
       <a href="sports.html">Sports</a>
-      <a href="contact.html">Contact</a>
-      <a href="dashboard.html" class="nav-cta">Dashboard →</a>
+      <a href="contact.html" class="nav-cta">Contact →</a>
     </div>
   </nav>
 
   <div class="page-wrap">
+
     <div class="page-hero">
-      <div class="page-tag">Calculators & Tools</div>
+      <div class="page-tag">Calculators & Utilities</div>
       <h1 class="page-title">Tools</h1>
-      <p class="page-sub">Useful calculators for loans, insurance, and everyday math.</p>
+      <p class="page-sub">Useful calculators for loans, mortgages, retirement savings, and insurance estimates.</p>
     </div>
 
-    <!-- LOAN CALCULATOR -->
+    <!-- LOAN -->
     <div class="tool-card">
       <div class="tool-header">
-        <div class="tool-title">Loan Calculator</div>
-        <div class="tool-desc">Calculate your monthly payment on any loan.</div>
-      </div>
-      <div class="tool-body">
-        <div class="calc-grid">
-          <div class="calc-field">
-            <label>Loan Amount ($)</label>
-            <input type="number" id="loan-amount" placeholder="250000" />
-          </div>
-          <div class="calc-field">
-            <label>Interest Rate (%)</label>
-            <input type="number" id="loan-rate" placeholder="6.5" step="0.1" />
-          </div>
-          <div class="calc-field">
-            <label>Loan Term (years)</label>
-            <input type="number" id="loan-term" placeholder="30" />
-          </div>
+        <div class="tool-icon">$</div>
+        <div>
+          <div class="tool-title">Loan Calculator</div>
+          <div class="tool-desc">Calculate monthly payment, total interest, and total cost on any loan.</div>
         </div>
-        <button class="calc-btn" onclick="calcLoan()">Calculate</button>
-        <div class="calc-result" id="loan-result"></div>
-      </div>
-    </div>
-
-    <!-- MORTGAGE CALCULATOR -->
-    <div class="tool-card">
-      <div class="tool-header">
-        <div class="tool-title">Mortgage Calculator</div>
-        <div class="tool-desc">Estimate your monthly mortgage payment including taxes and insurance.</div>
       </div>
       <div class="tool-body">
-        <div class="calc-grid">
-          <div class="calc-field">
-            <label>Home Price ($)</label>
-            <input type="number" id="mort-price" placeholder="300000" />
-          </div>
-          <div class="calc-field">
-            <label>Down Payment ($)</label>
-            <input type="number" id="mort-down" placeholder="60000" />
-          </div>
-          <div class="calc-field">
-            <label>Interest Rate (%)</label>
-            <input type="number" id="mort-rate" placeholder="6.75" step="0.1" />
-          </div>
-          <div class="calc-field">
-            <label>Loan Term (years)</label>
-            <input type="number" id="mort-term" placeholder="30" />
-          </div>
-          <div class="calc-field">
-            <label>Annual Property Tax ($)</label>
-            <input type="number" id="mort-tax" placeholder="3000" />
-          </div>
-          <div class="calc-field">
-            <label>Annual Insurance ($)</label>
-            <input type="number" id="mort-ins" placeholder="1200" />
-          </div>
+        <div class="calc-grid g3">
+          <div class="calc-field"><label>Loan Amount</label><input type="number" id="loan-amount" placeholder="250,000" /></div>
+          <div class="calc-field"><label>Interest Rate (%)</label><input type="number" id="loan-rate" placeholder="6.5" step="0.1" /></div>
+          <div class="calc-field"><label>Term (years)</label><input type="number" id="loan-term" placeholder="30" /></div>
         </div>
-        <button class="calc-btn" onclick="calcMortgage()">Calculate</button>
-        <div class="calc-result" id="mort-result"></div>
-      </div>
-    </div>
-
-    <!-- RETIREMENT CALCULATOR -->
-    <div class="tool-card">
-      <div class="tool-header">
-        <div class="tool-title">Retirement Savings Calculator</div>
-        <div class="tool-desc">See how much your savings will grow over time.</div>
-      </div>
-      <div class="tool-body">
-        <div class="calc-grid">
-          <div class="calc-field">
-            <label>Current Savings ($)</label>
-            <input type="number" id="ret-current" placeholder="50000" />
-          </div>
-          <div class="calc-field">
-            <label>Monthly Contribution ($)</label>
-            <input type="number" id="ret-monthly" placeholder="500" />
-          </div>
-          <div class="calc-field">
-            <label>Annual Return (%)</label>
-            <input type="number" id="ret-rate" placeholder="7" step="0.1" />
-          </div>
-          <div class="calc-field">
-            <label>Years Until Retirement</label>
-            <input type="number" id="ret-years" placeholder="30" />
-          </div>
+        <button class="calc-btn" onclick="calcLoan()">Calculate Payment</button>
+        <div class="calc-result" id="loan-result">
+          <div class="result-header">Results</div>
+          <div class="result-row hl"><span>Monthly Payment</span><strong id="r-loan-m"></strong></div>
+          <div class="result-row"><span>Total Amount Paid</span><strong id="r-loan-t"></strong></div>
+          <div class="result-row"><span>Total Interest Paid</span><strong id="r-loan-i"></strong></div>
         </div>
-        <button class="calc-btn" onclick="calcRetirement()">Calculate</button>
-        <div class="calc-result" id="ret-result"></div>
       </div>
     </div>
 
-    <!-- INSURANCE PREMIUM ESTIMATOR -->
+    <!-- MORTGAGE -->
     <div class="tool-card">
       <div class="tool-header">
-        <div class="tool-title">Auto Insurance Estimator</div>
-        <div class="tool-desc">Rough estimate of annual auto insurance premium. For an accurate quote, contact Hayden at TIG.</div>
+        <div class="tool-icon">🏠</div>
+        <div>
+          <div class="tool-title">Mortgage Calculator</div>
+          <div class="tool-desc">Full monthly payment including principal, interest, taxes, and insurance.</div>
+        </div>
       </div>
       <div class="tool-body">
-        <div class="calc-grid">
-          <div class="calc-field">
-            <label>Driver Age</label>
-            <input type="number" id="auto-age" placeholder="30" />
-          </div>
-          <div class="calc-field">
-            <label>Vehicle Value ($)</label>
-            <input type="number" id="auto-value" placeholder="35000" />
-          </div>
-          <div class="calc-field">
-            <label>Coverage Level</label>
+        <div class="calc-grid g3">
+          <div class="calc-field"><label>Home Price</label><input type="number" id="mort-price" placeholder="350,000" /></div>
+          <div class="calc-field"><label>Down Payment</label><input type="number" id="mort-down" placeholder="70,000" /></div>
+          <div class="calc-field"><label>Interest Rate (%)</label><input type="number" id="mort-rate" placeholder="6.75" step="0.1" /></div>
+          <div class="calc-field"><label>Term (years)</label><input type="number" id="mort-term" placeholder="30" /></div>
+          <div class="calc-field"><label>Annual Taxes</label><input type="number" id="mort-tax" placeholder="3,500" /></div>
+          <div class="calc-field"><label>Annual Insurance</label><input type="number" id="mort-ins" placeholder="1,400" /></div>
+        </div>
+        <button class="calc-btn" onclick="calcMortgage()">Calculate Payment</button>
+        <div class="calc-result" id="mort-result">
+          <div class="result-header">Results</div>
+          <div class="result-row hl"><span>Total Monthly Payment</span><strong id="r-mort-total"></strong></div>
+          <div class="result-row"><span>Principal & Interest</span><strong id="r-mort-pi"></strong></div>
+          <div class="result-row"><span>Taxes & Insurance</span><strong id="r-mort-ti"></strong></div>
+          <div class="result-row"><span>Loan Amount</span><strong id="r-mort-loan"></strong></div>
+          <div class="result-row"><span>Total Paid Over Life of Loan</span><strong id="r-mort-grand"></strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RETIREMENT -->
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-icon">📈</div>
+        <div>
+          <div class="tool-title">Retirement Savings Calculator</div>
+          <div class="tool-desc">See how your savings grow over time with compound interest.</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="calc-grid g4">
+          <div class="calc-field"><label>Current Savings</label><input type="number" id="ret-current" placeholder="50,000" /></div>
+          <div class="calc-field"><label>Monthly Contribution</label><input type="number" id="ret-monthly" placeholder="500" /></div>
+          <div class="calc-field"><label>Annual Return (%)</label><input type="number" id="ret-rate" placeholder="7" step="0.1" /></div>
+          <div class="calc-field"><label>Years Until Retirement</label><input type="number" id="ret-years" placeholder="30" /></div>
+        </div>
+        <button class="calc-btn" onclick="calcRetirement()">Calculate Growth</button>
+        <div class="calc-result" id="ret-result">
+          <div class="result-header">Results</div>
+          <div class="result-row hl"><span>Projected Balance</span><strong id="r-ret-bal"></strong></div>
+          <div class="result-row"><span>Total Contributed</span><strong id="r-ret-con"></strong></div>
+          <div class="result-row"><span>Investment Growth</span><strong id="r-ret-grw"></strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTO INSURANCE -->
+    <div class="tool-card">
+      <div class="tool-header">
+        <div class="tool-icon">🚗</div>
+        <div>
+          <div class="tool-title">Auto Insurance Estimator</div>
+          <div class="tool-desc">Rough annual premium estimate. Contact Hayden at TIG for an accurate quote.</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="calc-grid g4">
+          <div class="calc-field"><label>Driver Age</label><input type="number" id="auto-age" placeholder="30" /></div>
+          <div class="calc-field"><label>Vehicle Value</label><input type="number" id="auto-value" placeholder="35,000" /></div>
+          <div class="calc-field"><label>Coverage Level</label>
             <select id="auto-coverage">
               <option value="liability">Liability Only</option>
-              <option value="standard">Standard</option>
+              <option value="standard" selected>Standard</option>
               <option value="full">Full Coverage</option>
             </select>
           </div>
-          <div class="calc-field">
-            <label>Years Driving</label>
-            <input type="number" id="auto-exp" placeholder="10" />
-          </div>
+          <div class="calc-field"><label>Years Driving</label><input type="number" id="auto-exp" placeholder="10" /></div>
         </div>
-        <button class="calc-btn" onclick="calcAuto()">Estimate</button>
-        <div class="calc-result" id="auto-result"></div>
+        <button class="calc-btn" onclick="calcAuto()">Estimate Premium</button>
+        <div class="calc-result" id="auto-result">
+          <div class="result-header">Estimate</div>
+          <div class="result-row hl"><span>Estimated Annual Premium</span><strong id="r-auto-ann"></strong></div>
+          <div class="result-row"><span>Estimated Monthly</span><strong id="r-auto-mo"></strong></div>
+        </div>
+        <p class="calc-note" id="auto-note">This is a rough estimate only. For an accurate quote tailored to your situation, <a href="contact.html">contact Hayden at The Insurance Guys →</a></p>
       </div>
     </div>
 
   </div>
 
   <footer class="footer">
-    <div class="footer-left">© 2026 hpkreutz.com — Hays, KS</div>
+    <div>© 2026 hpkreutz.com — Hays, KS</div>
     <div class="footer-right">
       <a href="index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
+      <a href="markets.html">Markets</a>
+      <a href="sports.html">Sports</a>
       <a href="contact.html">Contact</a>
     </div>
   </footer>
 
   <script>
-    function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+    const fmtD = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     function calcLoan() {
       const p = parseFloat(document.getElementById('loan-amount').value);
@@ -178,11 +241,10 @@
       if (!p || !r || !n) return;
       const m = p * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
       const total = m * n;
-      document.getElementById('loan-result').innerHTML = `
-        <div class="result-row"><span>Monthly Payment</span><strong>${fmt(m)}</strong></div>
-        <div class="result-row"><span>Total Paid</span><strong>${fmt(total)}</strong></div>
-        <div class="result-row"><span>Total Interest</span><strong>${fmt(total - p)}</strong></div>
-      `;
+      document.getElementById('r-loan-m').textContent = fmtD(m);
+      document.getElementById('r-loan-t').textContent = fmt(total);
+      document.getElementById('r-loan-i').textContent = fmt(total - p);
+      document.getElementById('loan-result').classList.add('show');
     }
 
     function calcMortgage() {
@@ -193,49 +255,48 @@
       const tax   = parseFloat(document.getElementById('mort-tax').value) || 0;
       const ins   = parseFloat(document.getElementById('mort-ins').value) || 0;
       if (!price || !r || !n) return;
-      const p = price - down;
-      const m = p * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
-      const total = m + (tax/12) + (ins/12);
-      document.getElementById('mort-result').innerHTML = `
-        <div class="result-row"><span>Principal & Interest</span><strong>${fmt(m)}/mo</strong></div>
-        <div class="result-row"><span>Taxes & Insurance</span><strong>${fmt((tax+ins)/12)}/mo</strong></div>
-        <div class="result-row accent"><span>Total Monthly Payment</span><strong>${fmt(total)}/mo</strong></div>
-        <div class="result-row"><span>Loan Amount</span><strong>${fmt(p)}</strong></div>
-      `;
+      const loan = price - down;
+      const pi   = loan * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+      const ti   = (tax + ins) / 12;
+      document.getElementById('r-mort-total').textContent = fmtD(pi + ti);
+      document.getElementById('r-mort-pi').textContent    = fmtD(pi);
+      document.getElementById('r-mort-ti').textContent    = fmtD(ti);
+      document.getElementById('r-mort-loan').textContent  = fmt(loan);
+      document.getElementById('r-mort-grand').textContent = fmt(pi * n + (tax + ins) * (n / 12));
+      document.getElementById('mort-result').classList.add('show');
     }
 
     function calcRetirement() {
-      const pv = parseFloat(document.getElementById('ret-current').value) || 0;
+      const pv  = parseFloat(document.getElementById('ret-current').value) || 0;
       const pmt = parseFloat(document.getElementById('ret-monthly').value) || 0;
-      const r = parseFloat(document.getElementById('ret-rate').value) / 100 / 12;
-      const n = parseFloat(document.getElementById('ret-years').value) * 12;
+      const r   = parseFloat(document.getElementById('ret-rate').value) / 100 / 12;
+      const n   = parseFloat(document.getElementById('ret-years').value) * 12;
       if (!r || !n) return;
-      const fv = pv * Math.pow(1+r,n) + pmt * (Math.pow(1+r,n)-1) / r;
-      const contributed = pv + (pmt * n);
-      document.getElementById('ret-result').innerHTML = `
-        <div class="result-row"><span>Total Contributed</span><strong>${fmt(contributed)}</strong></div>
-        <div class="result-row"><span>Investment Growth</span><strong>${fmt(fv - contributed)}</strong></div>
-        <div class="result-row accent"><span>Projected Balance</span><strong>${fmt(fv)}</strong></div>
-      `;
+      const fv  = pv * Math.pow(1+r,n) + pmt * (Math.pow(1+r,n)-1) / r;
+      const con = pv + pmt * n;
+      document.getElementById('r-ret-bal').textContent = fmt(fv);
+      document.getElementById('r-ret-con').textContent = fmt(con);
+      document.getElementById('r-ret-grw').textContent = fmt(fv - con);
+      document.getElementById('ret-result').classList.add('show');
     }
 
     function calcAuto() {
-      const age     = parseFloat(document.getElementById('auto-age').value);
-      const value   = parseFloat(document.getElementById('auto-value').value);
-      const cover   = document.getElementById('auto-coverage').value;
-      const exp     = parseFloat(document.getElementById('auto-exp').value);
+      const age   = parseFloat(document.getElementById('auto-age').value);
+      const value = parseFloat(document.getElementById('auto-value').value);
+      const cover = document.getElementById('auto-coverage').value;
+      const exp   = parseFloat(document.getElementById('auto-exp').value) || 5;
       if (!age || !value) return;
       let base = value * 0.04;
-      if (cover === 'liability') base *= 0.4;
-      if (cover === 'full') base *= 1.3;
-      if (age < 25) base *= 1.4;
-      if (age > 65) base *= 1.15;
-      if (exp > 10) base *= 0.85;
-      document.getElementById('auto-result').innerHTML = `
-        <div class="result-row accent"><span>Estimated Annual Premium</span><strong>${fmt(base)}</strong></div>
-        <div class="result-row"><span>Estimated Monthly</span><strong>${fmt(base/12)}/mo</strong></div>
-        <p style="font-size:12px;color:var(--ink3);margin-top:10px;">This is a rough estimate only. For an accurate quote, <a href="contact.html" style="color:var(--accent);">contact Hayden at TIG →</a></p>
-      `;
+      if (cover === 'liability') base *= 0.38;
+      if (cover === 'full')      base *= 1.3;
+      if (age < 25)  base *= 1.4;
+      if (age > 65)  base *= 1.15;
+      if (exp > 10)  base *= 0.85;
+      if (exp < 3)   base *= 1.2;
+      document.getElementById('r-auto-ann').textContent = fmt(base);
+      document.getElementById('r-auto-mo').textContent  = fmtD(base / 12) + '/mo';
+      document.getElementById('auto-result').classList.add('show');
+      document.getElementById('auto-note').style.display = 'block';
     }
   </script>
 </body>
