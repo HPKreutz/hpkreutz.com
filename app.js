@@ -24,6 +24,7 @@ document.querySelectorAll('.auth-tab').forEach(tab => {
       ? 'Don\'t have an account? <a href="#" id="auth-switch">Sign up</a>'
       : 'Already have an account? <a href="#" id="auth-switch">Sign in</a>';
     document.getElementById('auth-error').textContent = '';
+    document.getElementById('auth-name').style.display = authMode === 'signup' ? 'block' : 'none';
     bindAuthSwitch();
   });
 });
@@ -41,10 +42,12 @@ bindAuthSwitch();
 document.getElementById('auth-submit').addEventListener('click', async () => {
   const email    = document.getElementById('auth-email').value.trim();
   const password = document.getElementById('auth-password').value;
+  const name     = document.getElementById('auth-name').value.trim();
   const errEl    = document.getElementById('auth-error');
   const btn      = document.getElementById('auth-submit');
  
   if (!email || !password) { errEl.textContent = 'Please enter email and password.'; return; }
+  if (authMode === 'signup' && !name) { errEl.textContent = 'Please enter your first name.'; return; }
  
   btn.disabled = true;
   btn.textContent = authMode === 'login' ? 'Signing in...' : 'Creating account...';
@@ -65,10 +68,13 @@ document.getElementById('auth-submit').addEventListener('click', async () => {
     return;
   }
  
-  if (authMode === 'signup' && !result.data.session) {
-    errEl.style.color = 'var(--accent)';
-    errEl.textContent = 'Check your email to confirm your account!';
-    return;
+  if (authMode === 'signup') {
+    if (!result.data.session) {
+      errEl.style.color = 'var(--accent)';
+      errEl.textContent = 'Check your email to confirm your account!';
+      return;
+    }
+    await sb.from('profiles').insert({ id: result.data.user.id, first_name: name });
   }
  
   showApp(result.data.user);
@@ -95,7 +101,10 @@ async function showApp(user) {
   document.getElementById('auth-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
   document.getElementById('user-email-display').textContent = user.email;
-  setGreeting();
+ 
+  const { data: profile } = await sb.from('profiles').select('first_name').eq('id', user.id).single();
+  const name = profile?.first_name || user.email.split('@')[0];
+  setGreeting(name);
   await loadAll();
 }
  
@@ -116,10 +125,10 @@ async function loadAll() {
 }
  
 // ─── GREETING & DATE ──────────────────────────────────────────────────────────
-function setGreeting() {
+function setGreeting(name) {
   const h = new Date().getHours();
   const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
-  document.getElementById('greeting').textContent = greet + ', Hayden.';
+  document.getElementById('greeting').textContent = greet + ', ' + name + '.';
   const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   document.getElementById('date-display').textContent = new Date().toLocaleDateString('en-US', opts);
 }
