@@ -11,175 +11,77 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">HPK</a>
     <div class="nav-links">
-      <a href="#tools">Tools</a>
-      <a href="#sports">Sports</a>
-      <a href="#markets">Markets</a>
-      <a href="#contact">Contact</a>
+      <a href="markets.html">Markets</a>
+      <a href="tools.html">Tools</a>
+      <a href="sports.html">Sports</a>
+      <a href="contact.html">Contact</a>
       <a href="dashboard.html" class="nav-cta">Dashboard →</a>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-tag">hpkreutz.com</div>
     <h1 class="hero-title">Tools, Sports,<br><em>and Everything</em><br>In Between.</h1>
     <p class="hero-sub">A personal hub built for daily use — calculators, live markets, sports schedules, betting odds, and more.</p>
     <div class="hero-btns">
-      <a href="#tools" class="btn-primary">Explore Tools</a>
-      <a href="dashboard.html" class="btn-ghost">My Dashboard</a>
+      <a href="dashboard.html" class="btn-primary">My Dashboard</a>
+      <a href="contact.html" class="btn-ghost">Get a Quote</a>
     </div>
   </section>
 
-  <!-- WHAT'S HERE -->
-  <section class="section" id="tools">
+  <section class="section">
     <div class="section-label">What's Here</div>
     <div class="cards-grid">
-
       <a href="dashboard.html" class="card">
         <div class="card-icon">✓</div>
-        <div class="card-body">
-          <div class="card-title">Dashboard</div>
-          <div class="card-desc">To-do lists, betting tracker, and work notes — all in one place.</div>
-        </div>
+        <div class="card-body"><div class="card-title">Dashboard</div><div class="card-desc">To-do lists, betting tracker, and work notes.</div></div>
         <div class="card-arrow">→</div>
       </a>
-
       <a href="markets.html" class="card">
         <div class="card-icon">$</div>
-        <div class="card-body">
-          <div class="card-title">Markets</div>
-          <div class="card-desc">Live stock indices, oil, Bitcoin, gold, and more.</div>
-        </div>
+        <div class="card-body"><div class="card-title">Markets</div><div class="card-desc">Live stock indices, oil, Bitcoin, gold, and more.</div></div>
         <div class="card-arrow">→</div>
       </a>
-
       <a href="sports.html" class="card">
         <div class="card-icon">⚡</div>
-        <div class="card-body">
-          <div class="card-title">Sports</div>
-          <div class="card-desc">Chiefs, Royals, FHSU, and Hays High schedules and scores.</div>
-        </div>
+        <div class="card-body"><div class="card-title">Sports</div><div class="card-desc">Chiefs, Royals, FHSU, and Hays High schedules.</div></div>
         <div class="card-arrow">→</div>
       </a>
-
-      <a href="betting.html" class="card">
+      <a href="dashboard.html" class="card">
         <div class="card-icon">◎</div>
-        <div class="card-body">
-          <div class="card-title">Betting Odds</div>
-          <div class="card-desc">Track your picks, log results, and see your win rate.</div>
-        </div>
+        <div class="card-body"><div class="card-title">Betting Tracker</div><div class="card-desc">Track picks, log results, and see your win rate.</div></div>
         <div class="card-arrow">→</div>
       </a>
-
       <a href="fitness.html" class="card">
         <div class="card-icon">▲</div>
-        <div class="card-body">
-          <div class="card-title">Fitness</div>
-          <div class="card-desc">Log workouts, track progress, and stay on your program.</div>
-        </div>
+        <div class="card-body"><div class="card-title">Fitness</div><div class="card-desc">Log workouts, track progress, stay on program.</div></div>
         <div class="card-arrow">→</div>
       </a>
-
       <a href="tools.html" class="card">
         <div class="card-icon">#</div>
-        <div class="card-body">
-          <div class="card-title">Calculators</div>
-          <div class="card-desc">Loan, mortgage, retirement, and insurance calculators.</div>
-        </div>
+        <div class="card-body"><div class="card-title">Calculators</div><div class="card-desc">Loan, mortgage, retirement, and insurance calculators.</div></div>
         <div class="card-arrow">→</div>
       </a>
-
+      <a href="contact.html" class="card">
+        <div class="card-icon">@</div>
+        <div class="card-body"><div class="card-title">Contact / TIG</div><div class="card-desc">Reach Hayden at The Insurance Guys — request a quote.</div></div>
+        <div class="card-arrow">→</div>
+      </a>
     </div>
   </section>
 
-  <!-- MARKETS TICKER -->
-  <section class="ticker-section" id="markets">
-    <div class="section-label">Live Markets</div>
-    <div class="ticker-grid" id="ticker-grid">
-      <div class="ticker-card"><div class="ticker-name">S&P 500</div><div class="ticker-val" id="sp500">—</div></div>
-      <div class="ticker-card"><div class="ticker-name">Dow Jones</div><div class="ticker-val" id="dow">—</div></div>
-      <div class="ticker-card"><div class="ticker-name">NASDAQ</div><div class="ticker-val" id="nasdaq">—</div></div>
-      <div class="ticker-card"><div class="ticker-name">Bitcoin</div><div class="ticker-val" id="btc">—</div></div>
-      <div class="ticker-card"><div class="ticker-name">Gold</div><div class="ticker-val" id="gold">—</div></div>
-      <div class="ticker-card"><div class="ticker-name">Oil (WTI)</div><div class="ticker-val" id="oil">—</div></div>
-    </div>
-    <p class="ticker-note">Market data updates on page load. <a href="markets.html">View full markets →</a></p>
-  </section>
-
-  <!-- SPORTS -->
-  <section class="section" id="sports">
-    <div class="section-label">Sports</div>
-    <div class="sports-grid">
-      <div class="sport-card">
-        <div class="sport-team">Kansas City Chiefs</div>
-        <div class="sport-league">NFL</div>
-        <a href="https://www.nfl.com/teams/kansas-city-chiefs/schedule" target="_blank" class="sport-link">View Schedule →</a>
-      </div>
-      <div class="sport-card">
-        <div class="sport-team">Kansas City Royals</div>
-        <div class="sport-league">MLB</div>
-        <a href="https://www.mlb.com/royals/schedule" target="_blank" class="sport-link">View Schedule →</a>
-      </div>
-      <div class="sport-card">
-        <div class="sport-team">FHSU Tigers</div>
-        <div class="sport-league">MIAA</div>
-        <a href="https://fhsuathletics.com" target="_blank" class="sport-link">View Schedule →</a>
-      </div>
-      <div class="sport-card">
-        <div class="sport-team">Hays High Indians</div>
-        <div class="sport-league">KSHSAA</div>
-        <a href="https://www.usd489.com/athletics" target="_blank" class="sport-link">View Schedule →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT / TIG -->
-  <section class="section contact-section" id="contact">
-    <div class="section-label">Contact</div>
-    <div class="contact-card">
-      <div class="contact-left">
-        <div class="contact-biz">The Insurance Guys</div>
-        <div class="contact-role">Independent Insurance Agent — Hays, KS</div>
-        <p class="contact-desc">Independent broker for home, auto, commercial, life, and health insurance. Serving Hays and surrounding Kansas communities.</p>
-        <div class="contact-links">
-          <a href="https://www.tigks.com" target="_blank" class="contact-link">tigks.com →</a>
-        </div>
-      </div>
-      <div class="contact-right">
-        <div class="contact-item">
-          <span class="contact-label">Phone</span>
-          <a href="tel:+17852610315" class="contact-val">(785) 261-0315</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Email</span>
-          <a href="mailto:hayden@tigks.com" class="contact-val">hayden@tigks.com</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Address</span>
-          <span class="contact-val">1204 Vine St, Hays KS 67601</span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Hours</span>
-          <span class="contact-val">Mon–Fri 8:30am–5pm</span>
-        </div>
-        <a href="mailto:hayden@tigks.com" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a Quote</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-left">© 2026 hpkreutz.com — Hays, KS</div>
     <div class="footer-right">
       <a href="dashboard.html">Dashboard</a>
-      <a href="https://www.tigks.com" target="_blank">TIG Insurance</a>
+      <a href="markets.html">Markets</a>
+      <a href="sports.html">Sports</a>
+      <a href="contact.html">Contact</a>
     </div>
   </footer>
 
-  <script src="home.js"></script>
 </body>
 </html>
