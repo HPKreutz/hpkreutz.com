@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markets — hpkreutz.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">HPK</a>
+    <div class="nav-links">
+      <a href="markets.html" class="nav-active">Markets</a>
+      <a href="tools.html">Tools</a>
+      <a href="sports.html">Sports</a>
+      <a href="contact.html">Contact</a>
+      <a href="dashboard.html" class="nav-cta">Dashboard →</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="page-hero">
+      <div class="page-tag">Live Markets</div>
+      <h1 class="page-title">Markets</h1>
+      <p class="page-sub">Indices, commodities, and crypto — updated on page load.</p>
+    </div>
+
+    <div class="section-label">Indices</div>
+    <div class="market-grid" id="indices-grid">
+      <div class="market-card" data-symbol="%5EGSPC"><div class="market-name">S&P 500</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="%5EDJI"><div class="market-name">Dow Jones</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="%5EIXIC"><div class="market-name">NASDAQ</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="%5ERUT"><div class="market-name">Russell 2000</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="%5EVIX"><div class="market-name">VIX</div><div class="market-price">—</div><div class="market-change">—</div></div>
+    </div>
+
+    <div class="section-label" style="margin-top:40px;">Commodities & Crypto</div>
+    <div class="market-grid">
+      <div class="market-card" data-symbol="GC%3DF"><div class="market-name">Gold</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="SI%3DF"><div class="market-name">Silver</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="CL%3DF"><div class="market-name">Oil (WTI)</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="NG%3DF"><div class="market-name">Natural Gas</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="BTC-USD"><div class="market-name">Bitcoin</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="ETH-USD"><div class="market-name">Ethereum</div><div class="market-price">—</div><div class="market-change">—</div></div>
+    </div>
+
+    <div class="section-label" style="margin-top:40px;">Stocks</div>
+    <div class="market-grid">
+      <div class="market-card" data-symbol="AAPL"><div class="market-name">Apple</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="MSFT"><div class="market-name">Microsoft</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="NVDA"><div class="market-name">NVIDIA</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="AMZN"><div class="market-name">Amazon</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="TSLA"><div class="market-name">Tesla</div><div class="market-price">—</div><div class="market-change">—</div></div>
+      <div class="market-card" data-symbol="META"><div class="market-name">Meta</div><div class="market-price">—</div><div class="market-change">—</div></div>
+    </div>
+
+    <p class="market-note">Data sourced from Yahoo Finance. Updates on page load.</p>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-left">© 2026 hpkreutz.com — Hays, KS</div>
+    <div class="footer-right">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    async function loadMarkets() {
+      const cards = document.querySelectorAll('.market-card[data-symbol]');
+      for (const card of cards) {
+        const symbol = card.dataset.symbol;
+        try {
+          const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1d`);
+          const data = await res.json();
+          const result = data?.chart?.result?.[0];
+          const price = result?.meta?.regularMarketPrice;
+          const prev  = result?.meta?.previousClose || result?.meta?.chartPreviousClose;
+          if (price) {
+            const change = price - prev;
+            const pct = ((change / prev) * 100).toFixed(2);
+            const isUp = change >= 0;
+            const isCrypto = symbol.includes('USD');
+            const fmt = isCrypto
+              ? '$' + price.toLocaleString('en-US', { maximumFractionDigits: 0 })
+              : '$' + price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            card.querySelector('.market-price').textContent = fmt;
+            const changeEl = card.querySelector('.market-change');
+            changeEl.textContent = (isUp ? '+' : '') + change.toFixed(2) + ' (' + (isUp ? '+' : '') + pct + '%)';
+            changeEl.className = 'market-change ' + (isUp ? 'up' : 'down');
+          }
+        } catch(e) {
+          card.querySelector('.market-price').textContent = 'N/A';
+        }
+      }
+    }
+    loadMarkets();
+  </script>
+</body>
+</html>
