@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — hpkreutz.com</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body class="dash-body">
+
+  <div class="sidebar">
+    <div class="brand"><a href="index.html">HP<span>K</span></a></div>
+    <nav class="sidenav">
+      <button class="nav-btn active" data-tab="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </button>
+      <button class="nav-btn" data-tab="todo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        To-Do
+      </button>
+      <button class="nav-btn" data-tab="betting">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Betting
+      </button>
+      <button class="nav-btn" data-tab="work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+        Work
+      </button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div id="auth-status" class="auth-status"></div>
+      <button id="auth-btn" class="auth-sidebar-btn">Sign In</button>
+    </div>
+    <div class="sidebar-footer" id="user-email-display"></div>
+  </div>
+
+  <div class="content">
+
+    <!-- HOME TAB -->
+    <div class="tab active" id="tab-home">
+      <div class="page-header">
+        <div>
+          <h1 id="greeting">Good morning.</h1>
+          <p class="subtext" id="date-display"></p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-label">Tasks Left</div><div class="stat-num" id="stat-tasks">0</div></div>
+        <div class="stat-card"><div class="stat-label">Completed</div><div class="stat-num" id="stat-done">0</div></div>
+        <div class="stat-card"><div class="stat-label">Work Items</div><div class="stat-num" id="stat-work">0</div></div>
+        <div class="stat-card"><div class="stat-label">Personal Items</div><div class="stat-num" id="stat-personal">0</div></div>
+      </div>
+      <div class="home-grid">
+        <div class="home-widget">
+          <div class="widget-hdr">
+            <span class="widget-title">Recent To-Dos</span>
+            <button class="link-btn" onclick="switchTab('todo')">View all →</button>
+          </div>
+          <div id="home-todos"></div>
+        </div>
+        <div class="home-widget">
+          <div class="widget-hdr">
+            <span class="widget-title">Recent Bets</span>
+            <button class="link-btn" onclick="switchTab('betting')">View all →</button>
+          </div>
+          <div id="home-bets"></div>
+        </div>
+      </div>
+      <div class="cloud-banner" id="cloud-banner">
+        <div>
+          <strong>Save across devices</strong> — create a free account to sync your data everywhere.
+        </div>
+        <button class="btn-accent" onclick="openModal('auth-modal')">Create Account</button>
+      </div>
+    </div>
+
+    <!-- TODO TAB -->
+    <div class="tab" id="tab-todo">
+      <div class="page-header">
+        <div><h1>To-Do List</h1><p class="subtext">Stay on top of work and personal tasks</p></div>
+        <button class="primary-btn" id="open-todo-modal">+ Add Task</button>
+      </div>
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="work">Work</button>
+        <button class="filter-btn" data-filter="personal">Personal</button>
+        <button class="filter-btn" data-filter="done">Completed</button>
+      </div>
+      <div id="todo-list" class="todo-list"></div>
+    </div>
+
+    <!-- BETTING TAB -->
+    <div class="tab" id="tab-betting">
+      <div class="page-header">
+        <div><h1>Betting Tracker</h1><p class="subtext">Track your picks and results</p></div>
+        <button class="primary-btn" id="open-bet-modal">+ Add Bet</button>
+      </div>
+      <div class="bet-stats-row">
+        <div class="stat-card green"><div class="stat-label">Total Won</div><div class="stat-num" id="bet-won">$0</div></div>
+        <div class="stat-card red"><div class="stat-label">Total Lost</div><div class="stat-num" id="bet-lost">$0</div></div>
+        <div class="stat-card"><div class="stat-label">Net Profit</div><div class="stat-num" id="bet-net">$0</div></div>
+        <div class="stat-card"><div class="stat-label">Win Rate</div><div class="stat-num" id="bet-rate">0%</div></div>
+      </div>
+      <div id="bet-list" class="bet-list"></div>
+    </div>
+
+    <!-- WORK TAB -->
+    <div class="tab" id="tab-work">
+      <div class="page-header">
+        <div><h1>Work Notes</h1><p class="subtext">Client info, notes, and quick reference</p></div>
+        <button class="primary-btn" id="open-note-modal">+ Add Note</button>
+      </div>
+      <div id="note-list" class="note-list"></div>
+    </div>
+
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal">
+      <div class="modal-hdr">
+        <h2 id="auth-modal-title">Sign In</h2>
+        <button class="close-btn" data-close="auth-modal">✕</button>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth="login">Sign In</button>
+        <button class="auth-tab" data-auth="signup">Sign Up</button>
+      </div>
+      <div id="auth-error" class="auth-error"></div>
+      <input type="text" id="auth-name" placeholder="First name" class="modal-input" style="display:none;" />
+      <input type="email" id="auth-email" placeholder="Email address" class="modal-input" />
+      <input type="password" id="auth-password" placeholder="Password" class="modal-input" />
+      <button class="primary-btn full" id="auth-submit">Sign In</button>
+      <p class="auth-sub">Data syncs to the cloud when signed in. Guest data stays in your browser.</p>
+    </div>
+  </div>
+
+  <!-- ADD TASK MODAL -->
+  <div class="modal-overlay" id="todo-modal">
+    <div class="modal">
+      <div class="modal-hdr"><h2>Add Task</h2><button class="close-btn" data-close="todo-modal">✕</button></div>
+      <input type="text" id="todo-input" placeholder="What needs to get done?" class="modal-input" />
+      <div class="modal-row">
+        <select id="todo-cat" class="modal-select">
+          <option value="work">Work</option>
+          <option value="personal">Personal</option>
+        </select>
+        <input type="date" id="todo-date" class="modal-input half" />
+      </div>
+      <button class="primary-btn full" id="save-todo">Save Task</button>
+    </div>
+  </div>
+
+  <!-- ADD BET MODAL -->
+  <div class="modal-overlay" id="bet-modal">
+    <div class="modal">
+      <div class="modal-hdr"><h2>Add Bet</h2><button class="close-btn" data-close="bet-modal">✕</button></div>
+      <input type="text" id="bet-matchup" placeholder="Matchup (e.g. Chiefs vs Ravens)" class="modal-input" />
+      <div class="modal-row">
+        <select id="bet-sport" class="modal-select">
+          <option value="NFL">NFL</option>
+          <option value="NBA">NBA</option>
+          <option value="MLB">MLB</option>
+          <option value="NHL">NHL</option>
+          <option value="CFB">CFB</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" id="bet-pick" placeholder="Your pick" class="modal-input half" />
+      </div>
+      <div class="modal-row">
+        <input type="text" id="bet-odds" placeholder="Odds (e.g. -110)" class="modal-input half" />
+        <input type="number" id="bet-amount" placeholder="Wager ($)" class="modal-input half" />
+      </div>
+      <select id="bet-result" class="modal-select full">
+        <option value="pending">Pending</option>
+        <option value="won">Won</option>
+        <option value="lost">Lost</option>
+        <option value="push">Push</option>
+      </select>
+      <button class="primary-btn full" id="save-bet">Save Bet</button>
+    </div>
+  </div>
+
+  <!-- ADD NOTE MODAL -->
+  <div class="modal-overlay" id="note-modal">
+    <div class="modal">
+      <div class="modal-hdr"><h2>Add Work Note</h2><button class="close-btn" data-close="note-modal">✕</button></div>
+      <input type="text" id="note-title" placeholder="Title (e.g. J Corp Renewal)" class="modal-input" />
+      <textarea id="note-body" placeholder="Notes, details, follow-ups..." class="modal-textarea"></textarea>
+      <select id="note-tag" class="modal-select full">
+        <option value="client">Client</option>
+        <option value="prospect">Prospect</option>
+        <option value="follow-up">Follow-up</option>
+        <option value="general">General</option>
+      </select>
+      <button class="primary-btn full" id="save-note">Save Note</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
