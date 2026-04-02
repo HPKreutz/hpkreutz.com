@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -107,6 +108,10 @@
     /* CHART */
     .chart-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
     .tv-chart-container { height: 460px; }
+    .chart-range-row { display:flex; gap:6px; padding:14px 20px 0; }
+    .chart-rbtn { padding:5px 12px; border-radius:6px; border:1px solid var(--border2); background:none; font-family:'Epilogue',sans-serif; font-size:12px; color:var(--ink2); cursor:pointer; transition:all 0.15s; font-weight:500; }
+    .chart-rbtn:hover { border-color:var(--accent); color:var(--accent); }
+    .chart-rbtn.active { background:var(--ink); color:var(--bg); border-color:var(--ink); }
 
     /* STATS GRID */
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
@@ -290,8 +295,16 @@
         </div>
       </div>
 
-      <!-- TRADINGVIEW SIMPLE CHART -->
+      <!-- LIGHTWEIGHT CHART -->
       <div class="chart-card">
+        <div class="chart-range-row">
+          <button class="chart-rbtn" data-res="D" data-days="30">1M</button>
+          <button class="chart-rbtn" data-res="D" data-days="90">3M</button>
+          <button class="chart-rbtn" data-res="D" data-days="180">6M</button>
+          <button class="chart-rbtn active" data-res="D" data-days="365">1Y</button>
+          <button class="chart-rbtn" data-res="W" data-days="1825">5Y</button>
+          <button class="chart-rbtn" data-res="M" data-days="7300">All</button>
+        </div>
         <div class="tv-chart-container" id="tv-container"></div>
       </div>
 
@@ -535,39 +548,107 @@
       document.getElementById('spanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // ─── TRADINGVIEW ADVANCED CHART ───────────────────────────────────────────────
+    // LIGHTWEIGHT CHART
+    let lwChart = null, lwSeries = null;
+
     function renderTVChart(sym) {
       const container = document.getElementById('tv-container');
       container.innerHTML = '';
-      let tvSym = sym;
-      if (sym === 'BRK-B') tvSym = 'NYSE:BRK.B';
-      const id = 'tv_' + Date.now();
-      const inner = document.createElement('div');
-      inner.id = id;
-      inner.style.cssText = 'height:100%;width:100%;';
-      container.appendChild(inner);
-      if (typeof TradingView !== 'undefined') {
-        new TradingView.widget({
-          container_id: id, symbol: tvSym, interval: 'D', timezone: 'America/Chicago',
-          theme: 'light', style: '1', locale: 'en', toolbar_bg: '#f5f2eb',
-          enable_publishing: false, hide_top_toolbar: false, save_image: false,
-          height: 460, width: '100%', withdateranges: true, range: '12M',
-          hide_side_toolbar: false, allow_symbol_change: true, details: true,
-          show_popup_button: false, studies: [],
-        });
-      } else {
-        const s = document.createElement('script');
-        s.src = 'https://s3.tradingview.com/tv.js';
-        s.onload = () => new TradingView.widget({
-          container_id: id, symbol: tvSym, interval: 'D', timezone: 'America/Chicago',
-          theme: 'light', style: '1', locale: 'en', toolbar_bg: '#f5f2eb',
-          enable_publishing: false, hide_top_toolbar: false, save_image: false,
-          height: 460, width: '100%', withdateranges: true, range: '12M',
-          hide_side_toolbar: false, allow_symbol_change: true, details: true,
-          show_popup_button: false, studies: [],
-        });
-        document.head.appendChild(s);
-      }
+      container.style.position = 'relative';
+
+      const tooltip = document.createElement('div');
+      tooltip.style.cssText = 'position:absolute;top:12px;left:12px;z-index:10;background:rgba(26,26,24,0.9);color:#f0f0f0;padding:8px 14px;border-radius:8px;font-family:Epilogue,sans-serif;font-size:13px;line-height:1.6;pointer-events:none;display:none;min-width:160px;';
+      container.appendChild(tooltip);
+
+      const chartDiv = document.createElement('div');
+      chartDiv.style.cssText = 'width:100%;height:100%;';
+      container.appendChild(chartDiv);
+
+      if (lwChart) { try { lwChart.remove(); } catch(e){} lwChart = null; }
+
+      lwChart = LightweightCharts.createChart(chartDiv, {
+        width: container.clientWidth,
+        height: 420,
+        layout: {
+          background: { color: '#edeae0' },
+          textColor: '#4a4a44',
+          fontSize: 12,
+          fontFamily: 'Epilogue, sans-serif'
+        },
+        grid: {
+          vertLines: { color: 'rgba(26,26,24,0.06)' },
+          horzLines: { color: 'rgba(26,26,24,0.06)' }
+        },
+        crosshair: {
+          mode: LightweightCharts.CrosshairMode.Normal,
+          vertLine: { color: 'rgba(26,26,24,0.5)', labelBackgroundColor: '#1a1a18' },
+          horzLine: { color: 'rgba(26,26,24,0.5)', labelBackgroundColor: '#1a1a18' }
+        },
+        rightPriceScale: { borderColor: 'rgba(26,26,24,0.1)' },
+        timeScale: { borderColor: 'rgba(26,26,24,0.1)', timeVisible: true, secondsVisible: false },
+        handleScroll: true,
+        handleScale: true,
+      });
+
+      lwSeries = lwChart.addAreaSeries({
+        lineColor: '#c8401a',
+        topColor: 'rgba(200,64,26,0.15)',
+        bottomColor: 'rgba(200,64,26,0)',
+        lineWidth: 2,
+        crosshairMarkerVisible: true,
+        crosshairMarkerRadius: 5,
+        crosshairMarkerBorderColor: '#c8401a',
+        crosshairMarkerBackgroundColor: '#fff',
+      });
+
+      lwChart.subscribeCrosshairMove(param => {
+        if (!param.point || !param.time || param.point.x < 0 || param.point.y < 0) {
+          tooltip.style.display = 'none'; return;
+        }
+        const d = param.seriesData.get(lwSeries);
+        if (!d) { tooltip.style.display = 'none'; return; }
+        const price = d.value ?? d.close;
+        const dt    = new Date(param.time * 1000);
+        const ds    = dt.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
+        tooltip.innerHTML = '<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:2px;">' + ds + '</div><div style="font-size:18px;font-weight:600;">$' + price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) + '</div>';
+        tooltip.style.display = 'block';
+      });
+
+      new ResizeObserver(() => {
+        if (lwChart) lwChart.applyOptions({ width: container.clientWidth });
+      }).observe(container);
+
+      document.querySelectorAll('.chart-rbtn').forEach(b => {
+        b.onclick = () => {
+          document.querySelectorAll('.chart-rbtn').forEach(x => x.classList.remove('active'));
+          b.classList.add('active');
+          fetchChartData(sym, b.dataset.res, +b.dataset.days);
+        };
+      });
+
+      fetchChartData(sym, 'D', 365);
+    }
+
+    async function fetchChartData(sym, resolution, days) {
+      const now  = Math.floor(Date.now() / 1000);
+      const from = now - days * 86400;
+      const url  = sym.includes(':')
+        ? FH + '/crypto/candle?symbol=' + encodeURIComponent(sym) + '&resolution=' + resolution + '&from=' + from + '&to=' + now + '&token=' + KEY
+        : FH + '/stock/candle?symbol='  + encodeURIComponent(sym) + '&resolution=' + resolution + '&from=' + from + '&to=' + now + '&token=' + KEY;
+      const data = await api(url);
+      if (!data || data.s === 'no_data' || !data.t || !data.t.length) return;
+      const prices = data.t.map((t,i) => ({ time: t, value: data.c[i] })).filter(p => p.value != null);
+      if (!prices.length) return;
+      const isUp = prices[prices.length-1].value >= prices[0].value;
+      const col  = isUp ? '#1a6e33' : '#c8401a';
+      lwSeries.applyOptions({
+        lineColor: col,
+        topColor:    isUp ? 'rgba(26,110,51,0.15)'  : 'rgba(200,64,26,0.15)',
+        bottomColor: isUp ? 'rgba(26,110,51,0)'      : 'rgba(200,64,26,0)',
+        crosshairMarkerBorderColor: col,
+      });
+      lwSeries.setData(prices);
+      lwChart.timeScale().fitContent();
     }
 
     // ─── PROFILE ─────────────────────────────────────────────────────────────
