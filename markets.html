@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -198,18 +197,7 @@
       </div>
 
       <div class="chart-card">
-        <div class="range-row">
-          <button class="rbtn active" data-res="D" data-days="30">1M</button>
-          <button class="rbtn" data-res="D" data-days="90">3M</button>
-          <button class="rbtn" data-res="D" data-days="180">6M</button>
-          <button class="rbtn" data-res="D" data-days="365">1Y</button>
-          <button class="rbtn" data-res="W" data-days="1825">5Y</button>
-          <button class="rbtn" data-res="M" data-days="7300">All</button>
-        </div>
-        <div class="chart-wrap">
-          <div class="chart-msg" id="cmsg">Loading chart...</div>
-          <canvas id="schart"></canvas>
-        </div>
+        <div id="tv-widget-container" style="height:500px;"></div>
       </div>
 
       <div class="stats-grid">
@@ -281,7 +269,7 @@
   <script>
     const KEY = 'd7775lhr01qp6afkfkt0d7775lhr01qp6afkfktg';
     const FH  = 'https://finnhub.io/api/v1';
-    let curSym = '', myChart = null;
+    let curSym = '';
 
     // ─── HELPERS ─────────────────────────────────────────────────────────────
     const fmtP = n => {
@@ -419,7 +407,7 @@
         document.getElementById('spanel').classList.add('on');
 
         // Load chart
-        loadChart('D', 30, true);
+        loadChart(sym);
 
         // Load additional data async
         loadProfile(sym, price);
@@ -501,86 +489,39 @@
       if (sym.includes(':')) return;
     }
 
-    // ─── CHART ────────────────────────────────────────────────────────────────
-    async function loadChart(resolution, days, init) {
-      if (!curSym) return;
-      if (!init) {
-        document.querySelectorAll('.rbtn').forEach(b => {
-          b.classList.toggle('active', b.dataset.res === String(resolution) && +b.dataset.days === +days);
-        });
-      }
-      document.getElementById('cmsg').style.display = 'flex';
-      document.getElementById('cmsg').textContent = 'Loading chart...';
-
-      try {
-        const now  = Math.floor(Date.now() / 1000);
-        const from = now - days * 24 * 60 * 60;
-        const sym  = curSym;
-
-        // Use crypto endpoint for crypto symbols
-        let url;
-        if (sym.includes(':')) {
-          url = `${FH}/crypto/candle?symbol=${encodeURIComponent(sym)}&resolution=${resolution}&from=${from}&to=${now}&token=${KEY}`;
-        } else {
-          url = `${FH}/stock/candle?symbol=${encodeURIComponent(sym)}&resolution=${resolution}&from=${from}&to=${now}&token=${KEY}`;
-        }
-
-        const res  = await fetch(url);
-        const data = await res.json();
-
-        if (!data || data.s === 'no_data' || !data.t || !data.t.length) {
-          document.getElementById('cmsg').textContent = 'No chart data for this range.';
-          return;
-        }
-
-        const labels = data.t.map(ts => {
-          const d = new Date(ts * 1000);
-          if (days <= 90)  return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
-          if (days <= 365) return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
-          return d.toLocaleDateString([], { month: 'short', year: '2-digit' });
-        });
-
-        const vals = data.c;
-        const up   = vals[vals.length-1] >= vals[0];
-        const col  = up ? '#1a6e33' : '#c8401a';
-        const fill = up ? 'rgba(26,110,51,0.07)' : 'rgba(200,64,26,0.07)';
-
-        if (myChart) myChart.destroy();
-        myChart = new Chart(document.getElementById('schart').getContext('2d'), {
-          type: 'line',
-          data: { labels, datasets: [{ data: vals, borderColor: col, backgroundColor: fill, borderWidth: 2, pointRadius: 0, pointHoverRadius: 4, fill: true, tension: 0.1 }] },
-          options: {
-            responsive: true, maintainAspectRatio: false,
-            interaction: { mode: 'index', intersect: false },
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                backgroundColor: '#1a1a18', titleColor: '#8a8a80', bodyColor: '#f0f0f0',
-                borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1, padding: 10,
-                callbacks: { label: c => ' $' + c.parsed.y.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
-              }
-            },
-            scales: {
-              x: { ticks: { color: '#8a8a80', font: { size: 11 }, maxTicksLimit: 8, maxRotation: 0 }, grid: { color: 'rgba(26,26,24,0.06)' }, border: { display: false } },
-              y: { position: 'right', ticks: { color: '#8a8a80', font: { size: 11 }, callback: v => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }, grid: { color: 'rgba(26,26,24,0.06)' }, border: { display: false } }
-            }
-          }
-        });
-        document.getElementById('cmsg').style.display = 'none';
-
-      } catch(e) {
-        document.getElementById('cmsg').textContent = 'Chart unavailable.';
-      }
-    }
-
-    // Wire range buttons
-    document.querySelectorAll('.rbtn').forEach(b => {
-      b.addEventListener('click', () => {
-        document.querySelectorAll('.rbtn').forEach(x => x.classList.remove('active'));
-        b.classList.add('active');
-        loadChart(b.dataset.res, +b.dataset.days);
+    // ─── TRADINGVIEW CHART ────────────────────────────────────────────────────
+    function loadChart(sym) {
+      const container = document.getElementById('tv-widget-container');
+      container.innerHTML = '';
+      const script = document.createElement('script');
+      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+      script.async = true;
+      script.innerHTML = JSON.stringify({
+        autosize: true,
+        symbol: sym.includes(':') ? sym : sym,
+        interval: 'D',
+        timezone: 'America/Chicago',
+        theme: 'light',
+        style: '1',
+        locale: 'en',
+        allow_symbol_change: true,
+        calendar: false,
+        support_host: 'https://www.tradingview.com',
+        hide_top_toolbar: false,
+        hide_legend: false,
+        save_image: false,
+        studies: ['RSI@tv-basicstudies', 'MASimple@tv-basicstudies'],
+        show_popup_button: true,
+        popup_width: '1000',
+        popup_height: '650',
+        backgroundColor: 'rgba(237,234,224,0)',
+        gridColor: 'rgba(26,26,24,0.06)',
+        withdateranges: true,
+        range: '12M',
+        hide_side_toolbar: false,
       });
-    });
+      container.appendChild(script);
+    }
 
     // ─── LOAD INDICES ON PAGE LOAD ────────────────────────────────────────────
     async function loadIndices() {
