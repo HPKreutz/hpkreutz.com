@@ -199,10 +199,9 @@
 
       <div class="chart-card">
         <div class="range-row">
-          <button class="rbtn active" data-res="5" data-days="1">1D</button>
-          <button class="rbtn" data-res="15" data-days="5">1W</button>
-          <button class="rbtn" data-res="60" data-days="30">1M</button>
+          <button class="rbtn active" data-res="D" data-days="30">1M</button>
           <button class="rbtn" data-res="D" data-days="90">3M</button>
+          <button class="rbtn" data-res="D" data-days="180">6M</button>
           <button class="rbtn" data-res="D" data-days="365">1Y</button>
           <button class="rbtn" data-res="W" data-days="1825">5Y</button>
           <button class="rbtn" data-res="M" data-days="7300">All</button>
@@ -420,7 +419,7 @@
         document.getElementById('spanel').classList.add('on');
 
         // Load chart
-        loadChart(5, 1, true);
+        loadChart('D', 30, true);
 
         // Load additional data async
         loadProfile(sym, price);
@@ -507,7 +506,7 @@
       if (!curSym) return;
       if (!init) {
         document.querySelectorAll('.rbtn').forEach(b => {
-          b.classList.toggle('active', +b.dataset.res === resolution && +b.dataset.days === days || b.dataset.res === String(resolution) && +b.dataset.days === days);
+          b.classList.toggle('active', b.dataset.res === String(resolution) && +b.dataset.days === +days);
         });
       }
       document.getElementById('cmsg').style.display = 'flex';
@@ -536,8 +535,7 @@
 
         const labels = data.t.map(ts => {
           const d = new Date(ts * 1000);
-          if (days <= 1)   return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-          if (days <= 30)  return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+          if (days <= 90)  return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
           if (days <= 365) return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
           return d.toLocaleDateString([], { month: 'short', year: '2-digit' });
         });
