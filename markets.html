@@ -290,6 +290,10 @@
   <script>
     let curSymbol = '', myChart = null;
 
+    // Route through CORS proxy so Yahoo Finance works from the browser
+    const YF_CHART   = (sym, interval, range) => `https://corsproxy.io/?${encodeURIComponent(`https://query2.finance.yahoo.com/v8/finance/chart/${sym}?interval=${interval}&range=${range}`)}`;
+    const YF_SUMMARY = (sym) => `https://corsproxy.io/?${encodeURIComponent(`https://query2.finance.yahoo.com/v11/finance/quoteSummary/${sym}?modules=summaryDetail,defaultKeyStatistics,financialData,assetProfile`)}`;
+
     const STOCKS = [
       {t:'AAPL',n:'Apple Inc.'},{t:'MSFT',n:'Microsoft Corporation'},{t:'NVDA',n:'NVIDIA Corporation'},
       {t:'AMZN',n:'Amazon.com Inc.'},{t:'META',n:'Meta Platforms Inc.'},{t:'GOOGL',n:'Alphabet Inc. (Class A)'},
@@ -399,7 +403,7 @@
 
       try {
         const enc = encodeURIComponent(sym);
-        const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${enc}?interval=5m&range=1d`);
+        const res = await fetch(YF_CHART(enc, '5m', '1d'));
         const d = await res.json();
         const r = d?.chart?.result?.[0];
         if (!r) throw new Error('no data');
@@ -457,7 +461,7 @@
     async function loadSummary(sym, price, crypto) {
       try {
         const enc = encodeURIComponent(sym);
-        const res = await fetch(`https://query1.finance.yahoo.com/v11/finance/quoteSummary/${enc}?modules=summaryDetail,defaultKeyStatistics,financialData,assetProfile`);
+        const res = await fetch(YF_SUMMARY(enc));
         const d = await res.json();
         const r = d?.quoteSummary?.result?.[0];
         if (!r) return;
@@ -498,7 +502,7 @@
       for (const c of configs) {
         try {
           const enc = encodeURIComponent(sym);
-          const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${enc}?interval=${c.i}&range=${c.r}`);
+          const res = await fetch(YF_CHART(enc, c.i, c.r));
           const d   = await res.json();
           const closes = d?.chart?.result?.[0]?.indicators?.quote?.[0]?.close?.filter(v => v != null);
           if (!closes?.length) continue;
@@ -520,7 +524,7 @@
       document.getElementById('cmsg').style.display = 'flex';
       try {
         const enc = encodeURIComponent(curSymbol);
-        const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${enc}?interval=${interval}&range=${range}`);
+        const res = await fetch(YF_CHART(enc, interval, range));
         const d = await res.json();
         const r = d?.chart?.result?.[0];
         if (!r) return;
@@ -576,7 +580,7 @@
         const sym = card.dataset.sym;
         try {
           const enc = encodeURIComponent(sym);
-          const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${enc}?interval=1d&range=1d`);
+          const res = await fetch(YF_CHART(enc, '1d', '1d'));
           const d = await res.json();
           const m = d?.chart?.result?.[0]?.meta;
           if (!m?.regularMarketPrice) continue;
