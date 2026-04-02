@@ -4,114 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tools — hpkreutz.com</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #f5f2eb; --bg2: #edeae0; --bg3: #e4e0d4;
-      --ink: #1a1a18; --ink2: #4a4a44; --ink3: #8a8a80;
-      --accent: #c8401a; --accent2: #a83212;
-      --border: rgba(26,26,24,0.1); --border2: rgba(26,26,24,0.22);
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Epilogue', sans-serif; font-size: 15px; line-height: 1.6; color: var(--ink); background: var(--bg); }
-
-    /* NAV */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; background: rgba(245,242,235,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ink); text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: 4px; }
-    .nav-links a { font-size: 13px; color: var(--ink2); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: all 0.15s; }
-    .nav-links a:hover { background: var(--bg2); color: var(--ink); }
-    .nav-links a.active { color: var(--ink); font-weight: 500; background: var(--bg2); }
-    .nav-cta { background: var(--ink) !important; color: var(--bg) !important; border-radius: 6px !important; }
-    .nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
-
-    /* PAGE */
-    .page-wrap { max-width: 960px; margin: 0 auto; padding: 96px 48px 64px; }
-    .page-hero { margin-bottom: 44px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
-    .page-tag { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; }
-    .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 80px; line-height: 0.9; color: var(--ink); letter-spacing: 1px; margin-bottom: 14px; }
-    .page-sub { font-size: 15px; color: var(--ink2); font-weight: 300; line-height: 1.7; max-width: 540px; }
-
-    /* SECTION LABEL */
-    .sec-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink3); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-
-    /* TOOLS GRID */
-    .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 44px; }
-    .tools-grid.single { grid-template-columns: 1fr 1fr; }
-
-    /* TOOL CARD */
-    .tool-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
-    .tool-card:hover { border-color: var(--border2); }
-    .tool-header { padding: 18px 22px 14px; border-bottom: 1px solid var(--border); }
-    .tool-title { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
-    .tool-subtitle { font-size: 12px; color: var(--ink3); font-weight: 300; font-style: italic; }
-    .tool-body { padding: 20px 22px; }
-
-    /* FORM ELEMENTS */
-    .field { margin-bottom: 14px; }
-    .field label { display: block; font-size: 11px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .field-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-    input[type="number"], input[type="text"], select, textarea {
-      width: 100%; background: var(--bg); border: 1px solid var(--border2);
-      border-radius: 7px; padding: 9px 12px; color: var(--ink);
-      font-family: 'Epilogue', sans-serif; font-size: 14px;
-      outline: none; transition: border-color 0.15s; -webkit-appearance: none;
-    }
-    input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(200,64,26,0.07); }
-    input::placeholder { color: var(--ink3); }
-    textarea { resize: vertical; min-height: 72px; }
-
-    /* CALC BUTTON */
-    .calc-btn { background: var(--ink); color: var(--bg); border: none; border-radius: 7px; padding: 10px 24px; font-family: 'Epilogue', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; width: 100%; margin-top: 4px; }
-    .calc-btn:hover { background: var(--accent); }
-
-    /* RESULTS */
-    .results { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 14px; display: none; }
-    .results.show { display: block; }
-    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-    .result-row:last-child { border-bottom: none; }
-    .rk { color: var(--ink2); }
-    .rv { font-weight: 500; color: var(--ink); }
-    .rv.accent { color: var(--accent); font-size: 17px; font-weight: 600; }
-    .rv.green { color: #1a6e33; font-size: 17px; font-weight: 600; }
-    .result-highlight { background: rgba(200,64,26,0.04); padding: 10px 12px; margin: 4px -12px; border-radius: 6px; }
-
-    /* QR / BARCODE OUTPUT */
-    .code-output { margin-top: 16px; display: none; flex-direction: column; align-items: center; gap: 12px; }
+    .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 40px; }
+    .tool-card { background: var(--white); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .tool-card:nth-child(2n) { border-right: none; }
+    .tool-card.full { grid-column: 1 / -1; border-right: none; }
+    .tool-card:last-child, .tool-card:nth-last-child(2):nth-child(2n+1) { border-bottom: none; }
+    .code-output { display: none; flex-direction: column; align-items: center; gap: 12px; margin-top: 16px; }
     .code-output.show { display: flex; }
-    .code-output canvas, .code-output img, .code-output svg { max-width: 100%; border-radius: 6px; }
-    .download-btn { background: var(--ink); color: var(--bg); border: none; border-radius: 7px; padding: 9px 20px; font-family: 'Epilogue', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
-    .download-btn:hover { background: var(--accent); }
-
-    /* FOOTER */
-    .footer { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto; padding: 28px 48px; border-top: 1px solid var(--border); font-size: 12px; color: var(--ink3); }
-    .footer-right { display: flex; gap: 20px; }
-    .footer-right a { color: var(--ink3); text-decoration: none; transition: color 0.15s; }
-    .footer-right a:hover { color: var(--ink); }
-
-    @media (max-width: 800px) {
-      .nav { padding: 0 20px; }
-      .page-wrap { padding: 82px 20px 48px; }
-      .page-title { font-size: 56px; }
-      .tools-grid, .tools-grid.single { grid-template-columns: 1fr; }
-      .field-row, .field-row3 { grid-template-columns: 1fr; }
-      .footer { padding: 24px 20px; }
-    }
-    @media (max-width: 600px) {
-      .nav-links a:not(.nav-cta) { display: none; }
-    }
+    @media (max-width: 700px) { .tools-grid { grid-template-columns: 1fr; } .tool-card { border-right: none; } .tool-card.full { border-right: none; } }
   </style>
 </head>
-<body>
+<body class="page">
 
   <nav class="nav">
-    <a href="index.html" class="nav-logo">HPK</a>
+    <a href="index.html" class="nav-logo">hpkreutz<span>.</span>com</a>
     <div class="nav-links">
       <a href="markets.html">Markets</a>
       <a href="tools.html" class="active">Tools</a>
@@ -121,406 +31,325 @@
     </div>
   </nav>
 
-  <div class="page-wrap">
+  <div class="page">
+    <div class="wrap">
+      <div class="page-hero">
+        <div class="label">Calculators &amp; Utilities</div>
+        <h1>Tools</h1>
+        <p>Financial calculators, QR code creator, and barcode generator — all free, all instant, no sign-up required.</p>
+      </div>
 
-    <div class="page-hero">
-      <div class="page-tag">Utilities</div>
-      <h1 class="page-title">Tools</h1>
-      <p class="page-sub">Financial calculators, QR code creator, and barcode generator — all free, all instant, no sign-up required.</p>
+      <!-- FINANCIAL CALCULATORS -->
+      <div class="sec-label">Financial Calculators</div>
+      <div class="tools-grid">
+
+        <!-- LOAN -->
+        <div class="tool-card">
+          <div class="card-head"><div class="title">Loan Calculator</div><div class="sub">Monthly payment estimator</div></div>
+          <div class="card-body">
+            <div class="field"><label>Loan Amount</label><input type="number" id="l-amount" placeholder="250,000" /></div>
+            <div class="field-row">
+              <div class="field"><label>Annual Rate (%)</label><input type="number" id="l-rate" placeholder="6.5" step="0.1" /></div>
+              <div class="field"><label>Term (years)</label><input type="number" id="l-term" placeholder="30" /></div>
+            </div>
+            <button class="btn btn-dark btn-full" onclick="calcLoan()">Calculate Payment</button>
+            <div class="results" id="l-res">
+              <div class="result-row"><span class="rk">Monthly Payment</span><span class="rv big" id="l-monthly">—</span></div>
+              <div class="result-row"><span class="rk">Total Paid</span><span class="rv" id="l-total">—</span></div>
+              <div class="result-row"><span class="rk">Total Interest</span><span class="rv" id="l-interest">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RETIREMENT -->
+        <div class="tool-card">
+          <div class="card-head"><div class="title">Retirement Calculator</div><div class="sub">Future nest egg projector</div></div>
+          <div class="card-body">
+            <div class="field-row">
+              <div class="field"><label>Current Age</label><input type="number" id="r-age" placeholder="30" /></div>
+              <div class="field"><label>Retirement Age</label><input type="number" id="r-ret" placeholder="65" /></div>
+            </div>
+            <div class="field"><label>Current Savings</label><input type="number" id="r-savings" placeholder="50,000" /></div>
+            <div class="field-row">
+              <div class="field"><label>Monthly Contribution</label><input type="number" id="r-contrib" placeholder="500" /></div>
+              <div class="field"><label>Annual Return (%)</label><input type="number" id="r-rate" placeholder="7" step="0.1" /></div>
+            </div>
+            <button class="btn btn-dark btn-full" onclick="calcRetirement()">Project Balance</button>
+            <div class="results" id="r-res">
+              <div class="result-row"><span class="rk">Projected Nest Egg</span><span class="rv green" id="r-nest">—</span></div>
+              <div class="result-row"><span class="rk">Total Contributed</span><span class="rv" id="r-contrib-out">—</span></div>
+              <div class="result-row"><span class="rk">Investment Growth</span><span class="rv" id="r-growth">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MORTGAGE -->
+        <div class="tool-card">
+          <div class="card-head"><div class="title">Mortgage Calculator</div><div class="sub">Full payment with taxes &amp; insurance</div></div>
+          <div class="card-body">
+            <div class="field-row">
+              <div class="field"><label>Home Price</label><input type="number" id="m-price" placeholder="350,000" /></div>
+              <div class="field"><label>Down Payment</label><input type="number" id="m-down" placeholder="70,000" /></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Interest Rate (%)</label><input type="number" id="m-rate" placeholder="6.75" step="0.1" /></div>
+              <div class="field"><label>Loan Term (years)</label><input type="number" id="m-term" placeholder="30" /></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Annual Property Tax</label><input type="number" id="m-tax" placeholder="3,500" /></div>
+              <div class="field"><label>Annual Insurance</label><input type="number" id="m-ins" placeholder="1,400" /></div>
+            </div>
+            <div class="field"><label>Monthly HOA / PMI (optional)</label><input type="number" id="m-hoa" placeholder="0" /></div>
+            <button class="btn btn-dark btn-full" onclick="calcMortgage()">Calculate Full Payment</button>
+            <div class="results" id="m-res">
+              <div class="result-row"><span class="rk">Total Monthly Payment (PITI)</span><span class="rv big" id="m-total">—</span></div>
+              <div class="result-row"><span class="rk">Principal &amp; Interest</span><span class="rv" id="m-pi">—</span></div>
+              <div class="result-row"><span class="rk">Property Tax / mo</span><span class="rv" id="m-taxmo">—</span></div>
+              <div class="result-row"><span class="rk">Insurance / mo</span><span class="rv" id="m-insmo">—</span></div>
+              <div class="result-row"><span class="rk">HOA / PMI / mo</span><span class="rv" id="m-hoamo">—</span></div>
+              <div class="result-row"><span class="rk">Loan Amount</span><span class="rv" id="m-loan">—</span></div>
+              <div class="result-row"><span class="rk">Total Interest Paid</span><span class="rv" id="m-interest">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RENTAL PROPERTY -->
+        <div class="tool-card">
+          <div class="card-head"><div class="title">Rental Property Calculator</div><div class="sub">Cash flow, ROI &amp; rate of return</div></div>
+          <div class="card-body">
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">Income</div>
+            <div class="field-row">
+              <div class="field"><label>Monthly Rent</label><input type="number" id="rp-rent" placeholder="2,000" /></div>
+              <div class="field"><label>Other Monthly Income</label><input type="number" id="rp-other" placeholder="0" /></div>
+            </div>
+            <div class="field"><label>Vacancy Rate (%)</label><input type="number" id="rp-vacancy" placeholder="5" step="0.5" /></div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin:12px 0 10px;">Purchase</div>
+            <div class="field-row">
+              <div class="field"><label>Purchase Price</label><input type="number" id="rp-price" placeholder="300,000" /></div>
+              <div class="field"><label>Down Payment</label><input type="number" id="rp-down" placeholder="60,000" /></div>
+            </div>
+            <div class="field"><label>Closing Costs</label><input type="number" id="rp-closing" placeholder="6,000" /></div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin:12px 0 10px;">Mortgage</div>
+            <div class="field-row">
+              <div class="field"><label>Monthly P&amp;I Payment</label><input type="number" id="rp-mortgage" placeholder="1,520" /></div>
+              <div class="field"><label>Annual Interest Rate (%)</label><input type="number" id="rp-rate" placeholder="6.75" step="0.1" /></div>
+            </div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin:12px 0 10px;">Monthly Expenses</div>
+            <div class="field-row">
+              <div class="field"><label>Property Insurance</label><input type="number" id="rp-ins" placeholder="120" /></div>
+              <div class="field"><label>Property Taxes</label><input type="number" id="rp-tax" placeholder="250" /></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Utilities (if owner-paid)</label><input type="number" id="rp-util" placeholder="0" /></div>
+              <div class="field"><label>Maintenance &amp; Repairs</label><input type="number" id="rp-maint" placeholder="100" /></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Property Management</label><input type="number" id="rp-mgmt" placeholder="0" /></div>
+              <div class="field"><label>HOA Fees</label><input type="number" id="rp-hoa" placeholder="0" /></div>
+            </div>
+            <button class="btn btn-dark btn-full" onclick="calcRental()">Analyze Property</button>
+            <div class="results" id="rp-res">
+              <div class="result-row"><span class="rk">Monthly Cash Flow</span><span class="rv big" id="rp-cashflow">—</span></div>
+              <div class="result-row"><span class="rk">Cash-on-Cash Return</span><span class="rv" id="rp-coc">—</span></div>
+              <div class="result-row"><span class="rk">Cap Rate</span><span class="rv" id="rp-cap">—</span></div>
+              <div class="result-row"><span class="rk">Gross Rent Multiplier</span><span class="rv" id="rp-grm">—</span></div>
+              <div class="result-row"><span class="rk">Effective Gross Income / mo</span><span class="rv" id="rp-egi">—</span></div>
+              <div class="result-row"><span class="rk">Total Expenses / mo</span><span class="rv" id="rp-expenses">—</span></div>
+              <div class="result-row"><span class="rk">Net Operating Income / yr</span><span class="rv" id="rp-noi">—</span></div>
+              <div class="result-row"><span class="rk">Total Cash Invested</span><span class="rv" id="rp-invested">—</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CODE GENERATORS -->
+      <div class="sec-label">Code Generators</div>
+      <div class="tools-grid">
+
+        <!-- QR CODE -->
+        <div class="tool-card">
+          <div class="card-head"><div class="title">QR Code Creator</div><div class="sub">Generate &amp; download instantly</div></div>
+          <div class="card-body">
+            <div class="field"><label>URL or Text</label><textarea id="qr-input" placeholder="https://hpkreutz.com or any text..."></textarea></div>
+            <div class="field-row">
+              <div class="field"><label>Size</label>
+                <select id="qr-size"><option value="128">Small (128px)</option><option value="256" selected>Medium (256px)</option><option value="512">Large (512px)</option></select>
+              </div>
+              <div class="field"><label>Color</label>
+                <select id="qr-color"><option value="#000000">Black</option><option value="#111111">Dark Gray</option><option value="#c8401a">Red</option><option value="#1a7a3a">Green</option></select>
+              </div>
+            </div>
+            <button class="btn btn-dark btn-full" onclick="genQR()">Generate QR Code</button>
+            <div class="code-output" id="qr-output">
+              <div id="qr-wrap"></div>
+              <button class="btn btn-accent btn-sm" onclick="downloadQR()">Download PNG</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- BARCODE -->
+        <div class="tool-card">
+          <div class="card-head"><div class="title">Barcode Creator</div><div class="sub">Multiple formats supported</div></div>
+          <div class="card-body">
+            <div class="field"><label>Value</label><input type="text" id="bc-value" placeholder="123456789012" /></div>
+            <div class="field-row">
+              <div class="field"><label>Format</label>
+                <select id="bc-format">
+                  <option value="CODE128">Code 128 (general)</option>
+                  <option value="EAN13">EAN-13 (retail)</option>
+                  <option value="UPC">UPC (US retail)</option>
+                  <option value="CODE39">Code 39</option>
+                  <option value="ITF14">ITF-14</option>
+                </select>
+              </div>
+              <div class="field"><label>Height</label>
+                <select id="bc-height"><option value="40">Short</option><option value="70" selected>Medium</option><option value="110">Tall</option></select>
+              </div>
+            </div>
+            <button class="btn btn-dark btn-full" onclick="genBarcode()">Generate Barcode</button>
+            <div class="code-output" id="bc-output">
+              <svg id="bc-svg" style="width:100%;background:var(--off);border-radius:6px;padding:8px;"></svg>
+              <button class="btn btn-accent btn-sm" onclick="downloadBarcode()">Download SVG</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-
-    <!-- FINANCIAL CALCULATORS -->
-    <div class="sec-label">Financial Calculators</div>
-    <div class="tools-grid">
-
-      <!-- LOAN CALCULATOR -->
-      <div class="tool-card">
-        <div class="tool-header">
-          <div class="tool-title">Loan Calculator</div>
-          <div class="tool-subtitle">Monthly payment estimator</div>
-        </div>
-        <div class="tool-body">
-          <div class="field"><label>Loan Amount</label><input type="number" id="l-amount" placeholder="250000" /></div>
-          <div class="field-row">
-            <div class="field"><label>Annual Rate (%)</label><input type="number" id="l-rate" placeholder="6.5" step="0.1" /></div>
-            <div class="field"><label>Term (years)</label><input type="number" id="l-term" placeholder="30" /></div>
-          </div>
-          <button class="calc-btn" onclick="calcLoan()">Calculate Payment</button>
-          <div class="results" id="l-results">
-            <div class="result-row result-highlight"><span class="rk">Monthly Payment</span><span class="rv accent" id="l-monthly">—</span></div>
-            <div class="result-row"><span class="rk">Total Paid</span><span class="rv" id="l-total">—</span></div>
-            <div class="result-row"><span class="rk">Total Interest</span><span class="rv" id="l-interest">—</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RETIREMENT CALCULATOR -->
-      <div class="tool-card">
-        <div class="tool-header">
-          <div class="tool-title">Retirement Calculator</div>
-          <div class="tool-subtitle">Future nest egg projector</div>
-        </div>
-        <div class="tool-body">
-          <div class="field-row">
-            <div class="field"><label>Current Age</label><input type="number" id="r-age" placeholder="30" /></div>
-            <div class="field"><label>Retirement Age</label><input type="number" id="r-ret" placeholder="65" /></div>
-          </div>
-          <div class="field"><label>Current Savings</label><input type="number" id="r-savings" placeholder="50000" /></div>
-          <div class="field-row">
-            <div class="field"><label>Monthly Contribution</label><input type="number" id="r-contrib" placeholder="500" /></div>
-            <div class="field"><label>Annual Return (%)</label><input type="number" id="r-rate" placeholder="7" step="0.1" /></div>
-          </div>
-          <button class="calc-btn" onclick="calcRetirement()">Project Balance</button>
-          <div class="results" id="r-results">
-            <div class="result-row result-highlight"><span class="rk">Projected Nest Egg</span><span class="rv green" id="r-nest">—</span></div>
-            <div class="result-row"><span class="rk">Total Contributed</span><span class="rv" id="r-contributed">—</span></div>
-            <div class="result-row"><span class="rk">Investment Growth</span><span class="rv" id="r-growth">—</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MORTGAGE CALCULATOR -->
-      <div class="tool-card">
-        <div class="tool-header">
-          <div class="tool-title">Mortgage Calculator</div>
-          <div class="tool-subtitle">Full payment with taxes &amp; insurance</div>
-        </div>
-        <div class="tool-body">
-          <div class="field-row">
-            <div class="field"><label>Home Price</label><input type="number" id="m-price" placeholder="350000" /></div>
-            <div class="field"><label>Down Payment</label><input type="number" id="m-down" placeholder="70000" /></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label>Annual Interest Rate (%)</label><input type="number" id="m-rate" placeholder="6.75" step="0.1" /></div>
-            <div class="field"><label>Loan Term (years)</label><input type="number" id="m-term" placeholder="30" /></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label>Annual Property Tax</label><input type="number" id="m-tax" placeholder="3500" /></div>
-            <div class="field"><label>Annual Home Insurance</label><input type="number" id="m-ins" placeholder="1400" /></div>
-          </div>
-          <div class="field"><label>Monthly HOA / PMI (optional)</label><input type="number" id="m-hoa" placeholder="0" /></div>
-          <button class="calc-btn" onclick="calcMortgage()">Calculate Full Payment</button>
-          <div class="results" id="m-results">
-            <div class="result-row result-highlight"><span class="rk">Total Monthly Payment (PITI)</span><span class="rv accent" id="m-total">—</span></div>
-            <div class="result-row"><span class="rk">Principal &amp; Interest</span><span class="rv" id="m-pi">—</span></div>
-            <div class="result-row"><span class="rk">Property Tax / mo</span><span class="rv" id="m-taxmo">—</span></div>
-            <div class="result-row"><span class="rk">Insurance / mo</span><span class="rv" id="m-insmo">—</span></div>
-            <div class="result-row"><span class="rk">HOA / PMI / mo</span><span class="rv" id="m-hoamo">—</span></div>
-            <div class="result-row"><span class="rk">Loan Amount</span><span class="rv" id="m-loan">—</span></div>
-            <div class="result-row"><span class="rk">Total Interest Paid</span><span class="rv" id="m-interest">—</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RENTAL PROPERTY CALCULATOR -->
-      <div class="tool-card">
-        <div class="tool-header">
-          <div class="tool-title">Rental Property Calculator</div>
-          <div class="tool-subtitle">Cash flow, ROI &amp; rate of return</div>
-        </div>
-        <div class="tool-body">
-          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin-bottom:10px;">Income</div>
-          <div class="field-row">
-            <div class="field"><label>Monthly Rent</label><input type="number" id="rp-rent" placeholder="2000" /></div>
-            <div class="field"><label>Other Monthly Income</label><input type="number" id="rp-other" placeholder="0" /></div>
-          </div>
-          <div class="field"><label>Vacancy Rate (%)</label><input type="number" id="rp-vacancy" placeholder="5" step="0.5" /></div>
-
-          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin:14px 0 10px;">Purchase</div>
-          <div class="field-row">
-            <div class="field"><label>Purchase Price</label><input type="number" id="rp-price" placeholder="300000" /></div>
-            <div class="field"><label>Down Payment</label><input type="number" id="rp-down" placeholder="60000" /></div>
-          </div>
-          <div class="field"><label>Closing Costs</label><input type="number" id="rp-closing" placeholder="6000" /></div>
-
-          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin:14px 0 10px;">Mortgage</div>
-          <div class="field-row3">
-            <div class="field"><label>Monthly P&amp;I</label><input type="number" id="rp-mortgage" placeholder="1520" /></div>
-            <div class="field"><label>Rate (%)</label><input type="number" id="rp-rate" placeholder="6.75" step="0.1" /></div>
-            <div class="field"><label>Term (yrs)</label><input type="number" id="rp-lterm" placeholder="30" /></div>
-          </div>
-
-          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin:14px 0 10px;">Monthly Expenses</div>
-          <div class="field-row">
-            <div class="field"><label>Property Insurance</label><input type="number" id="rp-ins" placeholder="120" /></div>
-            <div class="field"><label>Property Taxes</label><input type="number" id="rp-tax" placeholder="250" /></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label>Utilities (if owner-paid)</label><input type="number" id="rp-util" placeholder="0" /></div>
-            <div class="field"><label>Maintenance &amp; Repairs</label><input type="number" id="rp-maint" placeholder="100" /></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label>Property Management</label><input type="number" id="rp-mgmt" placeholder="0" /></div>
-            <div class="field"><label>HOA Fees</label><input type="number" id="rp-hoa" placeholder="0" /></div>
-          </div>
-
-          <button class="calc-btn" onclick="calcRental()">Analyze Property</button>
-          <div class="results" id="rp-results">
-            <div class="result-row result-highlight"><span class="rk">Monthly Cash Flow</span><span class="rv accent" id="rp-cashflow">—</span></div>
-            <div class="result-row"><span class="rk">Cash-on-Cash Return</span><span class="rv" id="rp-coc">—</span></div>
-            <div class="result-row"><span class="rk">Cap Rate</span><span class="rv" id="rp-cap">—</span></div>
-            <div class="result-row"><span class="rk">Gross Rent Multiplier</span><span class="rv" id="rp-grm">—</span></div>
-            <div class="result-row"><span class="rk">Effective Gross Income / mo</span><span class="rv" id="rp-egi">—</span></div>
-            <div class="result-row"><span class="rk">Total Expenses / mo</span><span class="rv" id="rp-expenses">—</span></div>
-            <div class="result-row"><span class="rk">Net Operating Income / yr</span><span class="rv" id="rp-noi">—</span></div>
-            <div class="result-row"><span class="rk">Total Cash Invested</span><span class="rv" id="rp-invested">—</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- CODE GENERATORS -->
-    <div class="sec-label">Code Generators</div>
-    <div class="tools-grid single">
-
-      <!-- QR CODE -->
-      <div class="tool-card">
-        <div class="tool-header">
-          <div class="tool-title">QR Code Creator</div>
-          <div class="tool-subtitle">Generate &amp; download instantly</div>
-        </div>
-        <div class="tool-body">
-          <div class="field"><label>URL or Text</label><textarea id="qr-input" placeholder="https://hpkreutz.com or any text..."></textarea></div>
-          <div class="field-row">
-            <div class="field">
-              <label>Size</label>
-              <select id="qr-size">
-                <option value="128">Small (128px)</option>
-                <option value="256" selected>Medium (256px)</option>
-                <option value="512">Large (512px)</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Color</label>
-              <select id="qr-color">
-                <option value="#000000">Black</option>
-                <option value="#002855">Navy</option>
-                <option value="#c8401a">Red</option>
-                <option value="#1a6e33">Green</option>
-              </select>
-            </div>
-          </div>
-          <button class="calc-btn" onclick="genQR()">Generate QR Code</button>
-          <div class="code-output" id="qr-output">
-            <div id="qr-canvas-wrap"></div>
-            <button class="download-btn" onclick="downloadQR()">Download PNG</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- BARCODE -->
-      <div class="tool-card">
-        <div class="tool-header">
-          <div class="tool-title">Barcode Creator</div>
-          <div class="tool-subtitle">Multiple formats supported</div>
-        </div>
-        <div class="tool-body">
-          <div class="field"><label>Value</label><input type="text" id="bc-value" placeholder="123456789012" /></div>
-          <div class="field-row">
-            <div class="field">
-              <label>Format</label>
-              <select id="bc-format">
-                <option value="CODE128">Code 128 (general)</option>
-                <option value="EAN13">EAN-13 (retail)</option>
-                <option value="UPC">UPC (US retail)</option>
-                <option value="CODE39">Code 39</option>
-                <option value="ITF14">ITF-14</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Height</label>
-              <select id="bc-height">
-                <option value="40">Short</option>
-                <option value="70" selected>Medium</option>
-                <option value="110">Tall</option>
-              </select>
-            </div>
-          </div>
-          <button class="calc-btn" onclick="genBarcode()">Generate Barcode</button>
-          <div class="code-output" id="bc-output">
-            <svg id="bc-svg"></svg>
-            <button class="download-btn" onclick="downloadBarcode()">Download SVG</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
   </div>
 
   <footer class="footer">
     <div>© 2026 hpkreutz.com — Hays, KS</div>
-    <div class="footer-right">
-      <a href="index.html">Home</a>
-      <a href="markets.html">Markets</a>
-      <a href="sports.html">Sports</a>
-      <a href="contact.html">Contact</a>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="markets.html">Markets</a>
+      <a href="sports.html">Sports</a><a href="contact.html">Contact</a>
     </div>
   </footer>
 
   <script>
-    // ─── HELPERS ─────────────────────────────────────────────────────────────
     const fmt  = n => '$' + Math.round(n).toLocaleString('en-US');
-    const fmtD = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    const fmtPct = n => n.toFixed(2) + '%';
-    const show = id => { document.getElementById(id).classList.add('show'); };
-    const set  = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    const fmtD = n => '$' + n.toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2});
+    const show = id => document.getElementById(id).classList.add('show');
+    const set  = (id, v) => { const e = document.getElementById(id); if(e) e.textContent = v; };
 
-    // ─── LOAN CALCULATOR ─────────────────────────────────────────────────────
     function calcLoan() {
       const p = parseFloat(document.getElementById('l-amount').value);
       const r = parseFloat(document.getElementById('l-rate').value) / 100 / 12;
       const n = parseFloat(document.getElementById('l-term').value) * 12;
-      if (!p || !r || !n) { alert('Please fill in all fields.'); return; }
-      const m = p * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
-      const total = m * n;
-      set('l-monthly',  fmtD(m));
-      set('l-total',    fmt(total));
-      set('l-interest', fmt(total - p));
-      show('l-results');
+      if (!p||!r||!n) { alert('Please fill in all fields.'); return; }
+      const m = p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+      const t = m*n;
+      set('l-monthly', fmtD(m)); set('l-total', fmt(t)); set('l-interest', fmt(t-p));
+      show('l-res');
     }
 
-    // ─── RETIREMENT CALCULATOR ────────────────────────────────────────────────
     function calcRetirement() {
-      const age  = parseFloat(document.getElementById('r-age').value);
-      const ret  = parseFloat(document.getElementById('r-ret').value);
-      const pv   = parseFloat(document.getElementById('r-savings').value) || 0;
-      const pmt  = parseFloat(document.getElementById('r-contrib').value) || 0;
-      const r    = parseFloat(document.getElementById('r-rate').value) / 100 / 12;
-      const n    = (ret - age) * 12;
-      if (!age || !ret || !r || n <= 0) { alert('Please fill in all fields.'); return; }
-      const fv   = pv * Math.pow(1+r,n) + pmt * (Math.pow(1+r,n)-1) / r;
-      const contrib = pv + pmt * n;
-      set('r-nest',        fmt(fv));
-      set('r-contributed', fmt(contrib));
-      set('r-growth',      fmt(fv - contrib));
-      show('r-results');
+      const age = parseFloat(document.getElementById('r-age').value);
+      const ret = parseFloat(document.getElementById('r-ret').value);
+      const pv  = parseFloat(document.getElementById('r-savings').value)||0;
+      const pmt = parseFloat(document.getElementById('r-contrib').value)||0;
+      const r   = parseFloat(document.getElementById('r-rate').value)/100/12;
+      const n   = (ret-age)*12;
+      if (!age||!ret||!r||n<=0) { alert('Please fill in all fields.'); return; }
+      const fv  = pv*Math.pow(1+r,n) + pmt*(Math.pow(1+r,n)-1)/r;
+      const con = pv + pmt*n;
+      set('r-nest', fmt(fv)); set('r-contrib-out', fmt(con)); set('r-growth', fmt(fv-con));
+      show('r-res');
     }
 
-    // ─── MORTGAGE CALCULATOR ─────────────────────────────────────────────────
     function calcMortgage() {
       const price = parseFloat(document.getElementById('m-price').value);
-      const down  = parseFloat(document.getElementById('m-down').value)  || 0;
-      const r     = parseFloat(document.getElementById('m-rate').value)  / 100 / 12;
-      const n     = parseFloat(document.getElementById('m-term').value)  * 12;
-      const tax   = parseFloat(document.getElementById('m-tax').value)   || 0;
-      const ins   = parseFloat(document.getElementById('m-ins').value)   || 0;
-      const hoa   = parseFloat(document.getElementById('m-hoa').value)   || 0;
-      if (!price || !r || !n) { alert('Please fill in required fields.'); return; }
-      const loan = price - down;
-      const pi   = loan * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
-      const taxmo = tax / 12;
-      const insmo = ins / 12;
-      const total = pi + taxmo + insmo + hoa;
-      set('m-total',    fmtD(total));
+      const down  = parseFloat(document.getElementById('m-down').value)||0;
+      const r     = parseFloat(document.getElementById('m-rate').value)/100/12;
+      const n     = parseFloat(document.getElementById('m-term').value)*12;
+      const tax   = parseFloat(document.getElementById('m-tax').value)||0;
+      const ins   = parseFloat(document.getElementById('m-ins').value)||0;
+      const hoa   = parseFloat(document.getElementById('m-hoa').value)||0;
+      if (!price||!r||!n) { alert('Please fill in required fields.'); return; }
+      const loan  = price - down;
+      const pi    = loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+      const tmo   = tax/12, imo = ins/12;
+      set('m-total',    fmtD(pi+tmo+imo+hoa));
       set('m-pi',       fmtD(pi));
-      set('m-taxmo',    fmtD(taxmo));
-      set('m-insmo',    fmtD(insmo));
+      set('m-taxmo',    fmtD(tmo));
+      set('m-insmo',    fmtD(imo));
       set('m-hoamo',    fmtD(hoa));
       set('m-loan',     fmt(loan));
-      set('m-interest', fmt(pi * n - loan));
-      show('m-results');
+      set('m-interest', fmt(pi*n-loan));
+      show('m-res');
     }
 
-    // ─── RENTAL PROPERTY CALCULATOR ──────────────────────────────────────────
     function calcRental() {
-      const rent     = parseFloat(document.getElementById('rp-rent').value)     || 0;
-      const other    = parseFloat(document.getElementById('rp-other').value)    || 0;
-      const vacancy  = parseFloat(document.getElementById('rp-vacancy').value)  || 0;
-      const price    = parseFloat(document.getElementById('rp-price').value)    || 0;
-      const down     = parseFloat(document.getElementById('rp-down').value)     || 0;
-      const closing  = parseFloat(document.getElementById('rp-closing').value)  || 0;
-      const mortgage = parseFloat(document.getElementById('rp-mortgage').value) || 0;
-      const ins      = parseFloat(document.getElementById('rp-ins').value)      || 0;
-      const tax      = parseFloat(document.getElementById('rp-tax').value)      || 0;
-      const util     = parseFloat(document.getElementById('rp-util').value)     || 0;
-      const maint    = parseFloat(document.getElementById('rp-maint').value)    || 0;
-      const mgmt     = parseFloat(document.getElementById('rp-mgmt').value)     || 0;
-      const hoaf     = parseFloat(document.getElementById('rp-hoa').value)      || 0;
-
-      if (!rent || !price) { alert('Please enter at least rent income and purchase price.'); return; }
-
-      const grossIncome = (rent + other) * (1 - vacancy / 100);
-      const opExpenses  = ins + tax + util + maint + mgmt + hoaf;
-      const totalExpenses = mortgage + opExpenses;
-      const cashflow    = grossIncome - totalExpenses;
-      const invested    = down + closing;
-      const noi         = (grossIncome - opExpenses) * 12;
-      const capRate     = price > 0 ? (noi / price) * 100 : 0;
-      const coc         = invested > 0 ? ((cashflow * 12) / invested) * 100 : 0;
-      const grm         = price > 0 ? price / (rent * 12) : 0;
-
-      const cfEl = document.getElementById('rp-cashflow');
-      cfEl.textContent = (cashflow >= 0 ? '+' : '') + fmtD(cashflow) + '/mo';
-      cfEl.style.color = cashflow >= 0 ? '#1a6e33' : 'var(--accent)';
-
-      set('rp-coc',      fmtPct(coc));
-      set('rp-cap',      fmtPct(capRate));
-      set('rp-grm',      grm.toFixed(2) + 'x');
-      set('rp-egi',      fmtD(grossIncome) + '/mo');
-      set('rp-expenses', fmtD(totalExpenses) + '/mo');
+      const rent    = parseFloat(document.getElementById('rp-rent').value)||0;
+      const other   = parseFloat(document.getElementById('rp-other').value)||0;
+      const vacancy = parseFloat(document.getElementById('rp-vacancy').value)||0;
+      const price   = parseFloat(document.getElementById('rp-price').value)||0;
+      const down    = parseFloat(document.getElementById('rp-down').value)||0;
+      const closing = parseFloat(document.getElementById('rp-closing').value)||0;
+      const mortg   = parseFloat(document.getElementById('rp-mortgage').value)||0;
+      const ins     = parseFloat(document.getElementById('rp-ins').value)||0;
+      const tax     = parseFloat(document.getElementById('rp-tax').value)||0;
+      const util    = parseFloat(document.getElementById('rp-util').value)||0;
+      const maint   = parseFloat(document.getElementById('rp-maint').value)||0;
+      const mgmt    = parseFloat(document.getElementById('rp-mgmt').value)||0;
+      const hoaf    = parseFloat(document.getElementById('rp-hoa').value)||0;
+      if (!rent||!price) { alert('Please enter rent income and purchase price.'); return; }
+      const gross   = (rent+other)*(1-vacancy/100);
+      const opex    = ins+tax+util+maint+mgmt+hoaf;
+      const totalex = mortg+opex;
+      const cf      = gross-totalex;
+      const invested= down+closing;
+      const noi     = (gross-opex)*12;
+      const cap     = price>0 ? (noi/price)*100 : 0;
+      const coc     = invested>0 ? ((cf*12)/invested)*100 : 0;
+      const grm     = price>0 ? price/(rent*12) : 0;
+      const cfEl    = document.getElementById('rp-cashflow');
+      cfEl.textContent = (cf>=0?'+':'')+fmtD(cf)+'/mo';
+      cfEl.style.color = cf>=0 ? 'var(--up)' : 'var(--down)';
+      set('rp-coc',      coc.toFixed(2)+'%');
+      set('rp-cap',      cap.toFixed(2)+'%');
+      set('rp-grm',      grm.toFixed(2)+'x');
+      set('rp-egi',      fmtD(gross)+'/mo');
+      set('rp-expenses', fmtD(totalex)+'/mo');
       set('rp-noi',      fmt(noi));
       set('rp-invested', fmt(invested));
-      show('rp-results');
+      show('rp-res');
     }
 
-    // ─── QR CODE ─────────────────────────────────────────────────────────────
     function genQR() {
-      const text  = document.getElementById('qr-input').value.trim();
-      const size  = parseInt(document.getElementById('qr-size').value);
-      const color = document.getElementById('qr-color').value;
+      const text = document.getElementById('qr-input').value.trim();
+      const size = parseInt(document.getElementById('qr-size').value);
+      const col  = document.getElementById('qr-color').value;
       if (!text) { alert('Please enter a URL or text.'); return; }
-      const wrap = document.getElementById('qr-canvas-wrap');
+      const wrap = document.getElementById('qr-wrap');
       wrap.innerHTML = '';
-      new QRCode(wrap, {
-        text, width: size, height: size,
-        colorDark: color, colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.H
-      });
+      new QRCode(wrap, { text, width: size, height: size, colorDark: col, colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
       document.getElementById('qr-output').classList.add('show');
     }
-
     function downloadQR() {
-      const canvas = document.querySelector('#qr-canvas-wrap canvas');
-      if (!canvas) return;
-      const a = document.createElement('a');
-      a.download = 'qrcode.png';
-      a.href = canvas.toDataURL('image/png');
-      a.click();
+      const c = document.querySelector('#qr-wrap canvas');
+      if (!c) return;
+      const a = document.createElement('a'); a.download = 'qrcode.png'; a.href = c.toDataURL(); a.click();
     }
 
-    // ─── BARCODE ─────────────────────────────────────────────────────────────
     function genBarcode() {
       const val    = document.getElementById('bc-value').value.trim();
       const format = document.getElementById('bc-format').value;
       const height = parseInt(document.getElementById('bc-height').value);
       if (!val) { alert('Please enter a value.'); return; }
       try {
-        JsBarcode('#bc-svg', val, {
-          format, height, displayValue: true,
-          background: '#edeae0', lineColor: '#1a1a18',
-          fontSize: 13, fontOptions: 'normal', font: 'Epilogue, sans-serif',
-          margin: 16
-        });
+        JsBarcode('#bc-svg', val, { format, height, displayValue: true, background: '#f8f8f6', lineColor: '#111111', fontSize: 13, font: 'inherit', margin: 16 });
         document.getElementById('bc-output').classList.add('show');
-      } catch(e) {
-        alert('Invalid value for selected barcode format. Try a different format or check the value.');
-      }
+      } catch(e) { alert('Invalid value for selected format. Try a different format or check your input.'); }
     }
-
     function downloadBarcode() {
       const svg  = document.getElementById('bc-svg');
-      const data = new XMLSerializer().serializeToString(svg);
-      const blob = new Blob([data], { type: 'image/svg+xml' });
+      const blob = new Blob([new XMLSerializer().serializeToString(svg)], {type:'image/svg+xml'});
       const url  = URL.createObjectURL(blob);
-      const a    = document.createElement('a');
-      a.download = 'barcode.svg';
-      a.href = url;
-      a.click();
+      const a    = document.createElement('a'); a.download = 'barcode.svg'; a.href = url; a.click();
       URL.revokeObjectURL(url);
     }
   </script>
-
 </body>
 </html>
