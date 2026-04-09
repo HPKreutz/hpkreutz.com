@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — hpkreutz.com</title>
+<link rel="stylesheet" href="global.css" />
+<style>
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #e5e5e5; border-radius: 10px; overflow: hidden; }
+.c-info { padding: 36px; background: #fafafa; border-right: 1px solid #e5e5e5; }
+.c-form { padding: 36px; background: #fff; }
+.c-biz { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+.c-role { font-size: 13px; color: #888; margin-bottom: 18px; }
+.c-bio { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 28px; }
+.detail { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+.d-icon { font-size: 15px; width: 22px; flex-shrink: 0; margin-top: 1px; }
+.d-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin-bottom: 2px; }
+.d-val { font-size: 14px; color: #111; text-decoration: none; }
+.d-val:hover { color: #c8401a; }
+.c-ext { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+.form-title { font-size: 18px; font-weight: 700; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid #ebebeb; }
+.submit { width: 100%; padding: 12px; background: #c8401a; color: #fff; border: none; border-radius: 7px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 6px; transition: background 0.15s; }
+.submit:hover { background: #a83212; }
+.success { display: none; margin-top: 12px; font-size: 13px; font-weight: 600; color: #1a7a3a; background: rgba(26,122,58,0.08); padding: 10px 14px; border-radius: 6px; }
+@media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } .c-info { border-right: none; border-bottom: 1px solid #e5e5e5; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="nav-brand">hpkreutz.com</a>
+  <a href="markets.html" class="nav-link">Markets</a>
+  <a href="tools.html" class="nav-link">Tools</a>
+  <a href="sports.html" class="nav-link">Sports</a>
+  <a href="fitness.html" class="nav-link">Fitness</a>
+  <a href="contact.html" class="nav-link nav-cta active">Contact →</a>
+</nav>
+
+<div class="page-top">
+  <div class="container">
+    <div class="page-header">
+      <div class="page-eyebrow">The Insurance Guys — Hays, KS</div>
+      <h1 class="page-title">Contact</h1>
+      <p class="page-desc">Independent broker for home, auto, commercial, life, and health insurance across Kansas.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="c-info">
+        <div class="c-biz">The Insurance Guys</div>
+        <div class="c-role">Hayden Kreutzer — Independent Agent</div>
+        <p class="c-bio">Independent broker serving Hays, KS and surrounding communities. Specializing in commercial lines, personal auto, home, and life insurance across 9+ Kansas locations.</p>
+        <div class="detail"><span class="d-icon">📞</span><div><div class="d-label">Phone</div><a href="tel:+17852610315" class="d-val">(785) 261-0315</a></div></div>
+        <div class="detail"><span class="d-icon">✉️</span><div><div class="d-label">Email</div><a href="mailto:hayden@tigks.com" class="d-val">hayden@tigks.com</a></div></div>
+        <div class="detail"><span class="d-icon">📍</span><div><div class="d-label">Address</div><span class="d-val">1204 Vine St, Hays KS 67601</span></div></div>
+        <div class="detail"><span class="d-icon">🕐</span><div><div class="d-label">Hours</div><span class="d-val">Mon–Fri 8:30am–5pm &nbsp;·&nbsp; Sat–Sun Closed</span></div></div>
+        <div class="c-ext">
+          <a href="https://www.tigks.com" target="_blank" class="btn btn-dark btn-sm" style="font-size:13px;padding:8px 16px;">tigks.com →</a>
+          <a href="https://www.facebook.com/insuranceguysofkansas/" target="_blank" class="btn btn-outline btn-sm" style="font-size:13px;padding:8px 16px;">Facebook</a>
+          <a href="https://www.instagram.com/theinsuranceguysks/" target="_blank" class="btn btn-outline btn-sm" style="font-size:13px;padding:8px 16px;">Instagram</a>
+        </div>
+      </div>
+      <div class="c-form">
+        <div class="form-title">Request a Quote</div>
+        <div class="field"><label>Full Name *</label><input type="text" id="fn" placeholder="John Smith" /></div>
+        <div class="field"><label>Email *</label><input type="email" id="fe" placeholder="john@example.com" /></div>
+        <div class="field"><label>Phone</label><input type="tel" id="fp" placeholder="(785) 555-0100" /></div>
+        <div class="field"><label>Insurance Type *</label>
+          <select id="ft"><option value="">Select type...</option><option>Auto</option><option>Home</option><option>Commercial / Business</option><option>Life</option><option>Health</option><option>Multiple / Bundle</option><option>Other</option></select>
+        </div>
+        <div class="field"><label>Message</label><textarea id="fm" placeholder="Tell me a little about what you're looking for..."></textarea></div>
+        <button class="submit" onclick="sendForm()">Send Request</button>
+        <div class="success" id="ok">✓ Request sent! Hayden will follow up shortly.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 hpkreutz.com — Hays, KS</span>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="markets.html">Markets</a>
+      <a href="sports.html">Sports</a>
+      <a href="tools.html">Tools</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function sendForm() {
+  var n = document.getElementById('fn').value.trim();
+  var e = document.getElementById('fe').value.trim();
+  var t = document.getElementById('ft').value;
+  if (!n || !e || !t) { alert('Please fill in name, email, and insurance type.'); return; }
+  var s = encodeURIComponent('Insurance Quote Request — ' + t);
+  var b = encodeURIComponent('Name: ' + n + '\nEmail: ' + e + '\nPhone: ' + (document.getElementById('fp').value || 'N/A') + '\nType: ' + t + '\n\nMessage:\n' + (document.getElementById('fm').value || 'N/A'));
+  window.location.href = 'mailto:hayden@tigks.com?subject=' + s + '&body=' + b;
+  document.getElementById('ok').style.display = 'block';
+}
+</script>
+</body>
+</html>
