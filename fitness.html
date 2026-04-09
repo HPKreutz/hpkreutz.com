@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fitness — hpkreutz.com</title>
-    
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Fitness — hpkreutz.com</title>
 <style>
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -153,587 +152,268 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,san
   .frow,.frow3{grid-template-columns:1fr}
   .foot-inner{padding:20px 16px;flex-direction:column;gap:10px;align-items:flex-start}
 }
-</style></head>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#111;height:56px;display:flex;align-items:center;padding:0 5%}
-.nav-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;margin-right:auto}
-.nav-links{display:flex;align-items:center;gap:6px}
-.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s}
-.nav-links a:hover,.nav-links a.active{color:#fff}
-.nav-links .cta{background:#c8401a;color:#fff!important;padding:7px 14px;border-radius:6px;font-weight:600}
-.nav-links .cta:hover{background:#a83212}
-/* LAYOUT */
-.body-wrap{padding-top:56px}
-.page{max-width:960px;margin:0 auto;padding:0 32px}
-/* HERO */
-.hero{background:#111;padding:80px 5% 72px}
-.hero-inner{max-width:960px;margin:0 auto}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
-.hero h1{font-size:clamp(38px,5.5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;color:#fff;margin-bottom:18px}
-.hero h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
-.hero p{font-size:16px;color:rgba(255,255,255,.5);max-width:460px;line-height:1.7;margin-bottom:32px}
-.btn-row{display:flex;gap:10px;flex-wrap:wrap}
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;padding:10px 22px;border-radius:7px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
-.btn-dark{background:#111;color:#fff}
-.btn-dark:hover{background:#2d2d2d}
-.btn-red{background:#c8401a;color:#fff}
-.btn-red:hover{background:#a83212}
-.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
-.btn-ghost:hover{background:rgba(255,255,255,.08)}
-.btn-outline{background:#fff;color:#111;border:1px solid #ddd}
-.btn-outline:hover{background:#f5f5f5}
-.btn-block{width:100%;justify-content:center}
-.btn-sm{font-size:13px;padding:8px 16px}
-/* PAGE HEADER */
-.phead{padding:48px 0 36px;border-bottom:1px solid #ebebeb;margin-bottom:40px}
-.phead-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
-.phead h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:10px}
-.phead p{font-size:15px;color:#666;max-width:520px;line-height:1.65}
-/* SECTION */
-.section{margin-bottom:44px}
-.slabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;padding-bottom:10px;border-bottom:1px solid #ebebeb;margin-bottom:18px}
-/* GRID CARDS */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-/* CARD */
-.card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:0}
-.chead{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5}
-.chead-title{font-size:14px;font-weight:700;color:#111}
-.chead-sub{font-size:12px;color:#999;margin-top:2px}
-.cbody{padding:20px}
-/* FORM */
-.field{margin-bottom:14px}
-.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#999;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;padding:10px 13px;border:1px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;background:#fff;outline:none;-webkit-appearance:none;transition:border-color .15s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:#111;box-shadow:0 0 0 3px rgba(17,17,17,.06)}
-.field textarea{resize:vertical;min-height:80px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-/* RESULTS */
-.results{display:none;margin-top:16px;padding-top:14px;border-top:1px solid #ebebeb}
-.results.show{display:block}
-.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
-.rrow:last-child{border-bottom:none}
-.rk{color:#666}
-.rv{font-weight:700;color:#111}
-.rv.big{font-size:18px}
-.rv.green{font-size:18px;color:#1a7a3a}
-.rv.dyn{font-size:18px}
-/* STAT TABLE */
-.srow{display:flex;justify-content:space-between;align-items:center;padding:9px 20px;border-bottom:1px solid #f0f0f0;font-size:13px}
-.srow:last-child{border-bottom:none}
-.sk{color:#666}
-.sv{font-weight:600;color:#111;text-align:right}
-.sv.up{color:#1a7a3a}
-.sv.down{color:#c8401a}
-/* CODE OUTPUT */
-.code-out{display:none;flex-direction:column;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #ebebeb}
-.code-out.show{display:flex}
-/* NAV CARD */
-.ncard{display:flex;flex-direction:column;padding:26px 24px;background:#fff;text-decoration:none;color:#111;transition:background .15s}
-.ncard:hover{background:#fafafa}
-.ncard-icon{font-size:24px;margin-bottom:14px}
-.ncard-name{font-size:15px;font-weight:700;margin-bottom:6px}
-.ncard-desc{font-size:13px;color:#888;line-height:1.55;flex:1}
-.ncard-arrow{font-size:13px;color:#ccc;margin-top:14px}
-/* TEAM CARD */
-.tcard-top{display:flex;align-items:center;gap:14px;padding:18px 22px;background:#fafafa;border-bottom:1px solid #e5e5e5}
-.tlogo{width:46px;height:46px;border-radius:8px;background:#fff;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
-.tlogo img{width:34px;height:34px;object-fit:contain}
-.tlogo-txt{font-size:12px;font-weight:800;color:#666}
-.tname{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
-.tmeta{font-size:12px;color:#999}
-.tbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;background:#f0f0f0;border:1px solid #e0e0e0;color:#666;margin-left:auto;flex-shrink:0}
-.tlinks{display:flex}
-.tlink{flex:1;display:flex;align-items:center;justify-content:center;padding:11px 6px;text-decoration:none;font-size:12px;font-weight:600;color:#555;border-right:1px solid #e5e5e5;transition:all .15s}
-.tlink:last-child{border-right:none}
-.tlink:hover{background:#f5f5f5;color:#111}
-.tlink.hi{color:#c8401a}
-.tlink.hi:hover{background:#c8401a;color:#fff}
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.cinfo{padding:36px;background:#fafafa;border-right:1px solid #e5e5e5}
-.cform{padding:36px;background:#fff}
-.cbiz{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
-.crole{font-size:13px;color:#999;margin-bottom:16px}
-.cbio{font-size:14px;color:#555;line-height:1.7;margin-bottom:24px}
-.drow-c{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
-.dicon{font-size:15px;width:20px;flex-shrink:0}
-.dlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin-bottom:2px}
-.dval{font-size:14px;color:#111;text-decoration:none;display:block}
-.dval:hover{color:#c8401a}
-.cext{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.ftitle{font-size:17px;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #ebebeb}
-.submit{width:100%;padding:12px;background:#c8401a;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
-.submit:hover{background:#a83212}
-.form-ok{display:none;margin-top:10px;font-size:13px;font-weight:600;color:#1a7a3a;background:rgba(26,122,58,.08);padding:10px 14px;border-radius:6px}
-/* FOOTER */
-.footer{background:#111;margin-top:60px}
-.foot-inner{max-width:960px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
-.foot-copy{font-size:12px;color:rgba(255,255,255,.35)}
-.foot-links{display:flex;gap:20px}
-.foot-links a{font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s}
-.foot-links a:hover{color:#fff}
-/* SUB LABEL */
-.sub-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:14px 0 10px}
-/* RESPONSIVE */
-@media(max-width:860px){
-  .page{padding:0 24px}
-  .hero{padding:64px 24px 56px}
-  .grid-4{grid-template-columns:1fr 1fr}
-  .grid-3{grid-template-columns:1fr 1fr}
-  .foot-inner{padding:24px}
-}
-@media(max-width:640px){
-  .page{padding:0 16px}
-  .hero{padding:48px 16px 44px}
-  .nav{padding:0 16px}
-  .nav-links a:not(.cta){display:none}
-  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
-  .cinfo{border-right:none;border-bottom:1px solid #e5e5e5}
-  .frow,.frow3{grid-template-columns:1fr}
-  .foot-inner{padding:20px 16px;flex-direction:column;gap:10px;align-items:flex-start}
-}
-</style></head>
-<body><nav class="nav"><a href="index.html" class="nav-logo">hpkreutz.com</a><div class="nav-links"><a href="markets.html">Markets</a><a href="tools.html">Tools</a><a href="sports.html">Sports</a><a href="fitness.html" class="active">Fitness</a><a href="contact.html" class="cta">Contact →</a></div></nav>
 
-  
+/* LEVEL TABS */
+.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.tab{padding:9px 22px;border-radius:99px;border:1.5px solid #ddd;background:#fff;font-size:14px;font-weight:600;color:#666;cursor:pointer;transition:all .15s;font-family:inherit}
+.tab:hover{border-color:#111;color:#111}
+.tab.active{background:#111;color:#fff;border-color:#111}
+/* PROGRAM PANEL */
+.prog{display:none}.prog.on{display:block}
+/* WEEK GRID */
+.week{display:grid;grid-template-columns:repeat(7,1fr);border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:16px}
+.day{padding:12px 4px;text-align:center;cursor:pointer;border-right:1px solid #e5e5e5;transition:all .15s;background:#fff}
+.day:last-child{border-right:none}
+.day:hover{background:#f5f5f5}
+.day.on{background:#111}
+.day.rest{background:#fafafa;cursor:default}
+.day-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#aaa;margin-bottom:5px}
+.day.on .day-name{color:rgba(255,255,255,.5)}
+.day-label{font-size:11px;font-weight:600;color:#333;line-height:1.3}
+.day.on .day-label{color:#fff}
+.day.rest .day-name,.day.rest .day-label{color:#ccc}
+/* WORKOUT DETAIL */
+.wdetail{border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.wheader{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;justify-content:space-between}
+.wday-title{font-size:16px;font-weight:700;color:#111}
+.wmeta{font-size:12px;color:#999}
+.wnote{padding:9px 20px;background:#fffbf0;border-bottom:1px solid #e5e5e5;font-size:12px;color:#856404;border-left:3px solid #ffc107}
+.exlist{}
+.exrow{display:flex;align-items:center;gap:12px;padding:11px 20px;border-bottom:1px solid #f5f5f5;transition:background .1s}
+.exrow:last-child{border-bottom:none}
+.exrow:hover{background:#fafafa}
+.excheck{width:22px;height:22px;border-radius:6px;border:1.5px solid #ddd;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#fff;transition:all .15s}
+.excheck:hover{border-color:#1a7a3a}
+.excheck.done{background:#1a7a3a;border-color:#1a7a3a}
+.excheck.done::after{content:'';display:block;width:10px;height:6px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg) translateY(-1px)}
+.exname{flex:1;font-size:14px;color:#c8401a;cursor:pointer;font-weight:500;text-decoration:none}
+.exname:hover{text-decoration:underline}
+.exsets{font-size:12px;color:#999;white-space:nowrap}
+.rest-day{padding:40px;text-align:center;color:#999}
+.rest-day .icon{font-size:40px;margin-bottom:12px}
+.rest-day p{font-size:14px;line-height:1.6}
+/* PRINCIPLES */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.prin{padding:20px 22px;border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5}
+.prin:nth-child(3n){border-right:none}
+.prin:nth-last-child(-n+3){border-bottom:none}
+.prin-icon{font-size:22px;margin-bottom:10px}
+.prin-title{font-size:14px;font-weight:700;color:#111;margin-bottom:6px}
+.prin-text{font-size:13px;color:#666;line-height:1.6}
+/* ACV */
+.acv-tips{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:20px}
+.acvtip{padding:20px 22px;border-right:1px solid #e5e5e5}
+.acvtip:last-child{border-right:none}
+.acvtip-icon{font-size:22px;margin-bottom:10px}
+.acvtip-title{font-size:13px;font-weight:700;color:#111;margin-bottom:6px}
+.acvtip-text{font-size:13px;color:#666;line-height:1.6}
+/* RECIPES */
+.recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.recipe{background:#fff;border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5}
+.recipe:nth-child(3n){border-right:none}
+.recipe:nth-last-child(-n+3){border-bottom:none}
+.rtype{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:8px 16px;border-bottom:1px solid #e5e5e5}
+.rtype.tonic{color:#1a7a3a;background:rgba(26,122,58,.07)}
+.rtype.shot{color:#c8401a;background:rgba(200,64,26,.07)}
+.rtype.liver{color:#7b4f1a;background:rgba(123,79,26,.07)}
+.rbody{padding:16px}
+.rname{font-size:14px;font-weight:700;color:#111;margin-bottom:3px}
+.rgood{font-size:11px;color:#999;margin-bottom:12px;font-style:italic}
+.rlabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:10px 0 5px}
+.ring,.rsteps{font-size:13px;color:#555;line-height:1.7}
+.rtip{margin-top:10px;font-size:12px;color:#666;background:#fffbf0;border-radius:6px;padding:9px 12px;line-height:1.5;font-style:italic}
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:28px;width:500px;max-width:92vw}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal-title{font-size:17px;font-weight:700;color:#111}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:#999;line-height:1}
+.modal-close:hover{color:#111}
+.modal-body{font-size:14px;color:#555;line-height:1.7;margin-bottom:18px}
+.modal-yt{display:inline-flex;align-items:center;gap:8px;background:#ff0000;color:#fff;padding:10px 20px;border-radius:7px;text-decoration:none;font-size:14px;font-weight:700}
+@media(max-width:760px){.principles,.acv-tips,.recipes{grid-template-columns:1fr 1fr}.week{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:500px){.principles,.acv-tips,.recipes{grid-template-columns:1fr}.week{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<nav class="nav"><a href="index.html" class="nav-logo">hpkreutz.com</a><div class="nav-links"><a href="markets.html">Markets</a><a href="tools.html">Tools</a><a href="sports.html">Sports</a><a href="fitness.html" class="active">Fitness</a><a href="contact.html" class="cta">Contact →</a></div></nav>
+<div class="body-wrap">
+<div class="page">
 
-  <div class="page"><div class="wrap">
-
-    <div class="page-hero"><div class="label">Workout Programs</div><h1>Fitness</h1><p>Bodyweight and dumbbell workouts for every level. No gym required.</p></div>
-
-    <!-- HOW TO USE -->
-    <div class="how-grid" style="margin-bottom:52px;">
-      <div class="how-card"><div class="how-num">1</div><div class="how-text"><strong>Pick a level</strong>Choose Beginner, Intermediate, or Advanced below</div></div>
-      <div class="how-card"><div class="how-num">2</div><div class="how-text"><strong>Tap a day</strong>Click any day on the weekly schedule to see that workout</div></div>
-      <div class="how-card"><div class="how-num">3</div><div class="how-text"><strong>Watch how-to videos</strong>Click any exercise name to watch a short tutorial</div></div>
-      <div class="how-card"><div class="how-num">4</div><div class="how-text"><strong>Track your progress</strong>Check off each exercise as you complete it</div></div>
-    </div>
-
-    <!-- GENERAL FITNESS -->
-    <div class="section-block">
-      <div class="section-label">General Fitness — Bodyweight & Dumbbells</div>
-
-      <div class="level-tabs" id="general-tabs">
-        <button class="level-tab active" onclick="switchLevel('general','beginner',this)">Beginner</button>
-        <button class="level-tab" onclick="switchLevel('general','intermediate',this)">Intermediate</button>
-        <button class="level-tab" onclick="switchLevel('general','advanced',this)">Advanced</button>
-      </div>
-
-      <!-- BEGINNER -->
-      <div class="program-panel active" id="general-beginner">
-        <div class="week-grid" id="wg-gb"></div>
-        <div class="workout-detail" id="wd-gb"></div>
-      </div>
-
-      <!-- INTERMEDIATE -->
-      <div class="program-panel" id="general-intermediate">
-        <div class="week-grid" id="wg-gi"></div>
-        <div class="workout-detail" id="wd-gi"></div>
-      </div>
-
-      <!-- ADVANCED -->
-      <div class="program-panel" id="general-advanced">
-        <div class="week-grid" id="wg-ga"></div>
-        <div class="workout-detail" id="wd-ga"></div>
-      </div>
-    </div>
-
-    <!-- TRAINING PRINCIPLES -->
-    <div class="section-block">
-      <div class="section-label">Training Principles</div>
-      <div class="principles-grid">
-        <div class="principle-card"><div class="principle-title">💧 Hydration</div><div class="principle-text">Drink at least half your body weight in ounces of water daily. Add 8oz per 20 minutes of intense activity.</div></div>
-        <div class="principle-card"><div class="principle-title">😴 Recovery</div><div class="principle-text">Muscles grow during rest, not during the workout. Aim for 7–9 hours of sleep and honor your rest days.</div></div>
-        <div class="principle-card"><div class="principle-title">🥩 Nutrition</div><div class="principle-text">Target 0.7–1g of protein per pound of bodyweight daily. Prioritize protein at each meal, don't skip breakfast.</div></div>
-        <div class="principle-card"><div class="principle-title">📈 Progressive Overload</div><div class="principle-text">Add reps, sets, or weight each week. Small consistent increases add up to massive results over time.</div></div>
-        <div class="principle-card"><div class="principle-title">🔥 Warm Up</div><div class="principle-text">5–10 minutes before every session. Arm circles, leg swings, hip rotations, and light squats get the body ready.</div></div>
-        <div class="principle-card"><div class="principle-title">✅ Consistency Beats Intensity</div><div class="principle-text">Showing up consistently every week matters more than any single perfect workout. Build the habit first.</div></div>
-      </div>
-    </div>
-
-    <!-- ACV SECTION -->
-    <div class="section-block">
-      <div class="section-label">Apple Cider Vinegar</div>
-
-      <div class="acv-intro">
-        <div class="acv-intro-grid">
-          <div class="acv-tip"><div class="acv-tip-icon">🍎</div><div class="acv-tip-title">Always Use Raw & Unfiltered</div><div class="acv-tip-text">Look for "with the mother" on the label — Bragg's is the most popular brand. The mother contains beneficial enzymes and probiotics.</div></div>
-          <div class="acv-tip"><div class="acv-tip-icon">💧</div><div class="acv-tip-title">Always Dilute It</div><div class="acv-tip-text">Never drink ACV straight — it can damage tooth enamel and irritate the esophagus. Always mix with water or another liquid first.</div></div>
-          <div class="acv-tip"><div class="acv-tip-icon">⏰</div><div class="acv-tip-title">Best Time to Take It</div><div class="acv-tip-text">First thing in the morning on an empty stomach, or 20–30 minutes before a meal. Rinse your mouth with water after drinking.</div></div>
-        </div>
-      </div>
-
-      <div class="recipe-grid">
-
-        <div class="recipe-card">
-          <div class="recipe-type tonic">Tonic</div>
-          <div class="recipe-body">
-            <div class="recipe-name">Morning Wake-Up Tonic</div>
-            <div class="recipe-good">Good for: Energy, digestion, blood sugar balance</div>
-            <div class="recipe-section-title">Ingredients</div>
-            <div class="recipe-ingredients">· 1–2 tbsp apple cider vinegar<br>· 8 oz warm water<br>· 1 tbsp raw honey<br>· ½ lemon, juiced<br>· Pinch of cayenne pepper</div>
-            <div class="recipe-section-title">How to Make It</div>
-            <div class="recipe-instructions">Mix all ingredients in a glass and stir until honey dissolves. Drink first thing in the morning before eating.</div>
-            <div class="recipe-tip">💡 The cayenne boosts metabolism and the lemon adds vitamin C — a powerful morning combo.</div>
-          </div>
-        </div>
-
-        <div class="recipe-card">
-          <div class="recipe-type tonic">Tonic</div>
-          <div class="recipe-body">
-            <div class="recipe-name">Gut Health Tonic</div>
-            <div class="recipe-good">Good for: Bloating, digestion, gut microbiome</div>
-            <div class="recipe-section-title">Ingredients</div>
-            <div class="recipe-ingredients">· 1 tbsp apple cider vinegar<br>· 8 oz water (room temperature)<br>· 1 tsp raw honey<br>· ¼ tsp ground ginger<br>· ¼ tsp cinnamon</div>
-            <div class="recipe-section-title">How to Make It</div>
-            <div class="recipe-instructions">Combine all ingredients and stir well. Drink 20 minutes before a meal to support digestion and reduce bloating.</div>
-            <div class="recipe-tip">💡 Ginger and cinnamon both have anti-inflammatory properties that complement ACV's digestive benefits.</div>
-          </div>
-        </div>
-
-        <div class="recipe-card">
-          <div class="recipe-type tonic">Tonic</div>
-          <div class="recipe-body">
-            <div class="recipe-name">Immune Booster Tonic</div>
-            <div class="recipe-good">Good for: Immunity, inflammation, antioxidants</div>
-            <div class="recipe-section-title">Ingredients</div>
-            <div class="recipe-ingredients">· 1 tbsp apple cider vinegar<br>· 8 oz warm water<br>· 1 tbsp raw honey<br>· ½ tsp turmeric<br>· Pinch of black pepper<br>· ½ lemon, juiced</div>
-            <div class="recipe-section-title">How to Make It</div>
-            <div class="recipe-instructions">Mix all ingredients together. The black pepper activates the turmeric — don't skip it. Best taken daily during cold and flu season.</div>
-            <div class="recipe-tip">💡 Black pepper increases turmeric absorption by up to 2000% — a small pinch makes a big difference.</div>
-          </div>
-        </div>
-
-        <div class="recipe-card">
-          <div class="recipe-type shot">Detox Shot</div>
-          <div class="recipe-body">
-            <div class="recipe-name">Fat Burner Shot</div>
-            <div class="recipe-good">Good for: Weight management, appetite suppression, metabolism</div>
-            <div class="recipe-section-title">Ingredients</div>
-            <div class="recipe-ingredients">· 1 tbsp apple cider vinegar<br>· 2 oz water<br>· ½ tsp raw honey<br>· Pinch of cayenne pepper<br>· ¼ lemon, juiced</div>
-            <div class="recipe-section-title">How to Make It</div>
-            <div class="recipe-instructions">Mix in a shot glass and drink in one go. Take 30 minutes before a meal. Chase with a full glass of water.</div>
-            <div class="recipe-tip">💡 Studies suggest ACV can help reduce appetite and lower blood sugar spikes after meals.</div>
-          </div>
-        </div>
-
-        <div class="recipe-card">
-          <div class="recipe-type shot">Detox Shot</div>
-          <div class="recipe-body">
-            <div class="recipe-name">Pre-Workout Energy Shot</div>
-            <div class="recipe-good">Good for: Energy, endurance, electrolyte balance</div>
-            <div class="recipe-section-title">Ingredients</div>
-            <div class="recipe-ingredients">· 1 tbsp apple cider vinegar<br>· 2 oz coconut water<br>· ½ tsp raw honey<br>· Pinch of sea salt<br>· ¼ tsp ginger powder</div>
-            <div class="recipe-section-title">How to Make It</div>
-            <div class="recipe-instructions">Mix all ingredients in a shot glass. Take 15–20 minutes before your workout. The coconut water provides natural electrolytes.</div>
-            <div class="recipe-tip">💡 Sea salt replenishes sodium lost through sweat and helps with muscle function during exercise.</div>
-          </div>
-        </div>
-
-        <div class="recipe-card">
-          <div class="recipe-type shot">Detox Shot</div>
-          <div class="recipe-body">
-            <div class="recipe-name">Green Detox Shot</div>
-            <div class="recipe-good">Good for: Detox, liver support, alkalizing the body</div>
-            <div class="recipe-section-title">Ingredients</div>
-            <div class="recipe-ingredients">· 1 tbsp apple cider vinegar<br>· 2 oz cucumber juice or water<br>· ½ tsp spirulina or wheatgrass<br>· ½ lemon, juiced<br>· 1 tsp raw honey</div>
-            <div class="recipe-section-title">How to Make It</div>
-            <div class="recipe-instructions">Blend or shake all ingredients together. Drink immediately in the morning on an empty stomach for best detox results.</div>
-            <div class="recipe-tip">💡 Spirulina is one of the most nutrient-dense foods on earth — this shot packs a serious nutritional punch.</div>
-          </div>
-        </div>
-
-        <div class="recipe-card">
-          <div class="recipe-type liver">Liver Detox</div>
-          <div class="recipe-body">
-            <div class="recipe-name">Classic Liver Flush Shot</div>
-            <div class="recipe-good">Good for: Liver cleansing, bile production, toxin elimination</div>
-            <div class="recipe-section-title">Ingredients</div>
-            <div class="recipe-ingredients">· 1 tbsp apple cider vinegar<br>· 1 tbsp fresh lemon juice<br>· 1 tbsp olive oil (extra virgin)<br>· 1 clove garlic, minced<br>· 2 oz warm water</div>
-            <div class="recipe-section-title">How to Make It</div>
-            <div class="recipe-instructions">Blend or whisk all ingredients and take as a shot first thing in the morning. The olive oil stimulates bile flow which helps flush the liver.</div>
-            <div class="recipe-tip">💡 Garlic contains allicin and selenium — two compounds clinically shown to help protect and cleanse the liver.</div>
-          </div>
-        </div>
-
-        <div class="recipe-card">
-          <div class="recipe-type liver">Liver Detox</div>
-          <div class="recipe-body">
-            <div class="recipe-name">Turmeric Liver Revival Shot</div>
-            <div class="recipe-good">Good for: Liver inflammation, detox enzymes, antioxidant protection</div>
-            <div class="recipe-section-title">Ingredients</div>
-            <div class="recipe-ingredients">· 1 tbsp apple cider vinegar<br>· 1 tsp turmeric powder<br>· ½ tsp black pepper<br>· 1 tbsp lemon juice<br>· 1 tsp raw honey<br>· 2 oz warm water</div>
-            <div class="recipe-section-title">How to Make It</div>
-            <div class="recipe-instructions">Mix all ingredients well — whisk if using powder. Take as a shot in the morning. Rinse mouth with water afterward to protect tooth enamel.</div>
-            <div class="recipe-tip">💡 Curcumin activates liver detox enzymes and reduces liver inflammation — one of the most researched natural liver protectors.</div>
-          </div>
-        </div>
-
-        <div class="recipe-card">
-          <div class="recipe-type liver">Liver Detox</div>
-          <div class="recipe-body">
-            <div class="recipe-name">Milk Thistle Power Shot</div>
-            <div class="recipe-good">Good for: Liver cell repair, toxin filtering, hangover recovery</div>
-            <div class="recipe-section-title">Ingredients</div>
-            <div class="recipe-ingredients">· 1 tbsp apple cider vinegar<br>· 1 tsp milk thistle powder<br>· 1 tbsp lemon juice<br>· 1 tsp raw honey<br>· 2 oz warm water<br>· Pinch of cinnamon</div>
-            <div class="recipe-section-title">How to Make It</div>
-            <div class="recipe-instructions">Whisk all ingredients until milk thistle is fully dissolved. Take as a shot. Especially effective the morning after alcohol consumption.</div>
-            <div class="recipe-tip">💡 Silymarin in milk thistle is one of the most studied liver-protective compounds — it actively repairs damaged liver cells.</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
+  <div class="phead">
+    <div class="phead-label">Workout Programs</div>
+    <h1>Fitness</h1>
+    <p>Bodyweight and dumbbell workouts for every level. Click any day to see the workout. Click any exercise for a tutorial.</p>
   </div>
 
-  
+  <div class="section">
+    <div class="slabel">General Fitness — Bodyweight &amp; Dumbbells</div>
+    <div class="tabs">
+      <button class="tab active" onclick="setLevel('beg',this)">Beginner</button>
+      <button class="tab" onclick="setLevel('int',this)">Intermediate</button>
+      <button class="tab" onclick="setLevel('adv',this)">Advanced</button>
+    </div>
 
-  <!-- VIDEO MODAL -->
-  <div class="modal-overlay" id="video-modal">
-    <div class="modal">
-      <div class="modal-hdr">
-        <h3 id="modal-title">Exercise Tutorial</h3>
-        <button class="modal-close" onclick="closeModal()">✕</button>
+    <!-- BEGINNER -->
+    <div class="prog on" id="prog-beg">
+      <div class="week" id="week-beg">
+        <div class="day on" onclick="setDay('beg',0,this)"><div class="day-name">Mon</div><div class="day-label">Upper Body</div></div>
+        <div class="day" onclick="setDay('beg',1,this)"><div class="day-name">Tue</div><div class="day-label">Cardio</div></div>
+        <div class="day" onclick="setDay('beg',2,this)"><div class="day-name">Wed</div><div class="day-label">Lower Body</div></div>
+        <div class="day" onclick="setDay('beg',3,this)"><div class="day-name">Thu</div><div class="day-label">Rest</div></div>
+        <div class="day" onclick="setDay('beg',4,this)"><div class="day-name">Fri</div><div class="day-label">Full Body</div></div>
+        <div class="day" onclick="setDay('beg',5,this)"><div class="day-name">Sat</div><div class="day-label">Walk / Stretch</div></div>
+        <div class="day rest"><div class="day-name">Sun</div><div class="day-label">Rest</div></div>
       </div>
-      <div class="modal-body" id="modal-body"></div>
-      <a id="modal-yt-link" href="#" target="_blank" class="modal-yt">▶ Search on YouTube</a>
+      <div class="wdetail" id="detail-beg"></div>
+    </div>
+
+    <!-- INTERMEDIATE -->
+    <div class="prog" id="prog-int">
+      <div class="week" id="week-int">
+        <div class="day on" onclick="setDay('int',0,this)"><div class="day-name">Mon</div><div class="day-label">Push</div></div>
+        <div class="day" onclick="setDay('int',1,this)"><div class="day-name">Tue</div><div class="day-label">Pull</div></div>
+        <div class="day" onclick="setDay('int',2,this)"><div class="day-name">Wed</div><div class="day-label">Legs</div></div>
+        <div class="day" onclick="setDay('int',3,this)"><div class="day-name">Thu</div><div class="day-label">Cardio</div></div>
+        <div class="day" onclick="setDay('int',4,this)"><div class="day-name">Fri</div><div class="day-label">Push</div></div>
+        <div class="day" onclick="setDay('int',5,this)"><div class="day-name">Sat</div><div class="day-label">Pull</div></div>
+        <div class="day rest"><div class="day-name">Sun</div><div class="day-label">Rest</div></div>
+      </div>
+      <div class="wdetail" id="detail-int"></div>
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="prog" id="prog-adv">
+      <div class="week" id="week-adv">
+        <div class="day on" onclick="setDay('adv',0,this)"><div class="day-name">Mon</div><div class="day-label">Chest / Tri</div></div>
+        <div class="day" onclick="setDay('adv',1,this)"><div class="day-name">Tue</div><div class="day-label">Back / Bi</div></div>
+        <div class="day" onclick="setDay('adv',2,this)"><div class="day-name">Wed</div><div class="day-label">Legs / Core</div></div>
+        <div class="day" onclick="setDay('adv',3,this)"><div class="day-name">Thu</div><div class="day-label">HIIT</div></div>
+        <div class="day" onclick="setDay('adv',4,this)"><div class="day-name">Fri</div><div class="day-label">Shoulders</div></div>
+        <div class="day" onclick="setDay('adv',5,this)"><div class="day-name">Sat</div><div class="day-label">Full Body</div></div>
+        <div class="day rest"><div class="day-name">Sun</div><div class="day-label">Rest</div></div>
+      </div>
+      <div class="wdetail" id="detail-adv"></div>
     </div>
   </div>
 
-  <script>
-    // ─── WORKOUT DATA ─────────────────────────────────────────────────────────
-    const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  <div class="section">
+    <div class="slabel">Training Principles</div>
+    <div class="principles">
+      <div class="prin"><div class="prin-icon">💧</div><div class="prin-title">Hydration</div><div class="prin-text">Drink at least half your body weight in ounces of water daily. Add 8oz per 20 minutes of intense activity.</div></div>
+      <div class="prin"><div class="prin-icon">😴</div><div class="prin-title">Recovery</div><div class="prin-text">Muscles grow during rest, not during the workout. Aim for 7–9 hours of sleep and honor your rest days.</div></div>
+      <div class="prin"><div class="prin-icon">🥩</div><div class="prin-title">Nutrition</div><div class="prin-text">Target 0.7–1g of protein per pound of bodyweight daily. Prioritize protein at each meal.</div></div>
+      <div class="prin"><div class="prin-icon">📈</div><div class="prin-title">Progressive Overload</div><div class="prin-text">Add reps, sets, or weight each week. Small consistent increases add up to massive results over time.</div></div>
+      <div class="prin"><div class="prin-icon">🔥</div><div class="prin-title">Warm Up</div><div class="prin-text">5–10 minutes before every session. Arm circles, leg swings, hip rotations, and light squats get the body ready.</div></div>
+      <div class="prin"><div class="prin-icon">✅</div><div class="prin-title">Consistency</div><div class="prin-text">Showing up every week matters more than any single perfect workout. Build the habit first.</div></div>
+    </div>
+  </div>
 
-    const programs = {
-      'general-beginner': [
-        { label: 'Full Body', note: '3 sets · Rest 60s between sets', exercises: [
-          { name: 'Bodyweight Squat', sets: '3 × 12' },
-          { name: 'Push-Up (Knee if needed)', sets: '3 × 8' },
-          { name: 'Glute Bridge', sets: '3 × 15' },
-          { name: 'Bent-Over Dumbbell Row', sets: '3 × 10 each' },
-          { name: 'Standing Dumbbell Curl', sets: '3 × 10' },
-          { name: 'Plank Hold', sets: '3 × 20s' },
-        ]},
-        { label: 'Cardio', note: '20–30 min light cardio · Walk, bike, or elliptical', exercises: [] },
-        { label: 'Upper Body', note: '3 sets · Rest 60s between sets', exercises: [
-          { name: 'Dumbbell Shoulder Press', sets: '3 × 10' },
-          { name: 'Dumbbell Chest Press', sets: '3 × 10' },
-          { name: 'Dumbbell Lateral Raise', sets: '3 × 12' },
-          { name: 'Tricep Overhead Extension', sets: '3 × 12' },
-          { name: 'Hammer Curl', sets: '3 × 10' },
-          { name: 'Dead Bug', sets: '3 × 8 each' },
-        ]},
-        { label: 'Cardio', note: '20–30 min light cardio · Walk, bike, or elliptical', exercises: [] },
-        { label: 'Lower Body', note: '3 sets · Rest 60s between sets', exercises: [
-          { name: 'Reverse Lunge', sets: '3 × 10 each' },
-          { name: 'Romanian Deadlift (Dumbbells)', sets: '3 × 12' },
-          { name: 'Sumo Squat', sets: '3 × 12' },
-          { name: 'Calf Raise', sets: '3 × 20' },
-          { name: 'Side-Lying Clam', sets: '3 × 15 each' },
-          { name: 'Bird Dog', sets: '3 × 8 each' },
-        ]},
-        { label: 'Active Rest', note: 'Light walk, stretch, or yoga · 20–30 min', exercises: [] },
-        { label: 'REST', note: '', exercises: [] },
-      ],
-      'general-intermediate': [
-        { label: 'Push', note: '4 sets · Rest 75s between sets', exercises: [
-          { name: 'Dumbbell Bench Press', sets: '4 × 10' },
-          { name: 'Incline Dumbbell Press', sets: '4 × 10' },
-          { name: 'Dumbbell Shoulder Press', sets: '4 × 10' },
-          { name: 'Lateral Raise', sets: '3 × 15' },
-          { name: 'Tricep Dips', sets: '3 × 12' },
-          { name: 'Overhead Tricep Extension', sets: '3 × 12' },
-        ]},
-        { label: 'Pull', note: '4 sets · Rest 75s between sets', exercises: [
-          { name: 'Dumbbell Row', sets: '4 × 10 each' },
-          { name: 'Renegade Row', sets: '3 × 8 each' },
-          { name: 'Face Pull (Band)', sets: '3 × 15' },
-          { name: 'Dumbbell Curl', sets: '4 × 12' },
-          { name: 'Hammer Curl', sets: '3 × 12' },
-          { name: 'Reverse Curl', sets: '3 × 12' },
-        ]},
-        { label: 'Legs', note: '4 sets · Rest 90s between sets', exercises: [
-          { name: 'Goblet Squat', sets: '4 × 12' },
-          { name: 'Romanian Deadlift', sets: '4 × 10' },
-          { name: 'Walking Lunge', sets: '3 × 12 each' },
-          { name: 'Bulgarian Split Squat', sets: '3 × 10 each' },
-          { name: 'Calf Raise', sets: '4 × 20' },
-          { name: 'Leg Raise', sets: '3 × 15' },
-        ]},
-        { label: 'Cardio', note: '30–40 min moderate cardio · Run, bike, or row', exercises: [] },
-        { label: 'Full Body', note: '4 sets · Rest 60s between sets', exercises: [
-          { name: 'Dumbbell Thruster', sets: '4 × 10' },
-          { name: 'Push-Up', sets: '4 × 15' },
-          { name: 'Single-Leg Deadlift', sets: '3 × 10 each' },
-          { name: 'Mountain Climbers', sets: '3 × 30s' },
-          { name: 'Farmer Carry', sets: '3 × 40 yds' },
-          { name: 'Plank', sets: '3 × 45s' },
-        ]},
-        { label: 'Active Rest', note: 'Walk, stretch, or foam roll · 20–30 min', exercises: [] },
-        { label: 'REST', note: '', exercises: [] },
-      ],
-      'general-advanced': [
-        { label: 'Chest/Tri', note: '5 sets · Rest 90s between sets', exercises: [
-          { name: 'Dumbbell Bench Press', sets: '5 × 8' },
-          { name: 'Incline Press', sets: '4 × 10' },
-          { name: 'Cable Fly (Band)', sets: '4 × 12' },
-          { name: 'Close-Grip Push-Up', sets: '4 × 15' },
-          { name: 'Skull Crusher (Dumbbells)', sets: '4 × 10' },
-          { name: 'Tricep Kickback', sets: '3 × 15' },
-        ]},
-        { label: 'Back/Bi', note: '5 sets · Rest 90s between sets', exercises: [
-          { name: 'Pull-Up or Assisted Pull-Up', sets: '5 × 8' },
-          { name: 'Dumbbell Row', sets: '4 × 10 each' },
-          { name: 'Meadows Row', sets: '4 × 10 each' },
-          { name: 'Straight-Arm Pulldown (Band)', sets: '3 × 15' },
-          { name: 'Barbell Curl (or EZ Bar)', sets: '4 × 10' },
-          { name: 'Concentration Curl', sets: '3 × 12' },
-        ]},
-        { label: 'Legs', note: '5 sets · Rest 90–120s between sets', exercises: [
-          { name: 'Barbell Squat or Goblet Squat', sets: '5 × 8' },
-          { name: 'Romanian Deadlift', sets: '4 × 10' },
-          { name: 'Bulgarian Split Squat', sets: '4 × 10 each' },
-          { name: 'Leg Press (Machine) or Wall Sit', sets: '4 × 12' },
-          { name: 'Nordic Hamstring Curl', sets: '3 × 8' },
-          { name: 'Seated Calf Raise', sets: '5 × 20' },
-        ]},
-        { label: 'Shoulders', note: '4 sets · Rest 75s between sets', exercises: [
-          { name: 'Arnold Press', sets: '4 × 10' },
-          { name: 'Lateral Raise (Mechanical Drop Set)', sets: '3 × 12/10/8' },
-          { name: 'Front Raise', sets: '3 × 12' },
-          { name: 'Rear Delt Fly', sets: '4 × 15' },
-          { name: 'Upright Row', sets: '3 × 12' },
-          { name: 'Shrug', sets: '4 × 15' },
-        ]},
-        { label: 'Conditioning', note: 'HIIT or circuit · 30–45 min', exercises: [
-          { name: 'Burpee', sets: '4 × 10' },
-          { name: 'Jump Squat', sets: '4 × 15' },
-          { name: 'Battle Rope (or Shadow Box)', sets: '4 × 30s' },
-          { name: 'Box Jump or Broad Jump', sets: '4 × 8' },
-          { name: 'Sprint Intervals', sets: '8 × 20s on / 40s off' },
-          { name: 'Ab Wheel Rollout', sets: '3 × 10' },
-        ]},
-        { label: 'Active Rest', note: 'Walk, swim, yoga, or foam roll · 20–40 min', exercises: [] },
-        { label: 'REST', note: '', exercises: [] },
-      ],
-    };
+  <div class="section">
+    <div class="slabel">Apple Cider Vinegar</div>
+    <div class="acv-tips">
+      <div class="acvtip"><div class="acvtip-icon">🍎</div><div class="acvtip-title">Always Use Raw &amp; Unfiltered</div><div class="acvtip-text">Look for "with the mother" on the label — Bragg's is the most popular brand.</div></div>
+      <div class="acvtip"><div class="acvtip-icon">💧</div><div class="acvtip-title">Always Dilute It</div><div class="acvtip-text">Never drink ACV straight — always mix with water or another liquid first.</div></div>
+      <div class="acvtip"><div class="acvtip-icon">⏰</div><div class="acvtip-title">Best Time to Take It</div><div class="acvtip-text">First thing in the morning on an empty stomach, or 20–30 minutes before a meal.</div></div>
+    </div>
+    <div class="recipes">
+      <div class="recipe"><div class="rtype tonic">Tonic</div><div class="rbody"><div class="rname">Morning Wake-Up Tonic</div><div class="rgood">Energy, digestion, blood sugar balance</div><div class="rlabel">Ingredients</div><div class="ring">1–2 tbsp ACV · 8oz warm water · 1 tbsp honey · ½ lemon juiced · pinch cayenne</div><div class="rlabel">How to Make</div><div class="rsteps">Mix all in a glass, stir until honey dissolves. Drink first thing in the morning.</div><div class="rtip">💡 Cayenne boosts metabolism and lemon adds vitamin C — a powerful combo.</div></div></div>
+      <div class="recipe"><div class="rtype tonic">Tonic</div><div class="rbody"><div class="rname">Gut Health Tonic</div><div class="rgood">Bloating, digestion, gut microbiome</div><div class="rlabel">Ingredients</div><div class="ring">1 tbsp ACV · 8oz water · 1 tsp honey · ¼ tsp ginger · ¼ tsp cinnamon</div><div class="rlabel">How to Make</div><div class="rsteps">Combine all and stir well. Drink 20 minutes before a meal.</div><div class="rtip">💡 Ginger and cinnamon have anti-inflammatory properties that complement ACV.</div></div></div>
+      <div class="recipe"><div class="rtype tonic">Tonic</div><div class="rbody"><div class="rname">Immune Booster Tonic</div><div class="rgood">Immunity, inflammation, antioxidants</div><div class="rlabel">Ingredients</div><div class="ring">1 tbsp ACV · 8oz warm water · 1 tbsp honey · ½ tsp turmeric · pinch black pepper · ½ lemon</div><div class="rlabel">How to Make</div><div class="rsteps">Mix all ingredients. Black pepper activates turmeric — don't skip it.</div><div class="rtip">💡 Black pepper increases turmeric absorption by up to 2000%.</div></div></div>
+      <div class="recipe"><div class="rtype shot">Detox Shot</div><div class="rbody"><div class="rname">Fat Burner Shot</div><div class="rgood">Weight management, metabolism, appetite</div><div class="rlabel">Ingredients</div><div class="ring">1 tbsp ACV · 2oz water · ½ tsp honey · pinch cayenne · ¼ lemon juiced</div><div class="rlabel">How to Make</div><div class="rsteps">Mix in a shot glass and drink in one go. Take 30 min before a meal.</div><div class="rtip">💡 ACV can help reduce appetite and lower blood sugar spikes after meals.</div></div></div>
+      <div class="recipe"><div class="rtype shot">Detox Shot</div><div class="rbody"><div class="rname">Pre-Workout Energy Shot</div><div class="rgood">Energy, endurance, electrolytes</div><div class="rlabel">Ingredients</div><div class="ring">1 tbsp ACV · 2oz coconut water · ½ tsp honey · pinch sea salt · ¼ tsp ginger</div><div class="rlabel">How to Make</div><div class="rsteps">Mix in a shot glass. Take 15–20 min before workout.</div><div class="rtip">💡 Coconut water provides natural electrolytes and sea salt helps muscle function.</div></div></div>
+      <div class="recipe"><div class="rtype liver">Liver Detox</div><div class="rbody"><div class="rname">Classic Liver Flush Shot</div><div class="rgood">Liver cleansing, bile production, detox</div><div class="rlabel">Ingredients</div><div class="ring">1 tbsp ACV · 1 tbsp lemon juice · 1 tbsp olive oil · 1 garlic clove minced · 2oz warm water</div><div class="rlabel">How to Make</div><div class="rsteps">Whisk all and take as a shot first thing in the morning.</div><div class="rtip">💡 Garlic contains allicin and selenium — clinically shown to help cleanse the liver.</div></div></div>
+    </div>
+  </div>
 
-    // ─── RENDER PROGRAMS ──────────────────────────────────────────────────────
-    function renderProgram(key) {
-      const data = programs[key];
-      const gridEl = document.getElementById('wg-' + key.replace('general-','g').replace('intermediate','i').replace('beginner','b').replace('advanced','a'));
-      const detailEl = document.getElementById('wd-' + key.replace('general-','g').replace('intermediate','i').replace('beginner','b').replace('advanced','a'));
-      if (!gridEl || !detailEl) return;
+</div>
+</div>
 
-      gridEl.innerHTML = data.map((day, i) => `
-        <div class="day-btn ${day.label === 'REST' ? 'rest' : ''} ${i === 0 ? 'active' : ''}"
-             onclick="${day.label !== 'REST' ? `selectDay('${key}', ${i})` : ''}">
-          <div class="day-name">${DAYS[i]}</div>
-          <div class="day-label">${day.label}</div>
-        </div>
-      `).join('');
+<!-- MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="modal-title">Exercise Tutorial</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <a href="#" class="modal-yt" id="modal-yt" target="_blank">▶ Search on YouTube</a>
+  </div>
+</div>
 
-      renderDay(key, 0);
-    }
+<footer class="footer"><div class="foot-inner"><span class="foot-copy">© 2026 hpkreutz.com — Hays, KS</span><div class="foot-links"><a href="markets.html">Markets</a><a href="tools.html">Tools</a><a href="sports.html">Sports</a><a href="fitness.html">Fitness</a><a href="contact.html">Contact</a></div></div></footer>
+<script>
+var PROGRAMS = {
+  beg: [
+    {title:"Upper Body",meta:"3 sets · 45 min",note:"Rest 60 sec between sets. Focus on form over speed.",ex:[["Push-Ups","3×12","https://www.youtube.com/results?search_query=push+ups+form"],["Dumbbell Rows","3×10","https://www.youtube.com/results?search_query=dumbbell+rows+form"],["Shoulder Press","3×10","https://www.youtube.com/results?search_query=dumbbell+shoulder+press"],["Bicep Curls","3×12","https://www.youtube.com/results?search_query=bicep+curls+form"],["Tricep Dips","3×10","https://www.youtube.com/results?search_query=tricep+dips+form"],["Plank","3×30s","https://www.youtube.com/results?search_query=plank+form"]]},
+    {title:"Cardio",meta:"30–40 min",note:"Keep your heart rate at 60–70% max. Brisk walk, jog, or bike.",ex:[["Brisk Walk or Jog","30 min","https://www.youtube.com/results?search_query=beginner+cardio+workout"],["High Knees","3×30s","https://www.youtube.com/results?search_query=high+knees+exercise"],["Jumping Jacks","3×30s","https://www.youtube.com/results?search_query=jumping+jacks"],["Mountain Climbers","3×20","https://www.youtube.com/results?search_query=mountain+climbers+exercise"],["Cool Down Stretch","5 min","https://www.youtube.com/results?search_query=cool+down+stretch"]]},
+    {title:"Lower Body",meta:"3 sets · 45 min",note:"Keep your back straight on all squat and lunge movements.",ex:[["Bodyweight Squats","3×15","https://www.youtube.com/results?search_query=squat+form+beginner"],["Reverse Lunges","3×10 each","https://www.youtube.com/results?search_query=reverse+lunge+form"],["Glute Bridges","3×15","https://www.youtube.com/results?search_query=glute+bridge"],["Wall Sit","3×30s","https://www.youtube.com/results?search_query=wall+sit+exercise"],["Calf Raises","3×20","https://www.youtube.com/results?search_query=calf+raises"],["Dead Bug","3×10","https://www.youtube.com/results?search_query=dead+bug+exercise"]]},
+    {title:"Rest Day",meta:"Active Recovery",note:"",ex:[]},
+    {title:"Full Body",meta:"3 sets · 50 min",note:"Combine upper and lower movements. Move at a comfortable pace.",ex:[["Squat to Press","3×10","https://www.youtube.com/results?search_query=squat+to+press+dumbbell"],["Push-Ups","3×10","https://www.youtube.com/results?search_query=push+ups+form"],["Dumbbell Deadlift","3×10","https://www.youtube.com/results?search_query=dumbbell+deadlift"],["Bent Over Rows","3×10","https://www.youtube.com/results?search_query=bent+over+row+form"],["Lateral Raises","3×12","https://www.youtube.com/results?search_query=lateral+raise+dumbbell"],["Core Plank","3×30s","https://www.youtube.com/results?search_query=plank+form"]]},
+    {title:"Walk &amp; Stretch",meta:"20–30 min",note:"Easy pace. Focus on mobility and breathing.",ex:[["Easy Walk","20 min","https://www.youtube.com/results?search_query=walking+for+fitness"],["Hip Flexor Stretch","2×30s each","https://www.youtube.com/results?search_query=hip+flexor+stretch"],["Hamstring Stretch","2×30s each","https://www.youtube.com/results?search_query=hamstring+stretch"],["Shoulder Stretch","2×30s each","https://www.youtube.com/results?search_query=shoulder+stretch"],["Child's Pose","2×30s","https://www.youtube.com/results?search_query=childs+pose+yoga"]]}
+  ],
+  int: [
+    {title:"Push Day",meta:"4 sets · 55 min",note:"Push movements focus on chest, shoulders, and triceps.",ex:[["Dumbbell Bench Press","4×10","https://www.youtube.com/results?search_query=dumbbell+bench+press"],["Incline Push-Ups","4×12","https://www.youtube.com/results?search_query=incline+push+ups"],["Dumbbell Shoulder Press","4×10","https://www.youtube.com/results?search_query=dumbbell+shoulder+press"],["Lateral Raises","4×12","https://www.youtube.com/results?search_query=lateral+raise+dumbbell"],["Tricep Kickbacks","4×12","https://www.youtube.com/results?search_query=tricep+kickbacks"],["Overhead Tricep Extension","4×10","https://www.youtube.com/results?search_query=overhead+tricep+extension"]]},
+    {title:"Pull Day",meta:"4 sets · 55 min",note:"Pull movements focus on back and biceps.",ex:[["Dumbbell Rows","4×10","https://www.youtube.com/results?search_query=dumbbell+rows+form"],["Superman Hold","4×12","https://www.youtube.com/results?search_query=superman+exercise"],["Renegade Rows","4×8 each","https://www.youtube.com/results?search_query=renegade+row"],["Bicep Curls","4×12","https://www.youtube.com/results?search_query=bicep+curls+form"],["Hammer Curls","4×10","https://www.youtube.com/results?search_query=hammer+curls"],["Face Pulls","4×12","https://www.youtube.com/results?search_query=face+pulls"]]},
+    {title:"Legs Day",meta:"4 sets · 55 min",note:"Keep your core tight on all lower body movements.",ex:[["Goblet Squats","4×12","https://www.youtube.com/results?search_query=goblet+squat"],["Romanian Deadlift","4×10","https://www.youtube.com/results?search_query=romanian+deadlift+dumbbell"],["Walking Lunges","4×10 each","https://www.youtube.com/results?search_query=walking+lunges"],["Step-Ups","4×10 each","https://www.youtube.com/results?search_query=step+ups+exercise"],["Glute Bridges","4×15","https://www.youtube.com/results?search_query=glute+bridge"],["Calf Raises","4×20","https://www.youtube.com/results?search_query=calf+raises"]]},
+    {title:"Cardio",meta:"35–45 min",note:"Mix steady state and intervals for maximum benefit.",ex:[["Warm Up Walk","5 min","https://www.youtube.com/results?search_query=warm+up+walk"],["Interval Run","20 min","https://www.youtube.com/results?search_query=interval+running+beginner"],["Jump Rope","3×1 min","https://www.youtube.com/results?search_query=jump+rope+workout"],["Burpees","3×10","https://www.youtube.com/results?search_query=burpees+form"],["Cool Down Stretch","5 min","https://www.youtube.com/results?search_query=cool+down+stretch"]]},
+    {title:"Push Day",meta:"4 sets · 55 min",note:"Second push session of the week. Add weight or reps vs Monday.",ex:[["Dumbbell Chest Fly","4×12","https://www.youtube.com/results?search_query=dumbbell+chest+fly"],["Pike Push-Ups","4×10","https://www.youtube.com/results?search_query=pike+push+ups"],["Arnold Press","4×10","https://www.youtube.com/results?search_query=arnold+press"],["Front Raises","4×12","https://www.youtube.com/results?search_query=front+raises+dumbbell"],["Skull Crushers","4×10","https://www.youtube.com/results?search_query=skull+crushers+dumbbell"],["Diamond Push-Ups","4×10","https://www.youtube.com/results?search_query=diamond+push+ups"]]},
+    {title:"Pull Day",meta:"4 sets · 55 min",note:"Second pull session. Focus on mind-muscle connection.",ex:[["Single Arm Row","4×10 each","https://www.youtube.com/results?search_query=single+arm+dumbbell+row"],["Reverse Fly","4×12","https://www.youtube.com/results?search_query=reverse+fly+dumbbell"],["Shrugs","4×15","https://www.youtube.com/results?search_query=dumbbell+shrugs"],["Concentration Curls","4×10","https://www.youtube.com/results?search_query=concentration+curls"],["Plank Row","4×8 each","https://www.youtube.com/results?search_query=plank+row"],["Chin-Up Hold","4×30s","https://www.youtube.com/results?search_query=chin+up+hold"]]}
+  ],
+  adv: [
+    {title:"Chest &amp; Triceps",meta:"5 sets · 60 min",note:"Push to failure on last set. Rest 90 sec between sets.",ex:[["Dumbbell Bench Press","5×8","https://www.youtube.com/results?search_query=dumbbell+bench+press"],["Incline Dumbbell Press","5×8","https://www.youtube.com/results?search_query=incline+dumbbell+press"],["Chest Fly","5×10","https://www.youtube.com/results?search_query=dumbbell+chest+fly"],["Dips","5×10","https://www.youtube.com/results?search_query=dips+exercise"],["Skull Crushers","5×10","https://www.youtube.com/results?search_query=skull+crushers+dumbbell"],["Close Grip Push-Ups","5×12","https://www.youtube.com/results?search_query=close+grip+push+ups"]]},
+    {title:"Back &amp; Biceps",meta:"5 sets · 60 min",note:"Squeeze the back muscles at the top of every pull.",ex:[["Renegade Rows","5×8 each","https://www.youtube.com/results?search_query=renegade+row"],["Single Arm Row","5×10","https://www.youtube.com/results?search_query=single+arm+dumbbell+row"],["Reverse Fly","5×12","https://www.youtube.com/results?search_query=reverse+fly+dumbbell"],["Barbell Curl","5×8","https://www.youtube.com/results?search_query=barbell+curl"],["Hammer Curls","5×10","https://www.youtube.com/results?search_query=hammer+curls"],["Concentration Curls","5×10","https://www.youtube.com/results?search_query=concentration+curls"]]},
+    {title:"Legs &amp; Core",meta:"5 sets · 65 min",note:"Add weight where possible. Drive through heels on squats.",ex:[["Goblet Squats","5×10","https://www.youtube.com/results?search_query=goblet+squat"],["Romanian Deadlift","5×8","https://www.youtube.com/results?search_query=romanian+deadlift+dumbbell"],["Bulgarian Split Squat","5×8 each","https://www.youtube.com/results?search_query=bulgarian+split+squat"],["Weighted Glute Bridge","5×12","https://www.youtube.com/results?search_query=weighted+glute+bridge"],["Ab Wheel Rollout","5×10","https://www.youtube.com/results?search_query=ab+wheel+rollout"],["Hanging Knee Raise","5×12","https://www.youtube.com/results?search_query=hanging+knee+raise"]]},
+    {title:"HIIT",meta:"30–40 min",note:"Max effort intervals. 40s on, 20s rest for each movement.",ex:[["Box Jumps","4×8","https://www.youtube.com/results?search_query=box+jumps"],["Burpees","4×10","https://www.youtube.com/results?search_query=burpees+form"],["Jump Squats","4×12","https://www.youtube.com/results?search_query=jump+squats"],["Sprint Intervals","6×30s","https://www.youtube.com/results?search_query=sprint+intervals"],["Battle Ropes","4×30s","https://www.youtube.com/results?search_query=battle+ropes+workout"],["Plank to Push-Up","4×10","https://www.youtube.com/results?search_query=plank+to+push+up"]]},
+    {title:"Shoulders",meta:"5 sets · 55 min",note:"Control the negative. Slow lowering builds more muscle.",ex:[["Military Press","5×8","https://www.youtube.com/results?search_query=military+press+dumbbell"],["Arnold Press","5×10","https://www.youtube.com/results?search_query=arnold+press"],["Lateral Raises","5×15","https://www.youtube.com/results?search_query=lateral+raise+dumbbell"],["Front Raises","5×12","https://www.youtube.com/results?search_query=front+raises+dumbbell"],["Upright Rows","5×10","https://www.youtube.com/results?search_query=upright+rows+dumbbell"],["Face Pulls","5×15","https://www.youtube.com/results?search_query=face+pulls"]]},
+    {title:"Full Body",meta:"5 sets · 65 min",note:"Compound movements only. Heavy weight, clean form.",ex:[["Clean and Press","5×6","https://www.youtube.com/results?search_query=clean+and+press+dumbbell"],["Squat to Press","5×8","https://www.youtube.com/results?search_query=squat+to+press+dumbbell"],["Dumbbell Deadlift","5×8","https://www.youtube.com/results?search_query=dumbbell+deadlift"],["Weighted Lunges","5×10 each","https://www.youtube.com/results?search_query=weighted+lunges"],["Push Press","5×8","https://www.youtube.com/results?search_query=push+press+dumbbell"],["Turkish Get-Up","5×3 each","https://www.youtube.com/results?search_query=turkish+get+up"]]}
+  ]
+};
 
-    function selectDay(key, idx) {
-      const suffix = key.replace('general-','g').replace('intermediate','i').replace('beginner','b').replace('advanced','a');
-      const gridEl = document.getElementById('wg-' + suffix);
-      gridEl.querySelectorAll('.day-btn').forEach((b, i) => {
-        b.classList.toggle('active', i === idx && b.textContent.trim() !== 'REST');
-      });
-      renderDay(key, idx);
-    }
+function setLevel(level, btn) {
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  btn.classList.add('active');
+  document.querySelectorAll('.prog').forEach(function(p){p.classList.remove('on')});
+  document.getElementById('prog-'+level).classList.add('on');
+  var days = document.querySelectorAll('#week-'+level+' .day:not(.rest)');
+  if(days.length) setDay(level, 0, days[0]);
+}
 
-    function renderDay(key, idx) {
-      const suffix = key.replace('general-','g').replace('intermediate','i').replace('beginner','b').replace('advanced','a');
-      const detailEl = document.getElementById('wd-' + suffix);
-      const day = programs[key][idx];
+function setDay(level, idx, btn) {
+  var week = document.getElementById('week-'+level);
+  week.querySelectorAll('.day').forEach(function(d){d.classList.remove('on')});
+  btn.classList.add('on');
+  renderWorkout(level, idx);
+}
 
-      if (day.label === 'REST') {
-        detailEl.innerHTML = `<div class="rest-day-card"><div class="rest-icon">🛌</div><p><strong>Rest Day</strong><br>Recovery is part of the program. Rest, sleep well, and come back stronger.</p></div>`;
-        return;
-      }
+function renderWorkout(level, idx) {
+  var data = PROGRAMS[level][idx];
+  var el = document.getElementById('detail-'+level);
+  if(!data || data.ex.length === 0) {
+    el.innerHTML = '<div class="rest-day"><div class="icon">😴</div><p><strong>Rest Day</strong><br>Recovery is where gains are made. Eat well, hydrate, and sleep 7–9 hours.</p></div>';
+    return;
+  }
+  var rows = data.ex.map(function(e,i) {
+    return '<div class="exrow"><div class="excheck" onclick="this.classList.toggle(\'done\')"></div><span class="exname" onclick="openModal(\''+e[0]+'\',\''+e[2]+'\')">'+e[0]+'</span><span class="exsets">'+e[1]+'</span></div>';
+  }).join('');
+  var note = data.note ? '<div class="wnote">'+data.note+'</div>' : '';
+  el.innerHTML = '<div class="wheader"><div class="wday-title">'+data.title+'</div><div class="wmeta">'+data.meta+'</div></div>'+note+'<div class="exlist">'+rows+'</div>';
+}
 
-      const isCardio = day.exercises.length === 0;
-      if (isCardio) {
-        detailEl.innerHTML = `
-          <div class="workout-header"><div class="workout-day-title">${DAYS[idx]} — ${day.label}</div></div>
-          <div class="rest-day-card"><div class="rest-icon">🏃</div><p>${day.note}</p></div>
-        `;
-        return;
-      }
+function openModal(name, url) {
+  document.getElementById('modal-title').textContent = name;
+  document.getElementById('modal-body').textContent = 'Watch a short tutorial video to learn proper form for ' + name + '. Good form prevents injury and maximizes results.';
+  document.getElementById('modal-yt').href = url;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.getElementById('modal').addEventListener('click', function(e) { if(e.target === this) closeModal(); });
 
-      detailEl.innerHTML = `
-        <div class="workout-header">
-          <div class="workout-day-title">${DAYS[idx]} — ${day.label}</div>
-          <div class="workout-meta">${day.exercises.length} exercises</div>
-        </div>
-        <div class="workout-note">${day.note}</div>
-        <div class="exercise-list">
-          ${day.exercises.map((ex, ei) => `
-            <div class="exercise-item" id="${suffix}-${idx}-${ei}">
-              <div class="ex-check" onclick="toggleEx('${suffix}',${idx},${ei})"></div>
-              <span class="ex-name" onclick="openExercise('${ex.name}')">${ex.name}</span>
-              <span class="ex-sets">${ex.sets}</span>
-            </div>
-          `).join('')}
-        </div>
-        <div class="tip-bar">👆 Tap any exercise name to watch a short how-to video &nbsp;·&nbsp; Check off exercises as you go</div>
-      `;
-    }
-
-    function toggleEx(suffix, dayIdx, exIdx) {
-      const item = document.getElementById(`${suffix}-${dayIdx}-${exIdx}`);
-      const check = item.querySelector('.ex-check');
-      const name = item.querySelector('.ex-name');
-      check.classList.toggle('done');
-      if (check.classList.contains('done')) {
-        name.style.color = 'var(--ink3)';
-        name.style.textDecoration = 'line-through';
-      } else {
-        name.style.color = 'var(--accent)';
-        name.style.textDecoration = 'none';
-      }
-    }
-
-    function switchLevel(program, level, btn) {
-      document.querySelectorAll(`#${program}-tabs .level-tab`).forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll(`[id^="${program}-"]`).forEach(el => {
-        if (el.classList.contains('program-panel')) el.classList.remove('active');
-      });
-      document.getElementById(`${program}-${level}`).classList.add('active');
-    }
-
-    // ─── EXERCISE MODAL ───────────────────────────────────────────────────────
-    function openExercise(name) {
-      document.getElementById('modal-title').textContent = name;
-      document.getElementById('modal-body').textContent = 'Watch a short tutorial for: ' + name;
-      document.getElementById('modal-yt-link').href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(name + ' exercise tutorial');
-      document.getElementById('video-modal').classList.add('open');
-    }
-    function closeModal() {
-      document.getElementById('video-modal').classList.remove('open');
-    }
-    document.getElementById('video-modal').addEventListener('click', e => {
-      if (e.target === document.getElementById('video-modal')) closeModal();
-    });
-
-    // ─── INIT ─────────────────────────────────────────────────────────────────
-    renderProgram('general-beginner');
-    renderProgram('general-intermediate');
-    renderProgram('general-advanced');
-  </script>
-<footer class="footer"><div class="foot-inner"><span class="foot-copy">© 2026 hpkreutz.com — Hays, KS</span><div class="foot-links"><a href="markets.html">Markets</a><a href="tools.html">Tools</a><a href="sports.html">Sports</a><a href="fitness.html">Fitness</a><a href="contact.html">Contact</a></div></div></footer></body>
+// Initialize
+renderWorkout('beg', 0);
+renderWorkout('int', 0);
+renderWorkout('adv', 0);
+</script>
+</body>
 </html>

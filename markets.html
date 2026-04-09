@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Markets — hpkreutz.com</title>
-    
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Markets — hpkreutz.com</title>
 <style>
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -153,699 +152,506 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,san
   .frow,.frow3{grid-template-columns:1fr}
   .foot-inner{padding:20px 16px;flex-direction:column;gap:10px;align-items:flex-start}
 }
-</style></head>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#111;height:56px;display:flex;align-items:center;padding:0 5%}
-.nav-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;margin-right:auto}
-.nav-links{display:flex;align-items:center;gap:6px}
-.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s}
-.nav-links a:hover,.nav-links a.active{color:#fff}
-.nav-links .cta{background:#c8401a;color:#fff!important;padding:7px 14px;border-radius:6px;font-weight:600}
-.nav-links .cta:hover{background:#a83212}
-/* LAYOUT */
-.body-wrap{padding-top:56px}
-.page{max-width:960px;margin:0 auto;padding:0 32px}
-/* HERO */
-.hero{background:#111;padding:80px 5% 72px}
-.hero-inner{max-width:960px;margin:0 auto}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
-.hero h1{font-size:clamp(38px,5.5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;color:#fff;margin-bottom:18px}
-.hero h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
-.hero p{font-size:16px;color:rgba(255,255,255,.5);max-width:460px;line-height:1.7;margin-bottom:32px}
-.btn-row{display:flex;gap:10px;flex-wrap:wrap}
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;padding:10px 22px;border-radius:7px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
-.btn-dark{background:#111;color:#fff}
-.btn-dark:hover{background:#2d2d2d}
-.btn-red{background:#c8401a;color:#fff}
-.btn-red:hover{background:#a83212}
-.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
-.btn-ghost:hover{background:rgba(255,255,255,.08)}
-.btn-outline{background:#fff;color:#111;border:1px solid #ddd}
-.btn-outline:hover{background:#f5f5f5}
-.btn-block{width:100%;justify-content:center}
-.btn-sm{font-size:13px;padding:8px 16px}
-/* PAGE HEADER */
-.phead{padding:48px 0 36px;border-bottom:1px solid #ebebeb;margin-bottom:40px}
-.phead-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
-.phead h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:10px}
-.phead p{font-size:15px;color:#666;max-width:520px;line-height:1.65}
-/* SECTION */
-.section{margin-bottom:44px}
-.slabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;padding-bottom:10px;border-bottom:1px solid #ebebeb;margin-bottom:18px}
-/* GRID CARDS */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-/* CARD */
-.card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:0}
-.chead{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5}
-.chead-title{font-size:14px;font-weight:700;color:#111}
-.chead-sub{font-size:12px;color:#999;margin-top:2px}
-.cbody{padding:20px}
-/* FORM */
-.field{margin-bottom:14px}
-.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#999;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;padding:10px 13px;border:1px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;background:#fff;outline:none;-webkit-appearance:none;transition:border-color .15s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:#111;box-shadow:0 0 0 3px rgba(17,17,17,.06)}
-.field textarea{resize:vertical;min-height:80px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-/* RESULTS */
-.results{display:none;margin-top:16px;padding-top:14px;border-top:1px solid #ebebeb}
-.results.show{display:block}
-.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
-.rrow:last-child{border-bottom:none}
-.rk{color:#666}
-.rv{font-weight:700;color:#111}
-.rv.big{font-size:18px}
-.rv.green{font-size:18px;color:#1a7a3a}
-.rv.dyn{font-size:18px}
-/* STAT TABLE */
-.srow{display:flex;justify-content:space-between;align-items:center;padding:9px 20px;border-bottom:1px solid #f0f0f0;font-size:13px}
-.srow:last-child{border-bottom:none}
-.sk{color:#666}
-.sv{font-weight:600;color:#111;text-align:right}
-.sv.up{color:#1a7a3a}
-.sv.down{color:#c8401a}
-/* CODE OUTPUT */
-.code-out{display:none;flex-direction:column;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #ebebeb}
-.code-out.show{display:flex}
-/* NAV CARD */
-.ncard{display:flex;flex-direction:column;padding:26px 24px;background:#fff;text-decoration:none;color:#111;transition:background .15s}
+
+/* TICKER */
+.ticker{position:fixed;top:56px;left:0;right:0;z-index:500;height:34px;background:#1a1a1a;overflow:hidden;display:flex;align-items:center;border-bottom:1px solid #333}
+.ticker-track{display:flex;white-space:nowrap;animation:scroll 80s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tick{display:inline-flex;align-items:center;gap:8px;padding:0 18px;border-right:1px solid #333;height:34px;cursor:pointer;transition:background .15s}
+.tick:hover{background:rgba(255,255,255,.06)}
+.tick-sym{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.05em}
+.tick-price{font-size:12px;font-weight:700;color:#fff}
+.tick-chg{font-size:11px;font-weight:600}
+.tick-chg.up{color:#5cd97a}.tick-chg.down{color:#ff6b6b}
+/* ADJUSTED PAGE TOP FOR TICKER */
+.markets-body{padding-top:90px}
+/* INDICES */
+.indices{display:grid;grid-template-columns:repeat(6,1fr);border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:24px}
+.idx{padding:14px 16px;background:#fff;border-right:1px solid #e5e5e5;cursor:pointer;transition:background .15s}
+.idx:last-child{border-right:none}
+.idx:hover,.idx.on{background:#111}
+.idx:hover .idx-name,.idx.on .idx-name{color:rgba(255,255,255,.5)}
+.idx:hover .idx-price,.idx.on .idx-price{color:#fff}
+.idx-name{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#aaa;margin-bottom:5px}
+.idx-price{font-size:18px;font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:2px}
+.idx-chg{font-size:11px;font-weight:600}
+.idx-chg.up{color:#1a7a3a}.idx-chg.down{color:#c8401a}
+.idx:hover .idx-chg,.idx.on .idx-chg{opacity:.85}
+/* MAIN LAYOUT */
+.mkts-layout{display:grid;grid-template-columns:1fr 280px;gap:16px;margin-bottom:24px}
+/* CHART PANEL */
+.cpanel{background:#fff;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.cpanel-head{padding:16px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.csym{font-size:26px;font-weight:800;letter-spacing:-.02em;color:#111}
+.cname{font-size:13px;color:#999;margin-top:2px}
+.cprice{font-size:26px;font-weight:800;letter-spacing:-.02em;color:#111;text-align:right}
+.cchg{font-size:13px;font-weight:600;text-align:right;margin-top:2px}
+.cchg.up{color:#1a7a3a}.cchg.down{color:#c8401a}
+.chart-wrap{height:380px}
+.chart-wrap iframe{width:100%;height:100%;border:none;display:block}
+.chart-ph{height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#ccc;gap:10px;font-size:14px}
+.cstats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #e5e5e5}
+.cst{padding:10px 16px;border-right:1px solid #e5e5e5}
+.cst:last-child{border-right:none}
+.cst-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#aaa;margin-bottom:3px}
+.cst-val{font-size:13px;font-weight:700;color:#111}
+/* WATCHLIST */
+.wl{background:#fff;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.wl-head{padding:12px 16px;background:#fafafa;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;justify-content:space-between}
+.wl-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#111}
+.wl-add{display:flex;gap:6px;padding:8px 10px;border-bottom:1px solid #e5e5e5}
+.wl-input{flex:1;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:6px;padding:7px 10px;font-family:inherit;font-size:13px;color:#111;outline:none;text-transform:uppercase}
+.wl-input::placeholder{text-transform:none;color:#aaa}
+.wl-input:focus{border-color:#111;background:#fff}
+.wl-btn{background:#111;color:#fff;border:none;border-radius:6px;padding:7px 12px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.wl-btn:hover{background:#c8401a}
+.wl-items{flex:1;overflow-y:auto}
+.wl-item{display:flex;align-items:center;padding:9px 12px;border-bottom:1px solid #f5f5f5;cursor:pointer;gap:8px;transition:background .1s}
+.wl-item:last-child{border-bottom:none}
+.wl-item:hover{background:#fafafa}
+.wl-item.on{background:#111}
+.wl-item.on .wi-sym,.wl-item.on .wi-name,.wl-item.on .wi-price{color:#fff}
+.wi-sym{font-size:13px;font-weight:700;color:#111;min-width:48px}
+.wi-name{font-size:11px;color:#aaa;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wi-right{text-align:right}
+.wi-price{font-size:13px;font-weight:700;color:#111}
+.wi-chg{font-size:11px;font-weight:600}
+.wi-chg.up{color:#1a7a3a}.wi-chg.down{color:#c8401a}
+.wi-rm{background:none;border:none;color:#ccc;cursor:pointer;font-size:14px;padding:0 2px;opacity:0}
+.wl-item:hover .wi-rm{opacity:1}
+.wi-rm:hover{color:#c8401a}
+.wl-empty{padding:24px;text-align:center;color:#aaa;font-size:13px}
+/* SEARCH */
+.search-bar{display:flex;gap:8px;margin-bottom:8px;position:relative}
+.search-in{flex:1;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-family:inherit;font-size:14px;color:#111;outline:none}
+.search-in:focus{border-color:#111}
+.search-btn{padding:10px 20px;background:#111;color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.search-btn:hover{background:#c8401a}
+.sdrop{position:absolute;top:calc(100% + 4px);left:0;right:90px;background:#fff;border:1.5px solid #e0e0e0;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.1);z-index:100;max-height:240px;overflow-y:auto;display:none}
+.sdrop.open{display:block}
+.sdrop-item{padding:9px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;border-bottom:1px solid #f5f5f5;font-size:13px}
+.sdrop-item:last-child{border-bottom:none}
+.sdrop-item:hover{background:#fafafa}
+.sd-t{font-weight:700;color:#111;min-width:56px}
+.sd-n{color:#aaa}
+.quick{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:24px}
+.ql{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#aaa}
+.qb{padding:5px 12px;border-radius:99px;border:1.5px solid #e0e0e0;background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:#555;cursor:pointer;transition:all .15s}
+.qb:hover{background:#111;color:#fff;border-color:#111}
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:20px}
+.stat-card{background:#fff;border-right:1px solid #e5e5e5}
+.stat-card:last-child{border-right:none}
+.scard-head{padding:10px 16px;background:#fafafa;border-bottom:1px solid #e5e5e5;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#aaa}
+/* COMMODITIES */
+.comms{display:grid;grid-template-columns:repeat(5,1fr);border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:20px}
+.comm{padding:14px 16px;background:#fff;border-right:1px solid #e5e5e5;cursor:pointer;transition:background .15s}
+.comm:last-child{border-right:none}
+.comm:hover{background:#fafafa}
+.comm-name{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#aaa;margin-bottom:5px}
+.comm-price{font-size:18px;font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:2px}
+.comm-chg{font-size:11px;font-weight:600}
+.comm-chg.up{color:#1a7a3a}.comm-chg.down{color:#c8401a}
+/* MOVERS */
+.movers{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:20px}
+.mcard{background:#fff;border-right:1px solid #e5e5e5}
+.mcard:last-child{border-right:none}
+.mcard-head{padding:10px 16px;background:#fafafa;border-bottom:1px solid #e5e5e5;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#aaa;display:flex;justify-content:space-between}
+.mrow{display:flex;align-items:center;padding:9px 14px;border-bottom:1px solid #f5f5f5;cursor:pointer;gap:8px;font-size:12px;transition:background .1s}
+.mrow:last-child{border-bottom:none}
+.mrow:hover{background:#fafafa}
+.msym{font-weight:700;color:#111;min-width:46px}
+.mname{color:#aaa;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mprice{font-weight:700;color:#111;min-width:52px;text-align:right}
+.mchg{font-weight:700;min-width:48px;text-align:right;padding:2px 6px;border-radius:4px;font-size:11px}
+.mchg.up{color:#1a7a3a;background:rgba(26,122,58,.08)}.mchg.down{color:#c8401a;background:rgba(200,64,26,.08)}
+/* NEWS */
+.news{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:20px}
+.ncard{padding:16px 18px;background:#fff;border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;text-decoration:none;color:#111;display:block;transition:background .15s}
+.ncard:nth-child(2n){border-right:none}
 .ncard:hover{background:#fafafa}
-.ncard-icon{font-size:24px;margin-bottom:14px}
-.ncard-name{font-size:15px;font-weight:700;margin-bottom:6px}
-.ncard-desc{font-size:13px;color:#888;line-height:1.55;flex:1}
-.ncard-arrow{font-size:13px;color:#ccc;margin-top:14px}
-/* TEAM CARD */
-.tcard-top{display:flex;align-items:center;gap:14px;padding:18px 22px;background:#fafafa;border-bottom:1px solid #e5e5e5}
-.tlogo{width:46px;height:46px;border-radius:8px;background:#fff;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
-.tlogo img{width:34px;height:34px;object-fit:contain}
-.tlogo-txt{font-size:12px;font-weight:800;color:#666}
-.tname{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
-.tmeta{font-size:12px;color:#999}
-.tbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;background:#f0f0f0;border:1px solid #e0e0e0;color:#666;margin-left:auto;flex-shrink:0}
-.tlinks{display:flex}
-.tlink{flex:1;display:flex;align-items:center;justify-content:center;padding:11px 6px;text-decoration:none;font-size:12px;font-weight:600;color:#555;border-right:1px solid #e5e5e5;transition:all .15s}
-.tlink:last-child{border-right:none}
-.tlink:hover{background:#f5f5f5;color:#111}
-.tlink.hi{color:#c8401a}
-.tlink.hi:hover{background:#c8401a;color:#fff}
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.cinfo{padding:36px;background:#fafafa;border-right:1px solid #e5e5e5}
-.cform{padding:36px;background:#fff}
-.cbiz{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
-.crole{font-size:13px;color:#999;margin-bottom:16px}
-.cbio{font-size:14px;color:#555;line-height:1.7;margin-bottom:24px}
-.drow-c{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
-.dicon{font-size:15px;width:20px;flex-shrink:0}
-.dlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin-bottom:2px}
-.dval{font-size:14px;color:#111;text-decoration:none;display:block}
-.dval:hover{color:#c8401a}
-.cext{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.ftitle{font-size:17px;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #ebebeb}
-.submit{width:100%;padding:12px;background:#c8401a;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
-.submit:hover{background:#a83212}
-.form-ok{display:none;margin-top:10px;font-size:13px;font-weight:600;color:#1a7a3a;background:rgba(26,122,58,.08);padding:10px 14px;border-radius:6px}
-/* FOOTER */
-.footer{background:#111;margin-top:60px}
-.foot-inner{max-width:960px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
-.foot-copy{font-size:12px;color:rgba(255,255,255,.35)}
-.foot-links{display:flex;gap:20px}
-.foot-links a{font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s}
-.foot-links a:hover{color:#fff}
-/* SUB LABEL */
-.sub-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:14px 0 10px}
-/* RESPONSIVE */
-@media(max-width:860px){
-  .page{padding:0 24px}
-  .hero{padding:64px 24px 56px}
-  .grid-4{grid-template-columns:1fr 1fr}
-  .grid-3{grid-template-columns:1fr 1fr}
-  .foot-inner{padding:24px}
-}
-@media(max-width:640px){
-  .page{padding:0 16px}
-  .hero{padding:48px 16px 44px}
-  .nav{padding:0 16px}
-  .nav-links a:not(.cta){display:none}
-  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
-  .cinfo{border-right:none;border-bottom:1px solid #e5e5e5}
-  .frow,.frow3{grid-template-columns:1fr}
-  .foot-inner{padding:20px 16px;flex-direction:column;gap:10px;align-items:flex-start}
-}
-</style></head>
-<body><nav class="nav"><a href="index.html" class="nav-logo">hpkreutz.com</a><div class="nav-links"><a href="markets.html" class="active">Markets</a><a href="tools.html">Tools</a><a href="sports.html">Sports</a><a href="fitness.html">Fitness</a><a href="contact.html" class="cta">Contact →</a></div></nav>
+.nsrc{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#aaa;margin-bottom:4px}
+.ntitle{font-size:13px;font-weight:600;line-height:1.5;margin-bottom:4px;color:#111}
+.ntime{font-size:11px;color:#bbb}
+/* ABOUT */
+.about{border:1.5px solid #e5e5e5;border-radius:10px;padding:18px 20px;margin-bottom:20px;display:none;background:#fafafa}
+.about-title{font-size:14px;font-weight:700;color:#111;margin-bottom:8px}
+.about-body{font-size:13px;color:#555;line-height:1.7}
+.about-tags{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.atag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:4px;background:#fff;border:1px solid #e0e0e0;color:#888}
+/* MKTTIME */
+.mkt-time{font-size:13px;color:#999;font-weight:500}
+@media(max-width:900px){.indices{grid-template-columns:repeat(3,1fr)}.mkts-layout{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr}.comms{grid-template-columns:repeat(3,1fr)}.movers{grid-template-columns:1fr}.news{grid-template-columns:1fr}}
+@media(max-width:580px){.indices{grid-template-columns:repeat(2,1fr)}.stats-grid{grid-template-columns:1fr}.comms{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><a href="index.html" class="nav-logo">hpkreutz.com</a><div class="nav-links"><a href="markets.html" class="active">Markets</a><a href="tools.html">Tools</a><a href="sports.html">Sports</a><a href="fitness.html">Fitness</a><a href="contact.html" class="cta">Contact →</a></div></nav>
+<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
 
-  
+<div class="markets-body">
+<div class="page">
 
-  <div class="ticker-bar"><div class="ticker-track" id="ticker-track"></div></div>
-
-  <div class="page">
-  <div class="wrap">
-    <div class="page-hero">
-      <div class="page-hero-left">
-        <div class="label">Live Data · Finnhub</div>
-        <h1>Markets</h1>
-        <p>Your one-stop view of what's happening in the markets — indices, stocks, crypto, commodities, and news.</p>
-      </div>
-      <div class="market-time" id="market-time"></div>
-    </div>
-        <div class="page-title">Markets</div>
-      </div>
-      <div class="page-hero-right" id="market-time"></div>
-    </div>
-
-    <!-- INDICES -->
-    <div class="sec-label">Major Indices</div>
-    <div class="indices-grid" id="indices-grid">
-      <div class="idx-card" data-sym="SPY"  data-name="S&amp;P 500 ETF"        onclick="selectStock('SPY','S&P 500 ETF')"><div class="idx-name">S&amp;P 500</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
-      <div class="idx-card" data-sym="DIA"  data-name="Dow Jones ETF"          onclick="selectStock('DIA','Dow Jones ETF')"><div class="idx-name">Dow Jones</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
-      <div class="idx-card" data-sym="QQQ"  data-name="NASDAQ 100 ETF"         onclick="selectStock('QQQ','NASDAQ 100 ETF')"><div class="idx-name">NASDAQ</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
-      <div class="idx-card" data-sym="IWM"  data-name="Russell 2000 ETF"       onclick="selectStock('IWM','Russell 2000 ETF')"><div class="idx-name">Russell 2000</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
-      <div class="idx-card" data-sym="VIXY" data-name="VIX Short-Term Futures" onclick="selectStock('VIXY','VIX ETF')"><div class="idx-name">VIX</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
-      <div class="idx-card" data-sym="TLT"  data-name="20-Year Treasury ETF"   onclick="selectStock('TLT','20-Year Treasury ETF')"><div class="idx-name">20Y Treasury</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
-    </div>
-
-    <!-- MAIN: CHART + WATCHLIST -->
-    <div class="main-layout">
-
-      <!-- CHART PANEL -->
-      <div class="chart-panel">
-        <div class="chart-top">
-          <div>
-            <div class="chart-sym" id="c-sym">Select a stock</div>
-            <div class="chart-name" id="c-name">Search or click any symbol to view chart</div>
-          </div>
-          <div class="chart-price-block">
-            <div class="chart-price" id="c-price"></div>
-            <div class="chart-chg" id="c-chg"></div>
-          </div>
-        </div>
-        <div class="chart-iframe-wrap" id="chart-iframe-wrap">
-          <div class="chart-placeholder" id="chart-placeholder">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <p>Select a stock to view its chart</p>
-          </div>
-        </div>
-        <div class="chart-stats">
-          <div class="cs-item"><div class="cs-label">Open</div><div class="cs-val" id="c-open">—</div></div>
-          <div class="cs-item"><div class="cs-label">High</div><div class="cs-val" id="c-high">—</div></div>
-          <div class="cs-item"><div class="cs-label">Low</div><div class="cs-val" id="c-low">—</div></div>
-          <div class="cs-item"><div class="cs-label">Prev Close</div><div class="cs-val" id="c-prev">—</div></div>
-        </div>
-      </div>
-
-      <!-- WATCHLIST -->
-      <div class="watchlist-panel">
-        <div class="wl-head">
-          <span class="wl-title">Watchlist</span>
-          <span style="font-size:11px;color:var(--ink3);">Saved locally</span>
-        </div>
-        <div class="wl-add-row">
-          <input type="text" class="wl-input" id="wl-input" placeholder="Add ticker (e.g. AAPL)" maxlength="20" />
-          <button class="wl-add-btn" onclick="addToWatchlist()">+ Add</button>
-        </div>
-        <div class="wl-list" id="wl-list"></div>
-      </div>
-
-    </div>
-
-    <!-- SEARCH -->
-    <div class="search-section">
-      <div class="sec-label">Stock Search</div>
-      <div class="search-row">
-        <input type="text" id="srch" class="search-input" placeholder="Search any ticker or company — AAPL, Tesla, NVDA, Bitcoin..." autocomplete="off" />
-        <button class="search-btn" onclick="handleSearch()">Search</button>
-        <div class="dropdown" id="drop"></div>
-      </div>
-      <div class="quick-row">
-        <span class="ql">Popular:</span>
-        <button class="qbtn" onclick="selectStock('AAPL','Apple')">AAPL</button>
-        <button class="qbtn" onclick="selectStock('NVDA','NVIDIA')">NVDA</button>
-        <button class="qbtn" onclick="selectStock('MSFT','Microsoft')">MSFT</button>
-        <button class="qbtn" onclick="selectStock('TSLA','Tesla')">TSLA</button>
-        <button class="qbtn" onclick="selectStock('AMZN','Amazon')">AMZN</button>
-        <button class="qbtn" onclick="selectStock('META','Meta')">META</button>
-        <button class="qbtn" onclick="selectStock('GOOGL','Alphabet')">GOOGL</button>
-        <button class="qbtn" onclick="selectStock('JPM','JPMorgan')">JPM</button>
-        <button class="qbtn" onclick="selectStock('V','Visa')">V</button>
-        <button class="qbtn" onclick="selectStock('BINANCE:BTCUSDT','Bitcoin')">BTC</button>
-        <button class="qbtn" onclick="selectStock('BINANCE:ETHUSDT','Ethereum')">ETH</button>
-      </div>
-    </div>
-
-    <!-- FULL STATS -->
-    <div class="full-stats" id="full-stats" style="display:none;">
-      <div class="stat-card">
-        <div class="stat-head">Price Stats</div>
-        <div class="stat-row"><span class="sk">52W High</span><span class="sv" id="v-52h">—</span></div>
-        <div class="stat-row"><span class="sk">52W Low</span><span class="sv" id="v-52l">—</span></div>
-        <div class="stat-row"><span class="sk">Volume</span><span class="sv" id="v-vol">—</span></div>
-        <div class="stat-row"><span class="sk">Avg Volume</span><span class="sv" id="v-avgvol">—</span></div>
-        <div class="stat-row"><span class="sk">From 52W High</span><span class="sv" id="v-f52h">—</span></div>
-        <div class="stat-row"><span class="sk">From 52W Low</span><span class="sv" id="v-f52l">—</span></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-head">Fundamentals</div>
-        <div class="stat-row"><span class="sk">Market Cap</span><span class="sv" id="v-mcap">—</span></div>
-        <div class="stat-row"><span class="sk">P/E Ratio</span><span class="sv" id="v-pe">—</span></div>
-        <div class="stat-row"><span class="sk">EPS (TTM)</span><span class="sv" id="v-eps">—</span></div>
-        <div class="stat-row"><span class="sk">Beta</span><span class="sv" id="v-beta">—</span></div>
-        <div class="stat-row"><span class="sk">Dividend Yield</span><span class="sv" id="v-div">—</span></div>
-        <div class="stat-row"><span class="sk">P/B Ratio</span><span class="sv" id="v-pb">—</span></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-head">Performance</div>
-        <div class="stat-row"><span class="sk">Today</span><span class="sv" id="v-1d">—</span></div>
-        <div class="stat-row"><span class="sk">1 Week</span><span class="sv" id="v-1w">—</span></div>
-        <div class="stat-row"><span class="sk">1 Month</span><span class="sv" id="v-1m">—</span></div>
-        <div class="stat-row"><span class="sk">3 Months</span><span class="sv" id="v-3m">—</span></div>
-        <div class="stat-row"><span class="sk">6 Months</span><span class="sv" id="v-6m">—</span></div>
-        <div class="stat-row"><span class="sk">1 Year</span><span class="sv" id="v-1y">—</span></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-head">Company</div>
-        <div class="stat-row"><span class="sk">Sector</span><span class="sv" id="v-sector">—</span></div>
-        <div class="stat-row"><span class="sk">Industry</span><span class="sv" id="v-industry">—</span></div>
-        <div class="stat-row"><span class="sk">Employees</span><span class="sv" id="v-emp">—</span></div>
-        <div class="stat-row"><span class="sk">Revenue</span><span class="sv" id="v-rev">—</span></div>
-        <div class="stat-row"><span class="sk">Profit Margin</span><span class="sv" id="v-margin">—</span></div>
-        <div class="stat-row"><span class="sk">Exchange</span><span class="sv" id="v-exch">—</span></div>
-      </div>
-    </div>
-
-    <div class="about-card" id="about-card">
-      <div class="about-head" id="about-head"></div>
-      <div class="about-body" id="about-body"></div>
-      <div class="about-tags" id="about-tags"></div>
-    </div>
-
-    <!-- COMMODITIES -->
-    <div class="sec-label">Commodities &amp; Crypto</div>
-    <div class="comm-grid" style="margin-bottom:28px;">
-      <div class="comm-card" data-sym="GLD"              onclick="selectStock('GLD','Gold ETF')"><div class="comm-name">Gold</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
-      <div class="comm-card" data-sym="SLV"              onclick="selectStock('SLV','Silver ETF')"><div class="comm-name">Silver</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
-      <div class="comm-card" data-sym="USO"              onclick="selectStock('USO','Oil ETF')"><div class="comm-name">Oil (WTI)</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
-      <div class="comm-card" data-sym="BINANCE:BTCUSDT"  onclick="selectStock('BINANCE:BTCUSDT','Bitcoin')"><div class="comm-name">Bitcoin</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
-      <div class="comm-card" data-sym="BINANCE:ETHUSDT"  onclick="selectStock('BINANCE:ETHUSDT','Ethereum')"><div class="comm-name">Ethereum</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
-    </div>
-
-    <!-- MOVERS -->
-    <div class="sec-label">Top Movers Today</div>
-    <div class="movers-grid">
-      <div class="movers-card"><div class="movers-head"><span>Gainers</span><span>% Change</span></div><div id="gainers-list"></div></div>
-      <div class="movers-card"><div class="movers-head"><span>Losers</span><span>% Change</span></div><div id="losers-list"></div></div>
-      <div class="movers-card"><div class="movers-head"><span>Most Active</span><span>Volume</span></div><div id="active-list"></div></div>
-    </div>
-
-    <!-- NEWS -->
-    <div class="sec-label" style="margin-top:28px;">Market News</div>
-    <div class="news-grid" id="news-grid"><div style="color:var(--ink3);font-size:13px;padding:12px 0;">Loading news...</div></div>
-
-  </div>
+  <div class="phead" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <div><div class="phead-label">Live Data · Finnhub</div><h1>Markets</h1><p>Stocks, crypto, commodities, movers, and market news — updated live.</p></div>
+    <div class="mkt-time" id="mkt-time"></div>
   </div>
 
-  
+  <!-- INDICES -->
+  <div class="slabel">Major Indices</div>
+  <div class="indices">
+    <div class="idx" data-sym="SPY" onclick="pick('SPY','S&P 500 ETF')"><div class="idx-name">S&amp;P 500</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
+    <div class="idx" data-sym="DIA" onclick="pick('DIA','Dow Jones ETF')"><div class="idx-name">Dow Jones</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
+    <div class="idx" data-sym="QQQ" onclick="pick('QQQ','NASDAQ ETF')"><div class="idx-name">NASDAQ</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
+    <div class="idx" data-sym="IWM" onclick="pick('IWM','Russell 2000 ETF')"><div class="idx-name">Russell 2000</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
+    <div class="idx" data-sym="VIXY" onclick="pick('VIXY','VIX ETF')"><div class="idx-name">VIX</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
+    <div class="idx" data-sym="TLT" onclick="pick('TLT','20Y Treasury ETF')"><div class="idx-name">20Y Treasury</div><div class="idx-price">—</div><div class="idx-chg">—</div></div>
+  </div>
 
-  <script>
-    const KEY = 'd7775lhr01qp6afkfkt0d7775lhr01qp6afkfktg';
-    const FH  = 'https://finnhub.io/api/v1';
-    const api = url => fetch(url).then(r => r.json()).catch(() => null);
+  <!-- MAIN: CHART + WATCHLIST -->
+  <div class="mkts-layout">
+    <div class="cpanel">
+      <div class="cpanel-head">
+        <div><div class="csym" id="csym">Select a stock</div><div class="cname" id="cname">Search or tap any symbol below</div></div>
+        <div><div class="cprice" id="cprice"></div><div class="cchg" id="cchg"></div></div>
+      </div>
+      <div class="chart-wrap" id="chart-wrap">
+        <div class="chart-ph">📈<span>Select a stock to view chart</span></div>
+      </div>
+      <div class="cstats">
+        <div class="cst"><div class="cst-lbl">Open</div><div class="cst-val" id="cs-o">—</div></div>
+        <div class="cst"><div class="cst-lbl">High</div><div class="cst-val" id="cs-h">—</div></div>
+        <div class="cst"><div class="cst-lbl">Low</div><div class="cst-val" id="cs-l">—</div></div>
+        <div class="cst"><div class="cst-lbl">Prev Close</div><div class="cst-val" id="cs-p">—</div></div>
+      </div>
+    </div>
+    <div class="wl">
+      <div class="wl-head"><span class="wl-title">Watchlist</span><span style="font-size:11px;color:#aaa">Saved locally</span></div>
+      <div class="wl-add">
+        <input type="text" class="wl-input" id="wl-in" placeholder="Add ticker (e.g. AAPL)" maxlength="20"/>
+        <button class="wl-btn" onclick="wlAdd()">+ Add</button>
+      </div>
+      <div class="wl-items" id="wl-items"></div>
+    </div>
+  </div>
 
-    // ─── HELPERS ─────────────────────────────────────────────────────────────
-    const fmtP = n => {
-      if (n == null || isNaN(n)) return '—';
-      if (n > 10000) return '$' + Math.round(n).toLocaleString();
-      return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    };
-    const fmtB = n => {
-      if (!n) return '—';
-      if (n >= 1e12) return '$' + (n/1e12).toFixed(2) + 'T';
-      if (n >= 1e9)  return '$' + (n/1e9).toFixed(2)  + 'B';
-      if (n >= 1e6)  return '$' + (n/1e6).toFixed(2)  + 'M';
-      return '$' + Math.round(n).toLocaleString();
-    };
-    const sv = (id, val, cls) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.textContent = val ?? '—';
-      el.className = 'sv' + (cls ? ' ' + cls : '');
-    };
-    const setPct = (id, n) => {
-      if (n == null) return;
-      sv(id, (n >= 0 ? '+' : '') + n.toFixed(2) + '%', n >= 0 ? 'up' : 'down');
-    };
+  <!-- SEARCH -->
+  <div class="slabel">Stock Search</div>
+  <div class="search-bar">
+    <input type="text" class="search-in" id="srch" placeholder="Search ticker or company — AAPL, Tesla, NVDA..." autocomplete="off"/>
+    <button class="search-btn" onclick="doSearch()">Search</button>
+    <div class="sdrop" id="sdrop"></div>
+  </div>
+  <div class="quick">
+    <span class="ql">Quick:</span>
+    <button class="qb" onclick="pick('AAPL','Apple')">AAPL</button>
+    <button class="qb" onclick="pick('NVDA','NVIDIA')">NVDA</button>
+    <button class="qb" onclick="pick('MSFT','Microsoft')">MSFT</button>
+    <button class="qb" onclick="pick('TSLA','Tesla')">TSLA</button>
+    <button class="qb" onclick="pick('AMZN','Amazon')">AMZN</button>
+    <button class="qb" onclick="pick('META','Meta')">META</button>
+    <button class="qb" onclick="pick('GOOGL','Alphabet')">GOOGL</button>
+    <button class="qb" onclick="pick('JPM','JPMorgan')">JPM</button>
+    <button class="qb" onclick="pick('V','Visa')">V</button>
+    <button class="qb" onclick="pick('BINANCE:BTCUSDT','Bitcoin')">BTC</button>
+  </div>
 
-    // ─── MARKET TIME ─────────────────────────────────────────────────────────
-    function updateTime() {
-      const now = new Date();
-      const et  = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-      const h   = et.getHours(), m = et.getMinutes();
-      const isOpen = h >= 9 && (h < 16 || (h === 9 && m >= 30));
-      const isWeekday = et.getDay() > 0 && et.getDay() < 6;
-      const status = (isWeekday && isOpen) ? '🟢 Market Open' : '🔴 Market Closed';
-      document.getElementById('market-time').textContent = status + ' · ET ' + et.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-    }
-    updateTime();
-    setInterval(updateTime, 30000);
+  <!-- FULL STATS -->
+  <div id="full-stats" style="display:none;margin-bottom:20px">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="scard-head">Price Stats</div>
+        <div class="srow"><span class="sk">52W High</span><span class="sv" id="v-52h">—</span></div>
+        <div class="srow"><span class="sk">52W Low</span><span class="sv" id="v-52l">—</span></div>
+        <div class="srow"><span class="sk">From 52W High</span><span class="sv" id="v-f52h">—</span></div>
+        <div class="srow"><span class="sk">Volume</span><span class="sv" id="v-vol">—</span></div>
+        <div class="srow"><span class="sk">Avg Volume</span><span class="sv" id="v-avgvol">—</span></div>
+      </div>
+      <div class="stat-card"><div class="scard-head">Fundamentals</div>
+        <div class="srow"><span class="sk">Market Cap</span><span class="sv" id="v-mcap">—</span></div>
+        <div class="srow"><span class="sk">P/E Ratio</span><span class="sv" id="v-pe">—</span></div>
+        <div class="srow"><span class="sk">EPS (TTM)</span><span class="sv" id="v-eps">—</span></div>
+        <div class="srow"><span class="sk">Beta</span><span class="sv" id="v-beta">—</span></div>
+        <div class="srow"><span class="sk">Dividend Yield</span><span class="sv" id="v-div">—</span></div>
+      </div>
+      <div class="stat-card"><div class="scard-head">Performance</div>
+        <div class="srow"><span class="sk">Today</span><span class="sv" id="v-1d">—</span></div>
+        <div class="srow"><span class="sk">1 Week</span><span class="sv" id="v-1w">—</span></div>
+        <div class="srow"><span class="sk">1 Month</span><span class="sv" id="v-1m">—</span></div>
+        <div class="srow"><span class="sk">3 Months</span><span class="sv" id="v-3m">—</span></div>
+        <div class="srow"><span class="sk">1 Year</span><span class="sv" id="v-1y">—</span></div>
+      </div>
+      <div class="stat-card"><div class="scard-head">Company</div>
+        <div class="srow"><span class="sk">Sector</span><span class="sv" id="v-sector">—</span></div>
+        <div class="srow"><span class="sk">Industry</span><span class="sv" id="v-industry">—</span></div>
+        <div class="srow"><span class="sk">Employees</span><span class="sv" id="v-emp">—</span></div>
+        <div class="srow"><span class="sk">Exchange</span><span class="sv" id="v-exch">—</span></div>
+        <div class="srow"><span class="sk">Country</span><span class="sv" id="v-country">—</span></div>
+      </div>
+    </div>
+    <div class="about" id="about"><div class="about-title" id="about-title"></div><div class="about-body" id="about-body"></div><div class="about-tags" id="about-tags"></div></div>
+  </div>
 
-    // ─── STOCK LOOKUP LIST ───────────────────────────────────────────────────
-    const STOCKS = [
-      {t:'AAPL',n:'Apple Inc.'},{t:'MSFT',n:'Microsoft'},{t:'NVDA',n:'NVIDIA'},
-      {t:'AMZN',n:'Amazon'},{t:'META',n:'Meta Platforms'},{t:'GOOGL',n:'Alphabet'},
-      {t:'GOOG',n:'Alphabet C'},{t:'TSLA',n:'Tesla'},{t:'AVGO',n:'Broadcom'},
-      {t:'COST',n:'Costco'},{t:'NFLX',n:'Netflix'},{t:'AMD',n:'AMD'},
-      {t:'ADBE',n:'Adobe'},{t:'QCOM',n:'Qualcomm'},{t:'INTC',n:'Intel'},
-      {t:'CSCO',n:'Cisco'},{t:'ORCL',n:'Oracle'},{t:'CRM',n:'Salesforce'},
-      {t:'NOW',n:'ServiceNow'},{t:'INTU',n:'Intuit'},{t:'PANW',n:'Palo Alto Networks'},
-      {t:'CRWD',n:'CrowdStrike'},{t:'PLTR',n:'Palantir'},{t:'DDOG',n:'Datadog'},
-      {t:'SNOW',n:'Snowflake'},{t:'NET',n:'Cloudflare'},{t:'COIN',n:'Coinbase'},
-      {t:'JPM',n:'JPMorgan Chase'},{t:'BAC',n:'Bank of America'},{t:'WFC',n:'Wells Fargo'},
-      {t:'GS',n:'Goldman Sachs'},{t:'MS',n:'Morgan Stanley'},{t:'V',n:'Visa'},
-      {t:'MA',n:'Mastercard'},{t:'AXP',n:'American Express'},{t:'BRK-B',n:'Berkshire Hathaway'},
-      {t:'JNJ',n:'Johnson & Johnson'},{t:'UNH',n:'UnitedHealth'},{t:'LLY',n:'Eli Lilly'},
-      {t:'PFE',n:'Pfizer'},{t:'AMGN',n:'Amgen'},{t:'ABBV',n:'AbbVie'},
-      {t:'WMT',n:'Walmart'},{t:'TGT',n:'Target'},{t:'HD',n:'Home Depot'},
-      {t:'MCD',n:"McDonald's"},{t:'NKE',n:'Nike'},{t:'KO',n:'Coca-Cola'},
-      {t:'PEP',n:'PepsiCo'},{t:'PG',n:'Procter & Gamble'},{t:'DIS',n:'Disney'},
-      {t:'T',n:'AT&T'},{t:'VZ',n:'Verizon'},{t:'XOM',n:'Exxon Mobil'},
-      {t:'CVX',n:'Chevron'},{t:'BA',n:'Boeing'},{t:'CAT',n:'Caterpillar'},
-      {t:'GE',n:'GE Aerospace'},{t:'UBER',n:'Uber'},{t:'SQ',n:'Block Inc.'},
-      {t:'SHOP',n:'Shopify'},{t:'F',n:'Ford'},{t:'GM',n:'General Motors'},
-      {t:'RIVN',n:'Rivian'},{t:'AFRM',n:'Affirm'},{t:'HOOD',n:'Robinhood'},
-      {t:'SPY',n:'S&P 500 ETF'},{t:'QQQ',n:'NASDAQ ETF'},{t:'IWM',n:'Russell 2000 ETF'},
-      {t:'GLD',n:'Gold ETF'},{t:'SLV',n:'Silver ETF'},{t:'USO',n:'Oil ETF'},
-      {t:'TLT',n:'20-Year Treasury ETF'},{t:'VIXY',n:'VIX ETF'},
-      {t:'BINANCE:BTCUSDT',n:'Bitcoin USD'},{t:'BINANCE:ETHUSDT',n:'Ethereum USD'},
-    ];
+  <!-- COMMODITIES -->
+  <div class="slabel">Commodities &amp; Crypto</div>
+  <div class="comms">
+    <div class="comm" data-sym="GLD" onclick="pick('GLD','Gold ETF')"><div class="comm-name">Gold</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
+    <div class="comm" data-sym="SLV" onclick="pick('SLV','Silver ETF')"><div class="comm-name">Silver</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
+    <div class="comm" data-sym="USO" onclick="pick('USO','Oil ETF')"><div class="comm-name">Oil (WTI)</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
+    <div class="comm" data-sym="BINANCE:BTCUSDT" onclick="pick('BINANCE:BTCUSDT','Bitcoin')"><div class="comm-name">Bitcoin</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
+    <div class="comm" data-sym="BINANCE:ETHUSDT" onclick="pick('BINANCE:ETHUSDT','Ethereum')"><div class="comm-name">Ethereum</div><div class="comm-price">—</div><div class="comm-chg">—</div></div>
+  </div>
 
-    // ─── SEARCH ───────────────────────────────────────────────────────────────
-    const srch = document.getElementById('srch');
-    const drop  = document.getElementById('drop');
-    srch.addEventListener('input', () => {
-      const q = srch.value.trim().toUpperCase();
-      if (!q) { drop.classList.remove('open'); return; }
-      const hits = STOCKS.filter(s => s.t.startsWith(q) || s.n.toUpperCase().includes(q)).slice(0, 8);
-      if (!hits.length) { drop.classList.remove('open'); return; }
-      drop.innerHTML = hits.map(s => `<div class="drop-item" onclick="selectStock('${s.t}','${s.n.replace(/'/g,"\\'")}')"><span class="drop-t">${s.t}</span><span class="drop-n">${s.n}</span></div>`).join('');
-      drop.classList.add('open');
+  <!-- MOVERS -->
+  <div class="slabel">Top Movers Today</div>
+  <div class="movers">
+    <div class="mcard"><div class="mcard-head"><span>Gainers</span><span>% Up</span></div><div id="gainers"></div></div>
+    <div class="mcard"><div class="mcard-head"><span>Losers</span><span>% Down</span></div><div id="losers"></div></div>
+    <div class="mcard"><div class="mcard-head"><span>Most Active</span><span>Volume</span></div><div id="active"></div></div>
+  </div>
+
+  <!-- NEWS -->
+  <div class="slabel">Market News</div>
+  <div class="news" id="news"><div style="padding:20px;color:#aaa;font-size:13px">Loading news...</div></div>
+
+</div>
+</div>
+<footer class="footer"><div class="foot-inner"><span class="foot-copy">© 2026 hpkreutz.com — Hays, KS · Data via Finnhub</span><div class="foot-links"><a href="markets.html">Markets</a><a href="tools.html">Tools</a><a href="sports.html">Sports</a><a href="fitness.html">Fitness</a><a href="contact.html">Contact</a></div></div></footer>
+<script>
+var KEY='d7775lhr01qp6afkfkt0d7775lhr01qp6afkfktg', FH='https://finnhub.io/api/v1';
+var get=function(url){return fetch(url).then(function(r){return r.json();}).catch(function(){return null;});};
+var fP=function(n){if(n==null||isNaN(n))return'—';if(n>10000)return'$'+Math.round(n).toLocaleString();return'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var fB=function(n){if(!n)return'—';if(n>=1e12)return'$'+(n/1e12).toFixed(2)+'T';if(n>=1e9)return'$'+(n/1e9).toFixed(2)+'B';if(n>=1e6)return'$'+(n/1e6).toFixed(2)+'M';return'$'+Math.round(n).toLocaleString();};
+var fN=function(n){return n?n.toLocaleString():'—';};
+var sv=function(id,v,cls){var e=document.getElementById(id);if(!e)return;e.textContent=v||'—';e.className='sv'+(cls?' '+cls:'');};
+var pct=function(id,n){if(n==null)return;sv(id,(n>=0?'+':'')+n.toFixed(2)+'%',n>=0?'up':'down');};
+
+// Market time
+function mktime(){
+  var et=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));
+  var h=et.getHours(),m=et.getMinutes(),d=et.getDay();
+  var open=d>0&&d<6&&(h>9||(h===9&&m>=30))&&h<16;
+  document.getElementById('mkt-time').textContent=(open?'🟢 Market Open':'🔴 Market Closed')+' · ET '+et.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+}
+mktime(); setInterval(mktime,30000);
+
+// Stocks list
+var STOCKS=[
+  {t:'AAPL',n:'Apple Inc.'},{t:'MSFT',n:'Microsoft'},{t:'NVDA',n:'NVIDIA'},{t:'AMZN',n:'Amazon'},
+  {t:'META',n:'Meta Platforms'},{t:'GOOGL',n:'Alphabet'},{t:'TSLA',n:'Tesla'},{t:'AVGO',n:'Broadcom'},
+  {t:'NFLX',n:'Netflix'},{t:'AMD',n:'AMD'},{t:'ADBE',n:'Adobe'},{t:'QCOM',n:'Qualcomm'},
+  {t:'INTC',n:'Intel'},{t:'ORCL',n:'Oracle'},{t:'CRM',n:'Salesforce'},{t:'NOW',n:'ServiceNow'},
+  {t:'CRWD',n:'CrowdStrike'},{t:'PLTR',n:'Palantir'},{t:'DDOG',n:'Datadog'},{t:'NET',n:'Cloudflare'},
+  {t:'COIN',n:'Coinbase'},{t:'JPM',n:'JPMorgan Chase'},{t:'BAC',n:'Bank of America'},{t:'WFC',n:'Wells Fargo'},
+  {t:'GS',n:'Goldman Sachs'},{t:'V',n:'Visa'},{t:'MA',n:'Mastercard'},{t:'BRK-B',n:'Berkshire Hathaway'},
+  {t:'JNJ',n:'Johnson & Johnson'},{t:'UNH',n:'UnitedHealth'},{t:'LLY',n:'Eli Lilly'},{t:'PFE',n:'Pfizer'},
+  {t:'WMT',n:'Walmart'},{t:'TGT',n:'Target'},{t:'HD',n:'Home Depot'},{t:'MCD',n:"McDonald's"},
+  {t:'NKE',n:'Nike'},{t:'KO',n:'Coca-Cola'},{t:'PEP',n:'PepsiCo'},{t:'DIS',n:'Disney'},
+  {t:'XOM',n:'Exxon Mobil'},{t:'CVX',n:'Chevron'},{t:'BA',n:'Boeing'},{t:'UBER',n:'Uber'},
+  {t:'SHOP',n:'Shopify'},{t:'RIVN',n:'Rivian'},{t:'F',n:'Ford'},{t:'GM',n:'General Motors'},
+  {t:'SPY',n:'S&P 500 ETF'},{t:'QQQ',n:'NASDAQ ETF'},{t:'IWM',n:'Russell 2000 ETF'},
+  {t:'GLD',n:'Gold ETF'},{t:'SLV',n:'Silver ETF'},{t:'USO',n:'Oil ETF'},{t:'TLT',n:'20Y Treasury'},
+  {t:'BINANCE:BTCUSDT',n:'Bitcoin USD'},{t:'BINANCE:ETHUSDT',n:'Ethereum USD'}
+];
+
+// Search
+var srch=document.getElementById('srch'), sdrop=document.getElementById('sdrop');
+srch.addEventListener('input',function(){
+  var q=srch.value.trim().toUpperCase(); if(!q){sdrop.classList.remove('open');return;}
+  var hits=STOCKS.filter(function(s){return s.t.startsWith(q)||s.n.toUpperCase().includes(q);}).slice(0,8);
+  if(!hits.length){sdrop.classList.remove('open');return;}
+  sdrop.innerHTML=hits.map(function(s){return '<div class="sdrop-item" onclick="pick(\''+s.t+'\',\''+s.n.replace(/'/g,"\\'")+'\')"><span class="sd-t">'+s.t+'</span><span class="sd-n">'+s.n+'</span></div>';}).join('');
+  sdrop.classList.add('open');
+});
+srch.addEventListener('keydown',function(e){if(e.key==='Enter')doSearch();});
+document.addEventListener('click',function(e){if(!e.target.closest('.search-bar'))sdrop.classList.remove('open');});
+function doSearch(){var q=srch.value.trim().toUpperCase();if(!q)return;sdrop.classList.remove('open');var m=STOCKS.find(function(s){return s.t===q;});pick(q,m?m.n:q);}
+
+// Pick stock
+async function pick(sym,name){
+  document.querySelectorAll('.idx,.comm,.wl-item').forEach(function(e){e.classList.remove('on');});
+  var ac=document.querySelector('[data-sym="'+sym+'"]'); if(ac)ac.classList.add('on');
+  document.getElementById('csym').textContent=sym.includes(':')?sym.split(':')[1]:sym;
+  document.getElementById('cname').textContent=name||sym;
+  document.getElementById('cprice').textContent='';
+  document.getElementById('cchg').textContent='';
+  loadChart(sym);
+  localStorage.setItem('hpk-last',JSON.stringify({sym:sym,name:name}));
+  var q=await get(FH+'/quote?symbol='+encodeURIComponent(sym)+'&token='+KEY);
+  if(!q||!q.c)return;
+  var price=q.c,prev=q.pc,chg=q.d||(price-prev),chgp=q.dp||((chg/prev)*100),up=chg>=0;
+  document.getElementById('cprice').textContent=fP(price);
+  var cel=document.getElementById('cchg');
+  cel.textContent=(up?'+':'')+chg.toFixed(2)+' ('+(up?'+':'')+chgp.toFixed(2)+'%) today';
+  cel.className='cchg '+(up?'up':'down');
+  document.getElementById('cs-o').textContent=fP(q.o);
+  document.getElementById('cs-h').textContent=fP(q.h);
+  document.getElementById('cs-l').textContent=fP(q.l);
+  document.getElementById('cs-p').textContent=fP(prev);
+  pct('v-1d',chgp);
+  document.getElementById('full-stats').style.display='block';
+  loadProfile(sym); loadMetrics(sym,price);
+}
+
+// TradingView chart
+function loadChart(sym){
+  var wrap=document.getElementById('chart-wrap');
+  var tvSym=sym==='BRK-B'?'NYSE:BRK.B':sym;
+  wrap.innerHTML='<iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tv1&symbol='+encodeURIComponent(tvSym)+'&interval=D&hidesidetoolbar=0&hidetoptoolbar=0&symboledit=1&saveimage=0&theme=light&style=1&timezone=America%2FChicago&withdateranges=1&locale=en" allowtransparency="true" frameborder="0" scrolling="no"></iframe>';
+}
+
+// Profile
+async function loadProfile(sym){
+  var d=await get(FH+'/stock/profile2?symbol='+encodeURIComponent(sym)+'&token='+KEY);
+  if(!d||!d.name)return;
+  document.getElementById('cname').textContent=d.name;
+  sv('v-sector',d.finnhubIndustry||'—'); sv('v-industry',d.finnhubIndustry||'—');
+  sv('v-emp',d.employeeTotal?((+d.employeeTotal).toLocaleString()):'—');
+  sv('v-mcap',d.marketCapitalization?fB(d.marketCapitalization*1e6):'—');
+  sv('v-exch',d.exchange||'—'); sv('v-country',d.country||'—');
+  if(d.name){
+    document.getElementById('about-title').textContent=d.name;
+    document.getElementById('about-body').innerHTML=d.weburl?('<a href="'+d.weburl+'" target="_blank" style="color:#c8401a">'+d.weburl+'</a>'):'';
+    var tags=[d.finnhubIndustry,d.exchange,d.country].filter(Boolean);
+    document.getElementById('about-tags').innerHTML=tags.map(function(t){return '<span class="atag">'+t+'</span>';}).join('');
+    document.getElementById('about').style.display='block';
+  }
+}
+
+// Metrics
+async function loadMetrics(sym,price){
+  var d=await get(FH+'/stock/metric?symbol='+encodeURIComponent(sym)+'&metric=all&token='+KEY);
+  var m=d&&d.metric?d.metric:{};
+  sv('v-pe',m['peBasicExclExtraTTM']?m['peBasicExclExtraTTM'].toFixed(2):'—');
+  sv('v-eps',m['epsBasicExclExtraAnnual']?'$'+m['epsBasicExclExtraAnnual'].toFixed(2):'—');
+  sv('v-beta',m['beta']?m['beta'].toFixed(2):'—');
+  sv('v-div',m['currentDividendYieldTTM']?m['currentDividendYieldTTM'].toFixed(2)+'%':'N/A');
+  sv('v-vol',m['10DayAverageTradingVolume']?fN(Math.round(m['10DayAverageTradingVolume']*1e6)):'—');
+  sv('v-avgvol',m['3MonthAverageTradingVolume']?fN(Math.round(m['3MonthAverageTradingVolume']*1e6)):'—');
+  var h52=m['52WeekHigh'],l52=m['52WeekLow'];
+  sv('v-52h',h52?fP(h52):'—'); sv('v-52l',l52?fP(l52):'—');
+  if(h52&&price)pct('v-f52h',((price-h52)/h52)*100);
+  if(m['52WeekPriceReturnDaily'])pct('v-1y',m['52WeekPriceReturnDaily']);
+  if(m['13WeekPriceReturnDaily'])pct('v-3m',m['13WeekPriceReturnDaily']);
+  if(m['4WeekPriceReturnDaily'])pct('v-1m',m['4WeekPriceReturnDaily']);
+  if(m['5DayPriceReturnDaily'])pct('v-1w',m['5DayPriceReturnDaily']);
+}
+
+// Watchlist
+var wl=JSON.parse(localStorage.getItem('hpk-wl')||'["AAPL","NVDA","TSLA","MSFT","META","JPM","BINANCE:BTCUSDT"]');
+function saveWL(){localStorage.setItem('hpk-wl',JSON.stringify(wl));}
+function wlAdd(){var v=document.getElementById('wl-in').value.trim().toUpperCase();if(!v||wl.includes(v))return;wl.unshift(v);saveWL();document.getElementById('wl-in').value='';renderWL();}
+document.getElementById('wl-in').addEventListener('keydown',function(e){if(e.key==='Enter')wlAdd();});
+function wlRemove(sym){wl=wl.filter(function(s){return s!==sym;});saveWL();renderWL();}
+async function renderWL(){
+  var list=document.getElementById('wl-items');
+  if(!wl.length){list.innerHTML='<div class="wl-empty">No stocks yet. Add a ticker above.</div>';return;}
+  list.innerHTML=wl.map(function(sym){
+    var lbl=sym.includes(':')?sym.split(':')[1]:sym;
+    return '<div class="wl-item" data-sym="'+sym+'" onclick="pick(\''+sym+'\',\''+lbl+'\')"><div><div class="wi-sym">'+lbl+'</div><div class="wi-name" id="wn-'+sym.replace(/[^a-z0-9]/gi,'_')+'">—</div></div><div class="wi-right"><div class="wi-price" id="wp-'+sym.replace(/[^a-z0-9]/gi,'_')+'">—</div><div class="wi-chg" id="wc-'+sym.replace(/[^a-z0-9]/gi,'_')+'">—</div></div><button class="wi-rm" onclick="event.stopPropagation();wlRemove(\''+sym+'\')">×</button></div>';
+  }).join('');
+  for(var i=0;i<wl.length;i++){
+    var sym=wl[i]; (function(s){
+      get(FH+'/quote?symbol='+encodeURIComponent(s)+'&token='+KEY).then(function(q){
+        if(!q||!q.c)return;
+        var id=s.replace(/[^a-z0-9]/gi,'_'),up=q.dp>=0;
+        var pe=document.getElementById('wp-'+id),ce=document.getElementById('wc-'+id);
+        if(pe)pe.textContent=fP(q.c);
+        if(ce){ce.textContent=(up?'+':'')+((q.dp||0).toFixed(2))+'%';ce.className='wi-chg '+(up?'up':'down');}
+      });
+    })(sym);
+  }
+}
+
+// Indices on load
+async function loadIndices(){
+  var syms=['SPY','DIA','QQQ','IWM','VIXY','TLT'];
+  for(var i=0;i<syms.length;i++){
+    (function(sym){
+      get(FH+'/quote?symbol='+sym+'&token='+KEY).then(function(q){
+        if(!q||!q.c)return;
+        var card=document.querySelector('.idx[data-sym="'+sym+'"]');
+        if(!card)return;
+        var up=q.dp>=0;
+        card.querySelector('.idx-price').textContent=fP(q.c);
+        var cel=card.querySelector('.idx-chg');
+        cel.textContent=(up?'+':'')+((q.dp||0).toFixed(2))+'%';
+        cel.className='idx-chg '+(up?'up':'down');
+      });
+    })(syms[i]);
+  }
+}
+
+// Commodities
+async function loadComms(){
+  var syms=['GLD','SLV','USO','BINANCE:BTCUSDT','BINANCE:ETHUSDT'];
+  for(var i=0;i<syms.length;i++){
+    (function(sym){
+      get(FH+'/quote?symbol='+encodeURIComponent(sym)+'&token='+KEY).then(function(q){
+        if(!q||!q.c)return;
+        var card=document.querySelector('.comm[data-sym="'+sym+'"]');
+        if(!card)return;
+        var up=q.dp>=0;
+        card.querySelector('.comm-price').textContent=fP(q.c);
+        var cel=card.querySelector('.comm-chg');
+        cel.textContent=(up?'+':'')+((q.dp||0).toFixed(2))+'%';
+        cel.className='comm-chg '+(up?'up':'down');
+      });
+    })(syms[i]);
+  }
+}
+
+// Movers
+var MOVERS=['AAPL','NVDA','MSFT','AMZN','META','TSLA','GOOGL','JPM','AMD','NFLX','COIN','PLTR','CRWD','UBER','SQ','SHOP','AFRM','RIVN','HOOD','NET'];
+var MOVER_NAMES={'AAPL':'Apple','NVDA':'NVIDIA','MSFT':'Microsoft','AMZN':'Amazon','META':'Meta','TSLA':'Tesla','GOOGL':'Alphabet','JPM':'JPMorgan','AMD':'AMD','NFLX':'Netflix','COIN':'Coinbase','PLTR':'Palantir','CRWD':'CrowdStrike','UBER':'Uber','SQ':'Block','SHOP':'Shopify','AFRM':'Affirm','RIVN':'Rivian','HOOD':'Robinhood','NET':'Cloudflare'};
+async function loadMovers(){
+  var results=[];
+  var promises=MOVERS.map(function(sym){
+    return get(FH+'/quote?symbol='+sym+'&token='+KEY).then(function(q){
+      if(q&&q.c&&q.dp!=null)results.push({sym:sym,name:MOVER_NAMES[sym]||sym,price:q.c,chg:q.dp,vol:q.v||0});
     });
-    srch.addEventListener('keydown', e => { if (e.key === 'Enter') handleSearch(); });
-    document.addEventListener('click', e => { if (!e.target.closest('.search-row')) drop.classList.remove('open'); });
-    function handleSearch() {
-      const q = srch.value.trim().toUpperCase();
-      if (!q) return;
-      drop.classList.remove('open');
-      const m = STOCKS.find(s => s.t === q);
-      selectStock(q, m?.n || q);
-    }
+  });
+  await Promise.all(promises);
+  var sorted=[].concat(results).sort(function(a,b){return b.chg-a.chg;});
+  var row=function(r){return '<div class="mrow" onclick="pick(\''+r.sym+'\',\''+r.name+'\')"><span class="msym">'+r.sym+'</span><span class="mname">'+r.name+'</span><span class="mprice">'+fP(r.price)+'</span><span class="mchg '+(r.chg>=0?'up':'down')+'">'+(r.chg>=0?'+':'')+r.chg.toFixed(2)+'%</span></div>';};
+  document.getElementById('gainers').innerHTML=sorted.slice(0,6).map(row).join('');
+  document.getElementById('losers').innerHTML=sorted.slice(-6).reverse().map(row).join('');
+  document.getElementById('active').innerHTML=[].concat(results).sort(function(a,b){return b.vol-a.vol;}).slice(0,6).map(row).join('');
+}
 
-    // ─── SELECT STOCK ─────────────────────────────────────────────────────────
-    async function selectStock(sym, name) {
-      // Update active states
-      document.querySelectorAll('.idx-card, .comm-card, .wl-item').forEach(el => el.classList.remove('active'));
-      const activeCard = document.querySelector(`[data-sym="${sym}"]`);
-      if (activeCard) activeCard.classList.add('active');
+// News
+async function loadNews(){
+  var d=await get(FH+'/news?category=general&token='+KEY);
+  var grid=document.getElementById('news');
+  if(!d||!d.length){grid.innerHTML='<div style="padding:16px;color:#aaa;font-size:13px">No news available.</div>';return;}
+  grid.innerHTML=d.slice(0,8).map(function(n){
+    var t=new Date(n.datetime*1000).toLocaleDateString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    return '<a class="ncard" href="'+n.url+'" target="_blank"><div class="nsrc">'+(n.source||'News')+'</div><div class="ntitle">'+n.headline+'</div><div class="ntime">'+t+'</div></a>';
+  }).join('');
+}
 
-      // Update chart header immediately
-      document.getElementById('c-sym').textContent  = sym.includes(':') ? sym.split(':')[1] : sym;
-      document.getElementById('c-name').textContent = name || sym;
-      document.getElementById('c-price').textContent = '';
-      document.getElementById('c-chg').textContent   = '';
+// Ticker
+var TICK_SYMS=['AAPL','MSFT','NVDA','AMZN','META','TSLA','GOOGL','JPM','V','AMD','NFLX','SPY','QQQ','COIN','PLTR','GLD','BINANCE:BTCUSDT','CRWD','UBER'];
+async function loadTicker(){
+  var track=document.getElementById('ticker'), items=[];
+  var promises=TICK_SYMS.map(function(sym){
+    return get(FH+'/quote?symbol='+encodeURIComponent(sym)+'&token='+KEY).then(function(q){
+      if(!q||!q.c)return;
+      var up=q.dp>=0,lbl=sym.includes(':')?sym.split(':')[1]:sym;
+      items.push('<div class="tick" onclick="pick(\''+sym+'\',\''+lbl+'\')"><span class="tick-sym">'+lbl+'</span><span class="tick-price">'+fP(q.c)+'</span><span class="tick-chg '+(up?'up':'down')+'">'+(up?'▲':'▼')+' '+Math.abs(q.dp||0).toFixed(2)+'%</span></div>');
+    });
+  });
+  await Promise.all(promises);
+  track.innerHTML=items.join('')+items.join('');
+}
 
-      // Load TradingView chart via iframe
-      loadTVChart(sym);
+// Restore last stock
+function restoreLast(){
+  try{var l=JSON.parse(localStorage.getItem('hpk-last'));if(l&&l.sym)pick(l.sym,l.name);}catch(e){}
+}
 
-      // Fetch quote
-      const q = await api(`${FH}/quote?symbol=${encodeURIComponent(sym)}&token=${KEY}`);
-      if (q && q.c) {
-        const price = q.c, prev = q.pc;
-        const chg = q.d ?? (price - prev);
-        const chgPct = q.dp ?? ((chg/prev)*100);
-        const up = chg >= 0;
-        document.getElementById('c-price').textContent = fmtP(price);
-        const cel = document.getElementById('c-chg');
-        cel.textContent = (up?'+':'') + chg.toFixed(2) + ' (' + (up?'+':'') + chgPct.toFixed(2) + '%)';
-        cel.className = 'chart-chg ' + (up?'up':'down');
-        sv('c-open', fmtP(q.o));
-        sv('c-high', fmtP(q.h));
-        sv('c-low',  fmtP(q.l));
-        sv('c-prev', fmtP(prev));
-        setPct('v-1d', chgPct);
-        document.getElementById('full-stats').style.display = 'grid';
-      }
-
-      // Load profile & metrics
-      loadProfile(sym);
-      loadMetrics(sym, q?.c);
-      // Save last viewed to localStorage
-      localStorage.setItem('hpk-last-stock', JSON.stringify({ sym, name }));
-    }
-
-    // ─── TRADINGVIEW IFRAME CHART ─────────────────────────────────────────────
-    function loadTVChart(sym) {
-      const wrap = document.getElementById('chart-iframe-wrap');
-      document.getElementById('chart-placeholder')?.remove();
-
-      // Map symbol for TradingView
-      let tvSym = sym;
-      if (sym === 'BRK-B')              tvSym = 'NYSE:BRK.B';
-      else if (sym.includes(':'))        tvSym = sym; // already exchange:symbol
-      else                               tvSym = sym; // TradingView auto-resolves
-
-      wrap.innerHTML = `<iframe
-        src="https://s.tradingview.com/widgetembed/?frameElementId=tv_chart&symbol=${encodeURIComponent(tvSym)}&interval=D&hidesidetoolbar=0&hidetoptoolbar=0&symboledit=1&saveimage=0&toolbarbg=f5f2eb&studies=[]&theme=light&style=1&timezone=America%2FChicago&withdateranges=1&showpopupbutton=0&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&showpopupbutton=0&locale=en&utm_source=hpkreutz.com"
-        style="width:100%;height:100%;border:none;"
-        allowtransparency="true"
-        frameborder="0"
-        scrolling="no">
-      </iframe>`;
-    }
-
-    // ─── PROFILE ─────────────────────────────────────────────────────────────
-    async function loadProfile(sym) {
-      const d = await api(`${FH}/stock/profile2?symbol=${encodeURIComponent(sym)}&token=${KEY}`);
-      if (!d || !d.name) return;
-      if (d.name) document.getElementById('c-name').textContent = d.name;
-      sv('v-sector',   d.finnhubIndustry || '—');
-      sv('v-industry', d.finnhubIndustry || '—');
-      sv('v-emp',      d.employeeTotal ? (+d.employeeTotal).toLocaleString() : '—');
-      sv('v-mcap',     d.marketCapitalization ? fmtB(d.marketCapitalization * 1e6) : '—');
-      sv('v-exch',     d.exchange || '—');
-      if (d.name) {
-        document.getElementById('about-head').textContent = d.name;
-        document.getElementById('about-body').innerHTML = d.weburl
-          ? `<a href="${d.weburl}" target="_blank" style="color:var(--accent)">${d.weburl}</a> &nbsp;·&nbsp; ${d.exchange || ''} &nbsp;·&nbsp; ${d.country || ''}`
-          : `${d.exchange || ''} · ${d.country || ''}`;
-        const tags = [d.finnhubIndustry, d.exchange, d.country, d.currency].filter(Boolean);
-        document.getElementById('about-tags').innerHTML = tags.map(t => `<span class="a-tag">${t}</span>`).join('');
-        document.getElementById('about-card').style.display = 'block';
-      }
-    }
-
-    // ─── METRICS ─────────────────────────────────────────────────────────────
-    async function loadMetrics(sym, price) {
-      const d = await api(`${FH}/stock/metric?symbol=${encodeURIComponent(sym)}&metric=all&token=${KEY}`);
-      const m = d?.metric || {};
-      sv('v-pe',   m['peBasicExclExtraTTM']    ? m['peBasicExclExtraTTM'].toFixed(2)    : '—');
-      sv('v-eps',  m['epsBasicExclExtraAnnual'] ? '$'+m['epsBasicExclExtraAnnual'].toFixed(2) : '—');
-      sv('v-beta', m['beta']                    ? m['beta'].toFixed(2)                  : '—');
-      sv('v-pb',   m['pbAnnual']                ? m['pbAnnual'].toFixed(2)               : '—');
-      sv('v-div',  m['currentDividendYieldTTM'] ? m['currentDividendYieldTTM'].toFixed(2)+'%' : 'N/A');
-      sv('v-vol',  m['10DayAverageTradingVolume'] ? (m['10DayAverageTradingVolume']*1e6).toLocaleString(undefined,{maximumFractionDigits:0}) : '—');
-      sv('v-avgvol', m['3MonthAverageTradingVolume'] ? (m['3MonthAverageTradingVolume']*1e6).toLocaleString(undefined,{maximumFractionDigits:0}) : '—');
-      sv('v-rev',  m['revenuePerShareAnnual']   ? '$'+m['revenuePerShareAnnual'].toFixed(2)+'/sh' : '—');
-      sv('v-margin', m['netProfitMarginAnnual'] ? m['netProfitMarginAnnual'].toFixed(1)+'%' : '—');
-      const hi52 = m['52WeekHigh'], lo52 = m['52WeekLow'];
-      sv('v-52h', hi52 ? fmtP(hi52) : '—');
-      sv('v-52l', lo52 ? fmtP(lo52) : '—');
-      if (hi52 && price) setPct('v-f52h', ((price-hi52)/hi52)*100);
-      if (lo52 && price) setPct('v-f52l', ((price-lo52)/lo52)*100);
-      if (m['52WeekPriceReturnDaily']) setPct('v-1y', m['52WeekPriceReturnDaily']);
-      if (m['13WeekPriceReturnDaily']) setPct('v-3m', m['13WeekPriceReturnDaily']);
-      if (m['4WeekPriceReturnDaily'])  setPct('v-1m', m['4WeekPriceReturnDaily']);
-      if (m['5DayPriceReturnDaily'])   setPct('v-1w', m['5DayPriceReturnDaily']);
-      if (m['26WeekPriceReturnDaily']) setPct('v-6m', m['26WeekPriceReturnDaily']);
-    }
-
-    // ─── WATCHLIST ────────────────────────────────────────────────────────────
-    let watchlist = JSON.parse(localStorage.getItem('hpk-watchlist') || '["AAPL","NVDA","TSLA","MSFT","AMZN","META","GOOGL","BINANCE:BTCUSDT"]');
-
-    async function renderWatchlist() {
-      const list = document.getElementById('wl-list');
-      if (!watchlist.length) { list.innerHTML = '<div class="wl-empty">No stocks added yet.</div>'; return; }
-      list.innerHTML = watchlist.map(sym => `
-        <div class="wl-item" data-sym="${sym}" onclick="selectStock('${sym}','${sym}')">
-          <div>
-            <div class="wl-sym">${sym.includes(':') ? sym.split(':')[1] : sym}</div>
-            <div class="wl-name" id="wl-name-${sym.replace(/[^a-zA-Z0-9]/g,'_')}">—</div>
-          </div>
-          <div class="wl-right">
-            <div class="wl-price" id="wl-p-${sym.replace(/[^a-zA-Z0-9]/g,'_')}">—</div>
-            <div class="wl-chg"   id="wl-c-${sym.replace(/[^a-zA-Z0-9]/g,'_')}">—</div>
-          </div>
-          <button class="wl-remove" onclick="event.stopPropagation();removeFromWatchlist('${sym}')">×</button>
-        </div>`).join('');
-
-      // Load prices for each
-      for (const sym of watchlist) {
-        const id  = sym.replace(/[^a-zA-Z0-9]/g,'_');
-        const q   = await api(`${FH}/quote?symbol=${encodeURIComponent(sym)}&token=${KEY}`);
-        if (!q || !q.c) continue;
-        const up  = q.dp >= 0;
-        const el  = document.getElementById('wl-p-' + id);
-        const cel = document.getElementById('wl-c-' + id);
-        if (el)  el.textContent  = fmtP(q.c);
-        if (cel) { cel.textContent = (up?'+':'') + (q.dp||0).toFixed(2) + '%'; cel.className = 'wl-chg ' + (up?'up':'down'); }
-        // Try to get name
-        const prof = await api(`${FH}/stock/profile2?symbol=${encodeURIComponent(sym)}&token=${KEY}`);
-        const nel  = document.getElementById('wl-name-' + id);
-        if (nel && prof?.name) nel.textContent = prof.name;
-      }
-    }
-
-    function saveWatchlist() { localStorage.setItem('hpk-watchlist', JSON.stringify(watchlist)); }
-
-    function addToWatchlist() {
-      const val = document.getElementById('wl-input').value.trim().toUpperCase();
-      if (!val || watchlist.includes(val)) return;
-      watchlist.unshift(val);
-      saveWatchlist();
-      document.getElementById('wl-input').value = '';
-      renderWatchlist();
-    }
-    document.getElementById('wl-input').addEventListener('keydown', e => { if (e.key === 'Enter') addToWatchlist(); });
-
-    function removeFromWatchlist(sym) {
-      watchlist = watchlist.filter(s => s !== sym);
-      saveWatchlist();
-      renderWatchlist();
-    }
-
-    // ─── INDICES ─────────────────────────────────────────────────────────────
-    async function loadIndices() {
-      const cards = document.querySelectorAll('.idx-card[data-sym]');
-      for (const card of cards) {
-        const sym = card.dataset.sym;
-        const q   = await api(`${FH}/quote?symbol=${sym}&token=${KEY}`);
-        if (!q || !q.c) continue;
-        const up  = q.dp >= 0;
-        card.querySelector('.idx-price').textContent = fmtP(q.c);
-        const cel = card.querySelector('.idx-chg');
-        cel.textContent = (up?'+':'') + (q.dp||0).toFixed(2) + '%';
-        cel.className   = 'idx-chg ' + (up?'up':'down');
-      }
-    }
-
-    // ─── COMMODITIES ─────────────────────────────────────────────────────────
-    async function loadCommodities() {
-      for (const card of document.querySelectorAll('.comm-card[data-sym]')) {
-        const sym = card.dataset.sym;
-        const q   = await api(`${FH}/quote?symbol=${encodeURIComponent(sym)}&token=${KEY}`);
-        if (!q || !q.c) continue;
-        const up  = q.dp >= 0;
-        card.querySelector('.comm-price').textContent = fmtP(q.c);
-        const cel = card.querySelector('.comm-chg');
-        cel.textContent = (up?'+':'') + (q.dp||0).toFixed(2) + '%';
-        cel.className   = 'comm-chg ' + (up?'up':'down');
-      }
-    }
-
-    // ─── MOVERS ──────────────────────────────────────────────────────────────
-    const MOVER_LIST = [
-      {t:'AAPL',n:'Apple'},{t:'NVDA',n:'NVIDIA'},{t:'MSFT',n:'Microsoft'},
-      {t:'AMZN',n:'Amazon'},{t:'META',n:'Meta'},{t:'TSLA',n:'Tesla'},
-      {t:'GOOGL',n:'Alphabet'},{t:'JPM',n:'JPMorgan'},{t:'AMD',n:'AMD'},
-      {t:'NFLX',n:'Netflix'},{t:'COIN',n:'Coinbase'},{t:'PLTR',n:'Palantir'},
-      {t:'CRWD',n:'CrowdStrike'},{t:'UBER',n:'Uber'},{t:'SQ',n:'Block'},
-      {t:'SHOP',n:'Shopify'},{t:'AFRM',n:'Affirm'},{t:'RIVN',n:'Rivian'},
-      {t:'HOOD',n:'Robinhood'},{t:'NET',n:'Cloudflare'},
-    ];
-    async function loadMovers() {
-      const results = [];
-      for (const s of MOVER_LIST) {
-        const q = await api(`${FH}/quote?symbol=${s.t}&token=${KEY}`);
-        if (q && q.c && q.dp != null) results.push({ ...s, price: q.c, chg: q.dp, vol: q.v||0 });
-      }
-      const sorted  = [...results].sort((a,b) => b.chg - a.chg);
-      const gainers  = sorted.slice(0, 6);
-      const losers   = sorted.slice(-6).reverse();
-      const active   = [...results].sort((a,b) => b.vol - a.vol).slice(0, 6);
-      const row = item => `<div class="mover-row" onclick="selectStock('${item.t}','${item.n}')">
-        <span class="mover-sym">${item.t}</span>
-        <span class="mover-name">${item.n}</span>
-        <span class="mover-price">${fmtP(item.price)}</span>
-        <span class="mover-chg ${item.chg>=0?'up':'down'}">${(item.chg>=0?'+':'')+item.chg.toFixed(2)}%</span>
-      </div>`;
-      document.getElementById('gainers-list').innerHTML = gainers.map(row).join('');
-      document.getElementById('losers-list').innerHTML  = losers.map(row).join('');
-      document.getElementById('active-list').innerHTML  = active.map(row).join('');
-    }
-
-    // ─── NEWS ─────────────────────────────────────────────────────────────────
-    async function loadNews() {
-      const d    = await api(`${FH}/news?category=general&token=${KEY}`);
-      const grid = document.getElementById('news-grid');
-      if (!d || !d.length) { grid.innerHTML = '<div style="color:var(--ink3);font-size:13px;">No news available.</div>'; return; }
-      grid.innerHTML = d.slice(0,8).map(n => {
-        const t = new Date(n.datetime*1000).toLocaleDateString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
-        return `<a class="news-card" href="${n.url}" target="_blank">
-          <div class="news-src">${n.source||'News'}</div>
-          <div class="news-title">${n.headline}</div>
-          <div class="news-time">${t}</div>
-        </a>`;
-      }).join('');
-    }
-
-    // ─── SCROLLING TICKER ─────────────────────────────────────────────────────
-    const TICKER_LIST = ['AAPL','MSFT','NVDA','AMZN','META','TSLA','GOOGL','JPM','V','AMD',
-      'NFLX','SPY','QQQ','COIN','PLTR','GLD','BINANCE:BTCUSDT','BINANCE:ETHUSDT','USO','CRWD','UBER'];
-    async function loadTicker() {
-      const track = document.getElementById('ticker-track');
-      const items = [];
-      for (const sym of TICKER_LIST) {
-        const q = await api(`${FH}/quote?symbol=${encodeURIComponent(sym)}&token=${KEY}`);
-        if (!q || !q.c) continue;
-        const up  = q.dp >= 0;
-        const lbl = sym.includes(':') ? sym.split(':')[1] : sym;
-        items.push(`<div class="tick-item" onclick="selectStock('${sym}','${lbl}')">
-          <span class="tick-sym">${lbl}</span>
-          <span class="tick-price">${fmtP(q.c)}</span>
-          <span class="tick-chg ${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(q.dp||0).toFixed(2)}%</span>
-        </div>`);
-      }
-      // Duplicate for seamless loop
-      track.innerHTML = items.join('') + items.join('');
-    }
-
-    // ─── RESTORE LAST STOCK ───────────────────────────────────────────────────
-    function restoreLastStock() {
-      const last = localStorage.getItem('hpk-last-stock');
-      if (last) {
-        try {
-          const { sym, name } = JSON.parse(last);
-          if (sym) selectStock(sym, name);
-        } catch(e) {}
-      }
-    }
-
-    // ─── INIT ─────────────────────────────────────────────────────────────────
-    loadIndices();
-    loadCommodities();
-    loadMovers();
-    loadNews();
-    loadTicker();
-    renderWatchlist();
-    restoreLastStock();
-  </script>
-
-<footer class="footer"><div class="foot-inner"><span class="foot-copy">© 2026 hpkreutz.com — Hays, KS</span><div class="foot-links"><a href="markets.html">Markets</a><a href="tools.html">Tools</a><a href="sports.html">Sports</a><a href="fitness.html">Fitness</a><a href="contact.html">Contact</a></div></div></footer></body>
+// Init
+loadIndices(); loadComms(); loadMovers(); loadNews(); loadTicker(); renderWL(); restoreLast();
+</script>
+</body>
 </html>
