@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Pellet Grill Recipes — hpkreutz.com</title>
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#111;height:56px;display:flex;align-items:center;padding:0 5%}
+.nav-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;margin-right:auto}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links .cta{background:#c8401a;color:#fff!important;padding:7px 14px;border-radius:6px;font-weight:600}
+.nav-links .cta:hover{background:#a83212}
+/* LAYOUT */
+.body-wrap{padding-top:56px}
+.page{max-width:960px;margin:0 auto;padding:0 32px}
+/* HERO */
+.hero{background:#111;padding:80px 5% 72px}
+.hero-inner{max-width:960px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
+.hero h1{font-size:clamp(38px,5.5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;color:#fff;margin-bottom:18px}
+.hero h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+.hero p{font-size:16px;color:rgba(255,255,255,.5);max-width:460px;line-height:1.7;margin-bottom:32px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;padding:10px 22px;border-radius:7px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
+.btn-dark{background:#111;color:#fff}
+.btn-dark:hover{background:#2d2d2d}
+.btn-red{background:#c8401a;color:#fff}
+.btn-red:hover{background:#a83212}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-outline{background:#fff;color:#111;border:1px solid #ddd}
+.btn-outline:hover{background:#f5f5f5}
+.btn-block{width:100%;justify-content:center}
+.btn-sm{font-size:13px;padding:8px 16px}
+/* PAGE HEADER */
+.phead{padding:48px 0 36px;border-bottom:1px solid #ebebeb;margin-bottom:40px}
+.phead-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
+.phead h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:10px}
+.phead p{font-size:15px;color:#666;max-width:520px;line-height:1.65}
+/* SECTION */
+.section{margin-bottom:44px}
+.slabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;padding-bottom:10px;border-bottom:1px solid #ebebeb;margin-bottom:18px}
+/* GRID CARDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+/* CARD */
+.card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:0}
+.chead{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.chead-title{font-size:14px;font-weight:700;color:#111}
+.chead-sub{font-size:12px;color:#999;margin-top:2px}
+.cbody{padding:20px}
+/* FORM */
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#999;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:10px 13px;border:1px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;background:#fff;outline:none;-webkit-appearance:none;transition:border-color .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#111;box-shadow:0 0 0 3px rgba(17,17,17,.06)}
+.field textarea{resize:vertical;min-height:80px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+/* RESULTS */
+.results{display:none;margin-top:16px;padding-top:14px;border-top:1px solid #ebebeb}
+.results.show{display:block}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
+.rrow:last-child{border-bottom:none}
+.rk{color:#666}
+.rv{font-weight:700;color:#111}
+.rv.big{font-size:18px}
+.rv.green{font-size:18px;color:#1a7a3a}
+.rv.dyn{font-size:18px}
+/* STAT TABLE */
+.srow{display:flex;justify-content:space-between;align-items:center;padding:9px 20px;border-bottom:1px solid #f0f0f0;font-size:13px}
+.srow:last-child{border-bottom:none}
+.sk{color:#666}
+.sv{font-weight:600;color:#111;text-align:right}
+.sv.up{color:#1a7a3a}
+.sv.down{color:#c8401a}
+/* CODE OUTPUT */
+.code-out{display:none;flex-direction:column;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #ebebeb}
+.code-out.show{display:flex}
+/* NAV CARD */
+.ncard{display:flex;flex-direction:column;padding:26px 24px;background:#fff;text-decoration:none;color:#111;transition:background .15s}
+.ncard:hover{background:#fafafa}
+.ncard-icon{font-size:24px;margin-bottom:14px}
+.ncard-name{font-size:15px;font-weight:700;margin-bottom:6px}
+.ncard-desc{font-size:13px;color:#888;line-height:1.55;flex:1}
+.ncard-arrow{font-size:13px;color:#ccc;margin-top:14px}
+/* TEAM CARD */
+.tcard-top{display:flex;align-items:center;gap:14px;padding:18px 22px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.tlogo{width:46px;height:46px;border-radius:8px;background:#fff;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.tlogo img{width:34px;height:34px;object-fit:contain}
+.tlogo-txt{font-size:12px;font-weight:800;color:#666}
+.tname{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
+.tmeta{font-size:12px;color:#999}
+.tbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;background:#f0f0f0;border:1px solid #e0e0e0;color:#666;margin-left:auto;flex-shrink:0}
+.tlinks{display:flex}
+.tlink{flex:1;display:flex;align-items:center;justify-content:center;padding:11px 6px;text-decoration:none;font-size:12px;font-weight:600;color:#555;border-right:1px solid #e5e5e5;transition:all .15s}
+.tlink:last-child{border-right:none}
+.tlink:hover{background:#f5f5f5;color:#111}
+.tlink.hi{color:#c8401a}
+.tlink.hi:hover{background:#c8401a;color:#fff}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.cinfo{padding:36px;background:#fafafa;border-right:1px solid #e5e5e5}
+.cform{padding:36px;background:#fff}
+.cbiz{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.crole{font-size:13px;color:#999;margin-bottom:16px}
+.cbio{font-size:14px;color:#555;line-height:1.7;margin-bottom:24px}
+.drow-c{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.dicon{font-size:15px;width:20px;flex-shrink:0}
+.dlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin-bottom:2px}
+.dval{font-size:14px;color:#111;text-decoration:none;display:block}
+.dval:hover{color:#c8401a}
+.cext{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.ftitle{font-size:17px;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #ebebeb}
+.submit{width:100%;padding:12px;background:#c8401a;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
+.submit:hover{background:#a83212}
+.form-ok{display:none;margin-top:10px;font-size:13px;font-weight:600;color:#1a7a3a;background:rgba(26,122,58,.08);padding:10px 14px;border-radius:6px}
+/* FOOTER */
+.footer{background:#111;margin-top:60px}
+.foot-inner{max-width:960px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
+.foot-copy{font-size:12px;color:rgba(255,255,255,.35)}
+.foot-links{display:flex;gap:20px}
+.foot-links a{font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s}
+.foot-links a:hover{color:#fff}
+/* SUB LABEL */
+.sub-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:14px 0 10px}
+/* RESPONSIVE */
+@media(max-width:860px){
+  .page{padding:0 24px}
+  .hero{padding:64px 24px 56px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .foot-inner{padding:24px}
+}
+@media(max-width:640px){
+  .page{padding:0 16px}
+  .hero{padding:48px 16px 44px}
+  .nav{padding:0 16px}
+  .nav-links a:not(.cta){display:none}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .cinfo{border-right:none;border-bottom:1px solid #e5e5e5}
+  .frow,.frow3{grid-template-columns:1fr}
+  .foot-inner{padding:20px 16px;flex-direction:column;gap:10px;align-items:flex-start}
+}
+
+/* HERO MEAT SELECTOR */
+.meat-tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:28px}
+.meat-tab{padding:14px 8px;text-align:center;cursor:pointer;background:#fff;border-right:1px solid #e5e5e5;transition:all .15s}
+.meat-tab:last-child{border-right:none}
+.meat-tab:hover{background:#fafafa}
+.meat-tab.on{background:#111}
+.meat-tab.on .mt-icon,.meat-tab.on .mt-name{color:#fff}
+.meat-tab.on .mt-name{opacity:.9}
+.mt-icon{font-size:22px;display:block;margin-bottom:6px}
+.mt-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#666}
+.meat-tab.on .mt-name{color:rgba(255,255,255,.8)}
+/* COOK STYLE SELECTOR */
+.style-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.style-tab{padding:16px;border:1.5px solid #e5e5e5;border-radius:10px;background:#fff;cursor:pointer;text-align:center;transition:all .15s}
+.style-tab:hover{border-color:#111}
+.style-tab.on{background:#111;border-color:#111}
+.style-tab.on .st-name,.style-tab.on .st-temp,.style-tab.on .st-time{color:#fff}
+.style-tab.on .st-desc{color:rgba(255,255,255,.6)}
+.st-name{font-size:14px;font-weight:700;color:#111;margin-bottom:3px}
+.st-temp{font-size:12px;font-weight:600;color:#c8401a;margin-bottom:3px}
+.style-tab.on .st-temp{color:#fca5a5}
+.st-time{font-size:12px;font-weight:600;color:#1a7a3a;margin-bottom:6px}
+.style-tab.on .st-time{color:#86efac}
+.st-desc{font-size:12px;color:#888;line-height:1.5}
+/* RECIPE CARD */
+.recipe-card{background:#fff;border:1.5px solid #e5e5e5;border-radius:12px;overflow:hidden;margin-bottom:20px}
+.rc-header{padding:20px 24px;background:#111;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.rc-title{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.rc-badges{display:flex;gap:8px;flex-wrap:wrap}
+.rc-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.05em}
+.badge-temp{background:#c8401a;color:#fff}
+.badge-time{background:#1a7a3a;color:#fff}
+.badge-diff{background:rgba(255,255,255,.15);color:#fff}
+.rc-body{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #e5e5e5}
+.rc-col{padding:24px}
+.rc-col:first-child{border-right:1px solid #e5e5e5}
+.col-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#aaa;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #f0f0f0}
+.rc-ingredients{list-style:none;padding:0}
+.rc-ingredients li{font-size:14px;color:#333;padding:6px 0;border-bottom:1px solid #f5f5f5;display:flex;align-items:flex-start;gap:8px}
+.rc-ingredients li:last-child{border-bottom:none}
+.rc-ingredients li::before{content:'·';color:#c8401a;font-weight:700;flex-shrink:0;margin-top:1px}
+.rc-steps{list-style:none;padding:0;counter-reset:step}
+.rc-steps li{font-size:14px;color:#333;padding:8px 0;border-bottom:1px solid #f5f5f5;display:flex;gap:12px;align-items:flex-start;counter-increment:step}
+.rc-steps li:last-child{border-bottom:none}
+.rc-steps li::before{content:counter(step);min-width:22px;height:22px;background:#111;color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+/* TIPS */
+.rc-tips{padding:20px 24px;background:#fffbf0;border-bottom:1px solid #e5e5e5}
+.tips-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#aaa;margin-bottom:12px}
+.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tip-item{background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:12px 14px}
+.tip-icon{font-size:18px;margin-bottom:6px}
+.tip-title{font-size:12px;font-weight:700;color:#111;margin-bottom:3px}
+.tip-text{font-size:12px;color:#666;line-height:1.55}
+/* PELLET GUIDE */
+.rc-pellets{padding:16px 24px;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pellet-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa}
+.pellet{font-size:12px;font-weight:600;padding:4px 12px;border-radius:99px;background:#f5f5f5;border:1px solid #e0e0e0;color:#333}
+.pellet.best{background:#111;color:#fff;border-color:#111}
+/* TEMP TIMELINE */
+.rc-timeline{padding:20px 24px}
+.timeline-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#aaa;margin-bottom:14px}
+.timeline{display:flex;align-items:stretch;gap:0}
+.tl-step{flex:1;text-align:center;position:relative}
+.tl-step::after{content:'';position:absolute;top:14px;right:0;left:50%;height:2px;background:#e5e5e5;z-index:0}
+.tl-step:last-child::after{display:none}
+.tl-dot{width:28px;height:28px;border-radius:50%;background:#111;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;position:relative;z-index:1}
+.tl-label{font-size:11px;font-weight:600;color:#333}
+.tl-sub{font-size:11px;color:#888;margin-top:2px}
+/* MY RECIPES */
+.my-recipes{border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:24px}
+.mr-header{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;justify-content:space-between}
+.mr-title{font-size:13px;font-weight:700;color:#111}
+.mr-add-btn{padding:7px 14px;background:#111;color:#fff;border:none;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.mr-add-btn:hover{background:#c8401a}
+.mr-list{}
+.mr-item{display:flex;align-items:center;padding:12px 20px;border-bottom:1px solid #f5f5f5;gap:12px}
+.mr-item:last-child{border-bottom:none}
+.mr-icon{font-size:20px;flex-shrink:0}
+.mr-name{font-size:14px;font-weight:600;color:#111;flex:1}
+.mr-meta{font-size:12px;color:#888}
+.mr-del{background:none;border:none;color:#ddd;cursor:pointer;font-size:16px}
+.mr-del:hover{color:#c8401a}
+.mr-empty{padding:24px;text-align:center;color:#bbb;font-size:13px}
+/* ADD RECIPE MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2000;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:28px;width:560px;max-width:94vw;max-height:90vh;overflow-y:auto}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal-title{font-size:17px;font-weight:700}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:#aaa}
+.modal-close:hover{color:#111}
+.mf{margin-bottom:14px}
+.mf label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#888;margin-bottom:6px}
+.mf input,.mf select,.mf textarea{width:100%;padding:10px 13px;border:1.5px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;outline:none}
+.mf input:focus,.mf select:focus,.mf textarea:focus{border-color:#111}
+.mf textarea{min-height:80px;resize:vertical}
+.mf-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.modal-btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px}
+.modal-btn:hover{background:#c8401a}
+@media(max-width:860px){.meat-tabs{grid-template-columns:repeat(4,1fr)}.style-tabs{grid-template-columns:1fr 1fr}.rc-body{grid-template-columns:1fr}.rc-col:first-child{border-right:none;border-bottom:1px solid #e5e5e5}.tips-grid{grid-template-columns:1fr 1fr}.mf-row{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.meat-tabs{grid-template-columns:repeat(4,1fr)}.style-tabs{grid-template-columns:1fr}.tips-grid{grid-template-columns:1fr}.mf-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">hpkreutz.com</a>
+  <div class="nav-links">
+    <a href="markets.html">Markets</a>
+    <a href="tools.html">Tools</a>
+    <a href="todo.html">To-Do</a>
+    <a href="recipes.html" class="active">Recipes</a>
+    <a href="sports.html">Sports</a>
+    <a href="fitness.html">Fitness</a>
+    <a href="contact.html" class="cta">Contact →</a>
+  </div>
+</nav>
+
+<div class="body-wrap">
+<div class="page">
+
+  <div class="phead">
+    <div class="phead-label">Traeger Pellet Grill</div>
+    <h1>Recipes</h1>
+    <p>Select a meat and cook style to get a full recipe — temp, time, pellets, and step-by-step instructions.</p>
+  </div>
+
+  <!-- MEAT SELECTOR -->
+  <div class="slabel">Select Your Meat</div>
+  <div class="meat-tabs">
+    <div class="meat-tab on" data-meat="chicken" onclick="selectMeat('chicken',this)"><span class="mt-icon">🍗</span><span class="mt-name">Chicken</span></div>
+    <div class="meat-tab" data-meat="brisket" onclick="selectMeat('brisket',this)"><span class="mt-icon">🥩</span><span class="mt-name">Brisket</span></div>
+    <div class="meat-tab" data-meat="ribs" onclick="selectMeat('ribs',this)"><span class="mt-icon">🍖</span><span class="mt-name">Ribs</span></div>
+    <div class="meat-tab" data-meat="steak" onclick="selectMeat('steak',this)"><span class="mt-icon">🥩</span><span class="mt-name">Steak</span></div>
+    <div class="meat-tab" data-meat="pork_butt" onclick="selectMeat('pork_butt',this)"><span class="mt-icon">🐷</span><span class="mt-name">Pork Butt</span></div>
+    <div class="meat-tab" data-meat="ham" onclick="selectMeat('ham',this)"><span class="mt-icon">🍖</span><span class="mt-name">Ham</span></div>
+    <div class="meat-tab" data-meat="salmon" onclick="selectMeat('salmon',this)"><span class="mt-icon">🐟</span><span class="mt-name">Salmon</span></div>
+  </div>
+
+  <!-- COOK STYLE -->
+  <div class="slabel">Choose Your Cook Style</div>
+  <div class="style-tabs" id="style-tabs"></div>
+
+  <!-- RECIPE CARD -->
+  <div id="recipe-out"></div>
+
+  <!-- MY SAVED RECIPES -->
+  <div class="slabel">My Saved Recipes</div>
+  <div class="my-recipes">
+    <div class="mr-header">
+      <span class="mr-title">Custom Recipes</span>
+      <button class="mr-add-btn" onclick="openAddRecipe()">+ Add Recipe</button>
+    </div>
+    <div id="my-recipe-list"></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ADD RECIPE MODAL -->
+<div class="modal-bg" id="add-modal">
+  <div class="modal">
+    <div class="modal-head"><div class="modal-title">Add Custom Recipe</div><button class="modal-close" onclick="closeAdd()">✕</button></div>
+    <div class="mf"><label>Recipe Name</label><input type="text" id="m-name" placeholder="e.g. Smoked Spatchcock Chicken"/></div>
+    <div class="mf-row">
+      <div class="mf"><label>Meat</label>
+        <select id="m-meat"><option>Chicken</option><option>Brisket</option><option>Ribs</option><option>Steak</option><option>Pork Butt</option><option>Ham</option><option>Salmon</option><option>Turkey</option><option>Other</option></select>
+      </div>
+      <div class="mf"><label>Temp (°F)</label><input type="text" id="m-temp" placeholder="225°F"/></div>
+      <div class="mf"><label>Cook Time</label><input type="text" id="m-time" placeholder="4–5 hours"/></div>
+    </div>
+    <div class="mf"><label>Ingredients</label><textarea id="m-ing" placeholder="List your ingredients..."></textarea></div>
+    <div class="mf"><label>Instructions</label><textarea id="m-inst" placeholder="Step-by-step instructions..."></textarea></div>
+    <div class="mf"><label>Notes / Tips</label><textarea id="m-notes" placeholder="Your personal tips and tricks..." style="min-height:60px"></textarea></div>
+    <button class="modal-btn" onclick="saveRecipe()">Save Recipe</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="foot-inner">
+    <span class="foot-copy">© 2026 hpkreutz.com — Hays, KS</span>
+    <div class="foot-links">
+      <a href="index.html">Home</a><a href="todo.html">To-Do</a>
+      <a href="fitness.html">Fitness</a><a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── RECIPE DATA ────────────────────────────────────────────────────────────
+var RECIPES = {
+  chicken: {
+    icon:'🍗', label:'Chicken',
+    styles: [
+      {
+        id:'hf', name:'Hot &amp; Fast', temp:'375°F', time:'45–60 min', diff:'Easy', pellets:['Cherry','Apple','Hickory'],bestPellet:'Cherry',
+        desc:'Crispy skin, juicy inside. Best for whole birds or thighs.',
+        ingredients:['1 whole chicken (4–5 lbs) or 4 bone-in thighs','2 tbsp olive oil','1 tbsp kosher salt','1 tsp black pepper','1 tsp garlic powder','1 tsp onion powder','1 tsp smoked paprika','½ tsp cayenne pepper'],
+        steps:['Preheat Traeger to 375°F with lid closed for 15 min','Pat chicken completely dry with paper towels','Rub all over with olive oil then apply dry rub evenly','Place on grill grates breast-side up','Cook until internal temp reaches 165°F at the thickest part (45–60 min)','Rest uncovered 10 min before cutting'],
+        tips:[{icon:'🌡️',title:'Hit 165°F',text:'Always verify internal temp at the thickest part of the thigh, away from bone.'},{icon:'🧂',title:'Dry = Crispy',text:'The drier the skin before cooking, the crispier it gets. Pat very dry.'},{icon:'⏱️',title:'Rest It',text:'Resting redistributes juices. Skip this and your chicken runs dry on the cutting board.'}],
+        timeline:[{n:'1',label:'Preheat',sub:'375°F · 15 min'},{n:'2',label:'Prep',sub:'Dry rub · oil'},{n:'3',label:'Grill',sub:'45–60 min'},{n:'4',label:'Rest',sub:'10 min'},{n:'5',label:'Serve',sub:'165°F ✓'}]
+      },
+      {
+        id:'hr', name:'About 1 Hour', temp:'325°F', time:'60–75 min', diff:'Easy', pellets:['Apple','Cherry','Maple'],bestPellet:'Apple',
+        desc:'The sweet spot — great smoke flavor and still crispy skin.',
+        ingredients:['1 whole chicken (4–5 lbs)','3 tbsp butter (softened)','1 tbsp fresh thyme','1 tsp garlic powder','Salt, pepper, lemon zest','½ lemon for cavity','Fresh rosemary sprigs'],
+        steps:['Preheat to 325°F','Mix butter with thyme, garlic, lemon zest','Separate skin from breast and rub butter mixture underneath','Season outside with salt and pepper','Stuff cavity with lemon half and rosemary','Grill 60–75 min until 165°F internal','Rest 10–15 min before carving'],
+        tips:[{icon:'🧈',title:'Under the Skin',text:'Putting butter under the skin bastes the meat from the inside and keeps it incredibly juicy.'},{icon:'🍋',title:'Citrus in Cavity',text:'The lemon steams from inside and adds brightness to the whole bird.'},{icon:'🌿',title:'Fresh Herbs',text:'Fresh rosemary and thyme give better aroma than dried when smoking.'}],
+        timeline:[{n:'1',label:'Preheat',sub:'325°F · 15 min'},{n:'2',label:'Prep',sub:'Butter rub'},{n:'3',label:'Grill',sub:'60–75 min'},{n:'4',label:'Rest',sub:'15 min'},{n:'5',label:'Carve',sub:'165°F ✓'}]
+      },
+      {
+        id:'ls', name:'Low &amp; Slow', temp:'225°F', time:'3–4 hours', diff:'Medium', pellets:['Apple','Cherry','Pecan'],bestPellet:'Cherry',
+        desc:'Maximum smoke penetration. Incredibly tender and flavorful.',
+        ingredients:['1 whole chicken (4–5 lbs)','2 tbsp yellow mustard (binder)','3 tbsp your favorite BBQ rub','1 tbsp brown sugar','1 tsp smoked paprika','1 can chicken broth for spritzing'],
+        steps:['Preheat Traeger to 225°F — this takes 15–20 min','Coat chicken in mustard as a binder','Apply BBQ rub generously over all surfaces','Place chicken directly on grates','Spritz with chicken broth every 45 min','Smoke until internal temp reaches 160°F','Raise temp to 375°F for final 15 min to crisp the skin','Pull at 165°F and rest 15 min'],
+        tips:[{icon:'💨',title:'Super Smoke Mode',text:'If your Traeger has Super Smoke, use it for the first 2 hours for maximum smoke ring and flavor.'},{icon:'💧',title:'Spritz Often',text:'Spritzing keeps the surface moist so more smoke can adhere and prevents the bark from going bitter.'},{icon:'🔥',title:'Finish Hot',text:'The final hot blast at 375°F crisps up the skin that gets rubbery during the long low cook.'}],
+        timeline:[{n:'1',label:'Preheat',sub:'225°F · 20 min'},{n:'2',label:'Prep',sub:'Mustard + rub'},{n:'3',label:'Smoke',sub:'2.5–3 hrs'},{n:'4',label:'Crisp',sub:'375°F · 15 min'},{n:'5',label:'Rest',sub:'165°F ✓'}]
+      }
+    ]
+  },
+  brisket: {
+    icon:'🥩', label:'Brisket',
+    styles: [
+      {
+        id:'hot', name:'Hot &amp; Fast', temp:'300°F', time:'6–8 hours', diff:'Advanced', pellets:['Oak','Hickory','Pecan'],bestPellet:'Oak',
+        desc:'Competition-style speed cook. Still tender with great bark.',
+        ingredients:['1 whole packer brisket (12–14 lbs)','1/4 cup coarse kosher salt','1/4 cup coarse black pepper','1 tbsp garlic powder','Beef tallow or butter for wrapping','Pink butcher paper'],
+        steps:['Trim brisket to ¼" fat cap — remove hard fat','Apply salt/pepper/garlic rub generously all over','Preheat Traeger to 300°F','Place brisket fat-side down on grates','Smoke until bark is dark mahogany (about 4–5 hrs, 165°F internal)','Wrap tightly in butcher paper with a pat of tallow','Return to grill until probe-tender at 200–205°F','Rest in cooler wrapped in towels for at least 1 hour'],
+        tips:[{icon:'📄',title:'Butcher Paper',text:'Paper wrap (not foil) lets moisture escape so the bark stays firm. Foil makes it steamy and soft.'},{icon:'🌡️',title:'Probe Tender',text:'Temperature is a guide — what matters is the probe sliding in with zero resistance, like butter.'},{icon:'⏰',title:'Rest Mandatory',text:'A 1–2 hour rest in a cooler wrapped in towels is not optional. Skip it and you lose all your juice.'}],
+        timeline:[{n:'1',label:'Trim &amp; Rub',sub:'30 min prep'},{n:'2',label:'Smoke',sub:'300°F · 4–5 hrs'},{n:'3',label:'Wrap',sub:'Butcher paper'},{n:'4',label:'Finish',sub:'200–205°F'},{n:'5',label:'Rest',sub:'1–2 hrs cooler'}]
+      },
+      {
+        id:'ls', name:'Low &amp; Slow', temp:'225°F', time:'12–16 hours', diff:'Advanced', pellets:['Post Oak','Hickory','Mesquite'],bestPellet:'Post Oak',
+        desc:'Texas-style overnight smoke. The classic brisket experience.',
+        ingredients:['1 whole packer brisket (12–14 lbs)','Equal parts coarse salt + coarse black pepper (SPG rub)','Optional: dash of garlic powder','Beef tallow for wrapping'],
+        steps:['Night before: trim fat cap to ¼", apply SPG rub, refrigerate overnight','Next morning: preheat Traeger to 225°F','Place brisket fat-side up','Smoke unwrapped 8–10 hours until dark bark forms and stall breaks (~170°F)','Wrap in butcher paper with a spoonful of tallow','Continue cooking at 225°F until 200–205°F and probe-tender','Rest in a cooler at least 2 hours (up to 4) before slicing','Slice against the grain — ¼" slices'],
+        tips:[{icon:'🌙',title:'Overnight Smoke',text:'Start at 10pm and it's ready for lunch. Traeger holds temp perfectly overnight — set it and sleep.'},{icon:'💧',title:'The Stall',text:'Brisket can stall at 155–170°F for hours. This is normal — it's the collagen rendering. Be patient.'},{icon:'🔪',title:'Slice Technique',text:'The flat and point have different grain directions. Rotate 90° when you reach the point to slice properly.'}],
+        timeline:[{n:'1',label:'Night Before',sub:'Rub &amp; rest'},{n:'2',label:'Smoke',sub:'225°F · 8–10 hrs'},{n:'3',label:'Wrap',sub:'~170°F'},{n:'4',label:'Finish',sub:'200–205°F'},{n:'5',label:'Rest',sub:'2–4 hrs'}]
+      }
+    ]
+  },
+  ribs: {
+    icon:'🍖', label:'Ribs',
+    styles: [
+      {
+        id:'321', name:'3-2-1 Method', temp:'225°F', time:'6 hours', diff:'Easy', pellets:['Apple','Cherry','Hickory'],bestPellet:'Apple',
+        desc:'The foolproof method. Fall-off-the-bone tender every time.',
+        ingredients:['2 racks St. Louis pork spare ribs','Yellow mustard (binder)','Your favorite BBQ rub','½ cup brown sugar','½ cup honey','4 tbsp butter','½ cup apple juice for spritzing','BBQ sauce for glazing'],
+        steps:['Remove membrane from back of ribs — grab with paper towel and pull','Coat both sides with mustard, apply rub generously','Preheat to 225°F','PHASE 1 — Smoke 3 hours uncovered, spritz with apple juice hourly','PHASE 2 — Lay on foil, add butter, brown sugar, honey, wrap tight, cook 2 hours','PHASE 3 — Unwrap, brush with BBQ sauce, cook 1 hour until glaze sets','Slice between bones and serve'],
+        tips:[{icon:'📄',title:'Remove the Membrane',text:'The membrane on the back is tough and chewy. Remove it or the rub can't penetrate and it's unpleasant to eat.'},{icon:'🍯',title:'The Wrap Magic',text:'The butter, brown sugar, and honey in the foil wrap create an incredible braising liquid that makes ribs fall off the bone.'},{icon:'🌡️',title:'Bend Test',text:'Pick up with tongs in the middle — if the rack bends 90° and the bark starts to crack, they're done.'}],
+        timeline:[{n:'1',label:'Phase 1',sub:'225°F · 3 hrs smoke'},{n:'2',label:'Phase 2',sub:'Wrapped · 2 hrs'},{n:'3',label:'Phase 3',sub:'Sauced · 1 hr'},{n:'4',label:'Rest',sub:'10 min'},{n:'5',label:'Slice',sub:'Between bones'}]
+      },
+      {
+        id:'hf', name:'Hot &amp; Fast', temp:'275°F', time:'3–4 hours', diff:'Medium', pellets:['Cherry','Apple','Maple'],bestPellet:'Cherry',
+        desc:'Competition-style. Still tender with better bite-through.',
+        ingredients:['2 racks baby back ribs','Mustard binder','Dry rub (paprika, salt, pepper, garlic, brown sugar)','Apple cider vinegar for spritzing','BBQ sauce'],
+        steps:['Remove membrane, apply mustard and rub','Preheat to 275°F','Smoke unwrapped 2 hours, spritz every 45 min with ACV','Wrap in foil with a splash of ACV — no butter or sugar','Cook wrapped 45 min — you want bite-through, not fall-off','Unwrap, sauce up, back on grill 20–30 min to set glaze','Pull when internal is 195–200°F'],
+        tips:[{icon:'🦷',title:'Bite-Through vs Fall-Off',text:'True BBQ competition ribs have bite-through — the meat holds but releases cleanly. Fall-off means they're a bit overcooked.'},{icon:'🍎',title:'ACV Spritz',text:'Apple cider vinegar adds a slight tang that cuts through the richness of pork. Spray lightly every 45 min.'},{icon:'⏱️',title:'Check Early',text:'At 275°F ribs can finish faster than expected. Start checking at 2.5 hours.'}],
+        timeline:[{n:'1',label:'Prep',sub:'Rub &amp; mustard'},{n:'2',label:'Smoke',sub:'275°F · 2 hrs'},{n:'3',label:'Wrap',sub:'ACV wrap · 45 min'},{n:'4',label:'Glaze',sub:'Sauced · 30 min'},{n:'5',label:'Pull',sub:'195–200°F'}]
+      }
+    ]
+  },
+  steak: {
+    icon:'🥩', label:'Steak',
+    styles: [
+      {
+        id:'revs', name:'Reverse Sear', temp:'225°F → 500°F', time:'60–90 min', diff:'Medium', pellets:['Oak','Hickory','Mesquite'],bestPellet:'Oak',
+        desc:'The best steak method period. Perfect edge-to-edge doneness.',
+        ingredients:['2 ribeyes or strip steaks (1.5–2" thick)','Coarse kosher salt','Coarse black pepper','2 tbsp butter','Fresh thyme','2 garlic cloves','High-smoke-point oil for searing'],
+        steps:['Season steaks generously with salt and pepper — 24 hrs ahead if possible','Preheat Traeger to 225°F','Place steaks on grates, insert meat probe','Smoke until 115°F internal for medium-rare (about 45–60 min)','Remove steaks, crank Traeger to 500°F (takes ~15 min)','Sear steaks directly on grates 1–2 min per side until 130°F for medium-rare','Rest 5 min — DO NOT cover, just rest on a board','Add butter pat on top while resting'],
+        tips:[{icon:'🌡️',title:'Pull at 115°F',text:'The reverse sear raises temp from 115°F to 130°F during the hot sear. Pull early or you'll overshoot.'},{icon:'🔥',title:'Get It SCREAMING Hot',text:'500°F gets you a proper crust fast without overcooking the edges. Low heat = gray band.'},{icon:'🧈',title:'Butter at the End',text:'Add the butter AFTER searing. Butter burns at high temp — adding it while resting gives you all the flavor.'}],
+        timeline:[{n:'1',label:'Season',sub:'Night before'},{n:'2',label:'Smoke',sub:'225°F → 115°F'},{n:'3',label:'Heat Up',sub:'Crank to 500°F'},{n:'4',label:'Sear',sub:'1–2 min/side'},{n:'5',label:'Rest',sub:'130°F ✓'}]
+      },
+      {
+        id:'hf', name:'Hot &amp; Fast', temp:'450°F', time:'12–18 min', diff:'Easy', pellets:['Hickory','Mesquite','Oak'],bestPellet:'Hickory',
+        desc:'Quick weeknight steak. Still gets great grill marks and smoke.',
+        ingredients:['Ribeye, NY Strip, or Sirloin (1–1.25" thick)','Olive oil','Kosher salt and black pepper','Garlic butter for finishing'],
+        steps:['Let steaks come to room temp 30 min','Preheat Traeger to 450–500°F with lid closed 15 min','Oil both sides of steak lightly, season with salt and pepper','Grill 4–5 min first side — do not move','Flip, grill 3–4 min for medium-rare (130°F internal)','Rest 5 min on a cutting board','Top with garlic butter and serve'],
+        tips:[{icon:'⚡',title:'High Heat = Crust',text:'Don't open the lid during the first 4 minutes. Let the heat build a proper crust.'},{icon:'🌡️',title:'Temps for Doneness',text:'Rare: 120°F · Medium-Rare: 130°F · Medium: 140°F · Medium-Well: 150°F'},{icon:'✋',title:'Hands-Off',text:'Resist the urge to move or press the steak. One flip only for best results.'}],
+        timeline:[{n:'1',label:'Preheat',sub:'450°F · 15 min'},{n:'2',label:'Season',sub:'Salt + pepper'},{n:'3',label:'Grill Side 1',sub:'4–5 min'},{n:'4',label:'Flip',sub:'3–4 min'},{n:'5',label:'Rest',sub:'130°F ✓'}]
+      }
+    ]
+  },
+  pork_butt: {
+    icon:'🐷', label:'Pork Butt',
+    styles: [
+      {
+        id:'ls', name:'Low &amp; Slow', temp:'225°F', time:'10–14 hours', diff:'Easy', pellets:['Apple','Cherry','Hickory'],bestPellet:'Cherry',
+        desc:'The most forgiving smoke. Hard to mess up, always incredible.',
+        ingredients:['1 bone-in pork butt/shoulder (8–10 lbs)','Yellow mustard (binder)','1/4 cup brown sugar','2 tbsp smoked paprika','2 tbsp garlic powder','2 tbsp onion powder','1 tbsp cumin','Salt and pepper','Apple juice for spritzing'],
+        steps:['Mix rub ingredients','Coat pork butt in mustard, apply rub heavily on all sides','Preheat to 225°F','Place fat-side up on grates','Smoke 5–6 hours, spritzing with apple juice every hour after hour 3','At 165°F, wrap tightly in foil or butcher paper','Continue cooking until 200–205°F and probe slides in like butter','Rest 1–2 hours wrapped in towels in a cooler','Pull apart with forks or bear claws'],
+        tips:[{icon:'😴',title:'Overnight Cook',text:'An 8-lb butt at 225°F takes roughly 1.5 hrs/lb. Start at midnight and it's ready for Sunday lunch.'},{icon:'🌡️',title:'Don't Rush the Stall',text:'Pork butt can stall at 155–170°F for 4–5 hours. This is normal — it's collagen converting to gelatin.'},{icon:'🍺',title:'It's Forgiving',text:'Pork butt has enough fat that it's nearly impossible to dry out. Great beginner smoke.'}],
+        timeline:[{n:'1',label:'Prep',sub:'Rub night before'},{n:'2',label:'Smoke',sub:'225°F · 5–6 hrs'},{n:'3',label:'Wrap',sub:'165°F → foil'},{n:'4',label:'Finish',sub:'200–205°F'},{n:'5',label:'Rest & Pull',sub:'1–2 hrs'}]
+      },
+      {
+        id:'hf', name:'Hot &amp; Fast', temp:'300°F', time:'6–8 hours', diff:'Medium', pellets:['Apple','Pecan','Cherry'],bestPellet:'Pecan',
+        desc:'Same incredible pulled pork in half the time.',
+        ingredients:['1 bone-in pork butt (8–10 lbs)','Mustard binder','BBQ rub of choice','Apple cider vinegar spritz','Foil for wrapping'],
+        steps:['Apply mustard and rub the night before — refrigerate','Preheat Traeger to 300°F','Place pork butt on grates fat-side up','Spritz every 45 min with ACV after hour 2','When bark is set and dark (~165°F, about 4 hrs), wrap tight in foil','Return to grill until 200–205°F internal','Rest 1 hour before pulling'],
+        tips:[{icon:'⚡',title:'Faster = Less Smoke',text:'Hot and fast produces less smoke ring and penetration. For pulled pork sandwiches it's barely noticeable.'},{icon:'🍎',title:'Pecan for Balance',text:'Pecan gives a mild nutty smoke that's great at higher temps — it doesn't turn bitter like some woods.'},{icon:'📋',title:'Plan Ahead',text:'Even hot and fast takes 6–8 hours. Start by 8am for a 3pm dinner.'}],
+        timeline:[{n:'1',label:'Preheat',sub:'300°F · 20 min'},{n:'2',label:'Smoke',sub:'300°F · 4 hrs'},{n:'3',label:'Wrap',sub:'Foil at 165°F'},{n:'4',label:'Finish',sub:'200–205°F'},{n:'5',label:'Rest & Pull',sub:'1 hour'}]
+      }
+    ]
+  },
+  ham: {
+    icon:'🍖', label:'Ham',
+    styles: [
+      {
+        id:'ls', name:'Low &amp; Slow', temp:'225°F', time:'4–5 hours', diff:'Easy', pellets:['Apple','Cherry','Maple'],bestPellet:'Maple',
+        desc:'Double-smoked ham with a caramelized brown sugar glaze. Showstopper.',
+        ingredients:['1 bone-in pre-cooked ham (8–10 lbs)','1 cup brown sugar','1/4 cup honey','2 tbsp Dijon mustard','2 tbsp apple cider vinegar','1 tsp cinnamon','1/2 tsp cloves','Pineapple juice for spritzing'],
+        steps:['Score the ham in a diamond pattern 1/4" deep','Preheat to 225°F','Place ham cut-side down on grates','Mix glaze: brown sugar, honey, Dijon, ACV, cinnamon, cloves','Smoke 2 hours, spritzing with pineapple juice every 45 min','Apply glaze coat every 30 min for final 2 hours','Pull when glaze is caramelized and ham reaches 140°F','Rest 15 min, slice and serve'],
+        tips:[{icon:'💎',title:'Score the Ham',text:'Scoring lets the smoke and glaze penetrate deeper into the meat and creates more surface area for caramelization.'},{icon:'🍍',title:'Pineapple Spritz',text:'Pineapple juice adds sweetness and the enzymes help tenderize the surface as it cooks.'},{icon:'🍁',title:'Maple Wood',text:'Maple smoke is the perfect complement to ham — subtly sweet with no bitterness at all.'}],
+        timeline:[{n:'1',label:'Preheat',sub:'225°F · 15 min'},{n:'2',label:'Smoke',sub:'2 hrs · spritz'},{n:'3',label:'Glaze',sub:'Every 30 min'},{n:'4',label:'Pull',sub:'140°F internal'},{n:'5',label:'Rest &amp; Slice',sub:'15 min'}]
+      },
+      {
+        id:'hf', name:'Hot &amp; Fast', temp:'325°F', time:'2–3 hours', diff:'Easy', pellets:['Cherry','Apple','Maple'],bestPellet:'Cherry',
+        desc:'Quick double-smoked ham for weeknights. Still incredible.',
+        ingredients:['1 pre-cooked ham (7–8 lbs)','Brown sugar glaze (as above)','Cherry wood pellets','Pineapple juice'],
+        steps:['Score ham in diamond pattern','Preheat to 325°F','Smoke 1 hour to get smoke color going','Apply glaze every 20 minutes for remaining time','Pull at 140°F — about 1.5–2 more hours','Rest 10 min, slice and serve'],
+        tips:[{icon:'⏱️',title:'Already Cooked',text:'Pre-cooked hams just need to be heated to 140°F. You're really just adding smoke and glaze — it's very forgiving.'},{icon:'🍒',title:'Cherry Wood',text:'Cherry gives ham a beautiful dark mahogany color and a slightly sweet smoke flavor that pairs perfectly.'},{icon:'🌡️',title:'Easy Win',text:'Ham is probably the easiest thing to smoke on a Traeger. Perfect for beginners or busy weeknights.'}],
+        timeline:[{n:'1',label:'Preheat',sub:'325°F · 15 min'},{n:'2',label:'Smoke',sub:'1 hour base'},{n:'3',label:'Glaze',sub:'Every 20 min'},{n:'4',label:'Pull',sub:'140°F'},{n:'5',label:'Slice &amp; Serve',sub:'10 min rest'}]
+      }
+    ]
+  },
+  salmon: {
+    icon:'🐟', label:'Salmon',
+    styles: [
+      {
+        id:'ls', name:'Low &amp; Slow', temp:'180°F', time:'2–3 hours', diff:'Easy', pellets:['Alder','Apple','Cherry'],bestPellet:'Alder',
+        desc:'Traditional smoked salmon. Silky, rich, and deeply flavored.',
+        ingredients:['2 lbs salmon fillets (skin-on)','1/4 cup brown sugar','2 tbsp kosher salt','1 tbsp black pepper','1 tsp garlic powder','2 tbsp honey for finishing','Fresh dill for garnish'],
+        steps:['Mix brown sugar, salt, pepper, and garlic — coat salmon generously','Refrigerate uncovered on a rack 1–2 hours to form a pellicle (sticky surface)','Preheat Traeger to 180°F','Place salmon skin-side down — do not move it','Smoke 2–3 hours until internal is 140°F and surface looks set','Brush with honey in the last 20 min','Garnish with fresh dill and serve warm or chilled'],
+        tips:[{icon:'🎣',title:'The Pellicle',text:'Refrigerating uncovered forms a tacky surface (pellicle) that smoke clings to. Don't skip this step.'},{icon:'🌿',title:'Alder Wood',text:'Alder is the traditional wood for salmon — clean, mild smoke that doesn't overpower delicate fish.'},{icon:'🌡️',title:'140°F is Done',text:'Salmon is ready at 140°F — it should flake but still be slightly translucent in the center.'}],
+        timeline:[{n:'1',label:'Dry Brine',sub:'1–2 hrs fridge'},{n:'2',label:'Preheat',sub:'180°F · 15 min'},{n:'3',label:'Smoke',sub:'2–3 hrs'},{n:'4',label:'Glaze',sub:'Honey at end'},{n:'5',label:'Pull',sub:'140°F ✓'}]
+      },
+      {
+        id:'hf', name:'Hot &amp; Fast', temp:'375°F', time:'15–20 min', diff:'Easy', pellets:['Alder','Apple','Lemon'],bestPellet:'Alder',
+        desc:'Quick weeknight smoked salmon with crispy skin.',
+        ingredients:['Salmon fillets (1–1.5" thick)','Olive oil','Lemon juice','Salt, pepper, garlic powder','Capers and lemon slices for serving'],
+        steps:['Pat salmon dry, brush with olive oil','Season with salt, pepper, garlic powder, and squeeze of lemon','Preheat to 375°F','Place skin-side down on grates','Cook 12–15 min until internal hits 140°F and flakes easily','Do not flip — skin will release naturally when done','Serve immediately with capers and lemon'],
+        tips:[{icon:'🐟',title:'Don't Flip',text:'Salmon cooked skin-side down doesn't need to be flipped. The grates get hot enough to cook it through from the bottom.'},{icon:'🍋',title:'Citrus Brightens',text:'A squeeze of fresh lemon before and after cooking cuts through the richness of the fish.'},{icon:'⚡',title:'Quick Win',text:'Hot and fast salmon is one of the fastest things you can cook on a Traeger — dinner in under 30 minutes.'}],
+        timeline:[{n:'1',label:'Preheat',sub:'375°F · 15 min'},{n:'2',label:'Prep',sub:'Oil &amp; season'},{n:'3',label:'Cook',sub:'12–15 min'},{n:'4',label:'Check',sub:'140°F internal'},{n:'5',label:'Serve',sub:'With lemon'}]
+      }
+    ]
+  }
+};
+
+var currentMeat = 'chicken';
+var currentStyle = 0;
+
+function selectMeat(meat, btn) {
+  currentMeat = meat;
+  currentStyle = 0;
+  document.querySelectorAll('.meat-tab').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  renderStyles();
+}
+
+function renderStyles() {
+  var data = RECIPES[currentMeat];
+  var tabs = document.getElementById('style-tabs');
+  tabs.innerHTML = data.styles.map(function(s,i) {
+    return '<div class="style-tab' + (i===0?' on':'') + '" onclick="selectStyle(' + i + ',this)">' +
+      '<div class="st-name">' + s.name + '</div>' +
+      '<div class="st-temp">🌡️ ' + s.temp + '</div>' +
+      '<div class="st-time">⏱️ ' + s.time + '</div>' +
+      '<div class="st-desc">' + s.desc + '</div>' +
+    '</div>';
+  }).join('');
+  renderRecipe(0);
+}
+
+function selectStyle(idx, btn) {
+  currentStyle = idx;
+  document.querySelectorAll('.style-tab').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  renderRecipe(idx);
+}
+
+function renderRecipe(idx) {
+  var meat = RECIPES[currentMeat];
+  var s = meat.styles[idx];
+  if (!s) return;
+  
+  var pellets = s.pellets.map(function(p) {
+    return '<span class="pellet' + (p===s.bestPellet?' best':'') + '">' + (p===s.bestPellet?'★ ':' ') + p + '</span>';
+  }).join('');
+  
+  var ingredients = s.ingredients.map(function(i){return '<li>' + i + '</li>';}).join('');
+  var steps = s.steps.map(function(st){return '<li><span>' + st + '</span></li>';}).join('');
+  var tips = s.tips.map(function(t){return '<div class="tip-item"><div class="tip-icon">' + t.icon + '</div><div class="tip-title">' + t.title + '</div><div class="tip-text">' + t.text + '</div></div>';}).join('');
+  var timeline = s.timeline.map(function(t){return '<div class="tl-step"><div class="tl-dot">' + t.n + '</div><div class="tl-label">' + t.label + '</div><div class="tl-sub">' + t.sub + '</div></div>';}).join('');
+  
+  document.getElementById('recipe-out').innerHTML =
+    '<div class="recipe-card">' +
+      '<div class="rc-header">' +
+        '<div class="rc-title">' + meat.icon + ' ' + meat.label + ' — ' + s.name + '</div>' +
+        '<div class="rc-badges">' +
+          '<span class="rc-badge badge-temp">🌡️ ' + s.temp + '</span>' +
+          '<span class="rc-badge badge-time">⏱️ ' + s.time + '</span>' +
+          '<span class="rc-badge badge-diff">' + s.diff + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="rc-body">' +
+        '<div class="rc-col"><div class="col-title">Ingredients</div><ul class="rc-ingredients">' + ingredients + '</ul></div>' +
+        '<div class="rc-col"><div class="col-title">Instructions</div><ol class="rc-steps">' + steps + '</ol></div>' +
+      '</div>' +
+      '<div class="rc-pellets"><span class="pellet-lbl">Recommended Pellets:</span>' + pellets + '<span style="font-size:11px;color:#bbb;margin-left:4px">★ = Best Choice</span></div>' +
+      '<div class="rc-tips"><div class="tips-title">Pro Tips</div><div class="tips-grid">' + tips + '</div></div>' +
+      '<div class="rc-timeline"><div class="timeline-title">Cook Timeline</div><div class="timeline">' + timeline + '</div></div>' +
+    '</div>';
+}
+
+// My Recipes (localStorage)
+var myRecipes = JSON.parse(localStorage.getItem('hpk-my-recipes') || '[]');
+var MEAT_ICONS = {Chicken:'🍗',Brisket:'🥩',Ribs:'🍖',Steak:'🥩','Pork Butt':'🐷',Ham:'🍖',Salmon:'🐟',Turkey:'🦃',Other:'🔥'};
+
+function renderMyRecipes() {
+  var list = document.getElementById('my-recipe-list');
+  if (!myRecipes.length) {
+    list.innerHTML = '<div class="mr-empty">No custom recipes yet. Add your own above!</div>';
+    return;
+  }
+  list.innerHTML = myRecipes.map(function(r,i) {
+    return '<div class="mr-item"><span class="mr-icon">' + (MEAT_ICONS[r.meat]||'🔥') + '</span>' +
+      '<div><div class="mr-name">' + r.name + '</div><div class="mr-meta">' + r.meat + ' · ' + r.temp + ' · ' + r.time + '</div></div>' +
+      '<button class="mr-del" onclick="delRecipe(' + i + ')">×</button></div>';
+  }).join('');
+}
+
+function openAddRecipe() { document.getElementById('add-modal').classList.add('open'); }
+function closeAdd() { document.getElementById('add-modal').classList.remove('open'); }
+document.getElementById('add-modal').addEventListener('click', function(e){if(e.target===this)closeAdd();});
+
+function saveRecipe() {
+  var name = document.getElementById('m-name').value.trim();
+  if (!name) { alert('Enter a recipe name.'); return; }
+  myRecipes.push({
+    name: name,
+    meat: document.getElementById('m-meat').value,
+    temp: document.getElementById('m-temp').value || '—',
+    time: document.getElementById('m-time').value || '—',
+    ingredients: document.getElementById('m-ing').value,
+    instructions: document.getElementById('m-inst').value,
+    notes: document.getElementById('m-notes').value
+  });
+  localStorage.setItem('hpk-my-recipes', JSON.stringify(myRecipes));
+  closeAdd();
+  renderMyRecipes();
+  ['m-name','m-temp','m-time','m-ing','m-inst','m-notes'].forEach(function(id){document.getElementById(id).value='';});
+}
+
+function delRecipe(i) {
+  if (!confirm('Delete this recipe?')) return;
+  myRecipes.splice(i,1);
+  localStorage.setItem('hpk-my-recipes', JSON.stringify(myRecipes));
+  renderMyRecipes();
+}
+
+// Init
+renderStyles();
+renderMyRecipes();
+</script>
+</body>
+</html>

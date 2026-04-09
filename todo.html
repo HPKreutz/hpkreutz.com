@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>To-Do List — hpkreutz.com</title>
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#111;height:56px;display:flex;align-items:center;padding:0 5%}
+.nav-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;margin-right:auto}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links .cta{background:#c8401a;color:#fff!important;padding:7px 14px;border-radius:6px;font-weight:600}
+.nav-links .cta:hover{background:#a83212}
+/* LAYOUT */
+.body-wrap{padding-top:56px}
+.page{max-width:960px;margin:0 auto;padding:0 32px}
+/* HERO */
+.hero{background:#111;padding:80px 5% 72px}
+.hero-inner{max-width:960px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
+.hero h1{font-size:clamp(38px,5.5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;color:#fff;margin-bottom:18px}
+.hero h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+.hero p{font-size:16px;color:rgba(255,255,255,.5);max-width:460px;line-height:1.7;margin-bottom:32px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;padding:10px 22px;border-radius:7px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
+.btn-dark{background:#111;color:#fff}
+.btn-dark:hover{background:#2d2d2d}
+.btn-red{background:#c8401a;color:#fff}
+.btn-red:hover{background:#a83212}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-outline{background:#fff;color:#111;border:1px solid #ddd}
+.btn-outline:hover{background:#f5f5f5}
+.btn-block{width:100%;justify-content:center}
+.btn-sm{font-size:13px;padding:8px 16px}
+/* PAGE HEADER */
+.phead{padding:48px 0 36px;border-bottom:1px solid #ebebeb;margin-bottom:40px}
+.phead-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
+.phead h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:10px}
+.phead p{font-size:15px;color:#666;max-width:520px;line-height:1.65}
+/* SECTION */
+.section{margin-bottom:44px}
+.slabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;padding-bottom:10px;border-bottom:1px solid #ebebeb;margin-bottom:18px}
+/* GRID CARDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+/* CARD */
+.card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:0}
+.chead{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.chead-title{font-size:14px;font-weight:700;color:#111}
+.chead-sub{font-size:12px;color:#999;margin-top:2px}
+.cbody{padding:20px}
+/* FORM */
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#999;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:10px 13px;border:1px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;background:#fff;outline:none;-webkit-appearance:none;transition:border-color .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#111;box-shadow:0 0 0 3px rgba(17,17,17,.06)}
+.field textarea{resize:vertical;min-height:80px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+/* RESULTS */
+.results{display:none;margin-top:16px;padding-top:14px;border-top:1px solid #ebebeb}
+.results.show{display:block}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
+.rrow:last-child{border-bottom:none}
+.rk{color:#666}
+.rv{font-weight:700;color:#111}
+.rv.big{font-size:18px}
+.rv.green{font-size:18px;color:#1a7a3a}
+.rv.dyn{font-size:18px}
+/* STAT TABLE */
+.srow{display:flex;justify-content:space-between;align-items:center;padding:9px 20px;border-bottom:1px solid #f0f0f0;font-size:13px}
+.srow:last-child{border-bottom:none}
+.sk{color:#666}
+.sv{font-weight:600;color:#111;text-align:right}
+.sv.up{color:#1a7a3a}
+.sv.down{color:#c8401a}
+/* CODE OUTPUT */
+.code-out{display:none;flex-direction:column;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #ebebeb}
+.code-out.show{display:flex}
+/* NAV CARD */
+.ncard{display:flex;flex-direction:column;padding:26px 24px;background:#fff;text-decoration:none;color:#111;transition:background .15s}
+.ncard:hover{background:#fafafa}
+.ncard-icon{font-size:24px;margin-bottom:14px}
+.ncard-name{font-size:15px;font-weight:700;margin-bottom:6px}
+.ncard-desc{font-size:13px;color:#888;line-height:1.55;flex:1}
+.ncard-arrow{font-size:13px;color:#ccc;margin-top:14px}
+/* TEAM CARD */
+.tcard-top{display:flex;align-items:center;gap:14px;padding:18px 22px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.tlogo{width:46px;height:46px;border-radius:8px;background:#fff;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.tlogo img{width:34px;height:34px;object-fit:contain}
+.tlogo-txt{font-size:12px;font-weight:800;color:#666}
+.tname{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
+.tmeta{font-size:12px;color:#999}
+.tbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;background:#f0f0f0;border:1px solid #e0e0e0;color:#666;margin-left:auto;flex-shrink:0}
+.tlinks{display:flex}
+.tlink{flex:1;display:flex;align-items:center;justify-content:center;padding:11px 6px;text-decoration:none;font-size:12px;font-weight:600;color:#555;border-right:1px solid #e5e5e5;transition:all .15s}
+.tlink:last-child{border-right:none}
+.tlink:hover{background:#f5f5f5;color:#111}
+.tlink.hi{color:#c8401a}
+.tlink.hi:hover{background:#c8401a;color:#fff}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.cinfo{padding:36px;background:#fafafa;border-right:1px solid #e5e5e5}
+.cform{padding:36px;background:#fff}
+.cbiz{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.crole{font-size:13px;color:#999;margin-bottom:16px}
+.cbio{font-size:14px;color:#555;line-height:1.7;margin-bottom:24px}
+.drow-c{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.dicon{font-size:15px;width:20px;flex-shrink:0}
+.dlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin-bottom:2px}
+.dval{font-size:14px;color:#111;text-decoration:none;display:block}
+.dval:hover{color:#c8401a}
+.cext{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.ftitle{font-size:17px;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #ebebeb}
+.submit{width:100%;padding:12px;background:#c8401a;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
+.submit:hover{background:#a83212}
+.form-ok{display:none;margin-top:10px;font-size:13px;font-weight:600;color:#1a7a3a;background:rgba(26,122,58,.08);padding:10px 14px;border-radius:6px}
+/* FOOTER */
+.footer{background:#111;margin-top:60px}
+.foot-inner{max-width:960px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
+.foot-copy{font-size:12px;color:rgba(255,255,255,.35)}
+.foot-links{display:flex;gap:20px}
+.foot-links a{font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s}
+.foot-links a:hover{color:#fff}
+/* SUB LABEL */
+.sub-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:14px 0 10px}
+/* RESPONSIVE */
+@media(max-width:860px){
+  .page{padding:0 24px}
+  .hero{padding:64px 24px 56px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .foot-inner{padding:24px}
+}
+@media(max-width:640px){
+  .page{padding:0 16px}
+  .hero{padding:48px 16px 44px}
+  .nav{padding:0 16px}
+  .nav-links a:not(.cta){display:none}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .cinfo{border-right:none;border-bottom:1px solid #e5e5e5}
+  .frow,.frow3{grid-template-columns:1fr}
+  .foot-inner{padding:20px 16px;flex-direction:column;gap:10px;align-items:flex-start}
+}
+
+/* LOGIN */
+.login-screen{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 56px);padding:40px 16px}
+.login-box{background:#fff;border:1.5px solid #e5e5e5;border-radius:12px;padding:40px;width:100%;max-width:400px;text-align:center}
+.login-logo{font-size:36px;margin-bottom:16px}
+.login-title{font-size:22px;font-weight:800;color:#111;margin-bottom:6px}
+.login-sub{font-size:14px;color:#999;margin-bottom:28px}
+.login-field{margin-bottom:14px;text-align:left}
+.login-field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#888;margin-bottom:6px}
+.login-field input{width:100%;padding:11px 14px;border:1.5px solid #ddd;border-radius:8px;font-family:inherit;font-size:14px;color:#111;outline:none}
+.login-field input:focus{border-color:#111}
+.login-btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
+.login-btn:hover{background:#c8401a}
+.login-err{color:#c8401a;font-size:13px;margin-top:10px;display:none}
+.login-hint{font-size:12px;color:#bbb;margin-top:14px}
+/* TODO APP */
+.todo-app{display:none}
+/* HEADER ROW */
+.todo-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+.todo-user{font-size:13px;color:#888}
+.todo-user strong{color:#111}
+.signout-btn{padding:7px 14px;background:none;border:1.5px solid #ddd;border-radius:6px;font-family:inherit;font-size:12px;font-weight:600;color:#666;cursor:pointer}
+.signout-btn:hover{border-color:#c8401a;color:#c8401a}
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:24px}
+.stat{padding:14px 16px;background:#fff;border-right:1px solid #e5e5e5;text-align:center}
+.stat:last-child{border-right:none}
+.stat-num{font-size:26px;font-weight:800;color:#111;letter-spacing:-.02em}
+.stat-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#aaa;margin-top:3px}
+.stat.urgent .stat-num{color:#c8401a}
+.stat.done .stat-num{color:#1a7a3a}
+/* ADD FORM */
+.add-form{background:#fff;border:1.5px solid #e5e5e5;border-radius:10px;padding:20px;margin-bottom:20px}
+.add-form-title{font-size:14px;font-weight:700;color:#111;margin-bottom:14px}
+.add-row{display:grid;grid-template-columns:1fr 180px 160px auto;gap:10px;align-items:end}
+.add-row .field{margin:0}
+.add-btn{padding:10px 20px;background:#111;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;height:42px}
+.add-btn:hover{background:#c8401a}
+/* FILTERS */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.fil-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa}
+.fil-btn{padding:6px 14px;border-radius:99px;border:1.5px solid #e0e0e0;background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:#666;cursor:pointer;transition:all .15s}
+.fil-btn:hover{border-color:#111;color:#111}
+.fil-btn.on{background:#111;color:#fff;border-color:#111}
+/* TASK LIST */
+.task-list{border:1.5px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:20px}
+.task-list-header{padding:11px 18px;background:#fafafa;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;justify-content:space-between}
+.tl-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#888}
+.tl-count{font-size:11px;color:#bbb;font-weight:600}
+.task-item{display:flex;align-items:flex-start;gap:12px;padding:13px 18px;border-bottom:1px solid #f5f5f5;transition:background .1s}
+.task-item:last-child{border-bottom:none}
+.task-item:hover{background:#fafafa}
+.task-item.done-item{opacity:.55}
+.task-check{width:20px;height:20px;border-radius:5px;border:1.5px solid #ddd;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all .15s}
+.task-check:hover{border-color:#1a7a3a}
+.task-check.checked{background:#1a7a3a;border-color:#1a7a3a}
+.task-check.checked::after{content:'';display:block;width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translateY(-1px)}
+.task-body{flex:1;min-width:0}
+.task-text{font-size:14px;color:#111;font-weight:500;margin-bottom:4px;line-height:1.4}
+.task-item.done-item .task-text{text-decoration:line-through;color:#aaa}
+.task-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cat-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+.cat-callback{background:rgba(59,130,246,.1);color:#1d4ed8}
+.cat-quote{background:rgba(16,185,129,.1);color:#065f46}
+.cat-waiting{background:rgba(245,158,11,.1);color:#92400e}
+.cat-followup{background:rgba(139,92,246,.1);color:#5b21b6}
+.cat-renewal{background:rgba(236,72,153,.1);color:#9d174d}
+.cat-claim{background:rgba(239,68,68,.1);color:#991b1b}
+.cat-policy{background:rgba(20,184,166,.1);color:#134e4a}
+.cat-meeting{background:rgba(249,115,22,.1);color:#9a3412}
+.cat-other{background:#f0f0f0;color:#666}
+.task-date{font-size:11px;color:#bbb}
+.task-priority{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+.pri-high{background:rgba(239,68,68,.1);color:#dc2626}
+.pri-med{background:rgba(245,158,11,.1);color:#d97706}
+.pri-low{background:rgba(107,114,128,.1);color:#6b7280}
+.task-note{font-size:12px;color:#888;margin-top:4px;font-style:italic}
+.task-actions{display:flex;gap:4px;flex-shrink:0}
+.task-del{background:none;border:none;color:#ddd;cursor:pointer;font-size:16px;padding:2px 4px;transition:color .15s;line-height:1}
+.task-del:hover{color:#c8401a}
+.task-edit{background:none;border:none;color:#ddd;cursor:pointer;font-size:13px;padding:2px 4px;transition:color .15s;line-height:1;font-family:inherit}
+.task-edit:hover{color:#111}
+.empty-tasks{padding:36px;text-align:center;color:#bbb;font-size:14px}
+/* SAVING INDICATOR */
+.save-status{font-size:12px;color:#aaa;margin-left:auto}
+.save-status.saving{color:#f59e0b}
+.save-status.saved{color:#1a7a3a}
+/* NOTE MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2000;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:28px;width:520px;max-width:94vw}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal-title{font-size:17px;font-weight:700}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:#aaa}
+.modal-close:hover{color:#111}
+.modal-field{margin-bottom:14px}
+.modal-field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#888;margin-bottom:6px}
+.modal-field input,.modal-field select,.modal-field textarea{width:100%;padding:10px 13px;border:1.5px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;outline:none}
+.modal-field input:focus,.modal-field select:focus,.modal-field textarea:focus{border-color:#111}
+.modal-field textarea{min-height:70px;resize:vertical}
+.modal-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px}
+.modal-btn:hover{background:#c8401a}
+@media(max-width:860px){.add-row{grid-template-columns:1fr 1fr;} .add-row .add-btn{grid-column:1/-1;} .stats-bar{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:540px){.add-row{grid-template-columns:1fr;} .stats-bar{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">hpkreutz.com</a>
+  <div class="nav-links">
+    <a href="markets.html">Markets</a>
+    <a href="tools.html">Tools</a>
+    <a href="todo.html" class="active">To-Do</a>
+    <a href="recipes.html">Recipes</a>
+    <a href="sports.html">Sports</a>
+    <a href="fitness.html">Fitness</a>
+    <a href="contact.html" class="cta">Contact →</a>
+  </div>
+</nav>
+
+<div class="body-wrap">
+<div class="page">
+
+  <!-- LOGIN SCREEN -->
+  <div class="login-screen" id="login-screen">
+    <div class="login-box">
+      <div class="login-logo">📋</div>
+      <div class="login-title">Insurance To-Do</div>
+      <div class="login-sub">Enter your PIN to access your saved task list</div>
+      <div class="login-field"><label>Your Name</label><input type="text" id="login-name" placeholder="Hayden" /></div>
+      <div class="login-field"><label>PIN (4–8 digits)</label><input type="password" id="login-pin" placeholder="••••" maxlength="8" inputmode="numeric" /></div>
+      <button class="login-btn" onclick="doLogin()">Access My Tasks →</button>
+      <div class="login-err" id="login-err">Incorrect PIN. Try again.</div>
+      <div class="login-hint">First time? Enter your name and create a PIN. Your tasks will be saved to this device and the cloud.</div>
+    </div>
+  </div>
+
+  <!-- TODO APP -->
+  <div class="todo-app" id="todo-app">
+
+    <div class="phead">
+      <div class="todo-header">
+        <div>
+          <div class="phead-label">Insurance Agent</div>
+          <h1>To-Do List</h1>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <span class="todo-user">Signed in as <strong id="user-display"></strong></span>
+          <span class="save-status" id="save-status"></span>
+          <button class="signout-btn" onclick="signOut()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat urgent"><div class="stat-num" id="st-high">0</div><div class="stat-lbl">High Priority</div></div>
+      <div class="stat"><div class="stat-num" id="st-total">0</div><div class="stat-lbl">Total Tasks</div></div>
+      <div class="stat"><div class="stat-num" id="st-cb">0</div><div class="stat-lbl">Call Backs</div></div>
+      <div class="stat"><div class="stat-num" id="st-wq">0</div><div class="stat-lbl">Waiting Quotes</div></div>
+      <div class="stat done"><div class="stat-num" id="st-done">0</div><div class="stat-lbl">Completed</div></div>
+    </div>
+
+    <!-- ADD FORM -->
+    <div class="add-form">
+      <div class="add-form-title">+ Add New Task</div>
+      <div class="add-row">
+        <div class="field"><label>Task</label><input type="text" id="new-task" placeholder="e.g. Call John Smith re: auto quote" /></div>
+        <div class="field"><label>Category</label>
+          <select id="new-cat">
+            <option value="callback">Call Back</option>
+            <option value="quote">Quote</option>
+            <option value="waiting">Waiting for Quote</option>
+            <option value="followup">Follow Up</option>
+            <option value="renewal">Renewal</option>
+            <option value="claim">Claim</option>
+            <option value="policy">Policy Change</option>
+            <option value="meeting">Meeting</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Priority</label>
+          <select id="new-pri">
+            <option value="high">🔴 High</option>
+            <option value="med" selected>🟡 Medium</option>
+            <option value="low">⚪ Low</option>
+          </select>
+        </div>
+        <button class="add-btn" onclick="addTask()">Add Task</button>
+      </div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filters">
+      <span class="fil-lbl">Filter:</span>
+      <button class="fil-btn on" data-fil="all" onclick="setFilter('all',this)">All</button>
+      <button class="fil-btn" data-fil="callback" onclick="setFilter('callback',this)">Call Back</button>
+      <button class="fil-btn" data-fil="quote" onclick="setFilter('quote',this)">Quote</button>
+      <button class="fil-btn" data-fil="waiting" onclick="setFilter('waiting',this)">Waiting</button>
+      <button class="fil-btn" data-fil="followup" onclick="setFilter('followup',this)">Follow Up</button>
+      <button class="fil-btn" data-fil="renewal" onclick="setFilter('renewal',this)">Renewal</button>
+      <button class="fil-btn" data-fil="claim" onclick="setFilter('claim',this)">Claim</button>
+      <button class="fil-btn" data-fil="high" onclick="setFilter('high',this)">🔴 High Priority</button>
+      <button class="fil-btn" data-fil="done" onclick="setFilter('done',this)">✓ Completed</button>
+    </div>
+
+    <!-- TASK LIST -->
+    <div class="task-list">
+      <div class="task-list-header">
+        <span class="tl-title">Tasks</span>
+        <span class="tl-count" id="task-count">0 tasks</span>
+      </div>
+      <div id="task-items"></div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-outline" onclick="clearDone()" style="font-size:13px;padding:8px 16px">Clear Completed</button>
+      <button class="btn btn-outline" onclick="exportTasks()" style="font-size:13px;padding:8px 16px">Export CSV</button>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-bg" id="edit-modal">
+  <div class="modal">
+    <div class="modal-head"><div class="modal-title">Edit Task</div><button class="modal-close" onclick="closeEdit()">✕</button></div>
+    <div class="modal-field"><label>Task</label><input type="text" id="edit-text" /></div>
+    <div class="modal-row">
+      <div class="modal-field"><label>Category</label>
+        <select id="edit-cat">
+          <option value="callback">Call Back</option>
+          <option value="quote">Quote</option>
+          <option value="waiting">Waiting for Quote</option>
+          <option value="followup">Follow Up</option>
+          <option value="renewal">Renewal</option>
+          <option value="claim">Claim</option>
+          <option value="policy">Policy Change</option>
+          <option value="meeting">Meeting</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="modal-field"><label>Priority</label>
+        <select id="edit-pri"><option value="high">🔴 High</option><option value="med">🟡 Medium</option><option value="low">⚪ Low</option></select>
+      </div>
+    </div>
+    <div class="modal-field"><label>Note (optional)</label><textarea id="edit-note" placeholder="Add details, client name, phone number..."></textarea></div>
+    <button class="modal-btn" onclick="saveEdit()">Save Changes</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="foot-inner">
+    <span class="foot-copy">© 2026 hpkreutz.com — Hays, KS</span>
+    <div class="foot-links">
+      <a href="index.html">Home</a><a href="markets.html">Markets</a>
+      <a href="recipes.html">Recipes</a><a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── AUTH ──────────────────────────────────────────────────────────────────
+// PIN is hashed so it's not stored in plain text
+async function hashPIN(pin) {
+  var enc = new TextEncoder().encode('hpk-salt-' + pin);
+  var buf = await crypto.subtle.digest('SHA-256', enc);
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+var currentUser = null;
+var tasks = [];
+var activeFilter = 'all';
+var editingId = null;
+var saveTimer = null;
+
+function doLogin() {
+  var name = document.getElementById('login-name').value.trim();
+  var pin  = document.getElementById('login-pin').value.trim();
+  if (!name || !pin) { alert('Please enter your name and PIN.'); return; }
+  if (pin.length < 4) { alert('PIN must be at least 4 digits.'); return; }
+  
+  hashPIN(pin).then(function(hash) {
+    // Check if user exists
+    var stored = localStorage.getItem('hpk-todo-users');
+    var users = stored ? JSON.parse(stored) : {};
+    
+    if (users[name]) {
+      // Existing user - verify PIN
+      if (users[name].hash !== hash) {
+        document.getElementById('login-err').style.display = 'block';
+        return;
+      }
+    } else {
+      // New user - create account
+      users[name] = { hash: hash, created: Date.now() };
+      localStorage.setItem('hpk-todo-users', JSON.stringify(users));
+    }
+    
+    document.getElementById('login-err').style.display = 'none';
+    currentUser = name;
+    document.getElementById('user-display').textContent = name;
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('todo-app').style.display = 'block';
+    loadTasks();
+  });
+}
+
+function signOut() {
+  currentUser = null; tasks = [];
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('todo-app').style.display = 'none';
+  document.getElementById('login-pin').value = '';
+}
+
+document.getElementById('login-pin').addEventListener('keydown', function(e) { if(e.key==='Enter') doLogin(); });
+document.getElementById('new-task').addEventListener('keydown', function(e) { if(e.key==='Enter') addTask(); });
+
+// ── STORAGE ──────────────────────────────────────────────────────────────
+function loadTasks() {
+  var key = 'hpk-tasks-' + currentUser;
+  var stored = localStorage.getItem(key);
+  tasks = stored ? JSON.parse(stored) : [];
+  render();
+}
+
+function saveTasks() {
+  var key = 'hpk-tasks-' + currentUser;
+  localStorage.setItem(key, JSON.stringify(tasks));
+  var ss = document.getElementById('save-status');
+  ss.textContent = '✓ Saved'; ss.className = 'save-status saved';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(function() { ss.textContent = ''; ss.className = 'save-status'; }, 2500);
+}
+
+// ── TASKS ─────────────────────────────────────────────────────────────────
+var CAT_LABELS = {callback:'Call Back',quote:'Quote',waiting:'Waiting for Quote',followup:'Follow Up',renewal:'Renewal',claim:'Claim',policy:'Policy Change',meeting:'Meeting',other:'Other'};
+var PRI_LABELS = {high:'High',med:'Medium',low:'Low'};
+
+function addTask() {
+  var text = document.getElementById('new-task').value.trim();
+  if (!text) { document.getElementById('new-task').focus(); return; }
+  var task = {
+    id: Date.now().toString(),
+    text: text,
+    cat: document.getElementById('new-cat').value,
+    pri: document.getElementById('new-pri').value,
+    done: false,
+    note: '',
+    created: new Date().toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'})
+  };
+  tasks.unshift(task);
+  document.getElementById('new-task').value = '';
+  saveTasks(); render();
+}
+
+function toggleDone(id) {
+  var t = tasks.find(function(t){return t.id===id;});
+  if (t) { t.done = !t.done; saveTasks(); render(); }
+}
+
+function deleteTask(id) {
+  tasks = tasks.filter(function(t){return t.id!==id;});
+  saveTasks(); render();
+}
+
+function clearDone() {
+  if (!confirm('Remove all completed tasks?')) return;
+  tasks = tasks.filter(function(t){return !t.done;});
+  saveTasks(); render();
+}
+
+function openEdit(id) {
+  editingId = id;
+  var t = tasks.find(function(t){return t.id===id;});
+  if (!t) return;
+  document.getElementById('edit-text').value = t.text;
+  document.getElementById('edit-cat').value = t.cat;
+  document.getElementById('edit-pri').value = t.pri;
+  document.getElementById('edit-note').value = t.note || '';
+  document.getElementById('edit-modal').classList.add('open');
+}
+
+function closeEdit() { document.getElementById('edit-modal').classList.remove('open'); editingId = null; }
+
+function saveEdit() {
+  var t = tasks.find(function(t){return t.id===editingId;});
+  if (!t) return;
+  t.text = document.getElementById('edit-text').value.trim() || t.text;
+  t.cat  = document.getElementById('edit-cat').value;
+  t.pri  = document.getElementById('edit-pri').value;
+  t.note = document.getElementById('edit-note').value.trim();
+  closeEdit(); saveTasks(); render();
+}
+
+document.getElementById('edit-modal').addEventListener('click', function(e) { if(e.target===this) closeEdit(); });
+
+function setFilter(fil, btn) {
+  activeFilter = fil;
+  document.querySelectorAll('.fil-btn').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  render();
+}
+
+function exportTasks() {
+  var rows = [['Task','Category','Priority','Status','Note','Created']];
+  tasks.forEach(function(t){
+    rows.push(['"'+t.text+'"', CAT_LABELS[t.cat]||t.cat, PRI_LABELS[t.pri]||t.pri, t.done?'Done':'Open', '"'+(t.note||'')+'"', t.created]);
+  });
+  var csv = rows.map(function(r){return r.join(',');}).join('\n');
+  var a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'todo-' + currentUser + '-' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click();
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+function render() {
+  var filtered = tasks.filter(function(t) {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'done') return t.done;
+    if (activeFilter === 'high') return t.pri === 'high' && !t.done;
+    return t.cat === activeFilter && !t.done;
+  });
+  if (activeFilter === 'all') filtered = filtered.filter(function(t){return !t.done;}).concat(filtered.filter(function(t){return t.done;}));
+
+  // Stats
+  var open = tasks.filter(function(t){return !t.done;});
+  document.getElementById('st-total').textContent = open.length;
+  document.getElementById('st-high').textContent  = open.filter(function(t){return t.pri==='high';}).length;
+  document.getElementById('st-cb').textContent    = open.filter(function(t){return t.cat==='callback';}).length;
+  document.getElementById('st-wq').textContent    = open.filter(function(t){return t.cat==='waiting';}).length;
+  document.getElementById('st-done').textContent  = tasks.filter(function(t){return t.done;}).length;
+  document.getElementById('task-count').textContent = filtered.length + ' task' + (filtered.length!==1?'s':'');
+
+  if (!filtered.length) {
+    document.getElementById('task-items').innerHTML = '<div class="empty-tasks">No tasks here. ' + (activeFilter==='all'?'Add one above!':'Try a different filter.') + '</div>';
+    return;
+  }
+
+  document.getElementById('task-items').innerHTML = filtered.map(function(t) {
+    var catCls = 'cat-' + t.cat;
+    var priCls = 'pri-' + t.pri;
+    return '<div class="task-item' + (t.done?' done-item':'') + '">' +
+      '<div class="task-check' + (t.done?' checked':'') + '" onclick="toggleDone(\'' + t.id + '\')"></div>' +
+      '<div class="task-body">' +
+        '<div class="task-text">' + t.text + '</div>' +
+        '<div class="task-meta">' +
+          '<span class="cat-badge ' + catCls + '">' + (CAT_LABELS[t.cat]||t.cat) + '</span>' +
+          '<span class="task-priority ' + priCls + '">' + (t.pri==='high'?'🔴':t.pri==='med'?'🟡':'⚪') + ' ' + (PRI_LABELS[t.pri]||t.pri) + '</span>' +
+          '<span class="task-date">' + t.created + '</span>' +
+        '</div>' +
+        (t.note ? '<div class="task-note">' + t.note + '</div>' : '') +
+      '</div>' +
+      '<div class="task-actions">' +
+        '<button class="task-edit" onclick="openEdit(\'' + t.id + '\')">✎</button>' +
+        '<button class="task-del" onclick="deleteTask(\'' + t.id + '\')">×</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+// Auto-login if previously logged in
+(function() {
+  var last = localStorage.getItem('hpk-last-user');
+  if (last) document.getElementById('login-name').value = last;
+})();
+</script>
+</body>
+</html>
