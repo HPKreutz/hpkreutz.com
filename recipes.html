@@ -221,41 +221,108 @@ var DATA = {
       {
         name: 'Low and Slow', temp: '225F', time: '3-4 hours', diff: 'Medium',
         pellets: ['Cherry','Apple','Pecan'], best: 'Cherry',
-        desc: 'Maximum smoke flavor. Incredibly tender and juicy throughout.',
-        ingredients: ['1 whole chicken 4-5 lbs or bone-in pieces','2 tbsp yellow mustard binder','3 tbsp BBQ rub','1 tbsp brown sugar','1 tsp smoked paprika','1 can chicken broth for spritzing'],
-        steps: ['Preheat Traeger to 225F - takes about 15-20 minutes','Coat chicken in mustard as a binder all over','Apply BBQ rub generously over all surfaces','Place chicken on grates breast-side up','Spritz with chicken broth every 45 minutes','Smoke until internal temp reaches 160F - about 3 hours','Raise temp to 375F for final 15 min to crisp the skin','Pull at 165F and rest 15 minutes before cutting'],
-        tips: [
-          {icon:'&#x1F4A8;', title:'Super Smoke Mode', text:'Use Super Smoke for the first 2 hours for maximum smoke ring and deep flavor penetration.'},
-          {icon:'&#x1F4A7;', title:'Spritz Often', text:'Spritzing every 45 minutes keeps the surface moist so more smoke adheres and prevents the bark from going bitter.'},
-          {icon:'&#x1F525;', title:'Finish Hot', text:'The final 375F blast crisps up the skin that gets rubbery during the long low cook. Do not skip this step.'}
+        desc: 'Maximum smoke penetration. Competition-level color, bark, and juice.',
+        ingredients: [
+          '1 whole chicken 4-5 lbs or bone-in thighs',
+          'Yellow mustard as binder',
+          '3 tbsp competition BBQ rub',
+          '1 tbsp brown sugar',
+          '1 tsp smoked paprika',
+          '1 tsp garlic powder',
+          '1 tsp onion powder',
+          'Half tsp cayenne',
+          'Apple juice and apple cider vinegar 50/50 for spritzing',
+          'Chicken broth for moisture'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'225F 20 min'},{n:'2',label:'Prep',sub:'Mustard and rub'},{n:'3',label:'Smoke',sub:'2.5-3 hrs'},{n:'4',label:'Crisp',sub:'375F 15 min'},{n:'5',label:'Rest',sub:'165F done'}]
+        steps: [
+          'Spatchcock the chicken - cut out the backbone with kitchen shears and flatten it completely. This gives you even cooking and better smoke exposure on all surfaces.',
+          'Pat completely dry with paper towels - moisture is the enemy of bark and crispy skin.',
+          'Apply mustard all over as a binder - press it into every crevice.',
+          'Apply rub generously on all surfaces including under the skin on the breast. Mix your rub with brown sugar for caramelization.',
+          'Let the rub set at room temp 30 minutes before going on the grill - gives it time to draw moisture back into a wet sheen.',
+          'Preheat Traeger to 225F with Super Smoke mode if available.',
+          'Place chicken skin-side UP on grates. Never flip during a low and slow cook.',
+          'Spritz every 45 minutes with 50/50 apple juice and ACV starting at the 1 hour mark.',
+          'Cook until internal temp in thickest part of the thigh (not touching bone) reaches 160F - about 3 hours.',
+          'Kick the Traeger up to 375F for the final 15-20 minutes to set and crisp the skin.',
+          'Pull at 165F internal. Rest uncovered on a cutting board 10-15 minutes before cutting.'
+        ],
+        tips: [
+          {icon:'&#x1F413;', title:'Spatchcock Is the Move', text:'Removing the backbone and flattening the bird gives you even cooking across the whole chicken and way more surface area for smoke and rub.'},
+          {icon:'&#x1F4A8;', title:'Super Smoke First 2 Hours', text:'If your Traeger has Super Smoke mode use it for the first 2 hours. This is when the cold meat absorbs the most smoke before it seals up.'},
+          {icon:'&#x1F525;', title:'Finish Hot for Skin', text:'Low and slow makes incredible meat but rubber skin. The final blast at 375F fixes that. Do not skip or you will have chewy skin.'},
+          {icon:'&#x1F4A7;', title:'Spritz Keeps Smoke Sticking', text:'A moist surface attracts and holds smoke. Dry surface means smoke passes right over. Spritz every 45 minutes religiously.'},
+          {icon:'&#x1F321;', title:'Thigh Temp is Your Target', text:'The thigh always takes longer than the breast. Always probe the thickest part of the thigh away from bone for your pull temp.'}
+        ],
+        timeline: [{n:'1',label:'Preheat',sub:'225F Super Smoke'},{n:'2',label:'Prep',sub:'Spatchcock and rub'},{n:'3',label:'Smoke',sub:'~3 hours spritz q45'},{n:'4',label:'Crisp',sub:'375F 15-20 min'},{n:'5',label:'Rest',sub:'165F pull 15 min rest'}]
       },
       {
         name: 'Medium - About 1 Hour', temp: '325F', time: '60-75 min', diff: 'Easy',
         pellets: ['Apple','Cherry','Maple'], best: 'Apple',
-        desc: 'The sweet spot. Great smoke ring, crispy skin, perfectly juicy.',
-        ingredients: ['1 whole chicken 4-5 lbs','3 tbsp softened butter','1 tbsp fresh thyme','1 tsp garlic powder','1 tsp onion powder','Salt and black pepper','Lemon zest from 1 lemon','Half lemon and rosemary for cavity'],
-        steps: ['Preheat Traeger to 325F','Mix butter with thyme, garlic, onion powder, and lemon zest','Separate skin from breast and rub butter underneath','Season outside with salt and pepper','Stuff cavity with lemon half and rosemary','Place on grates breast-side up','Cook 60-75 minutes until 165F internal','Rest 10-15 minutes before carving'],
+        desc: 'Best of both worlds. Real smoke color and ring, crispy skin, done in an hour.',
+        ingredients: [
+          '1 whole chicken 4-5 lbs',
+          '3 tbsp softened butter',
+          '1 tbsp fresh thyme',
+          '1 tsp garlic powder',
+          '1 tsp onion powder',
+          'Kosher salt and coarse black pepper',
+          'Lemon zest from 1 lemon',
+          'Half lemon and fresh rosemary for cavity',
+          'Olive oil for skin'
+        ],
+        steps: [
+          'Spatchcock the chicken or leave whole. Whole bird for presentation, spatchcocked for even cooking.',
+          'Mix softened butter with thyme, garlic, onion powder, and lemon zest into a compound butter.',
+          'Separate skin from breast using your fingers and rub compound butter directly on the meat underneath the skin. This is your insurance policy against dry breast meat.',
+          'Rub outside of skin with olive oil, season generously with kosher salt and coarse black pepper.',
+          'If cooking whole, stuff cavity with halved lemon and fresh rosemary sprigs.',
+          'Preheat Traeger to 325F lid closed for 15 minutes.',
+          'Place chicken breast-side UP or skin-side UP on grates.',
+          'Cook 60-75 minutes - no spritzing needed at this temp, the butter keeps it moist.',
+          'Pull at 165F in the thigh. Rest 10 minutes before carving.'
+        ],
         tips: [
-          {icon:'&#x1F9C8;', title:'Under the Skin', text:'Butter under the skin bastes the meat from inside and keeps the breast incredibly moist even at this temp.'},
-          {icon:'&#x1F34B;', title:'Citrus in Cavity', text:'The lemon half steams from inside the bird and adds brightness to every single bite.'},
-          {icon:'&#x1F33F;', title:'Fresh Herbs', text:'Fresh rosemary and thyme give far better aroma than dried when smoking. Worth the extra effort.'}
+          {icon:'&#x1F9C8;', title:'Butter Under the Skin', text:'This is the most important step. Butter under the skin bastes the breast meat from the inside throughout the entire cook. Guarantees juicy white meat every time.'},
+          {icon:'&#x1F34B;', title:'Lemon in the Cavity', text:'The lemon half steams gently inside the bird as it cooks and perfumes every bite of meat with brightness. Works on whole birds only.'},
+          {icon:'&#x1F33F;', title:'Fresh Herbs Only', text:'Fresh thyme and rosemary give you 10x the aroma of dried herbs when they heat up on the grill. Worth getting fresh.'},
+          {icon:'&#x1F321;', title:'325F is the Sweet Spot', text:'Hot enough to crisp skin, slow enough to get real smoke color and flavor. You get the best of both worlds at this temp.'}
         ],
         timeline: [{n:'1',label:'Preheat',sub:'325F 15 min'},{n:'2',label:'Butter Rub',sub:'Under skin'},{n:'3',label:'Grill',sub:'60-75 min'},{n:'4',label:'Rest',sub:'10-15 min'},{n:'5',label:'Carve',sub:'165F done'}]
       },
       {
         name: 'Hot and Fast', temp: '375-400F', time: '45-55 min', diff: 'Easy',
         pellets: ['Cherry','Hickory','Apple'], best: 'Cherry',
-        desc: 'Crispy skin, juicy meat. Perfect weeknight chicken on the Traeger.',
-        ingredients: ['1 whole chicken or 4 bone-in thighs','2 tbsp olive oil','1 tbsp kosher salt','1 tsp black pepper','1 tsp garlic powder','1 tsp onion powder','1 tsp smoked paprika','Half tsp cayenne'],
-        steps: ['Preheat Traeger to 375-400F lid closed 15 minutes','Pat chicken completely dry with paper towels - critical for crispy skin','Rub all over with olive oil then apply dry rub evenly','Place on grates breast-side up - do not crowd','Cook until 165F internal - 45-55 minutes','Thighs can be flipped once at 30 minutes','Rest uncovered 10 minutes before cutting'],
-        tips: [
-          {icon:'&#x1F9C2;', title:'Dry Equals Crispy', text:'The drier the skin before cooking the crispier it gets. Pat every surface very thoroughly with paper towels.'},
-          {icon:'&#x1F321;', title:'Hit 165F', text:'Always verify temp at the thickest part of the thigh away from the bone. That spot is always last to cook through.'},
-          {icon:'&#x23F1;', title:'Rest It', text:'Resting 10 minutes redistributes juices. Skip this and your chicken runs dry on the cutting board.'}
+        desc: 'Weeknight dinner in under an hour. Crispy skin, juicy meat, real smoke color.',
+        ingredients: [
+          '1 whole chicken or 4-6 bone-in skin-on thighs',
+          '2 tbsp olive oil',
+          '1 tbsp kosher salt',
+          '1 tsp coarse black pepper',
+          '1 tsp garlic powder',
+          '1 tsp onion powder',
+          '1 tsp smoked paprika',
+          'Half tsp cayenne for heat',
+          'Half tsp dried thyme'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'375F 15 min'},{n:'2',label:'Prep',sub:'Dry rub and oil'},{n:'3',label:'Grill',sub:'45-55 min'},{n:'4',label:'Rest',sub:'10 min'},{n:'5',label:'Serve',sub:'165F done'}]
+        steps: [
+          'Pat chicken absolutely bone dry with paper towels. Do this twice. Dry skin is crispy skin - this step matters more than anything else for hot and fast.',
+          'Rub all over with olive oil making sure to get between the leg and body.',
+          'Apply dry rub evenly on all surfaces. Press it in - do not just dust it.',
+          'Let the rub sit and adhere for 15-20 minutes at room temp before going on the grill.',
+          'Preheat Traeger to 375-400F lid closed for a full 15 minutes. The grates need to be screaming hot.',
+          'Place whole bird breast-side UP. Thighs go skin-side UP. Do not crowd the grates.',
+          'Cook without opening the lid until internal thigh temp hits 165F - 45-55 minutes.',
+          'Thighs can be flipped once at the 25-30 minute mark if you want crosshatch marks on the skin.',
+          'Rest uncovered 10 minutes - do not tent with foil or the steam will soften your crispy skin.'
+        ],
+        tips: [
+          {icon:'&#x1F9C2;', title:'Dry Is Everything', text:'Moisture on the skin steams the chicken instead of crisping it. Pat dry, let it sit, and your skin will shatter when you bite it.'},
+          {icon:'&#x1F525;', title:'Do Not Touch It', text:'Opening the lid bleeds heat and stops the sear. Set it and walk away until the timer goes off. Trust the process.'},
+          {icon:'&#x1F97B;', title:'Thighs Over Breasts', text:'Bone-in skin-on thighs are the best hot and fast chicken on the Traeger. More forgiving, more flavor, nearly impossible to dry out.'},
+          {icon:'&#x23F0;', title:'Rest Without Foil', text:'Resting without a foil tent keeps the skin crispy. Foil tent traps steam and turns crispy skin into soggy skin in minutes.'}
+        ],
+        timeline: [{n:'1',label:'Preheat',sub:'375-400F 15 min'},{n:'2',label:'Prep',sub:'Dry rub and oil'},{n:'3',label:'Grill',sub:'45-55 min lid closed'},{n:'4',label:'Rest',sub:'10 min no foil'},{n:'5',label:'Serve',sub:'165F done'}]
       }
     ]
   },
@@ -263,43 +330,106 @@ var DATA = {
     icon: 'Brisket', label: 'Brisket',
     styles: [
       {
-        name: 'Low and Slow', temp: '225F', time: '12-16 hours', diff: 'Advanced',
+        name: 'Low and Slow', temp: '200F', time: '14-18 hours', diff: 'Advanced',
         pellets: ['Post Oak','Hickory','Pecan'], best: 'Post Oak',
-        desc: 'Texas-style overnight smoke. The classic brisket experience.',
-        ingredients: ['1 whole packer brisket 12-14 lbs','Coarse kosher salt equal parts with pepper','Coarse black pepper','1 tbsp garlic powder optional','Beef tallow for wrapping','Pink butcher paper'],
-        steps: ['Night before: trim fat cap to quarter inch remove hard fat and silverskin','Apply equal parts coarse salt and pepper all over generously','Refrigerate uncovered overnight','Next morning preheat Traeger to 225F','Place brisket fat-side up on grates','Smoke unwrapped 8-10 hours until dark bark forms and 165-170F internal','Wrap tightly in butcher paper with a spoonful of beef tallow','Continue at 225F until probe slides in with zero resistance 200-205F','Rest in cooler wrapped in towels at least 2 hours before slicing','Slice against the grain quarter inch slices'],
-        tips: [
-          {icon:'&#x1F319;', title:'Overnight Cook', text:"Start at 10pm and it is ready for lunch. Traeger holds temp perfectly overnight - set it and sleep."},
-          {icon:'&#x1F4A7;', title:'The Stall', text:"Brisket stalls at 155-170F for hours. This is totally normal - it is collagen converting to gelatin. Be patient."},
-          {icon:'&#x1F52A;', title:'Slice Technique', text:'The flat and point have different grain directions. Rotate 90 degrees when you reach the point to slice properly.'}
+        desc: "Hayden's competition method. Maximum bark, smoke ring, and the most tender brisket you will ever eat.",
+        ingredients: [
+          '1 whole packer brisket 14-18 lbs untrimmed',
+          'Coarse kosher salt - be generous',
+          'A lot of coarse black pepper - this is your primary seasoning',
+          'Seasoning of choice - Hayden uses a competition rub',
+          'Beef tallow - rendered from the fat you trim off the brisket',
+          'Pink butcher paper - not foil',
+          'Half apple cider vinegar half apple juice for spritzing'
         ],
-        timeline: [{n:'1',label:'Night Before',sub:'Rub and rest'},{n:'2',label:'Smoke',sub:'225F 8-10 hrs'},{n:'3',label:'Wrap',sub:'Butcher paper'},{n:'4',label:'Finish',sub:'200-205F'},{n:'5',label:'Rest',sub:'2-4 hrs cooler'}]
+        steps: [
+          'TRIM THE NON-FAT SIDE FIRST: Flip brisket over. Remove all silverskin - slide your knife under it and pull. Trim any hard fat on this side completely off. The lean meat side should be clean.',
+          'TRIM THE FAT SIDE: Flip fat-side up. Cut off the Mohawk - that thick hard ridge of fat running along the top. Trim the entire fat cap down to a uniform quarter inch. No more, no less.',
+          'SHAPE IT: Cut off the irregular edges and corners of the brisket to make it more aerodynamic. You want smooth rounded edges so smoke rolls over the brisket evenly instead of getting caught on corners. You should remove 3-5 lbs of fat total from a full packer.',
+          'SEASON: Apply salt generously on all surfaces. Apply a LOT of coarse black pepper - more than you think. Apply your seasoning of choice on top. Do not rub it in - press gently and let it sit.',
+          'REST SEASONED: Let the seasoned brisket rest uncovered in the refrigerator for 5-7 hours. This dry brine draws moisture out then back in carrying the seasoning deep into the meat.',
+          'SMOKE: Preheat Traeger to 200F. Place brisket on the TOP rack fat-side UP. The fat cap on top bastes the meat as it renders down through it.',
+          'Smoke at 200F for approximately 14 hours or until internal temp reaches 165F. Spritz with 50/50 ACV and apple juice every 3 hours - not more frequently. Let the bark build.',
+          'WRAP: When internal hits 165F and bark is set and dark, pull the brisket. Pour some of your rendered beef tallow directly onto the brisket before wrapping. Wrap tightly in butcher paper - not foil.',
+          'FINISH: Raise Traeger temp to 250F. Return wrapped brisket to grill for approximately 2 hours or until probes reach 203F and slide in with zero resistance like going into warm butter.',
+          'REST: Pull the brisket while still wrapped in butcher paper. Wrap the whole thing in a large bath towel. Place in a cooler and let it rest for 4-6 hours. This step is not optional - it is what separates good brisket from legendary brisket.',
+          'SLICE: Unwrap, separate the flat from the point at the fat seam. Slice the flat against the grain at about a quarter inch. Rotate the point 90 degrees and slice it against its grain. Every slice should wobble when you hold it up.'
+        ],
+        tips: [
+          {icon:'&#x2702;', title:'Trim is Half the Battle', text:'A properly trimmed brisket cooks more evenly, builds better bark, and loses less moisture. Take 20-30 minutes to trim it right. The 3-5 lbs you remove makes a massive difference in the final product.'},
+          {icon:'&#x1F4A8;', title:'200F is the Secret', text:'Most people cook at 225F. Dropping to 200F gives you more time in the smoke, a thicker bark, and deeper smoke penetration before the stall hits. It takes longer but the result is noticeably better.'},
+          {icon:'&#x1F9C8;', title:'Tallow Before Wrapping', text:'Pouring rendered beef tallow on the brisket before wrapping adds back the fat that cooked off and keeps the bark from going soggy. Use tallow from your own trimmings for the best flavor.'},
+          {icon:'&#x1F4C4;', title:'Butcher Paper Not Foil', text:'Butcher paper lets the bark breathe while still holding in moisture. Foil creates a steam bath that destroys the bark you spent 14 hours building. Always paper.'},
+          {icon:'&#x23F0;', title:'4-6 Hour Rest is the Real Secret', text:'More than the smoke temp or the wrap or anything else - the rest is what makes brisket legendary. The muscle fibers fully relax, the juices redistribute, and the collagen sets up. Do not rush this.'},
+          {icon:'&#x1F321;', title:'203F and Probe Tender', text:'Temperature is a guide not the rule. The probe should slide into the thickest part of the flat with zero resistance - like going into warm butter. If you feel any tension keep cooking.'},
+          {icon:'&#x1F52A;', title:'Separate and Slice Correctly', text:'The flat and point have perpendicular grain directions. If you slice straight through both you get tough bites from one of them. Separate at the fat seam and slice each piece against its own grain.'},
+          {icon:'&#x1F969;', title:'Render Your Own Tallow', text:'Take the fat you trimmed off, dice it small, and render it in a pan on low heat for 2-3 hours. Strain and refrigerate. The best tallow comes from your own brisket trimmings.'}
+        ],
+        timeline: [{n:'1',label:'Trim and Season',sub:'5-7 hr dry brine'},{n:'2',label:'Smoke',sub:'200F fat-side up'},{n:'3',label:'Spritz',sub:'Every 3 hrs ACV+AJ'},{n:'4',label:'Wrap',sub:'165F tallow and paper'},{n:'5',label:'Finish',sub:'250F to 203F'},{n:'6',label:'Rest',sub:'4-6 hrs in cooler'}]
       },
       {
-        name: 'Medium', temp: '250F', time: '10-12 hours', diff: 'Advanced',
-        pellets: ['Oak','Hickory','Pecan'], best: 'Hickory',
-        desc: 'Slightly faster with excellent bark and deep smoke penetration.',
-        ingredients: ['1 whole packer brisket 12-14 lbs','Quarter cup coarse kosher salt','Quarter cup coarse black pepper','2 tbsp garlic powder','1 tbsp onion powder','Beef tallow and butcher paper'],
-        steps: ['Trim fat cap to quarter inch the night before','Apply SPG rub salt pepper garlic coat heavily','Preheat Traeger to 250F','Place fat-side down on grates for first 3 hours to protect the flat','Flip fat-side up after 3 hours','Spritz with beef broth every hour starting at hour 3','Wrap in butcher paper with tallow when bark is dark and set around 165F','Continue at 250F until probe-tender at 200-205F','Rest minimum 1.5 hours in cooler before slicing'],
-        tips: [
-          {icon:'&#x1F969;', title:'Fat-Side Down First', text:'Starting fat-side down for 3 hours protects the flat from direct heat and helps it cook more evenly overall.'},
-          {icon:'&#x1F321;', title:'Probe Test', text:'Temperature is just a guide. The brisket is done when the probe slides in like soft butter with zero resistance.'},
-          {icon:'&#x23F0;', title:'Rest is Mandatory', text:'A 1.5-2 hour rest in a cooler wrapped in towels is not optional. Skip it and you lose all your precious juice.'}
+        name: 'Medium', temp: '225F', time: '12-14 hours', diff: 'Advanced',
+        pellets: ['Post Oak','Hickory','Pecan'], best: 'Post Oak',
+        desc: "Hayden's method at slightly higher heat. Same process, tighter timeline.",
+        ingredients: [
+          '1 whole packer brisket 14-18 lbs untrimmed',
+          'Coarse kosher salt',
+          'A lot of coarse black pepper',
+          'Competition seasoning of choice',
+          'Rendered beef tallow from your trimmings',
+          'Pink butcher paper',
+          'Half apple cider vinegar half apple juice for spritzing'
         ],
-        timeline: [{n:'1',label:'Trim and Rub',sub:'Night before'},{n:'2',label:'Smoke',sub:'250F 6-7 hrs'},{n:'3',label:'Wrap',sub:'At 165F'},{n:'4',label:'Finish',sub:'200-205F'},{n:'5',label:'Rest',sub:'1.5-2 hrs'}]
+        steps: [
+          'TRIM: Flip to non-fat side. Remove all silverskin and hard fat completely. Flip fat-side up. Cut off the Mohawk. Trim fat cap to a uniform quarter inch all over.',
+          'SHAPE: Round off edges and corners so smoke rolls over the brisket evenly. Remove 3-5 lbs of fat total. A well-shaped brisket builds bark more evenly.',
+          'SEASON: Apply salt generously. Apply a lot of coarse black pepper as your primary seasoning. Add your competition rub on top. Press gently - do not rub.',
+          'DRY BRINE: Rest seasoned brisket uncovered in refrigerator for 5-7 hours. This is essential for deep seasoning and moisture retention during the long cook.',
+          'SMOKE: Preheat Traeger to 225F. Place brisket fat-side UP on top rack.',
+          'Smoke at 225F for approximately 10-12 hours or until 165F internal. Spritz every 3 hours with 50/50 ACV and apple juice. Let the bark build - do not over-spritz.',
+          'WRAP: At 165F with set dark bark, pull the brisket. Pour rendered beef tallow directly on the meat before wrapping. Wrap tight in butcher paper.',
+          'FINISH: Raise to 250F. Cook wrapped 2-3 more hours until internal hits 203F and probe slides in with zero resistance.',
+          'REST: Keep wrapped in butcher paper, wrap in a bath towel, place in cooler. Rest 4-6 hours. This rest period is mandatory for great brisket.'
+        ],
+        tips: [
+          {icon:'&#x2702;', title:'Same Trim Process', text:'The trim is the same regardless of cook temp. Silverskin off, Mohawk off, fat cap to quarter inch, edges rounded. Spend 30 minutes here and the cook takes care of itself.'},
+          {icon:'&#x1F4A7;', title:'Every 3 Hours Only', text:'Spritzing more frequently cools the surface down and slows bark formation. Every 3 hours is the right cadence for this cook - let the bark build between spritz sessions.'},
+          {icon:'&#x1F9C8;', title:'Tallow is Non-Negotiable', text:'Do not skip the tallow before wrapping. It replaces moisture lost during the smoke and keeps the bark from drying out inside the paper wrap.'},
+          {icon:'&#x23F0;', title:'The Rest Matters as Much as the Cook', text:'A 4-6 hour rest in a cooler is what separates average brisket from competition-quality brisket. The internal temp actually continues to climb then slowly drop during this time.'}
+        ],
+        timeline: [{n:'1',label:'Trim and Season',sub:'5-7 hr dry brine'},{n:'2',label:'Smoke',sub:'225F fat-side up'},{n:'3',label:'Spritz',sub:'Every 3 hrs'},{n:'4',label:'Wrap',sub:'165F tallow and paper'},{n:'5',label:'Finish',sub:'250F to 203F'},{n:'6',label:'Rest',sub:'4-6 hrs cooler'}]
       },
       {
-        name: 'Hot and Fast', temp: '300F', time: '6-8 hours', diff: 'Advanced',
-        pellets: ['Oak','Hickory','Mesquite'], best: 'Oak',
-        desc: 'Competition-style speed cook. Still incredibly tender with great bark.',
-        ingredients: ['1 whole packer brisket 12-14 lbs','Quarter cup coarse kosher salt','Quarter cup coarse black pepper','1 tbsp garlic powder','Beef tallow or butter for wrapping','Pink butcher paper'],
-        steps: ['Trim brisket to quarter inch fat cap remove all hard fat','Apply salt pepper garlic rub generously on all surfaces','Preheat Traeger to 300F','Place brisket fat-side down on grates','Smoke until bark is dark mahogany about 4-5 hours 165F internal','Wrap tightly in butcher paper with a generous pat of beef tallow','Return to grill until probe-tender at 200-205F about 2-3 more hours','Rest in cooler wrapped in towels 1 hour minimum before slicing'],
-        tips: [
-          {icon:'&#x1F4C4;', title:'Butcher Paper Always', text:'Paper wrap lets moisture escape so the bark stays firm and crusty. Foil makes it steamy and soft - not what you want.'},
-          {icon:'&#x1F321;', title:'Probe Tender', text:'At 300F the brisket moves faster. Check for probe-tenderness starting at 195F so you do not overshoot.'},
-          {icon:'&#x23F0;', title:'Rest is Non-Negotiable', text:'Even at hot and fast rest for at least 1 hour. The fiber relaxation and carryover makes a massive difference.'}
+        name: 'Hot and Fast', temp: '300F', time: '8-10 hours', diff: 'Advanced',
+        pellets: ['Post Oak','Oak','Hickory'], best: 'Post Oak',
+        desc: "Hayden's method dialed up for speed. Same trim and season, faster finish.",
+        ingredients: [
+          '1 whole packer brisket 14-18 lbs untrimmed',
+          'Coarse kosher salt',
+          'A lot of coarse black pepper',
+          'Competition seasoning of choice',
+          'Rendered beef tallow',
+          'Pink butcher paper',
+          'Half apple cider vinegar half apple juice for spritzing'
         ],
-        timeline: [{n:'1',label:'Trim and Rub',sub:'30 min prep'},{n:'2',label:'Smoke',sub:'300F 4-5 hrs'},{n:'3',label:'Wrap',sub:'Butcher paper'},{n:'4',label:'Finish',sub:'200-205F'},{n:'5',label:'Rest',sub:'1-2 hrs cooler'}]
+        steps: [
+          'TRIM: Remove all silverskin and hard fat from the non-fat side completely. On the fat side cut off the Mohawk, trim fat cap to a uniform quarter inch. Round off all edges for aerodynamics.',
+          'SEASON: Salt generously, heavy coarse black pepper, competition rub on top. Press gently.',
+          'DRY BRINE: Rest in refrigerator uncovered for at least 5 hours. Even hot and fast benefits from a proper dry brine.',
+          'SMOKE: Preheat Traeger to 300F. Place brisket fat-side UP on top rack.',
+          'Smoke at 300F. Spritz every 3 hours with 50/50 ACV and apple juice. At this temp bark sets faster so watch the color.',
+          'WRAP: When bark is dark mahogany and internal hits 165F - about 5-6 hours - pull and wrap. Pour tallow on brisket before wrapping tight in butcher paper.',
+          'FINISH: Keep at 300F. The wrapped brisket will finish in about 2-3 hours. Pull at 203F probe-tender.',
+          'REST: Wrap in a towel and put in cooler for a minimum 2-3 hours. The longer the better - 4-6 hours is ideal even for hot and fast.',
+          'SLICE: Separate flat from point at the fat seam. Slice each against the grain at quarter inch.'
+        ],
+        tips: [
+          {icon:'&#x1F525;', title:'Bark Sets Faster at 300F', text:'Start checking bark color at the 4 hour mark. At 300F it can go from great to overdone quickly. You want dark mahogany - not black.'},
+          {icon:'&#x2702;', title:'Same Trim Same Result', text:'The trim process is identical regardless of cook temp. Properly trimmed brisket cooks better at any temperature.'},
+          {icon:'&#x1F4C9;', title:'Less Smoke Penetration', text:'Hot and fast gives you less smoke ring and penetration than 200F or 225F. The bark and flavor are still excellent but the smoke ring will be thinner.'},
+          {icon:'&#x23F0;', title:'Still Rest as Long as You Can', text:'Even with hot and fast minimum 2-3 hours in the cooler. If you can do 4-6 hours do it. The rest is where great brisket is made.'}
+        ],
+        timeline: [{n:'1',label:'Trim and Season',sub:'5 hr dry brine'},{n:'2',label:'Smoke',sub:'300F fat-side up'},{n:'3',label:'Spritz',sub:'Every 3 hrs'},{n:'4',label:'Wrap',sub:'165F tallow and paper'},{n:'5',label:'Finish',sub:'300F to 203F'},{n:'6',label:'Rest',sub:'2-6 hrs cooler'}]
       }
     ]
   },
@@ -309,41 +439,100 @@ var DATA = {
       {
         name: 'Low and Slow - 3-2-1', temp: '225F', time: '6 hours', diff: 'Easy',
         pellets: ['Apple','Cherry','Hickory'], best: 'Apple',
-        desc: 'The foolproof 3-2-1 method. Fall-off-the-bone tender every single time.',
-        ingredients: ['2 racks St. Louis pork spare ribs','Yellow mustard as binder','Quarter cup BBQ rub','Half cup brown sugar','Quarter cup honey','4 tbsp butter','Half cup apple juice for spritzing','BBQ sauce for glazing'],
-        steps: ['Remove membrane from back of ribs - grip with paper towel and pull firmly','Coat both sides with mustard then apply rub generously','Preheat Traeger to 225F','PHASE 1 - Smoke 3 hours unwrapped spritz with apple juice every hour','PHASE 2 - Lay on heavy foil add butter brown sugar and honey wrap tight cook 2 hours','PHASE 3 - Unwrap brush with BBQ sauce cook 1 final hour until glaze sets','Slice between bones and serve'],
-        tips: [
-          {icon:'&#x1F4C4;', title:'Remove the Membrane', text:"The membrane on the back is tough and chewy. Remove it or the rub cannot penetrate and it is unpleasant to eat."},
-          {icon:'&#x1F36F;', title:'The Wrap Magic', text:'Butter, brown sugar, and honey in the foil wrap create a braising liquid that makes ribs fall right off the bone.'},
-          {icon:'&#x1F321;', title:'Bend Test', text:'Pick up with tongs in the middle. If the rack bends 90 degrees and the bark starts to crack they are done.'}
+        desc: 'Competition-style fall-off-the-bone ribs. Bone-side down, maximum bark, perfect pull-back.',
+        ingredients: [
+          '2 racks St. Louis cut pork spare ribs',
+          'Yellow mustard as binder',
+          'Competition BBQ rub - heavy coat',
+          '1 tbsp brown sugar per rack mixed into rub',
+          'Half cup brown sugar for wrap',
+          'Half cup honey for wrap',
+          '4 tbsp butter cut into pats for wrap',
+          '3 tbsp apple juice for wrap',
+          '50/50 apple juice and apple cider vinegar for spritzing',
+          'Your best BBQ sauce for the finish'
         ],
-        timeline: [{n:'1',label:'Phase 1',sub:'225F 3 hrs smoke'},{n:'2',label:'Phase 2',sub:'Wrapped 2 hrs'},{n:'3',label:'Phase 3',sub:'Sauced 1 hr'},{n:'4',label:'Rest',sub:'10 minutes'},{n:'5',label:'Slice',sub:'Between bones'}]
+        steps: [
+          'PREP: Remove the membrane on the bone side. Slide a butter knife under the membrane at one end, grab it with a dry paper towel for grip, and pull it off in one clean motion. This is mandatory - it blocks smoke and seasoning from penetrating the bone side.',
+          'TRIM: Square up the rack by cutting off any thin flap meat on the ends. Remove the skirt meat on the bone side if present - save it to cook separately. You want a uniform rack so it cooks evenly.',
+          'SEASON: Apply mustard all over both sides. Apply rub heavily on the meat side, lightly on the bone side. The meat side is your presentation side - build the bark there.',
+          'REST: Let seasoned ribs sit at room temp 30 minutes. The rub will dissolve into the mustard creating a wet sheen - this is what you want.',
+          'PREHEAT: Traeger to 225F with Super Smoke if available.',
+          'PHASE 1 - SMOKE 3 HOURS: Place ribs BONE SIDE DOWN on the grates. Bone side down is the competition standard - it protects the meat from direct heat and lets fat from the bone area baste the meat as it renders. Spritz with 50/50 ACV and apple juice every hour starting at hour 1.',
+          'After 3 hours your bark should be set, dark, and the meat should have pulled back from the tips of the bone about a quarter inch.',
+          'PHASE 2 - WRAP 2 HOURS: Lay out two sheets of heavy duty foil per rack. Lay ribs meat-side DOWN on the foil. Add butter pats, brown sugar, honey, and a splash of apple juice around the ribs. Wrap tight - no steam should escape. Return to grill at 225F for 2 hours.',
+          'PHASE 3 - SAUCE 1 HOUR: Carefully unwrap - liquid inside is boiling hot. Flip ribs meat-side UP on the grates. Brush your sauce on and return to grill at 225F for 1 hour. Sauce every 20 minutes. The sauce will tighten and caramelize.',
+          'CHECK: Do the bend test. Pick up the rack with tongs at one end - if the other end bends more than 45 degrees and the bark starts to crack, they are perfect. Also look for a quarter inch of bone showing on the tips.',
+          'REST: Rest uncovered 10-15 minutes before slicing between bones.'
+        ],
+        tips: [
+          {icon:'&#x1F9B7;', title:'Bone Side Down Always', text:'This is the competition standard. The bones act as a heat shield protecting the meat from the direct heat of the grates. The fat near the bone also renders and bastes the meat as it drips down.'},
+          {icon:'&#x1F4C4;', title:'Meat Side Down in the Wrap', text:'When you wrap, flip ribs meat-side DOWN into the butter, sugar, and honey. The meat braises in the liquid and absorbs all that sweetness from the top down.'},
+          {icon:'&#x1F321;', title:'Bend Test Over Temp', text:'Internal temp on ribs is unreliable. The bend test is the real check. Hold one end with tongs - if the rack droops and the bark cracks on top, they are ready. Trust the bend test.'},
+          {icon:'&#x1F36F;', title:'Butter Sugar Honey in Wrap', text:'This trio in the foil wrap creates a braising liquid that transforms the texture of the ribs. The collagen breaks down in that steam bath and creates the glossy pull-back everyone is chasing.'},
+          {icon:'&#x1F9C5;', title:'Remove the Membrane', text:'Never skip this. The membrane is a moisture barrier that prevents rub and smoke from penetrating the bone side. It also makes ribs tough and chewy on the bottom. Off before seasoning, always.'}
+        ],
+        timeline: [{n:'1',label:'Prep',sub:'Membrane off trim and rub'},{n:'2',label:'Phase 1',sub:'225F bone down 3 hrs'},{n:'3',label:'Phase 2',sub:'Meat down wrapped 2 hrs'},{n:'4',label:'Phase 3',sub:'Meat up sauced 1 hr'},{n:'5',label:'Rest',sub:'Bend test then 15 min'}]
       },
       {
         name: 'Medium - 2-2-1', temp: '250F', time: '5 hours', diff: 'Easy',
         pellets: ['Cherry','Apple','Pecan'], best: 'Cherry',
-        desc: 'Slightly faster than 3-2-1 with a firmer bite and great smoke flavor.',
-        ingredients: ['2 racks baby back or spare ribs','Mustard binder','BBQ dry rub of your choice','Quarter cup brown sugar','3 tbsp butter','Quarter cup honey','Apple cider vinegar for spritzing','BBQ sauce for finishing'],
-        steps: ['Remove membrane coat in mustard apply rub on all surfaces','Preheat Traeger to 250F','PHASE 1 - Smoke unwrapped 2 hours spritz with ACV at the 1 hour mark','Check bark color - should be a deep reddish-mahogany','PHASE 2 - Wrap in foil with butter brown sugar and honey cook 2 hours at 250F','PHASE 3 - Unwrap brush with BBQ sauce back on grill 1 hour to set glaze','Rest 10 minutes slice between bones'],
-        tips: [
-          {icon:'&#x1F34E;', title:'ACV Spritz', text:'Apple cider vinegar adds a slight tang that cuts through the richness of pork. Light spray every 45 minutes.'},
-          {icon:'&#x1F50E;', title:'Check Your Color', text:'Before wrapping the bark should be a deep mahogany red with a good crust forming. Pale means more time needed.'},
-          {icon:'&#x1F36F;', title:'Do Not Skip the Wrap', text:'The braising step in foil is what creates that pull-back from the bone and incredible tenderness throughout.'}
+        desc: 'Competition ribs an hour faster. Same bark, same pull-back, slightly firmer bite.',
+        ingredients: [
+          '2 racks baby back or spare ribs',
+          'Mustard binder',
+          'Competition BBQ rub with brown sugar',
+          'Brown sugar, butter, and honey for wrap',
+          'Apple cider vinegar for spritzing',
+          'BBQ sauce for finishing'
         ],
-        timeline: [{n:'1',label:'Prep',sub:'Rub and mustard'},{n:'2',label:'Phase 1',sub:'250F 2 hrs'},{n:'3',label:'Phase 2',sub:'Foil wrap 2 hrs'},{n:'4',label:'Phase 3',sub:'Sauced 1 hr'},{n:'5',label:'Slice',sub:'Rest 10 min first'}]
+        steps: [
+          'PREP: Remove membrane on bone side completely - use a paper towel for grip and pull in one motion.',
+          'TRIM: Square up the racks. Remove any thin flap pieces on the ends that will burn before the main rack is done.',
+          'SEASON: Mustard binder all over. Rub heavily on meat side, light on bone side. Let set 20-30 minutes.',
+          'PREHEAT: Traeger to 250F.',
+          'PHASE 1 - 2 HOURS: Ribs go BONE SIDE DOWN on the grates. Spritz with ACV every 45 minutes. At 250F the bark builds faster - watch the color closely.',
+          'At 2 hours check bark. You want dark mahogany with visible rub texture set into the surface. Should have slight pull-back on bone tips.',
+          'PHASE 2 - WRAP 2 HOURS: Lay ribs MEAT SIDE DOWN on foil. Add butter pats, brown sugar, and honey around the ribs. Wrap tight. Back on grill at 250F for 2 hours.',
+          'PHASE 3 - SAUCE 1 HOUR: Unwrap carefully, flip MEAT SIDE UP. Apply sauce and return to grill at 250F for 1 hour, saucing every 20 minutes.',
+          'DONE: Bend test or check for quarter inch pull-back on bones. Rest 10 minutes before slicing.'
+        ],
+        tips: [
+          {icon:'&#x1F969;', title:'Bone Down Phase 1', text:'Same rule as 3-2-1 - bone side down for the entire smoke phase. The bones protect the meat and the rendering fat bastes from underneath.'},
+          {icon:'&#x1F50E;', title:'Check Bark at 90 Min Mark', text:'At 250F ribs move faster. Start checking bark color at 90 minutes. You want to wrap when the bark is set - not before and not after it starts drying out.'},
+          {icon:'&#x1F9C8;', title:'Butter Quantity Matters', text:'Do not be shy with the butter. Use 3-4 tablespoons per rack. The butter combines with the rendered pork fat and creates the most incredible braising liquid inside that foil.'}
+        ],
+        timeline: [{n:'1',label:'Prep',sub:'Membrane off and rub'},{n:'2',label:'Phase 1',sub:'250F bone down 2 hrs'},{n:'3',label:'Phase 2',sub:'Meat down wrapped 2 hrs'},{n:'4',label:'Phase 3',sub:'Meat up sauced 1 hr'},{n:'5',label:'Rest',sub:'Bend test then 10 min'}]
       },
       {
         name: 'Hot and Fast', temp: '275F', time: '3-4 hours', diff: 'Medium',
         pellets: ['Cherry','Apple','Hickory'], best: 'Cherry',
-        desc: 'Competition-style ribs. Firm bite-through with bold smoke and glaze.',
-        ingredients: ['2 racks baby back ribs','Mustard binder','Dry rub with paprika salt pepper garlic brown sugar','Apple cider vinegar for spritzing','Your favorite BBQ sauce'],
-        steps: ['Remove membrane apply mustard and rub on all surfaces','Preheat Traeger to 275F','Smoke unwrapped for 2 hours spritz with ACV every 45 minutes','Wrap in foil with a splash of ACV - no butter or sugar for this method','Cook wrapped 45 minutes - you want bite-through not fall-off','Unwrap brush with BBQ sauce return to grill 20-30 minutes to set glaze','Pull when internal hits 195-200F'],
-        tips: [
-          {icon:'&#x1F9B7;', title:'Bite-Through vs Fall-Off', text:"Competition ribs have clean bite-through - meat releases cleanly from the bone. Fall-off usually means they went too long."},
-          {icon:'&#x23F1;', title:'Check Early at 275F', text:'Ribs can finish faster than expected at this temp. Start checking at the 2.5 hour mark to avoid overcooking.'},
-          {icon:'&#x1F352;', title:'Cherry Wood for Color', text:'Cherry pellets give ribs a gorgeous deep mahogany color and mild sweetness that complements pork perfectly.'}
+        desc: 'Competition bite-through ribs. Bone down, firm hold, serious bark in half the time.',
+        ingredients: [
+          '2 racks baby back ribs',
+          'Mustard binder',
+          'Competition rub with paprika, salt, pepper, garlic, brown sugar',
+          'Apple cider vinegar for spritzing',
+          'Squeeze butter and brown sugar for wrap',
+          'Your best BBQ sauce'
         ],
-        timeline: [{n:'1',label:'Prep',sub:'Rub and mustard'},{n:'2',label:'Smoke',sub:'275F 2 hrs'},{n:'3',label:'Wrap',sub:'ACV 45 min'},{n:'4',label:'Glaze',sub:'Sauce 30 min'},{n:'5',label:'Pull',sub:'195-200F'}]
+        steps: [
+          'PREP: Membrane completely off the bone side. No exceptions. Trim the rack square.',
+          'SEASON: Mustard binder all over. Heavy rub on meat side. Let set 15-20 minutes.',
+          'PREHEAT: Traeger to 275F.',
+          'SMOKE PHASE - 2 HOURS: Ribs BONE SIDE DOWN. This is non-negotiable at any temp. Spritz with ACV every 45 minutes. At 275F bark builds quickly.',
+          'Check at 1.5 hours - at this temp the surface can go dark fast. You want that bark set and deep reddish-mahogany.',
+          'WRAP: At 2 hours wrap ribs meat-side DOWN with butter and a splash of ACV. At this temp and for bite-through style you are NOT adding as much sugar - just butter and ACV. Cook wrapped 45-60 minutes.',
+          'SAUCE PHASE: Unwrap carefully, flip meat-side UP, sauce and return to grill 20-30 minutes to set glaze.',
+          'DONE: For bite-through the bend test should show about 30-45 degree bend - not the full 90 degrees of fall-off. The meat should hold on the bone but release cleanly when you bite.',
+          'Pull when internal hits 190-195F for bite-through or 200-205F if you want softer.'
+        ],
+        tips: [
+          {icon:'&#x1F9B7;', title:'Bite-Through is the Competition Standard', text:'In KCBS competition judging ribs should have clean bite-through where the meat holds together but releases from the bone cleanly in one bite. Fall-off means they went too far.'},
+          {icon:'&#x1F969;', title:'Bone Side Down Always', text:'Even at 275F bone side down. The bones absorb and distribute heat more gently than direct grate contact on the meat side. Never flip ribs during the smoke phase.'},
+          {icon:'&#x2B55;', title:'Less Sugar in the Wrap', text:'For bite-through style use less sugar in the wrap than you would for fall-off. Too much sugar and the sugar braises the ribs into soft territory. Butter and ACV keep them firm.'}
+        ],
+        timeline: [{n:'1',label:'Prep',sub:'Membrane off and rub'},{n:'2',label:'Smoke',sub:'275F bone down 2 hrs'},{n:'3',label:'Wrap',sub:'Butter and ACV 45-60 min'},{n:'4',label:'Sauce',sub:'Meat up 20-30 min'},{n:'5',label:'Pull',sub:'190-200F bite-through'}]
       }
     ]
   },
@@ -351,43 +540,97 @@ var DATA = {
     icon: 'Steak', label: 'Steak',
     styles: [
       {
-        name: 'Low and Slow - Reverse Sear', temp: '225F then 500F', time: '60-90 min', diff: 'Medium',
+        name: 'Low and Slow - Reverse Sear', temp: '225F then 500F', time: '60-90 min total', diff: 'Medium',
         pellets: ['Oak','Hickory','Mesquite'], best: 'Oak',
-        desc: 'The absolute best steak method. Perfect edge-to-edge doneness with a serious crust.',
-        ingredients: ['2 ribeyes or strip steaks 1.5-2 inches thick','Coarse kosher salt apply 24 hrs ahead if possible','Coarse black pepper','2 tbsp butter for finishing','Fresh thyme','2 garlic cloves smashed'],
-        steps: ['Season steaks generously with coarse salt and pepper - night before is ideal','Let steaks sit at room temperature 30-45 minutes before cooking','Preheat Traeger to 225F','Place steaks on grates and insert meat probe','Smoke until 115F internal for medium-rare - about 45-60 minutes','Remove steaks and crank Traeger to 500F - takes about 15 minutes','Sear directly on hot grates 1-2 minutes per side until 130F for medium-rare','Rest 5 minutes uncovered on a cutting board','Top with a pat of butter while resting'],
-        tips: [
-          {icon:'&#x1F321;', title:'Pull at 115F', text:'The reverse sear raises temp from 115F to 130F during the hot sear. Pull early or you will overshoot your target.'},
-          {icon:'&#x1F525;', title:'Get It Screaming Hot', text:'500F builds a proper crust fast without overcooking the edges. Low heat gives you a gray band - not what you want.'},
-          {icon:'&#x1F9C8;', title:'Butter After the Sear', text:'Add butter AFTER searing while resting. Butter burns at high temp so adding it at the end gives you all the flavor.'}
+        desc: 'The best steak method period. Perfect pink edge to edge with a serious competition-quality crust.',
+        ingredients: [
+          '2 ribeyes or NY Strip steaks cut 1.5-2 inches thick - thick cuts only for this method',
+          'Coarse kosher salt - apply 24-48 hours ahead for best results',
+          'Coarse black pepper freshly cracked',
+          '2 tbsp high quality butter per steak for finishing',
+          'Fresh thyme sprigs',
+          '2-3 garlic cloves smashed',
+          'Flaky sea salt for finishing'
         ],
-        timeline: [{n:'1',label:'Season',sub:'Night before ideal'},{n:'2',label:'Smoke',sub:'225F to 115F'},{n:'3',label:'Crank Heat',sub:'500F 15 min'},{n:'4',label:'Sear',sub:'1-2 min per side'},{n:'5',label:'Rest',sub:'130F medium-rare'}]
+        steps: [
+          'DRY BRINE: Season steaks generously with coarse kosher salt 24-48 hours before cooking. Place uncovered on a rack in the refrigerator. The salt draws moisture out, dissolves, then gets reabsorbed - this seasons deep into the meat and dries the surface for a better sear.',
+          'PREP: Pull steaks from fridge 45 minutes before cooking. Pat completely dry with paper towels. Apply fresh cracked black pepper right before going on the grill.',
+          'SMOKE PHASE: Preheat Traeger to 225F. Place steaks directly on grates - no specific orientation needed since we are going low first.',
+          'Insert a probe thermometer into the thickest part of one steak. Watch your temp not your clock.',
+          'Smoke until internal hits 115F for medium-rare or 120F for medium. At 225F this takes 45-60 minutes depending on thickness.',
+          'TRANSITION: Pull steaks off grill. Crank Traeger to maximum - 500F or higher if your grill allows. This takes 12-15 minutes. Do NOT cover the steaks while waiting - let the surface dry completely.',
+          'SEAR: When the grill is screaming hot place steaks back on. Sear 60-90 seconds per side. You should hear a loud aggressive sizzle the moment they hit the grates.',
+          'Pull at 130F for medium-rare. The sear adds about 15F to your internal temp.',
+          'FINISH: Remove steaks to a cutting board. Place a large pat of butter on each steak immediately. Lay a thyme sprig and smashed garlic clove on top. Do not cut for 5 minutes.',
+          'Finish with a pinch of flaky sea salt right before serving. Slice against the grain.'
+        ],
+        tips: [
+          {icon:'&#x1F9C2;', title:'Dry Brine 24-48 Hours', text:'This is the single biggest upgrade you can make to your steak game. The salt penetrates deep, seasons the whole steak not just the surface, and dries the exterior for an incredible sear.'},
+          {icon:'&#x1F321;', title:'Pull at 115F Not 130F', text:'The transition from 115F to 130F happens during the 90-second sear. Most people overshoot because they forget the sear adds 15 degrees. Pull early and the reverse sear catches up.'},
+          {icon:'&#x1F525;', title:'500F Minimum for the Sear', text:'The sear is everything. At 500F you get 60-90 seconds of contact before the steak overcooks from the outside. At lower temps you just slowly overcook the edges. Maximum heat for the sear - always.'},
+          {icon:'&#x1F9C8;', title:'Butter on the Cut Board Not the Grill', text:'Butter burns at high searing temps and turns bitter. Add butter AFTER you pull the steak so it melts over the meat at a safe temp. The butter baste happens on the cutting board not on the grill.'},
+          {icon:'&#x1F506;', title:'Gray Band is Gone', text:'The reason this method is the best: at 225F the whole steak comes to temp slowly and evenly. When you sear at 500F you only cook a paper-thin layer on the outside. Zero gray band. Pure pink wall to wall.'}
+        ],
+        timeline: [{n:'1',label:'Dry Brine',sub:'24-48 hrs fridge'},{n:'2',label:'Smoke',sub:'225F to 115F'},{n:'3',label:'Crank Grill',sub:'500F 12-15 min'},{n:'4',label:'Sear',sub:'60-90 sec per side'},{n:'5',label:'Butter Finish',sub:'130F pull then rest'}]
       },
       {
         name: 'Medium - 350F Direct', temp: '350F', time: '20-30 min', diff: 'Easy',
         pellets: ['Hickory','Oak','Mesquite'], best: 'Hickory',
-        desc: 'Great smoke flavor with a solid crust. The everyday Traeger steak.',
-        ingredients: ['2 ribeyes or strip steaks 1.25-1.5 inches thick','Olive oil','Kosher salt and black pepper','Garlic butter for finishing','Fresh rosemary optional'],
-        steps: ['Let steaks sit at room temp 30 minutes','Preheat Traeger to 350F lid closed 15 minutes','Lightly oil both sides season generously with salt and pepper','Place on grates - do not move for first 6-7 minutes','Flip once cook another 5-6 minutes for medium-rare 130F','Add garlic butter in the last 2 minutes','Rest 5 minutes before cutting'],
-        tips: [
-          {icon:'&#x270B;', title:'One Flip Only', text:'Resist the urge to move or press the steak. Leave it alone flip once and let the grill do the work.'},
-          {icon:'&#x1F321;', title:'Temp Guide', text:'Rare 120F - Medium-Rare 130F - Medium 140F - Medium-Well 150F - Well 160F'},
-          {icon:'&#x26A1;', title:'Keep Lid Closed', text:"Every time you open the lid you lose 50F. Keep it closed for the full cook time and you will get a much better sear."}
+        desc: 'Real smoke, real crust, real steak. The best balance of speed and quality.',
+        ingredients: [
+          '2 ribeyes or strip steaks 1.25-1.5 inches thick',
+          'Kosher salt - apply 1 hour ahead minimum',
+          'Coarse black pepper right before grilling',
+          'Garlic compound butter for finishing',
+          'Fresh rosemary optional'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'350F 15 min'},{n:'2',label:'Season',sub:'Oil and S+P'},{n:'3',label:'Grill Side 1',sub:'6-7 min'},{n:'4',label:'Flip',sub:'5-6 min'},{n:'5',label:'Rest',sub:'130F done'}]
+        steps: [
+          'SALT EARLY: Season with kosher salt at least 1 hour before cooking and leave at room temp. This is a quick dry brine - the surface will look wet then dry back out by cook time.',
+          'PREP: Pat steaks completely dry right before going on the grill. Apply freshly cracked black pepper.',
+          'PREHEAT: Traeger to 350F lid closed for a full 15 minutes. The grates need to be fully saturated with heat.',
+          'GRILL: Place steaks on the hottest part of the grill. Establish your cook timer and do not open the lid for the first 6 minutes.',
+          'After 6-7 minutes flip once. Cook 5-6 more minutes on the second side.',
+          'Check internal temp. Pull at 125F for medium-rare - carryover while resting will bring it to 130F.',
+          'Add a pat of garlic compound butter in the last 90 seconds of cooking - it will melt and baste the steak as it finishes.',
+          'REST: 5 minutes on a cutting board before slicing. Do not tent with foil - it softens any crust you built.'
+        ],
+        tips: [
+          {icon:'&#x1F321;', title:'Pull 5 Degrees Early', text:'Carryover cooking raises internal temp 5-8 degrees after you pull from the grill. Pull at 125F for medium-rare - it will hit 130F on the cutting board. Account for this every time.'},
+          {icon:'&#x1F6AB;', title:'One Flip Only', text:'Moving steaks around breaks the sear and loses the crust you built. Establish contact, leave it completely alone for 6 minutes, flip once, leave it alone again. That is it.'},
+          {icon:'&#x1F9C8;', title:'Compound Butter at the End', text:'Make compound butter ahead - softened butter mixed with roasted garlic, thyme, and salt. Add it in the last 90 seconds so it melts over the steak without burning.'}
+        ],
+        timeline: [{n:'1',label:'Salt 1 Hr Ahead',sub:'Room temp dry brine'},{n:'2',label:'Preheat',sub:'350F 15 min'},{n:'3',label:'Grill Side 1',sub:'6-7 min no touch'},{n:'4',label:'Flip',sub:'5-6 min'},{n:'5',label:'Rest',sub:'Pull at 125F rest to 130F'}]
       },
       {
         name: 'Hot and Fast', temp: '450-500F', time: '10-15 min', diff: 'Easy',
         pellets: ['Hickory','Mesquite','Oak'], best: 'Hickory',
-        desc: 'Quick steakhouse-style. Maximum crust in minimum time.',
-        ingredients: ['Ribeye NY Strip or Sirloin 1 to 1.25 inches thick','Kosher salt and black pepper','Olive oil or high smoke point oil','Garlic butter for topping'],
-        steps: ['Let steaks reach room temp - 30 minutes out of the fridge','Preheat Traeger to 450-500F lid closed 15 minutes - get it screaming hot','Oil and season both sides with salt and pepper right before putting on grill','Place steaks on grates - do not touch for 4 minutes','Flip once cook 3-4 more minutes for medium-rare','Check internal temp pull at 130F for medium-rare','Rest 5 minutes top with garlic butter and serve'],
-        tips: [
-          {icon:'&#x26A1;', title:'Fully Preheat', text:'At 450-500F the grates need 15 full minutes to get hot enough for proper sear marks and crust. Do not rush this.'},
-          {icon:'&#x1F525;', title:'Do Not Move It', text:'The first 4 minutes build your crust. Moving the steak breaks the sear and you end up with gray wet meat.'},
-          {icon:'&#x1F9C8;', title:'Garlic Butter Finish', text:'Compound butter melting over a just-rested steak is the easiest way to elevate any cut to steakhouse quality.'}
+        desc: 'Steakhouse-quality crust in under 15 minutes. Maximum heat, minimum time.',
+        ingredients: [
+          'Ribeye NY Strip or Sirloin 1 to 1.25 inches thick',
+          'Kosher salt at least 30 minutes ahead',
+          'Coarse cracked black pepper right before grilling',
+          'High smoke point oil - avocado or grapeseed',
+          'Garlic compound butter for finishing',
+          'Flaky sea salt for serving'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'500F 15 min'},{n:'2',label:'Season',sub:'Oil and S+P'},{n:'3',label:'Grill Side 1',sub:'4 min no touch'},{n:'4',label:'Flip',sub:'3-4 min'},{n:'5',label:'Rest',sub:'130F done'}]
+        steps: [
+          'SALT EARLY: Season with salt at least 30 minutes ahead. Bring to room temp.',
+          'PREHEAT: Traeger to 450-500F lid closed for 15 full minutes. This is not negotiable. The grates must be saturated with heat or you will not get a proper sear.',
+          'PREP: Pat steaks completely dry. Apply a very thin coat of high smoke point oil. Apply cracked black pepper.',
+          'SEAR: Place steaks on hottest part of the grates. You should hear a loud aggressive sizzle on contact. If it does not sizzle loudly the grill is not hot enough.',
+          'Cook 4 minutes - do not touch, do not move, do not lift a corner to peek.',
+          'Flip once. Cook 3 minutes on the second side.',
+          'Check internal. For medium-rare pull at 127-128F - it will carry over to 130-132F.',
+          'Add garlic butter immediately after pulling. Rest 5 minutes on a cutting board. No foil tent.',
+          'Finish with flaky sea salt right before serving.'
+        ],
+        tips: [
+          {icon:'&#x1F525;', title:'Preheat the Full 15 Minutes', text:'Every time you rush the preheat you get a gray steamed steak instead of a seared one. The grates need to store enough heat to maintain searing temp after cold meat hits them. 15 minutes minimum.'},
+          {icon:'&#x1F92B;', title:'The Sizzle Test', text:'When you lay the steak on the grates it should make an aggressive sizzling crackling sound immediately. If it is quiet the grill is not hot enough. Pull the steak and wait another 5 minutes.'},
+          {icon:'&#x1F321;', title:'Temp Targets by Doneness', text:'Rare pull at 117F - Medium-Rare pull at 125F - Medium pull at 135F - Medium-Well pull at 145F. Always pull 5 degrees before target to account for carryover.'},
+          {icon:'&#x26F3;', title:'Thick Cuts Only for Hot and Fast', text:'Steaks thinner than 1 inch will overcook before the surface gets a proper crust at 500F. Use 1 inch or thicker. Thinner cuts are better suited for medium temps.'}
+        ],
+        timeline: [{n:'1',label:'Salt Early',sub:'30 min room temp'},{n:'2',label:'Preheat',sub:'500F full 15 min'},{n:'3',label:'Sear Side 1',sub:'4 min no touch'},{n:'4',label:'Flip',sub:'3 min'},{n:'5',label:'Pull and Butter',sub:'125F then rest 5 min'}]
       }
     ]
   },
@@ -397,41 +640,96 @@ var DATA = {
       {
         name: 'Low and Slow', temp: '225F', time: '10-14 hours', diff: 'Easy',
         pellets: ['Apple','Cherry','Hickory'], best: 'Cherry',
-        desc: 'The most forgiving smoke on a Traeger. Almost impossible to mess up.',
-        ingredients: ['1 bone-in pork butt or shoulder 8-10 lbs','Yellow mustard as binder','Quarter cup brown sugar','2 tbsp smoked paprika','2 tbsp garlic powder','2 tbsp onion powder','1 tbsp cumin','2 tbsp kosher salt','1 tbsp black pepper','Apple juice for spritzing'],
-        steps: ['Night before: coat pork butt in mustard apply rub heavily on all sides','Wrap in plastic wrap and refrigerate overnight','Next day preheat Traeger to 225F','Place fat-side up on grates','Smoke 5-6 hours starting to spritz with apple juice every hour after hour 3','At 165F wrap tightly in foil or butcher paper','Continue cooking until 200-205F and probe slides in with zero resistance','Rest wrapped in towels inside a cooler for 1-2 hours','Pull apart with forks or bear claws remove bone'],
-        tips: [
-          {icon:'&#x1F634;', title:'Overnight Cook', text:"An 8-lb butt at 225F takes about 1.5 hrs per pound. Start at midnight and it is ready by lunchtime."},
-          {icon:'&#x1F321;', title:'The Stall is Normal', text:'Pork butt stalls at 155-170F for 4-5 hours. Do not rush it. This is collagen converting to gelatin.'},
-          {icon:'&#x1F37A;', title:'Very Forgiving', text:'Pork butt has so much fat and collagen it is nearly impossible to dry out. The perfect first big smoke.'}
+        desc: 'Competition-level pulled pork. Fat-side up, deep smoke ring, incredible bark.',
+        ingredients: [
+          '1 bone-in pork butt shoulder 8-10 lbs',
+          'Yellow mustard as binder',
+          'Quarter cup brown sugar',
+          '2 tbsp smoked paprika',
+          '2 tbsp garlic powder',
+          '2 tbsp onion powder',
+          '1 tbsp cumin',
+          '2 tbsp kosher salt',
+          '1 tbsp coarse black pepper',
+          'Half tsp cayenne',
+          '50/50 apple juice and apple cider vinegar for spritzing'
         ],
-        timeline: [{n:'1',label:'Night Before',sub:'Rub and rest'},{n:'2',label:'Smoke',sub:'225F 5-6 hrs'},{n:'3',label:'Wrap',sub:'165F internal'},{n:'4',label:'Finish',sub:'200-205F'},{n:'5',label:'Rest and Pull',sub:'1-2 hrs cooler'}]
+        steps: [
+          'PREP: Leave the bone in - it acts as a natural temperature gauge. When the bone wiggles freely the pork butt is done. Trim any excess hard fat but leave most of the fat cap on.',
+          'SEASON: Apply mustard all over as binder. Apply rub heavily on all surfaces including the fat cap. The fat cap will render and baste the meat below it during the cook.',
+          'DRY BRINE: Let seasoned pork butt rest uncovered in the refrigerator overnight. The dry brine penetrates deep into the thick muscle and seasons it all the way through.',
+          'PREHEAT: Traeger to 225F with Super Smoke if available.',
+          'PLACE: Pork butt goes FAT SIDE UP on the top rack if possible. The fat cap on top renders slowly and bastes the meat underneath with its own juices and fat as it drips down through the meat.',
+          'SMOKE: Cook at 225F fat side up the entire smoke phase. Do not flip. Spritz every hour with 50/50 apple juice and ACV starting at hour 3.',
+          'THE STALL: Around 155-170F the pork butt will stop climbing in temperature for several hours. This is called the stall - it is collagen converting to gelatin. Do not rush it. Every minute in the stall is what creates fork-tender pulled pork.',
+          'WRAP: At 165F with bark fully set wrap tightly in butcher paper or foil. Butcher paper for firmer bark, foil for extra tender. Add a splash of apple juice before sealing.',
+          'FINISH: Continue at 225F until internal hits 200-205F and the bone wiggles freely when you grab it and twist.',
+          'REST: Rest wrapped in a towel in a cooler for 1-2 hours. The rest allows juices to redistribute and the collagen to fully set up.',
+          'PULL: Use bear claws or two forks to pull. Remove any remaining large fat pieces. The bone should slide out cleanly.'
+        ],
+        tips: [
+          {icon:'&#x2B06;', title:'Fat Side UP the Entire Cook', text:'Fat side up is the competition standard for pork butt. The fat cap renders slowly over 10-14 hours and constantly bastes the meat below it. You lose this entire basting effect if you flip it fat side down.'},
+          {icon:'&#x1F9B4;', title:'The Bone Wiggle Test', text:'Stick your fingers in around the bone and wiggle it. When the pork butt is done the bone will turn freely and feel loose. This is more reliable than temperature for determining doneness.'},
+          {icon:'&#x23F3;', title:'Do Not Rush the Stall', text:'The stall at 155-170F can last 4-5 hours on a big pork butt. Every minute of stall is collagen converting to gelatin - that gelatin is what makes pulled pork moist and stringy. Be patient.'},
+          {icon:'&#x1F4AA;', title:'The Bark is Your Trophy', text:'A properly done pork butt at 225F should have a dark mahogany bark that looks almost burnt but is not. That bark is pure concentrated pork flavor. Protect it by not wrapping too early.'},
+          {icon:'&#x1F614;', title:'Overnight is the Move', text:"Start at 10pm. It is ready by lunchtime and you slept through the hard part. The Traeger holds 225F perfectly all night. Set it and go to bed."}
+        ],
+        timeline: [{n:'1',label:'Season',sub:'Overnight dry brine'},{n:'2',label:'Smoke',sub:'225F fat-side UP'},{n:'3',label:'Spritz',sub:'Every hr starting hr 3'},{n:'4',label:'Wrap',sub:'165F paper or foil'},{n:'5',label:'Finish',sub:'200-205F bone wiggles'},{n:'6',label:'Rest',sub:'1-2 hrs cooler then pull'}]
       },
       {
         name: 'Medium', temp: '250F', time: '8-10 hours', diff: 'Easy',
         pellets: ['Apple','Pecan','Cherry'], best: 'Pecan',
-        desc: 'Same incredible pulled pork with a slightly tighter timeline.',
-        ingredients: ['1 bone-in pork butt 8-10 lbs','Mustard binder','Competition-style BBQ rub','Apple cider vinegar for spritzing','Foil for wrapping'],
-        steps: ['Apply mustard and rub the night before - refrigerate','Preheat Traeger to 250F','Place pork butt fat-side up on grates','Smoke 4-5 hours spritz with ACV every hour starting at hour 2','When bark is dark and set around 165F wrap tight in foil','Continue at 250F until probe-tender at 200-205F','Rest at least 1 hour in a cooler before pulling'],
-        tips: [
-          {icon:'&#x1F330;', title:'Pecan for Balance', text:'Pecan gives a mild nutty smoke that pairs great with pork at higher temps. Does not turn bitter like mesquite.'},
-          {icon:'&#x1F4CB;', title:'Plan Ahead', text:'Even at 250F this takes 8-10 hours. Start by 7am for a 5pm dinner or start the night before.'},
-          {icon:'&#x1F4A7;', title:'ACV Spritz Helps', text:'Spritzing with apple cider vinegar keeps the surface moist helps smoke adhere and adds a subtle tang to the bark.'}
+        desc: 'Same competition result a couple hours faster. Fat-side up, excellent bark.',
+        ingredients: [
+          '1 bone-in pork butt 8-10 lbs',
+          'Mustard binder',
+          'Competition BBQ rub with brown sugar',
+          'Apple cider vinegar for spritzing',
+          'Butcher paper or foil for wrapping'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'250F 20 min'},{n:'2',label:'Smoke',sub:'250F 4-5 hrs'},{n:'3',label:'Wrap',sub:'Foil at 165F'},{n:'4',label:'Finish',sub:'200-205F'},{n:'5',label:'Rest and Pull',sub:'1 hour min'}]
+        steps: [
+          'PREP: Bone in, fat cap mostly on. Trim any large hard chunks of fat but leave the overall fat cap intact.',
+          'SEASON: Mustard binder all over. Heavy rub on all surfaces. Rest overnight in fridge uncovered.',
+          'PREHEAT: Traeger to 250F.',
+          'PLACE: FAT SIDE UP on grates. This is the correct orientation for pork butt at any temperature.',
+          'SMOKE: Spritz with ACV every hour starting at hour 2. At 250F the bark builds faster - check the color starting at the 4 hour mark.',
+          'WRAP: When bark is dark and set at 165F internal wrap tight in butcher paper with a splash of ACV.',
+          'FINISH: Continue at 250F until 200-205F internal. Bone should wiggle freely when you twist it.',
+          'REST: Rest 1 hour in cooler before pulling. Pull while warm for the best texture.'
+        ],
+        tips: [
+          {icon:'&#x2B06;', title:'Fat Side Up No Matter What', text:'At 250F fat side up is still the rule. The rendering fat cap still bastes the meat from the top down throughout the entire cook. Never flip a pork butt.'},
+          {icon:'&#x1F330;', title:'Pecan Wood at 250F', text:'Pecan gives a mild nutty sweetness that pairs perfectly with pork and does not turn bitter at slightly higher temps the way mesquite can.'},
+          {icon:'&#x1F4C8;', title:'Check Bark at 4 Hours', text:'At 250F the bark can be fully set by hour 4-5. Once you see that dark mahogany crust and the meat has pulled back from the top edge you are ready to wrap.'}
+        ],
+        timeline: [{n:'1',label:'Season',sub:'Overnight dry brine'},{n:'2',label:'Smoke',sub:'250F fat-side UP'},{n:'3',label:'Spritz',sub:'Every hr from hr 2'},{n:'4',label:'Wrap',sub:'165F tight wrap'},{n:'5',label:'Finish',sub:'200-205F'},{n:'6',label:'Rest',sub:'1 hr then pull'}]
       },
       {
         name: 'Hot and Fast', temp: '300F', time: '6-8 hours', diff: 'Medium',
         pellets: ['Apple','Hickory','Pecan'], best: 'Apple',
-        desc: 'Get pulled pork on the table hours faster without sacrificing flavor.',
-        ingredients: ['1 bone-in pork butt 8-10 lbs','Mustard binder','BBQ rub of your choice','Apple juice for spritzing','Heavy-duty foil for wrapping'],
-        steps: ['Apply mustard and rub all over - can do morning of if short on time','Preheat Traeger to 300F','Place pork butt fat-side up on grates','Spritz with apple juice every 45-60 minutes after the first 2 hours','Wrap tight in heavy foil when bark is dark around 165F - about 4 hours','Return to grill at 300F until 200-205F internal and probe-tender','Rest 45 minutes to 1 hour before pulling'],
-        tips: [
-          {icon:'&#x26A1;', title:'Less Smoke Penetration', text:'Hot and fast pork butt gets less smoke ring but the pulled pork flavor is still absolutely incredible.'},
-          {icon:'&#x1F525;', title:'Bark Can Get Dark Fast', text:'At 300F the bark can go from perfect to overdone quickly. Check it at the 3 hour mark and wrap when ready.'},
-          {icon:'&#x1F356;', title:'Same Great Results', text:'For a pulled pork sandwich you honestly can barely tell the difference between 225 and 300. The foil braise saves it.'}
+        desc: 'Competition pulled pork in a fraction of the time. Fat-side up, still incredible.',
+        ingredients: [
+          '1 bone-in pork butt 8-10 lbs',
+          'Mustard binder',
+          'Competition BBQ rub',
+          'Apple juice for spritzing',
+          'Heavy duty foil for wrapping'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'300F 20 min'},{n:'2',label:'Smoke',sub:'300F 4 hrs'},{n:'3',label:'Wrap',sub:'Foil at 165F'},{n:'4',label:'Finish',sub:'200-205F'},{n:'5',label:'Rest and Pull',sub:'45-60 min'}]
+        steps: [
+          'PREP AND SEASON: Bone in, fat cap on, mustard binder, heavy rub on all sides. Can be done the morning of the cook if you are short on time though overnight is always better.',
+          'PREHEAT: Traeger to 300F.',
+          'PLACE: FAT SIDE UP on grates. Always fat side up for pork butt. Do not flip at any point during the cook.',
+          'SMOKE: At 300F the bark builds quickly. Spritz with apple juice every hour starting at hour 2. Watch bark color carefully - at this temp it can go dark fast.',
+          'WRAP: Around 165F internal or when bark is deeply colored and set, wrap tight in heavy foil. The foil wrap at 300F is more effective than butcher paper because you need to retain more moisture at the higher temp.',
+          'FINISH: Continue at 300F until 200-205F and bone wiggles freely. About 2-3 more hours.',
+          'REST: Minimum 45 minutes in a cooler. An hour is better. Pull while still warm.'
+        ],
+        tips: [
+          {icon:'&#x2B06;', title:'Fat Side UP Even at 300F', text:'The fat rendering and basting effect is just as important at 300F as it is at 225F. Fat side up is the rule for pork butt at every temperature.'},
+          {icon:'&#x1F6A8;', title:'Watch the Bark Closely', text:'At 300F the bark can go from perfect to overdone in 30 minutes. Start checking the color every 30 minutes once you hit the 3 hour mark. Wrap it the moment the bark looks right.'},
+          {icon:'&#x1F4C4;', title:'Foil Over Paper at 300F', text:'At hot and fast temps foil wrap is more effective than butcher paper for pork butt. You need that extra moisture retention at higher temps or the meat can dry out before the collagen fully breaks down.'}
+        ],
+        timeline: [{n:'1',label:'Season',sub:'Morning of or night before'},{n:'2',label:'Smoke',sub:'300F fat-side UP'},{n:'3',label:'Spritz',sub:'Every hr from hr 2'},{n:'4',label:'Wrap',sub:'Foil at 165F'},{n:'5',label:'Finish',sub:'200-205F bone wiggles'},{n:'6',label:'Rest',sub:'45-60 min then pull'}]
       }
     ]
   },
@@ -441,41 +739,92 @@ var DATA = {
       {
         name: 'Low and Slow - Double Smoked', temp: '225F', time: '4-5 hours', diff: 'Easy',
         pellets: ['Maple','Apple','Cherry'], best: 'Maple',
-        desc: 'Double-smoked ham with caramelized brown sugar glaze. A showstopper.',
-        ingredients: ['1 bone-in pre-cooked ham 8-10 lbs','1 cup brown sugar','Quarter cup honey','2 tbsp Dijon mustard','2 tbsp apple cider vinegar','1 tsp cinnamon','Half tsp ground cloves','Pineapple juice for spritzing'],
-        steps: ['Score ham in a diamond pattern about quarter inch deep all over','Preheat Traeger to 225F','Place ham cut-side down on grates','Smoke 2 hours spritzing with pineapple juice every 45 minutes','Mix glaze: brown sugar honey Dijon ACV cinnamon and cloves','Apply glaze coating every 30 minutes for final 2 hours','Pull when glaze is beautifully caramelized and ham reaches 140F','Rest 15 minutes slice and serve'],
-        tips: [
-          {icon:'&#x1F48E;', title:'Score the Ham', text:'Scoring lets smoke and glaze penetrate deeper into the meat and creates more surface area for amazing caramelization.'},
-          {icon:'&#x1F34D;', title:'Pineapple Spritz', text:'Pineapple juice adds sweetness and the enzymes help keep the exterior surface moist as it smokes low and slow.'},
-          {icon:'&#x1F341;', title:'Maple Wood is Perfect', text:'Maple smoke is the perfect complement to ham - subtly sweet and clean with zero bitterness even over hours of cooking.'}
+        desc: 'Double-smoked holiday ham. Deep smoke, caramelized glaze, and a showstopper presentation.',
+        ingredients: [
+          '1 bone-in pre-cooked spiral or whole ham 8-10 lbs',
+          '1 cup packed brown sugar',
+          'Quarter cup real maple syrup',
+          'Quarter cup honey',
+          '2 tbsp Dijon mustard',
+          '2 tbsp apple cider vinegar',
+          '1 tsp cinnamon',
+          'Half tsp ground cloves',
+          'Quarter tsp allspice',
+          'Pineapple juice for spritzing'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'225F 15 min'},{n:'2',label:'Smoke',sub:'2 hrs with spritz'},{n:'3',label:'Glaze',sub:'Every 30 min'},{n:'4',label:'Pull',sub:'140F internal'},{n:'5',label:'Rest and Slice',sub:'15 minutes'}]
+        steps: [
+          'SCORE: If using a whole ham score the fat cap in a diamond pattern about quarter inch deep. This opens the surface for smoke and glaze to penetrate and creates more surface area for caramelization. Spiral hams are already cut through so just go directly to seasoning.',
+          'PLACE: Set ham on a wire rack inside a foil pan or directly on grates. Cut side DOWN if it has a flat cut side - this protects the exposed meat and keeps it moist. If a shank ham goes fat side UP.',
+          'SMOKE: Preheat Traeger to 225F with maple pellets. Place ham on grates. Smoke for the first 2 hours bare - no glaze yet. Spritz with pineapple juice every 45 minutes during this phase.',
+          'MAKE THE GLAZE: While ham smokes combine brown sugar, maple syrup, honey, Dijon, ACV, cinnamon, cloves, and allspice in a small saucepan. Warm over low heat until sugar dissolves and glaze is smooth and pourable.',
+          'GLAZE PHASE: After 2 hours of bare smoke start applying glaze every 30 minutes. Apply a thin coat each time and let it set before the next coat. You are building layers.',
+          'FINISH: Continue at 225F until internal reaches 140F - the USDA safe temp for pre-cooked ham. The glaze should be beautifully caramelized, dark, and sticky.',
+          'REST: Rest 15-20 minutes before slicing. The glaze will tighten up as it cools slightly.'
+        ],
+        tips: [
+          {icon:'&#x1F48E;', title:'Score Deep Enough', text:'Shallow scoring barely scratches the surface. Go at least quarter inch deep so the smoke and glaze can work their way into the meat through the scoring. More scoring equals more caramelization.'},
+          {icon:'&#x1F341;', title:'Maple Pellets Are Perfect for Ham', text:'Maple smoke is the single best wood for ham - natural sweetness, zero bitterness, and it enhances the cured flavor instead of competing with it. This is not the place for hickory or mesquite.'},
+          {icon:'&#x1F4C8;', title:'Layer Your Glaze', text:'Each glaze application should be thin. Thin layers build up into a deeply caramelized shell over the entire ham. One thick application just runs off and pools at the bottom.'},
+          {icon:'&#x1F34D;', title:'Pineapple Spritz Has a Purpose', text:"Pineapple juice contains enzymes that help tenderize the surface of the ham and the natural sugars add to the caramelization. It is not just for moisture - it is doing real work."}
+        ],
+        timeline: [{n:'1',label:'Score and Place',sub:'Cut-side down'},{n:'2',label:'Smoke',sub:'225F bare 2 hrs'},{n:'3',label:'Glaze Phase',sub:'Every 30 min'},{n:'4',label:'Pull',sub:'140F internal'},{n:'5',label:'Rest',sub:'15-20 min then slice'}]
       },
       {
         name: 'Medium', temp: '275F', time: '2.5-3.5 hours', diff: 'Easy',
         pellets: ['Cherry','Apple','Maple'], best: 'Cherry',
-        desc: 'Beautiful double-smoked ham with a gorgeous mahogany glaze.',
-        ingredients: ['1 pre-cooked bone-in ham 8-10 lbs','1 cup brown sugar','Quarter cup honey','2 tbsp Dijon mustard','1 tsp cinnamon','Half tsp cloves','Cherry wood pellets','Apple juice for spritzing'],
-        steps: ['Score ham in diamond pattern quarter inch deep','Preheat Traeger to 275F','Place ham cut-side down on grates','Smoke 1 hour to develop color and smoke flavor','Begin applying glaze every 25-30 minutes','Spritz with apple juice when not glazing','Continue until 140F internal - about 1.5-2.5 more hours','Rest 15 minutes and slice to serve'],
-        tips: [
-          {icon:'&#x1F352;', title:'Cherry Wood for Color', text:'Cherry pellets give ham a beautiful deep mahogany color that makes it look incredible on any table.'},
-          {icon:'&#x1F321;', title:'Already Pre-Cooked', text:'Pre-cooked hams just need to reach 140F. You are essentially adding smoke flavor and building an amazing glaze.'},
-          {icon:'&#x23F1;', title:'Watch Your Glaze', text:'At 275F the sugar can burn if you forget to monitor. Set a timer for every 25 minutes to apply the next coat.'}
+        desc: 'Gorgeous mahogany double-smoked ham done in about 3 hours.',
+        ingredients: [
+          '1 pre-cooked bone-in ham 8-10 lbs',
+          'Brown sugar and maple syrup glaze',
+          'Honey and Dijon mustard',
+          'Cinnamon and cloves',
+          'Apple juice for spritzing',
+          'Cherry wood pellets for color'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'275F 15 min'},{n:'2',label:'Smoke Base',sub:'1 hour bare'},{n:'3',label:'Glaze',sub:'Every 25 min'},{n:'4',label:'Pull',sub:'140F internal'},{n:'5',label:'Rest and Slice',sub:'15 min'}]
+        steps: [
+          'Score ham in diamond pattern quarter inch deep all over.',
+          'Place ham cut-side down or fat-side up on grates depending on the cut.',
+          'Preheat Traeger to 275F with cherry pellets.',
+          'Smoke bare for the first hour - this is your smoke foundation phase.',
+          'Mix your glaze while ham smokes in the first hour.',
+          'Begin applying glaze every 25-30 minutes. Thin layers each time.',
+          'Spritz with apple juice between glaze applications to keep surface moist.',
+          'Continue until internal hits 140F - about 1.5-2.5 more hours.',
+          'Rest 15 minutes before slicing.'
+        ],
+        tips: [
+          {icon:'&#x1F352;', title:'Cherry for Color and Flavor', text:'Cherry wood pellets give ham the most stunning deep mahogany color of any wood. The flavor is mildly sweet and fruity which is a perfect pairing for cured pork.'},
+          {icon:'&#x23F1;', title:'Watch Glaze Timing at 275F', text:'At 275F the sugars in your glaze can burn between applications if you leave it too long. Every 25-30 minutes is the right rhythm to build layers without burning.'},
+          {icon:'&#x1F321;', title:'140F Is the Finish Line', text:'Since ham is already cooked you just need to bring it to 140F for food safety and ideal serving temp. Do not overcook past 145F or the texture starts to dry out.'}
+        ],
+        timeline: [{n:'1',label:'Score and Place',sub:'Cut-side or fat-side orientation'},{n:'2',label:'Smoke',sub:'275F bare 1 hr'},{n:'3',label:'Glaze',sub:'Every 25-30 min'},{n:'4',label:'Pull',sub:'140F internal'},{n:'5',label:'Rest and Slice',sub:'15 min'}]
       },
       {
         name: 'Hot and Fast', temp: '325F', time: '2-2.5 hours', diff: 'Easy',
         pellets: ['Cherry','Maple','Apple'], best: 'Cherry',
-        desc: 'Quick double-smoked ham for weeknights. Ready in about 2 hours.',
-        ingredients: ['1 pre-cooked ham 7-8 lbs','Brown sugar honey Dijon ACV glaze','Pineapple juice for spritzing','Cherry wood pellets'],
-        steps: ['Score ham in diamond pattern','Preheat Traeger to 325F','Place ham cut-side down on grates','Smoke 45 minutes to get color and smoke base established','Begin applying glaze every 20 minutes for remaining cook time','Pull when internal reaches 140F - about 1-1.5 more hours','Rest 10 minutes slice and serve'],
-        tips: [
-          {icon:'&#x23F1;', title:'Easiest Smoke Ever', text:'Ham is the easiest thing to smoke on a Traeger. It is pre-cooked so you are just heating it up and adding flavor.'},
-          {icon:'&#x1F525;', title:'Watch the Sugar', text:'At 325F sugar-based glazes can burn if left unattended. Every 20 minutes is the sweet spot for this temperature.'},
-          {icon:'&#x1F384;', title:'Holiday Showpiece', text:'Even a quick hot and fast double-smoked ham looks and tastes restaurant-quality. Nobody needs to know it took 2 hours.'}
+        desc: 'Holiday-quality double-smoked ham in about 2 hours. Great weeknight option.',
+        ingredients: [
+          '1 pre-cooked ham 7-8 lbs',
+          'Brown sugar honey Dijon glaze',
+          'Pineapple juice for spritzing',
+          'Cherry wood pellets'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'325F 15 min'},{n:'2',label:'Smoke Base',sub:'45 min bare'},{n:'3',label:'Glaze',sub:'Every 20 min'},{n:'4',label:'Pull',sub:'140F internal'},{n:'5',label:'Slice and Serve',sub:'10 min rest'}]
+        steps: [
+          'Score ham diamond pattern. Place cut-side down on grates.',
+          'Preheat Traeger to 325F with cherry pellets.',
+          'Smoke bare for 45 minutes to build your smoke base.',
+          'Mix glaze: brown sugar, honey, Dijon, ACV, cinnamon, and cloves.',
+          'Begin glazing every 20 minutes for the remainder of the cook.',
+          'At 325F watch glaze closely - sugar can burn at this temp if you miss an application.',
+          'Pull at 140F internal - about 1-1.5 hours after the bare smoke phase.',
+          'Rest 10 minutes, slice across the spiral cuts or against the grain.'
+        ],
+        tips: [
+          {icon:'&#x1F4F1;', title:'Set a 20 Minute Timer', text:'At 325F you cannot walk away between glaze applications. Set a timer on your phone for every 20 minutes so you do not miss one and burn the sugar coating.'},
+          {icon:'&#x26A1;', title:'Easiest Smoke on a Traeger', text:'Ham is pre-cooked. You cannot undercook it as long as you hit 140F. This is the best recipe for someone new to smoking - guaranteed results with very little risk.'},
+          {icon:'&#x1F384;', title:'Looks Like a Holiday Showpiece', text:'Even a quick hot and fast double-smoked ham looks and tastes like you spent all day on it. Cherry wood color plus caramelized glaze equals a table centerpiece every time.'}
+        ],
+        timeline: [{n:'1',label:'Score and Place',sub:'Cut-side down'},{n:'2',label:'Smoke Base',sub:'325F bare 45 min'},{n:'3',label:'Glaze',sub:'Every 20 min'},{n:'4',label:'Pull',sub:'140F internal'},{n:'5',label:'Slice and Serve',sub:'10 min rest'}]
       }
     ]
   },
@@ -485,45 +834,102 @@ var DATA = {
       {
         name: 'Low and Slow', temp: '180F', time: '2-3 hours', diff: 'Easy',
         pellets: ['Alder','Apple','Cherry'], best: 'Alder',
-        desc: 'Traditional smoked salmon. Silky, rich, deeply flavored, and stunning.',
-        ingredients: ['2 lbs salmon fillets skin-on','Quarter cup brown sugar','2 tbsp kosher salt','1 tbsp black pepper','1 tsp garlic powder','2 tbsp honey for finishing glaze','Fresh dill and lemon for garnish'],
-        steps: ['Mix brown sugar salt pepper and garlic - coat salmon generously','Place on a rack over a sheet pan and refrigerate uncovered 1-2 hours','The surface should feel slightly tacky and shiny - this is what smoke sticks to','Preheat Traeger to 180F','Place salmon skin-side down on grates - do not move it during cooking','Smoke 2-3 hours until internal temp hits 140F and surface is set','Brush with honey in the last 20 minutes for a beautiful glaze','Garnish with fresh dill and lemon - serve warm or refrigerate and chill'],
-        tips: [
-          {icon:'&#x1F3A3;', title:'The Pellicle is Critical', text:'Refrigerating uncovered forms a tacky surface that smoke clings to. Do not skip this step or the smoke just slides right off.'},
-          {icon:'&#x1F33F;', title:'Alder is Traditional', text:'Alder is the classic Pacific Northwest wood for salmon - clean mild smoke that does not overpower delicate fish at all.'},
-          {icon:'&#x1F321;', title:'140F is Done', text:'Salmon is ready at 140F. It should flake easily but still look slightly translucent in the very center.'}
+        desc: 'Traditional Pacific Northwest smoked salmon. Silky, rich, and deeply flavored.',
+        ingredients: [
+          '2 lbs salmon fillet skin-on - sockeye or king salmon for best results',
+          'Quarter cup brown sugar',
+          '2 tbsp kosher salt',
+          '1 tbsp coarse black pepper',
+          '1 tsp garlic powder',
+          '1 tsp onion powder',
+          '2 tbsp honey for finishing glaze',
+          'Fresh dill and lemon slices for garnish'
         ],
-        timeline: [{n:'1',label:'Dry Brine',sub:'1-2 hrs fridge'},{n:'2',label:'Preheat',sub:'180F 15 min'},{n:'3',label:'Smoke',sub:'2-3 hours'},{n:'4',label:'Honey Glaze',sub:'Last 20 min'},{n:'5',label:'Pull',sub:'140F done'}]
+        steps: [
+          'PICK YOUR SALMON: Skin-on fillet is mandatory. The skin protects the fish from the grates and holds it together. Pin-bone the fillet with needle nose pliers - run your finger along the center line and feel for bones, pull them out.',
+          'DRY BRINE: Mix brown sugar, salt, pepper, garlic, and onion powder. Coat salmon generously on flesh side. Place skin-side DOWN on a wire rack over a sheet pan. Refrigerate UNCOVERED for 1-2 hours.',
+          'BUILD THE PELLICLE: After 1-2 hours in the fridge the surface of the salmon should look slightly tacky and shiny - like a sticky film. This is called the pellicle. It is absolutely critical. Smoke adheres to the pellicle. Without it smoke slides right off.',
+          'PREHEAT: Traeger to 180F with alder pellets.',
+          'PLACE: Salmon goes SKIN SIDE DOWN on the grates. Never flip it. Never move it. The skin welds itself to the grates as it cooks and will release cleanly when done. Moving it before it is ready will shred the fish.',
+          'SMOKE: Cook at 180F for 2-3 hours. No spritzing needed - the low temp and fat content of the salmon keeps it moist naturally.',
+          'CHECK: At 2 hours check internal temp in the thickest part. You want 140F. The surface should look set and matte, not shiny and wet.',
+          'GLAZE: At the 2 hour mark brush honey thinly over the flesh. Return to grill for 15-20 more minutes to set the glaze.',
+          'SERVE: Slide a spatula between the skin and flesh - the skin stays on the grates. Serve warm immediately or refrigerate and serve cold. Both are incredible.'
+        ],
+        tips: [
+          {icon:'&#x1F3A3;', title:'The Pellicle is Non-Negotiable', text:'If you skip the pellicle building step your smoke will not adhere and you will get pale unsmoky salmon. The 1-2 hours of uncovered refrigeration is doing critical work. Do not skip it ever.'},
+          {icon:'&#x1F33F;', title:'Alder is the Traditional Choice', text:'Alder has been used to smoke salmon in the Pacific Northwest for centuries. It is clean, mild, slightly sweet and does not overpower delicate fish. It is the correct wood for salmon.'},
+          {icon:'&#x1F6AB;', title:'Do Not Touch It', text:'Salmon will stick to the grates until it is ready to release. Trying to flip or move it too early will shred it completely. Leave it completely alone - it will release cleanly when the skin is done.'},
+          {icon:'&#x1F321;', title:'140F in the Thickest Part', text:'Salmon is done at 140F. At that temp it will flake easily but still look slightly translucent in the very center. Overcooked salmon is dry and chalky. Pull at exactly 140F.'}
+        ],
+        timeline: [{n:'1',label:'Dry Brine',sub:'1-2 hrs fridge uncovered'},{n:'2',label:'Build Pellicle',sub:'Surface tacky and shiny'},{n:'3',label:'Smoke',sub:'180F skin-side down'},{n:'4',label:'Honey Glaze',sub:'At 2 hrs brush and set'},{n:'5',label:'Pull',sub:'140F then skin stays on grates'}]
       },
       {
         name: 'Medium', temp: '275F', time: '45-60 min', diff: 'Easy',
         pellets: ['Alder','Apple','Lemon'], best: 'Alder',
-        desc: 'Great smoke flavor in under an hour. Perfect for a weeknight dinner.',
-        ingredients: ['2 salmon fillets skin-on 6-8 oz each','2 tbsp olive oil','Juice of 1 lemon','1 tbsp brown sugar','Salt pepper garlic powder','Fresh dill or parsley'],
-        steps: ['Pat salmon dry and brush both sides with olive oil','Mix brown sugar salt pepper and garlic powder - season the flesh side','Squeeze lemon juice over the top','Preheat Traeger to 275F','Place skin-side down on grates','Cook 45-60 minutes until internal hits 140F','Do not flip - skin holds it together and releases naturally when done','Garnish with fresh dill serve with lemon wedges'],
-        tips: [
-          {icon:'&#x1F41F;', title:'Never Flip Salmon', text:'Salmon cooked skin-side down does not need to be flipped. The skin protects the flesh and the grates cook it through.'},
-          {icon:'&#x1F34B;', title:'Lemon Before and After', text:'A squeeze of lemon before cooking and fresh lemon to serve cuts through the richness of the fish perfectly.'},
-          {icon:'&#x1F33F;', title:'Do Not Overcook', text:'Overcooked salmon goes dry and chalky. Pull at exactly 140F and the texture will be silky and perfect every time.'}
+        desc: 'Real smoke flavor in under an hour. Weeknight dinner on the Traeger.',
+        ingredients: [
+          '2 salmon fillets skin-on 6-8 oz each',
+          '2 tbsp olive oil',
+          'Juice of 1 lemon',
+          '1 tbsp brown sugar',
+          'Kosher salt and coarse pepper',
+          'Garlic powder',
+          'Fresh dill for serving'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'275F 15 min'},{n:'2',label:'Prep',sub:'Oil and season'},{n:'3',label:'Cook',sub:'45-60 min'},{n:'4',label:'Check',sub:'140F internal'},{n:'5',label:'Serve',sub:'With lemon'}]
+        steps: [
+          'Pat salmon completely dry on both sides.',
+          'Brush flesh side with olive oil. Season with brown sugar, salt, pepper, and garlic powder.',
+          'Squeeze fresh lemon juice over the flesh side.',
+          'Let the seasoning rest on the fish for 15-20 minutes at room temp - a quick mini pellicle.',
+          'Preheat Traeger to 275F with alder pellets.',
+          'Place salmon SKIN SIDE DOWN on grates. Do not flip at any point in the cook.',
+          'Cook 45-60 minutes until internal hits 140F in the thickest part.',
+          'The skin will bond to the grates and hold the fish together the entire cook. Slide a spatula between skin and flesh to serve - skin stays on the grates.',
+          'Serve immediately with fresh dill and lemon wedges.'
+        ],
+        tips: [
+          {icon:'&#x1F41F;', title:'Skin Down and Never Flip', text:'Salmon cooked skin-side down at any temp does not need to be flipped. The skin is your cooking vessel. It crisps slightly on the grates and releases cleanly when the fish is done.'},
+          {icon:'&#x1F34B;', title:'Lemon and Brown Sugar Together', text:'The combination of lemon juice and brown sugar on salmon creates a slightly sweet tangy crust as it cooks. These two flavors together with alder smoke is a classic combination for a reason.'},
+          {icon:'&#x1F321;', title:'Do Not Overcook', text:'Overcooked salmon is dry, chalky, and falls apart. At 140F it flakes perfectly and still has that silky translucent center. Use a probe thermometer and pull at exactly 140F every time.'}
+        ],
+        timeline: [{n:'1',label:'Season',sub:'15-20 min rest'},{n:'2',label:'Preheat',sub:'275F alder pellets'},{n:'3',label:'Cook',sub:'45-60 min skin-side down'},{n:'4',label:'Check',sub:'140F in thickest part'},{n:'5',label:'Serve',sub:'Skin stays on grates'}]
       },
       {
         name: 'Hot and Fast', temp: '375-400F', time: '12-18 min', diff: 'Easy',
         pellets: ['Alder','Apple','Cherry'], best: 'Alder',
-        desc: 'Crispy skin, quick cook, done in under 20 minutes on the Traeger.',
-        ingredients: ['Salmon fillets skin-on 1 to 1.25 inches thick','Olive oil','Lemon juice','Kosher salt and pepper','Garlic powder','Capers and lemon slices for serving'],
-        steps: ['Let salmon sit at room temp 10 minutes','Pat completely dry - very important for getting crispy skin at high heat','Brush flesh side with olive oil season with salt pepper and garlic powder','Squeeze fresh lemon juice over the top','Preheat Traeger to 375-400F','Place salmon skin-side down directly on grates','Cook 12-18 minutes until 140F internal - do not flip','Serve immediately with capers and extra lemon'],
-        tips: [
-          {icon:'&#x26A1;', title:'Quick Win Dinner', text:'Hot and fast salmon is one of the fastest things you can make on a Traeger. Full dinner in under 30 minutes total.'},
-          {icon:'&#x1F9C2;', title:'Pat Bone Dry', text:'At high heat a dry surface means crispy skin. Any moisture and the skin steams instead of crisps up properly.'},
-          {icon:'&#x1F321;', title:'Watch Closely', text:'Salmon goes from perfect to overcooked quickly at 400F. Start checking internal temp at the 10 minute mark.'}
+        desc: 'Crispy skin, quick cook. Dinner on the table in under 30 minutes.',
+        ingredients: [
+          'Salmon fillets skin-on 1 to 1.25 inches thick at the thickest point',
+          'Olive oil',
+          'Lemon juice',
+          'Kosher salt and cracked black pepper',
+          'Garlic powder',
+          'Capers and lemon wedges for serving'
         ],
-        timeline: [{n:'1',label:'Preheat',sub:'400F 15 min'},{n:'2',label:'Prep',sub:'Dry and season'},{n:'3',label:'Cook',sub:'12-18 min'},{n:'4',label:'Check',sub:'140F internal'},{n:'5',label:'Serve',sub:'With lemon'}]
+        steps: [
+          'PAT BONE DRY: The driest possible surface is critical at high heat. Pat both sides twice with paper towels. Any moisture left on the skin will steam instead of crisp.',
+          'SEASON: Brush flesh side with olive oil. Season with salt, pepper, and garlic powder. Squeeze fresh lemon over the top.',
+          'Preheat Traeger to 375-400F lid closed for 15 minutes.',
+          'PLACE: Salmon SKIN SIDE DOWN directly on screaming hot grates. The skin should sizzle loudly on contact.',
+          'Cook 12-18 minutes - do not flip, do not move, do not touch.',
+          'The skin will start to render and crisp against the grates. Check internal at the 10 minute mark.',
+          'Pull at 140F internal. The skin will be crispy and release cleanly from the grates at this point.',
+          'Serve immediately. The crispy skin is edible and delicious - do not discard it.',
+          'Serve with capers, lemon wedges, and fresh cracked pepper.'
+        ],
+        tips: [
+          {icon:'&#x26A1;', title:'Under 30 Minutes Start to Finish', text:'Hot and fast salmon is one of the quickest things you can make on a Traeger. Preheat while you prep and dinner is on the table in under 30 minutes total.'},
+          {icon:'&#x1F9C2;', title:'Bone Dry for Crispy Skin', text:'At 400F any moisture on the skin steams it from the inside and you get soft skin instead of crispy. Pat dry, let air dry for a few minutes, then season and go.'},
+          {icon:'&#x1F9C6;', title:'The Skin is the Prize', text:'Crispy salmon skin cooked properly on a hot grill is almost like a pork rind - crunchy, salty, rich. Do not throw it away. It is the reward for cooking skin-side down correctly.'},
+          {icon:'&#x1F321;', title:'Start Checking at 10 Minutes', text:'At 400F a thick fillet can go from perfect to overcooked very quickly. Start probing at the 10 minute mark and pull the moment you hit 140F.'}
+        ],
+        timeline: [{n:'1',label:'Pat Bone Dry',sub:'Critical step'},{n:'2',label:'Preheat',sub:'400F 15 min'},{n:'3',label:'Sear',sub:'Skin-side down sizzle'},{n:'4',label:'Check at 10 min',sub:'Probe thickest part'},{n:'5',label:'Pull at 140F',sub:'Crispy skin done'}]
       }
     ]
   }
 };
+
 
 var currentMeat = 'chicken';
 var currentStyle = 0;
