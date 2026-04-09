@@ -1,98 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>hpkreutz.com</title>
-<link rel="stylesheet" href="global.css" />
 <style>
-.hero { background: #111; color: #fff; padding: 96px 0 80px; margin-top: 58px; }
-.hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 18px; }
-.hero-title { font-size: clamp(40px, 6vw, 72px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 20px; }
-.hero-title em { font-style: italic; font-weight: 300; color: rgba(255,255,255,0.4); }
-.hero-sub { font-size: 17px; color: rgba(255,255,255,0.5); max-width: 480px; line-height: 1.65; margin-bottom: 36px; }
-.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
 
-.nav-cards { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #e5e5e5; border-radius: 10px; overflow: hidden; }
-.nav-card { display: flex; flex-direction: column; padding: 26px 24px; background: #fff; text-decoration: none; color: #111; border-right: 1px solid #e5e5e5; transition: background 0.15s; }
-.nav-card:nth-child(3n) { border-right: none; }
-.nav-card:hover { background: #fafafa; }
-.nc-icon { font-size: 26px; margin-bottom: 14px; }
-.nc-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-.nc-desc { font-size: 13px; color: #888; line-height: 1.55; flex: 1; }
-.nc-link { font-size: 13px; color: #bbb; margin-top: 16px; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#111;height:56px;display:flex;align-items:center;padding:0 5%}
+.nav-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;margin-right:auto}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links .cta{background:#c8401a;color:#fff!important;padding:7px 14px;border-radius:6px;font-weight:600}
+.nav-links .cta:hover{background:#a83212}
+/* LAYOUT */
+.body-wrap{padding-top:56px}
+.page{max-width:960px;margin:0 auto;padding:0 32px}
+/* HERO */
+.hero{background:#111;padding:80px 5% 72px}
+.hero-inner{max-width:960px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
+.hero h1{font-size:clamp(38px,5.5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;color:#fff;margin-bottom:18px}
+.hero h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+.hero p{font-size:16px;color:rgba(255,255,255,.5);max-width:460px;line-height:1.7;margin-bottom:32px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;padding:10px 22px;border-radius:7px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
+.btn-dark{background:#111;color:#fff}
+.btn-dark:hover{background:#2d2d2d}
+.btn-red{background:#c8401a;color:#fff}
+.btn-red:hover{background:#a83212}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-outline{background:#fff;color:#111;border:1px solid #ddd}
+.btn-outline:hover{background:#f5f5f5}
+.btn-block{width:100%;justify-content:center}
+.btn-sm{font-size:13px;padding:8px 16px}
+/* PAGE HEADER */
+.phead{padding:48px 0 36px;border-bottom:1px solid #ebebeb;margin-bottom:40px}
+.phead-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
+.phead h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:10px}
+.phead p{font-size:15px;color:#666;max-width:520px;line-height:1.65}
+/* SECTION */
+.section{margin-bottom:44px}
+.slabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;padding-bottom:10px;border-bottom:1px solid #ebebeb;margin-bottom:18px}
+/* GRID CARDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+/* CARD */
+.card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:0}
+.chead{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.chead-title{font-size:14px;font-weight:700;color:#111}
+.chead-sub{font-size:12px;color:#999;margin-top:2px}
+.cbody{padding:20px}
+/* FORM */
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#999;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:10px 13px;border:1px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;background:#fff;outline:none;-webkit-appearance:none;transition:border-color .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#111;box-shadow:0 0 0 3px rgba(17,17,17,.06)}
+.field textarea{resize:vertical;min-height:80px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+/* RESULTS */
+.results{display:none;margin-top:16px;padding-top:14px;border-top:1px solid #ebebeb}
+.results.show{display:block}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
+.rrow:last-child{border-bottom:none}
+.rk{color:#666}
+.rv{font-weight:700;color:#111}
+.rv.big{font-size:18px}
+.rv.green{font-size:18px;color:#1a7a3a}
+.rv.dyn{font-size:18px}
+/* STAT TABLE */
+.srow{display:flex;justify-content:space-between;align-items:center;padding:9px 20px;border-bottom:1px solid #f0f0f0;font-size:13px}
+.srow:last-child{border-bottom:none}
+.sk{color:#666}
+.sv{font-weight:600;color:#111;text-align:right}
+.sv.up{color:#1a7a3a}
+.sv.down{color:#c8401a}
+/* CODE OUTPUT */
+.code-out{display:none;flex-direction:column;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #ebebeb}
+.code-out.show{display:flex}
+/* NAV CARD */
+.ncard{display:flex;flex-direction:column;padding:26px 24px;background:#fff;text-decoration:none;color:#111;transition:background .15s}
+.ncard:hover{background:#fafafa}
+.ncard-icon{font-size:24px;margin-bottom:14px}
+.ncard-name{font-size:15px;font-weight:700;margin-bottom:6px}
+.ncard-desc{font-size:13px;color:#888;line-height:1.55;flex:1}
+.ncard-arrow{font-size:13px;color:#ccc;margin-top:14px}
+/* TEAM CARD */
+.tcard-top{display:flex;align-items:center;gap:14px;padding:18px 22px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.tlogo{width:46px;height:46px;border-radius:8px;background:#fff;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.tlogo img{width:34px;height:34px;object-fit:contain}
+.tlogo-txt{font-size:12px;font-weight:800;color:#666}
+.tname{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
+.tmeta{font-size:12px;color:#999}
+.tbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;background:#f0f0f0;border:1px solid #e0e0e0;color:#666;margin-left:auto;flex-shrink:0}
+.tlinks{display:flex}
+.tlink{flex:1;display:flex;align-items:center;justify-content:center;padding:11px 6px;text-decoration:none;font-size:12px;font-weight:600;color:#555;border-right:1px solid #e5e5e5;transition:all .15s}
+.tlink:last-child{border-right:none}
+.tlink:hover{background:#f5f5f5;color:#111}
+.tlink.hi{color:#c8401a}
+.tlink.hi:hover{background:#c8401a;color:#fff}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.cinfo{padding:36px;background:#fafafa;border-right:1px solid #e5e5e5}
+.cform{padding:36px;background:#fff}
+.cbiz{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.crole{font-size:13px;color:#999;margin-bottom:16px}
+.cbio{font-size:14px;color:#555;line-height:1.7;margin-bottom:24px}
+.drow-c{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.dicon{font-size:15px;width:20px;flex-shrink:0}
+.dlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin-bottom:2px}
+.dval{font-size:14px;color:#111;text-decoration:none;display:block}
+.dval:hover{color:#c8401a}
+.cext{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.ftitle{font-size:17px;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #ebebeb}
+.submit{width:100%;padding:12px;background:#c8401a;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
+.submit:hover{background:#a83212}
+.form-ok{display:none;margin-top:10px;font-size:13px;font-weight:600;color:#1a7a3a;background:rgba(26,122,58,.08);padding:10px 14px;border-radius:6px}
+/* FOOTER */
+.footer{background:#111;margin-top:60px}
+.foot-inner{max-width:960px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
+.foot-copy{font-size:12px;color:rgba(255,255,255,.35)}
+.foot-links{display:flex;gap:20px}
+.foot-links a{font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s}
+.foot-links a:hover{color:#fff}
+/* SUB LABEL */
+.sub-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:14px 0 10px}
+/* RESPONSIVE */
+@media(max-width:860px){
+  .page{padding:0 24px}
+  .hero{padding:64px 24px 56px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .foot-inner{padding:24px}
+}
+@media(max-width:640px){
+  .page{padding:0 16px}
+  .hero{padding:48px 16px 44px}
+  .nav{padding:0 16px}
+  .nav-links a:not(.cta){display:none}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .cinfo{border-right:none;border-bottom:1px solid #e5e5e5}
+  .frow,.frow3{grid-template-columns:1fr}
+  .foot-inner{padding:20px 16px;flex-direction:column;gap:10px;align-items:flex-start}
+}
 
-@media (max-width: 700px) { .nav-cards { grid-template-columns: 1fr 1fr; } .nav-card:nth-child(2n) { border-right: none; } .nav-card:nth-child(3n) { border-right: 1px solid #e5e5e5; } .nav-card:nth-child(odd):nth-last-child(-n+2) { border-right: none; } }
-@media (max-width: 440px) { .nav-cards { grid-template-columns: 1fr; } .nav-card { border-right: none !important; } }
+.nc-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.nc-wrap .ncard{border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5}
+.nc-wrap .ncard:nth-child(3n){border-right:none}
+.nc-wrap .ncard:nth-last-child(-n+3){border-bottom:none}
+@media(max-width:640px){.nc-wrap{grid-template-columns:1fr}.nc-wrap .ncard{border-right:none}}
 </style>
 </head>
 <body>
-
 <nav class="nav">
-  <a href="index.html" class="nav-brand">hpkreutz.com</a>
-  <a href="markets.html" class="nav-link">Markets</a>
-  <a href="tools.html" class="nav-link">Tools</a>
-  <a href="sports.html" class="nav-link">Sports</a>
-  <a href="fitness.html" class="nav-link">Fitness</a>
-  <a href="contact.html" class="nav-link nav-cta">Contact →</a>
+  <a href="index.html" class="nav-logo">hpkreutz.com</a>
+  <div class="nav-links">
+    <a href="markets.html">Markets</a>
+    <a href="tools.html">Tools</a>
+    <a href="sports.html">Sports</a>
+    <a href="fitness.html">Fitness</a>
+    <a href="contact.html" class="cta">Contact →</a>
+  </div>
 </nav>
-
 <div class="hero">
-  <div class="container">
-    <div class="hero-eyebrow">hpkreutz.com — Hays, KS</div>
-    <h1 class="hero-title">Tools, Sports,<br><em>and Everything</em><br>In Between.</h1>
-    <p class="hero-sub">A personal hub built for daily use — live markets, sports schedules, fitness programs, calculators, and more.</p>
-    <div class="hero-btns">
+  <div class="hero-inner">
+    <div class="eyebrow">hpkreutz.com — Hays, KS</div>
+    <h1>Tools, Sports,<br><em>and Everything</em><br>In Between.</h1>
+    <p>A personal hub built for daily use — live markets, sports schedules, fitness programs, calculators, and more.</p>
+    <div class="btn-row">
       <a href="markets.html" class="btn btn-red">Live Markets</a>
-      <a href="contact.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.2);background:transparent;">Get a Quote</a>
+      <a href="contact.html" class="btn btn-ghost">Get a Quote</a>
     </div>
   </div>
 </div>
-
-<div class="page-top">
-  <div class="container">
-    <div style="padding: 48px 0;">
-      <div class="section-title">What's Here</div>
-      <div class="nav-cards">
-        <a href="markets.html" class="nav-card">
-          <div class="nc-icon">📈</div>
-          <div class="nc-name">Markets</div>
-          <div class="nc-desc">Live stock indices, crypto, commodities, movers, and breaking market news.</div>
-          <div class="nc-link">View Markets →</div>
-        </a>
-        <a href="tools.html" class="nav-card">
-          <div class="nc-icon">🧮</div>
-          <div class="nc-name">Tools</div>
-          <div class="nc-desc">Loan, mortgage, retirement, and rental property calculators. QR and barcode generator.</div>
-          <div class="nc-link">Open Tools →</div>
-        </a>
-        <a href="sports.html" class="nav-card">
-          <div class="nc-icon">🏈</div>
-          <div class="nc-name">Sports</div>
-          <div class="nc-desc">Chiefs, Royals, FHSU Tigers, Hays High — schedules, rosters, and links.</div>
-          <div class="nc-link">View Sports →</div>
-        </a>
-        <a href="fitness.html" class="nav-card" style="border-top: 1px solid #e5e5e5;">
-          <div class="nc-icon">💪</div>
-          <div class="nc-name">Fitness</div>
-          <div class="nc-desc">Bodyweight and dumbbell programs for every level. ACV tonics and recipes.</div>
-          <div class="nc-link">Get Moving →</div>
-        </a>
-        <a href="contact.html" class="nav-card" style="border-top: 1px solid #e5e5e5;">
-          <div class="nc-icon">🛡️</div>
-          <div class="nc-name">Insurance</div>
-          <div class="nc-desc">The Insurance Guys — Hays, KS. Home, auto, commercial, life, and health.</div>
-          <div class="nc-link">Get a Quote →</div>
-        </a>
+<div class="body-wrap">
+  <div class="page">
+    <div style="padding:48px 0 60px">
+      <div class="slabel">What's Here</div>
+      <div class="nc-wrap">
+        <a href="markets.html" class="ncard"><div class="ncard-icon">📈</div><div class="ncard-name">Markets</div><div class="ncard-desc">Live stock indices, crypto, commodities, movers, and market news.</div><div class="ncard-arrow">View Markets →</div></a>
+        <a href="tools.html" class="ncard"><div class="ncard-icon">🧮</div><div class="ncard-name">Tools</div><div class="ncard-desc">Loan, mortgage, retirement, rental property calculators. QR &amp; barcode generator.</div><div class="ncard-arrow">Open Tools →</div></a>
+        <a href="sports.html" class="ncard"><div class="ncard-icon">🏈</div><div class="ncard-name">Sports</div><div class="ncard-desc">Chiefs, Royals, FHSU Tigers, Hays High — schedules, rosters, and links.</div><div class="ncard-arrow">View Sports →</div></a>
+        <a href="fitness.html" class="ncard"><div class="ncard-icon">💪</div><div class="ncard-name">Fitness</div><div class="ncard-desc">Bodyweight &amp; dumbbell programs for every level. ACV tonics and recipes.</div><div class="ncard-arrow">Get Moving →</div></a>
+        <a href="contact.html" class="ncard"><div class="ncard-icon">🛡️</div><div class="ncard-name">Insurance</div><div class="ncard-desc">The Insurance Guys — Hays, KS. Home, auto, commercial, life, and health.</div><div class="ncard-arrow">Get a Quote →</div></a>
       </div>
     </div>
   </div>
 </div>
-
 <footer class="footer">
-  <div class="footer-inner">
-    <span class="footer-copy">© 2026 hpkreutz.com — Hays, KS</span>
-    <div class="footer-links">
+  <div class="foot-inner">
+    <span class="foot-copy">© 2026 hpkreutz.com — Hays, KS</span>
+    <div class="foot-links">
       <a href="markets.html">Markets</a>
       <a href="tools.html">Tools</a>
       <a href="sports.html">Sports</a>
@@ -101,6 +208,5 @@
     </div>
   </div>
 </footer>
-
 </body>
 </html>

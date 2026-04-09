@@ -1,154 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Sports — hpkreutz.com</title>
-<link rel="stylesheet" href="global.css" />
 <style>
-.teams-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #e5e5e5; border-radius: 10px; overflow: hidden; margin-bottom: 36px; }
-.team { background: #fff; border-right: 1px solid #e5e5e5; }
-.team:nth-child(2n) { border-right: none; }
-.team-top { display: flex; align-items: center; gap: 14px; padding: 20px 22px; background: #fafafa; border-bottom: 1px solid #e5e5e5; }
-.team-logo { width: 48px; height: 48px; border-radius: 8px; background: #fff; border: 1px solid #e5e5e5; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
-.team-logo img { width: 36px; height: 36px; object-fit: contain; }
-.team-logo-txt { font-size: 12px; font-weight: 800; color: #666; }
-.team-name { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 2px; }
-.team-meta { font-size: 12px; color: #888; }
-.team-badge { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; background: #f0f0f0; border: 1px solid #e0e0e0; color: #666; margin-left: auto; flex-shrink: 0; }
-.team-links { display: flex; }
-.tl { flex: 1; display: flex; align-items: center; justify-content: center; padding: 11px 6px; text-decoration: none; font-size: 12px; font-weight: 600; color: #555; border-right: 1px solid #e5e5e5; transition: all 0.15s; }
-.tl:last-child { border-right: none; }
-.tl:hover { background: #fafafa; color: #111; }
-.tl.primary { color: #c8401a; }
-.tl.primary:hover { background: #c8401a; color: #fff; }
-@media (max-width: 640px) { .teams-grid { grid-template-columns: 1fr; } .team { border-right: none; border-bottom: 1px solid #e5e5e5; } .team:last-child { border-bottom: none; } }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#111;height:56px;display:flex;align-items:center;padding:0 5%}
+.nav-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;margin-right:auto}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links .cta{background:#c8401a;color:#fff!important;padding:7px 14px;border-radius:6px;font-weight:600}
+.nav-links .cta:hover{background:#a83212}
+/* LAYOUT */
+.body-wrap{padding-top:56px}
+.page{max-width:960px;margin:0 auto;padding:0 32px}
+/* HERO */
+.hero{background:#111;padding:80px 5% 72px}
+.hero-inner{max-width:960px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
+.hero h1{font-size:clamp(38px,5.5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;color:#fff;margin-bottom:18px}
+.hero h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+.hero p{font-size:16px;color:rgba(255,255,255,.5);max-width:460px;line-height:1.7;margin-bottom:32px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;padding:10px 22px;border-radius:7px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
+.btn-dark{background:#111;color:#fff}
+.btn-dark:hover{background:#2d2d2d}
+.btn-red{background:#c8401a;color:#fff}
+.btn-red:hover{background:#a83212}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-outline{background:#fff;color:#111;border:1px solid #ddd}
+.btn-outline:hover{background:#f5f5f5}
+.btn-block{width:100%;justify-content:center}
+.btn-sm{font-size:13px;padding:8px 16px}
+/* PAGE HEADER */
+.phead{padding:48px 0 36px;border-bottom:1px solid #ebebeb;margin-bottom:40px}
+.phead-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
+.phead h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:10px}
+.phead p{font-size:15px;color:#666;max-width:520px;line-height:1.65}
+/* SECTION */
+.section{margin-bottom:44px}
+.slabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;padding-bottom:10px;border-bottom:1px solid #ebebeb;margin-bottom:18px}
+/* GRID CARDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+/* CARD */
+.card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:0}
+.chead{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.chead-title{font-size:14px;font-weight:700;color:#111}
+.chead-sub{font-size:12px;color:#999;margin-top:2px}
+.cbody{padding:20px}
+/* FORM */
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#999;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:10px 13px;border:1px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;background:#fff;outline:none;-webkit-appearance:none;transition:border-color .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#111;box-shadow:0 0 0 3px rgba(17,17,17,.06)}
+.field textarea{resize:vertical;min-height:80px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+/* RESULTS */
+.results{display:none;margin-top:16px;padding-top:14px;border-top:1px solid #ebebeb}
+.results.show{display:block}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
+.rrow:last-child{border-bottom:none}
+.rk{color:#666}
+.rv{font-weight:700;color:#111}
+.rv.big{font-size:18px}
+.rv.green{font-size:18px;color:#1a7a3a}
+.rv.dyn{font-size:18px}
+/* STAT TABLE */
+.srow{display:flex;justify-content:space-between;align-items:center;padding:9px 20px;border-bottom:1px solid #f0f0f0;font-size:13px}
+.srow:last-child{border-bottom:none}
+.sk{color:#666}
+.sv{font-weight:600;color:#111;text-align:right}
+.sv.up{color:#1a7a3a}
+.sv.down{color:#c8401a}
+/* CODE OUTPUT */
+.code-out{display:none;flex-direction:column;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #ebebeb}
+.code-out.show{display:flex}
+/* NAV CARD */
+.ncard{display:flex;flex-direction:column;padding:26px 24px;background:#fff;text-decoration:none;color:#111;transition:background .15s}
+.ncard:hover{background:#fafafa}
+.ncard-icon{font-size:24px;margin-bottom:14px}
+.ncard-name{font-size:15px;font-weight:700;margin-bottom:6px}
+.ncard-desc{font-size:13px;color:#888;line-height:1.55;flex:1}
+.ncard-arrow{font-size:13px;color:#ccc;margin-top:14px}
+/* TEAM CARD */
+.tcard-top{display:flex;align-items:center;gap:14px;padding:18px 22px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.tlogo{width:46px;height:46px;border-radius:8px;background:#fff;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.tlogo img{width:34px;height:34px;object-fit:contain}
+.tlogo-txt{font-size:12px;font-weight:800;color:#666}
+.tname{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
+.tmeta{font-size:12px;color:#999}
+.tbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;background:#f0f0f0;border:1px solid #e0e0e0;color:#666;margin-left:auto;flex-shrink:0}
+.tlinks{display:flex}
+.tlink{flex:1;display:flex;align-items:center;justify-content:center;padding:11px 6px;text-decoration:none;font-size:12px;font-weight:600;color:#555;border-right:1px solid #e5e5e5;transition:all .15s}
+.tlink:last-child{border-right:none}
+.tlink:hover{background:#f5f5f5;color:#111}
+.tlink.hi{color:#c8401a}
+.tlink.hi:hover{background:#c8401a;color:#fff}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.cinfo{padding:36px;background:#fafafa;border-right:1px solid #e5e5e5}
+.cform{padding:36px;background:#fff}
+.cbiz{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.crole{font-size:13px;color:#999;margin-bottom:16px}
+.cbio{font-size:14px;color:#555;line-height:1.7;margin-bottom:24px}
+.drow-c{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.dicon{font-size:15px;width:20px;flex-shrink:0}
+.dlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin-bottom:2px}
+.dval{font-size:14px;color:#111;text-decoration:none;display:block}
+.dval:hover{color:#c8401a}
+.cext{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.ftitle{font-size:17px;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #ebebeb}
+.submit{width:100%;padding:12px;background:#c8401a;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
+.submit:hover{background:#a83212}
+.form-ok{display:none;margin-top:10px;font-size:13px;font-weight:600;color:#1a7a3a;background:rgba(26,122,58,.08);padding:10px 14px;border-radius:6px}
+/* FOOTER */
+.footer{background:#111;margin-top:60px}
+.foot-inner{max-width:960px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
+.foot-copy{font-size:12px;color:rgba(255,255,255,.35)}
+.foot-links{display:flex;gap:20px}
+.foot-links a{font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s}
+.foot-links a:hover{color:#fff}
+/* SUB LABEL */
+.sub-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:14px 0 10px}
+/* RESPONSIVE */
+@media(max-width:860px){
+  .page{padding:0 24px}
+  .hero{padding:64px 24px 56px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .foot-inner{padding:24px}
+}
+@media(max-width:640px){
+  .page{padding:0 16px}
+  .hero{padding:48px 16px 44px}
+  .nav{padding:0 16px}
+  .nav-links a:not(.cta){display:none}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .cinfo{border-right:none;border-bottom:1px solid #e5e5e5}
+  .frow,.frow3{grid-template-columns:1fr}
+  .foot-inner{padding:20px 16px;flex-direction:column;gap:10px;align-items:flex-start}
+}
 </style>
 </head>
 <body>
 <nav class="nav">
-  <a href="index.html" class="nav-brand">hpkreutz.com</a>
-  <a href="markets.html" class="nav-link">Markets</a>
-  <a href="tools.html" class="nav-link">Tools</a>
-  <a href="sports.html" class="nav-link active">Sports</a>
-  <a href="fitness.html" class="nav-link">Fitness</a>
-  <a href="contact.html" class="nav-link nav-cta">Contact →</a>
+  <a href="index.html" class="nav-logo">hpkreutz.com</a>
+  <div class="nav-links">
+    <a href="markets.html">Markets</a>
+    <a href="tools.html">Tools</a>
+    <a href="sports.html" class="active">Sports</a>
+    <a href="fitness.html">Fitness</a>
+    <a href="contact.html" class="cta">Contact →</a>
+  </div>
 </nav>
+<div class="body-wrap">
+<div class="page">
+  <div class="phead">
+    <div class="phead-label">Schedules &amp; Scores</div>
+    <h1>Sports</h1>
+    <p>Kansas City teams, local college, and Hays high school athletics.</p>
+  </div>
 
-<div class="page-top">
-  <div class="container">
-    <div class="page-header">
-      <div class="page-eyebrow">Schedules &amp; Scores</div>
-      <h1 class="page-title">Sports</h1>
-      <p class="page-desc">Kansas City teams, local college, and Hays high school athletics.</p>
+  <div class="section">
+    <div class="slabel">Kansas City</div>
+    <div class="grid-2">
+      <div style="background:#fff;border-bottom:1px solid #e5e5e5">
+  <div class="tcard-top">
+    <div class="tlogo"><img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg" alt="Kansas City Chiefs" onerror="this.parentElement.innerHTML='<span class=&quot;tlogo-txt&quot;>KC</span>'"/></div>
+    <div><div class="tname">Kansas City Chiefs</div><div class="tmeta">NFL · AFC West</div></div>
+    <span class="tbadge">NFL</span>
+  </div>
+  <div class="tlinks"><a href="https://www.nfl.com/teams/kansas-city-chiefs/schedule" target="_blank" class="tlink hi">Schedule</a><a href="https://www.nfl.com/teams/kansas-city-chiefs/roster" target="_blank" class="tlink">Roster</a><a href="https://www.espn.com/nfl/team/_/name/kc" target="_blank" class="tlink">ESPN</a><a href="https://www.chiefs.com" target="_blank" class="tlink">Official</a></div>
+</div>
+      <div style="background:#fff;border-bottom:1px solid #e5e5e5">
+  <div class="tcard-top">
+    <div class="tlogo"><img src="https://upload.wikimedia.org/wikipedia/en/1/1a/Kansas_City_Royals_logo.svg" alt="Kansas City Royals" onerror="this.parentElement.innerHTML='<span class=&quot;tlogo-txt&quot;>KC</span>'"/></div>
+    <div><div class="tname">Kansas City Royals</div><div class="tmeta">MLB · AL Central</div></div>
+    <span class="tbadge">MLB</span>
+  </div>
+  <div class="tlinks"><a href="https://www.mlb.com/royals/schedule" target="_blank" class="tlink hi">Schedule</a><a href="https://www.mlb.com/royals/roster" target="_blank" class="tlink">Roster</a><a href="https://www.espn.com/mlb/team/_/name/kc" target="_blank" class="tlink">ESPN</a><a href="https://www.mlb.com/royals" target="_blank" class="tlink">Official</a></div>
+</div>
     </div>
+  </div>
 
-    <div class="section">
-      <div class="section-title">Kansas City</div>
-      <div class="teams-grid">
-        <div class="team">
-          <div class="team-top">
-            <div class="team-logo"><img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg" alt="Chiefs" onerror="this.parentElement.innerHTML='<span class=\'team-logo-txt\'>KC</span>'" /></div>
-            <div><div class="team-name">Kansas City Chiefs</div><div class="team-meta">NFL · AFC West</div></div>
-            <span class="team-badge">NFL</span>
-          </div>
-          <div class="team-links">
-            <a href="https://www.nfl.com/teams/kansas-city-chiefs/schedule" target="_blank" class="tl primary">Schedule</a>
-            <a href="https://www.nfl.com/teams/kansas-city-chiefs/roster" target="_blank" class="tl">Roster</a>
-            <a href="https://www.espn.com/nfl/team/_/name/kc" target="_blank" class="tl">ESPN</a>
-            <a href="https://www.chiefs.com" target="_blank" class="tl">Official</a>
-          </div>
-        </div>
-        <div class="team">
-          <div class="team-top">
-            <div class="team-logo"><img src="https://upload.wikimedia.org/wikipedia/en/1/1a/Kansas_City_Royals_logo.svg" alt="Royals" onerror="this.parentElement.innerHTML='<span class=\'team-logo-txt\'>KC</span>'" /></div>
-            <div><div class="team-name">Kansas City Royals</div><div class="team-meta">MLB · AL Central</div></div>
-            <span class="team-badge">MLB</span>
-          </div>
-          <div class="team-links">
-            <a href="https://www.mlb.com/royals/schedule" target="_blank" class="tl primary">Schedule</a>
-            <a href="https://www.mlb.com/royals/roster" target="_blank" class="tl">Roster</a>
-            <a href="https://www.espn.com/mlb/team/_/name/kc" target="_blank" class="tl">ESPN</a>
-            <a href="https://www.mlb.com/royals" target="_blank" class="tl">Official</a>
-          </div>
-        </div>
+  <div class="section">
+    <div class="slabel">College</div>
+    <div class="grid-2">
+      <div style="background:#fff;border-bottom:1px solid #e5e5e5">
+  <div class="tcard-top">
+    <div class="tlogo"><img src="https://upload.wikimedia.org/wikipedia/en/7/7f/Fort_Hays_State_Tigers_logo.svg" alt="FHSU Tigers" onerror="this.parentElement.innerHTML='<span class=&quot;tlogo-txt&quot;>FH</span>'"/></div>
+    <div><div class="tname">FHSU Tigers</div><div class="tmeta">MIAA · Fort Hays State</div></div>
+    <span class="tbadge">MIAA</span>
+  </div>
+  <div class="tlinks"><a href="https://fhsuathletics.com/sports/football" target="_blank" class="tlink hi">Football</a><a href="https://fhsuathletics.com/sports/mbball" target="_blank" class="tlink">Basketball</a><a href="https://fhsuathletics.com/sports/baseball" target="_blank" class="tlink">Baseball</a><a href="https://fhsuathletics.com" target="_blank" class="tlink">All Sports</a></div>
+</div>
+      <div style="background:#fff;border-bottom:1px solid #e5e5e5">
+  <div class="tcard-top">
+    <div class="tlogo"><img src="https://upload.wikimedia.org/wikipedia/en/e/e8/Kansas_Jayhawks_logo.svg" alt="Kansas Jayhawks" onerror="this.parentElement.innerHTML='<span class=&quot;tlogo-txt&quot;>KU</span>'"/></div>
+    <div><div class="tname">Kansas Jayhawks</div><div class="tmeta">Big 12 · University of Kansas</div></div>
+    <span class="tbadge">Big 12</span>
+  </div>
+  <div class="tlinks"><a href="https://kuathletics.com/sports/football/schedule" target="_blank" class="tlink hi">Football</a><a href="https://kuathletics.com/sports/mbball/schedule" target="_blank" class="tlink">Basketball</a><a href="https://kuathletics.com/sports/baseball/schedule" target="_blank" class="tlink">Baseball</a><a href="https://kuathletics.com" target="_blank" class="tlink">All Sports</a></div>
+</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="slabel">High School — Hays, KS</div>
+    <div class="grid-2">
+      <div style="background:#fff;border-bottom:1px solid #e5e5e5">
+        <div class="tcard-top"><div class="tlogo"><span class="tlogo-txt">HHS</span></div><div><div class="tname">Hays High Indians</div><div class="tmeta">KSHSAA · USD 489 · Class 5A</div></div><span class="tbadge">5A</span></div>
+        <div class="tlinks"><a href="https://www.usd489.com/athletics" target="_blank" class="tlink hi">Athletics</a><a href="https://www.usd489.com/athletics" target="_blank" class="tlink">Football</a><a href="https://www.usd489.com/athletics" target="_blank" class="tlink">Basketball</a><a href="https://www.kshsaa.org" target="_blank" class="tlink">KSHSAA</a></div>
+      </div>
+      <div style="background:#fff">
+        <div class="tcard-top"><div class="tlogo"><span class="tlogo-txt">TMP</span></div><div><div class="tname">TMP-Marian Monarchs</div><div class="tmeta">KSHSAA · Thomas More Prep · 3A</div></div><span class="tbadge">3A</span></div>
+        <div class="tlinks"><a href="https://www.tmpschools.org/athletics" target="_blank" class="tlink hi">Athletics</a><a href="https://www.tmpschools.org/athletics" target="_blank" class="tlink">Football</a><a href="https://www.tmpschools.org/athletics" target="_blank" class="tlink">Basketball</a><a href="https://www.kshsaa.org" target="_blank" class="tlink">KSHSAA</a></div>
       </div>
     </div>
-
-    <div class="section">
-      <div class="section-title">College</div>
-      <div class="teams-grid">
-        <div class="team">
-          <div class="team-top">
-            <div class="team-logo"><img src="https://upload.wikimedia.org/wikipedia/en/7/7f/Fort_Hays_State_Tigers_logo.svg" alt="FHSU" onerror="this.parentElement.innerHTML='<span class=\'team-logo-txt\'>FH</span>'" /></div>
-            <div><div class="team-name">FHSU Tigers</div><div class="team-meta">MIAA · Fort Hays State</div></div>
-            <span class="team-badge">MIAA</span>
-          </div>
-          <div class="team-links">
-            <a href="https://fhsuathletics.com/sports/football" target="_blank" class="tl primary">Football</a>
-            <a href="https://fhsuathletics.com/sports/mbball" target="_blank" class="tl">Basketball</a>
-            <a href="https://fhsuathletics.com/sports/baseball" target="_blank" class="tl">Baseball</a>
-            <a href="https://fhsuathletics.com" target="_blank" class="tl">All Sports</a>
-          </div>
-        </div>
-        <div class="team">
-          <div class="team-top">
-            <div class="team-logo"><img src="https://upload.wikimedia.org/wikipedia/en/e/e8/Kansas_Jayhawks_logo.svg" alt="KU" onerror="this.parentElement.innerHTML='<span class=\'team-logo-txt\'>KU</span>'" /></div>
-            <div><div class="team-name">Kansas Jayhawks</div><div class="team-meta">Big 12 · University of Kansas</div></div>
-            <span class="team-badge">Big 12</span>
-          </div>
-          <div class="team-links">
-            <a href="https://kuathletics.com/sports/football/schedule" target="_blank" class="tl primary">Football</a>
-            <a href="https://kuathletics.com/sports/mbball/schedule" target="_blank" class="tl">Basketball</a>
-            <a href="https://kuathletics.com/sports/baseball/schedule" target="_blank" class="tl">Baseball</a>
-            <a href="https://kuathletics.com" target="_blank" class="tl">All Sports</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">High School — Hays, KS</div>
-      <div class="teams-grid">
-        <div class="team">
-          <div class="team-top">
-            <div class="team-logo"><span class="team-logo-txt">HHS</span></div>
-            <div><div class="team-name">Hays High Indians</div><div class="team-meta">KSHSAA · USD 489 · Class 5A</div></div>
-            <span class="team-badge">5A</span>
-          </div>
-          <div class="team-links">
-            <a href="https://www.usd489.com/athletics" target="_blank" class="tl primary">Athletics</a>
-            <a href="https://www.usd489.com/athletics" target="_blank" class="tl">Football</a>
-            <a href="https://www.usd489.com/athletics" target="_blank" class="tl">Basketball</a>
-            <a href="https://www.kshsaa.org" target="_blank" class="tl">KSHSAA</a>
-          </div>
-        </div>
-        <div class="team">
-          <div class="team-top">
-            <div class="team-logo"><span class="team-logo-txt">TMP</span></div>
-            <div><div class="team-name">TMP-Marian Monarchs</div><div class="team-meta">KSHSAA · Thomas More Prep · 3A</div></div>
-            <span class="team-badge">3A</span>
-          </div>
-          <div class="team-links">
-            <a href="https://www.tmpschools.org/athletics" target="_blank" class="tl primary">Athletics</a>
-            <a href="https://www.tmpschools.org/athletics" target="_blank" class="tl">Football</a>
-            <a href="https://www.tmpschools.org/athletics" target="_blank" class="tl">Basketball</a>
-            <a href="https://www.kshsaa.org" target="_blank" class="tl">KSHSAA</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
-
+</div>
 <footer class="footer">
-  <div class="footer-inner">
-    <span class="footer-copy">© 2026 hpkreutz.com — Hays, KS</span>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="markets.html">Markets</a>
-      <a href="tools.html">Tools</a>
+  <div class="foot-inner">
+    <span class="foot-copy">© 2026 hpkreutz.com — Hays, KS</span>
+    <div class="foot-links">
+      <a href="markets.html">Markets</a><a href="tools.html">Tools</a>
+      <a href="sports.html">Sports</a><a href="fitness.html">Fitness</a>
       <a href="contact.html">Contact</a>
     </div>
   </div>

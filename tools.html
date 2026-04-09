@@ -1,264 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Tools — hpkreutz.com</title>
-<link rel="stylesheet" href="global.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
 <style>
-.tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
-.code-output { display: none; flex-direction: column; align-items: center; gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid #ebebeb; }
-.code-output.show { display: flex; }
-.sub-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin: 14px 0 10px; }
-@media (max-width: 700px) { .tools-grid { grid-template-columns: 1fr; } }
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#111;height:56px;display:flex;align-items:center;padding:0 5%}
+.nav-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;margin-right:auto}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links .cta{background:#c8401a;color:#fff!important;padding:7px 14px;border-radius:6px;font-weight:600}
+.nav-links .cta:hover{background:#a83212}
+/* LAYOUT */
+.body-wrap{padding-top:56px}
+.page{max-width:960px;margin:0 auto;padding:0 32px}
+/* HERO */
+.hero{background:#111;padding:80px 5% 72px}
+.hero-inner{max-width:960px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
+.hero h1{font-size:clamp(38px,5.5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;color:#fff;margin-bottom:18px}
+.hero h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
+.hero p{font-size:16px;color:rgba(255,255,255,.5);max-width:460px;line-height:1.7;margin-bottom:32px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;padding:10px 22px;border-radius:7px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
+.btn-dark{background:#111;color:#fff}
+.btn-dark:hover{background:#2d2d2d}
+.btn-red{background:#c8401a;color:#fff}
+.btn-red:hover{background:#a83212}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-outline{background:#fff;color:#111;border:1px solid #ddd}
+.btn-outline:hover{background:#f5f5f5}
+.btn-block{width:100%;justify-content:center}
+.btn-sm{font-size:13px;padding:8px 16px}
+/* PAGE HEADER */
+.phead{padding:48px 0 36px;border-bottom:1px solid #ebebeb;margin-bottom:40px}
+.phead-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
+.phead h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:10px}
+.phead p{font-size:15px;color:#666;max-width:520px;line-height:1.65}
+/* SECTION */
+.section{margin-bottom:44px}
+.slabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;padding-bottom:10px;border-bottom:1px solid #ebebeb;margin-bottom:18px}
+/* GRID CARDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+/* CARD */
+.card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:0}
+.chead{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.chead-title{font-size:14px;font-weight:700;color:#111}
+.chead-sub{font-size:12px;color:#999;margin-top:2px}
+.cbody{padding:20px}
+/* FORM */
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#999;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:10px 13px;border:1px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;background:#fff;outline:none;-webkit-appearance:none;transition:border-color .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#111;box-shadow:0 0 0 3px rgba(17,17,17,.06)}
+.field textarea{resize:vertical;min-height:80px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+/* RESULTS */
+.results{display:none;margin-top:16px;padding-top:14px;border-top:1px solid #ebebeb}
+.results.show{display:block}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
+.rrow:last-child{border-bottom:none}
+.rk{color:#666}
+.rv{font-weight:700;color:#111}
+.rv.big{font-size:18px}
+.rv.green{font-size:18px;color:#1a7a3a}
+.rv.dyn{font-size:18px}
+/* STAT TABLE */
+.srow{display:flex;justify-content:space-between;align-items:center;padding:9px 20px;border-bottom:1px solid #f0f0f0;font-size:13px}
+.srow:last-child{border-bottom:none}
+.sk{color:#666}
+.sv{font-weight:600;color:#111;text-align:right}
+.sv.up{color:#1a7a3a}
+.sv.down{color:#c8401a}
+/* CODE OUTPUT */
+.code-out{display:none;flex-direction:column;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #ebebeb}
+.code-out.show{display:flex}
+/* NAV CARD */
+.ncard{display:flex;flex-direction:column;padding:26px 24px;background:#fff;text-decoration:none;color:#111;transition:background .15s}
+.ncard:hover{background:#fafafa}
+.ncard-icon{font-size:24px;margin-bottom:14px}
+.ncard-name{font-size:15px;font-weight:700;margin-bottom:6px}
+.ncard-desc{font-size:13px;color:#888;line-height:1.55;flex:1}
+.ncard-arrow{font-size:13px;color:#ccc;margin-top:14px}
+/* TEAM CARD */
+.tcard-top{display:flex;align-items:center;gap:14px;padding:18px 22px;background:#fafafa;border-bottom:1px solid #e5e5e5}
+.tlogo{width:46px;height:46px;border-radius:8px;background:#fff;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.tlogo img{width:34px;height:34px;object-fit:contain}
+.tlogo-txt{font-size:12px;font-weight:800;color:#666}
+.tname{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
+.tmeta{font-size:12px;color:#999}
+.tbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;background:#f0f0f0;border:1px solid #e0e0e0;color:#666;margin-left:auto;flex-shrink:0}
+.tlinks{display:flex}
+.tlink{flex:1;display:flex;align-items:center;justify-content:center;padding:11px 6px;text-decoration:none;font-size:12px;font-weight:600;color:#555;border-right:1px solid #e5e5e5;transition:all .15s}
+.tlink:last-child{border-right:none}
+.tlink:hover{background:#f5f5f5;color:#111}
+.tlink.hi{color:#c8401a}
+.tlink.hi:hover{background:#c8401a;color:#fff}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
+.cinfo{padding:36px;background:#fafafa;border-right:1px solid #e5e5e5}
+.cform{padding:36px;background:#fff}
+.cbiz{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.crole{font-size:13px;color:#999;margin-bottom:16px}
+.cbio{font-size:14px;color:#555;line-height:1.7;margin-bottom:24px}
+.drow-c{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.dicon{font-size:15px;width:20px;flex-shrink:0}
+.dlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin-bottom:2px}
+.dval{font-size:14px;color:#111;text-decoration:none;display:block}
+.dval:hover{color:#c8401a}
+.cext{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.ftitle{font-size:17px;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #ebebeb}
+.submit{width:100%;padding:12px;background:#c8401a;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
+.submit:hover{background:#a83212}
+.form-ok{display:none;margin-top:10px;font-size:13px;font-weight:600;color:#1a7a3a;background:rgba(26,122,58,.08);padding:10px 14px;border-radius:6px}
+/* FOOTER */
+.footer{background:#111;margin-top:60px}
+.foot-inner{max-width:960px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
+.foot-copy{font-size:12px;color:rgba(255,255,255,.35)}
+.foot-links{display:flex;gap:20px}
+.foot-links a{font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s}
+.foot-links a:hover{color:#fff}
+/* SUB LABEL */
+.sub-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:14px 0 10px}
+/* RESPONSIVE */
+@media(max-width:860px){
+  .page{padding:0 24px}
+  .hero{padding:64px 24px 56px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .foot-inner{padding:24px}
+}
+@media(max-width:640px){
+  .page{padding:0 16px}
+  .hero{padding:48px 16px 44px}
+  .nav{padding:0 16px}
+  .nav-links a:not(.cta){display:none}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .cinfo{border-right:none;border-bottom:1px solid #e5e5e5}
+  .frow,.frow3{grid-template-columns:1fr}
+  .foot-inner{padding:20px 16px;flex-direction:column;gap:10px;align-items:flex-start}
+}
+
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:36px}
+@media(max-width:640px){.tools-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="nav">
-  <a href="index.html" class="nav-brand">hpkreutz.com</a>
-  <a href="markets.html" class="nav-link">Markets</a>
-  <a href="tools.html" class="nav-link active">Tools</a>
-  <a href="sports.html" class="nav-link">Sports</a>
-  <a href="fitness.html" class="nav-link">Fitness</a>
-  <a href="contact.html" class="nav-link nav-cta">Contact →</a>
-</nav>
+<nav class="nav"><a href="index.html" class="nav-logo">hpkreutz.com</a><div class="nav-links"><a href="markets.html">Markets</a><a href="tools.html" class="active">Tools</a><a href="sports.html">Sports</a><a href="fitness.html">Fitness</a><a href="contact.html" class="cta">Contact →</a></div></nav>
+<div class="body-wrap">
+<div class="page">
+  <div class="phead">
+    <div class="phead-label">Calculators &amp; Utilities</div>
+    <h1>Tools</h1>
+    <p>Financial calculators, QR code creator, and barcode generator — free, instant, no sign-up required.</p>
+  </div>
 
-<div class="page-top">
-  <div class="container">
-    <div class="page-header">
-      <div class="page-eyebrow">Calculators &amp; Utilities</div>
-      <h1 class="page-title">Tools</h1>
-      <p class="page-desc">Financial calculators, QR code creator, and barcode generator — free, instant, no sign-up required.</p>
-    </div>
+  <div class="section">
+    <div class="slabel">Financial Calculators</div>
+    <div class="tools-grid">
 
-    <div class="section">
-      <div class="section-title">Financial Calculators</div>
-      <div class="tools-grid">
-
-        <div class="card">
-          <div class="card-header"><div class="card-title">Loan Calculator</div><div class="card-subtitle">Monthly payment estimator</div></div>
-          <div class="card-body">
-            <div class="field"><label>Loan Amount</label><input type="number" id="la" placeholder="250,000" /></div>
-            <div class="field-row">
-              <div class="field"><label>Rate (%)</label><input type="number" id="lr" placeholder="6.5" step="0.1" /></div>
-              <div class="field"><label>Term (years)</label><input type="number" id="lt" placeholder="30" /></div>
-            </div>
-            <button class="btn btn-dark btn-block" onclick="calcLoan()">Calculate</button>
-            <div class="results" id="lr-res">
-              <div class="result-row"><span class="result-key">Monthly Payment</span><span class="result-val big" id="lr-m">—</span></div>
-              <div class="result-row"><span class="result-key">Total Paid</span><span class="result-val" id="lr-t">—</span></div>
-              <div class="result-row"><span class="result-key">Total Interest</span><span class="result-val" id="lr-i">—</span></div>
-            </div>
+      <div class="card">
+        <div class="chead"><div class="chead-title">Loan Calculator</div><div class="chead-sub">Monthly payment estimator</div></div>
+        <div class="cbody">
+          <div class="field"><label>Loan Amount</label><input type="number" id="la" placeholder="250,000"/></div>
+          <div class="frow">
+            <div class="field"><label>Rate (%)</label><input type="number" id="lr" placeholder="6.5" step="0.1"/></div>
+            <div class="field"><label>Term (years)</label><input type="number" id="lt" placeholder="30"/></div>
+          </div>
+          <button class="btn btn-dark btn-block" onclick="cLoan()">Calculate Payment</button>
+          <div class="results" id="l-res">
+            <div class="rrow"><span class="rk">Monthly Payment</span><span class="rv big" id="l-m">—</span></div>
+            <div class="rrow"><span class="rk">Total Paid</span><span class="rv" id="l-t">—</span></div>
+            <div class="rrow"><span class="rk">Total Interest</span><span class="rv" id="l-i">—</span></div>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-header"><div class="card-title">Retirement Calculator</div><div class="card-subtitle">Future nest egg projector</div></div>
-          <div class="card-body">
-            <div class="field-row">
-              <div class="field"><label>Current Age</label><input type="number" id="ra" placeholder="30" /></div>
-              <div class="field"><label>Retirement Age</label><input type="number" id="rr" placeholder="65" /></div>
-            </div>
-            <div class="field"><label>Current Savings</label><input type="number" id="rs" placeholder="50,000" /></div>
-            <div class="field-row">
-              <div class="field"><label>Monthly Contribution</label><input type="number" id="rc" placeholder="500" /></div>
-              <div class="field"><label>Annual Return (%)</label><input type="number" id="rrt" placeholder="7" step="0.1" /></div>
-            </div>
-            <button class="btn btn-dark btn-block" onclick="calcRet()">Project Balance</button>
-            <div class="results" id="rr-res">
-              <div class="result-row"><span class="result-key">Projected Nest Egg</span><span class="result-val green" id="rr-n">—</span></div>
-              <div class="result-row"><span class="result-key">Total Contributed</span><span class="result-val" id="rr-c">—</span></div>
-              <div class="result-row"><span class="result-key">Investment Growth</span><span class="result-val" id="rr-g">—</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header"><div class="card-title">Mortgage Calculator</div><div class="card-subtitle">Full payment with taxes &amp; insurance</div></div>
-          <div class="card-body">
-            <div class="field-row">
-              <div class="field"><label>Home Price</label><input type="number" id="mp" placeholder="350,000" /></div>
-              <div class="field"><label>Down Payment</label><input type="number" id="md" placeholder="70,000" /></div>
-            </div>
-            <div class="field-row">
-              <div class="field"><label>Rate (%)</label><input type="number" id="mr" placeholder="6.75" step="0.1" /></div>
-              <div class="field"><label>Term (years)</label><input type="number" id="mt" placeholder="30" /></div>
-            </div>
-            <div class="field-row">
-              <div class="field"><label>Annual Tax</label><input type="number" id="mx" placeholder="3,500" /></div>
-              <div class="field"><label>Annual Insurance</label><input type="number" id="mi" placeholder="1,400" /></div>
-            </div>
-            <div class="field"><label>Monthly HOA / PMI</label><input type="number" id="mh" placeholder="0" /></div>
-            <button class="btn btn-dark btn-block" onclick="calcMort()">Calculate Payment</button>
-            <div class="results" id="mr-res">
-              <div class="result-row"><span class="result-key">Total Monthly (PITI)</span><span class="result-val big" id="mr-t">—</span></div>
-              <div class="result-row"><span class="result-key">Principal &amp; Interest</span><span class="result-val" id="mr-pi">—</span></div>
-              <div class="result-row"><span class="result-key">Tax / mo</span><span class="result-val" id="mr-tx">—</span></div>
-              <div class="result-row"><span class="result-key">Insurance / mo</span><span class="result-val" id="mr-in">—</span></div>
-              <div class="result-row"><span class="result-key">HOA / PMI</span><span class="result-val" id="mr-hoa">—</span></div>
-              <div class="result-row"><span class="result-key">Total Interest Paid</span><span class="result-val" id="mr-int">—</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header"><div class="card-title">Rental Property Calculator</div><div class="card-subtitle">Cash flow, ROI &amp; cap rate</div></div>
-          <div class="card-body">
-            <div class="sub-label">Income</div>
-            <div class="field-row">
-              <div class="field"><label>Monthly Rent</label><input type="number" id="rp-rent" placeholder="2,000" /></div>
-              <div class="field"><label>Other Income</label><input type="number" id="rp-other" placeholder="0" /></div>
-            </div>
-            <div class="field"><label>Vacancy Rate (%)</label><input type="number" id="rp-vac" placeholder="5" step="0.5" /></div>
-            <div class="sub-label">Purchase</div>
-            <div class="field-row">
-              <div class="field"><label>Purchase Price</label><input type="number" id="rp-price" placeholder="300,000" /></div>
-              <div class="field"><label>Down Payment</label><input type="number" id="rp-down" placeholder="60,000" /></div>
-            </div>
-            <div class="field"><label>Closing Costs</label><input type="number" id="rp-close" placeholder="6,000" /></div>
-            <div class="sub-label">Monthly Expenses</div>
-            <div class="field-row">
-              <div class="field"><label>Mortgage P&amp;I</label><input type="number" id="rp-mort" placeholder="1,520" /></div>
-              <div class="field"><label>Insurance</label><input type="number" id="rp-ins" placeholder="120" /></div>
-            </div>
-            <div class="field-row">
-              <div class="field"><label>Taxes</label><input type="number" id="rp-tax" placeholder="250" /></div>
-              <div class="field"><label>Maintenance</label><input type="number" id="rp-maint" placeholder="100" /></div>
-            </div>
-            <div class="field-row">
-              <div class="field"><label>Management</label><input type="number" id="rp-mgmt" placeholder="0" /></div>
-              <div class="field"><label>HOA</label><input type="number" id="rp-hoa" placeholder="0" /></div>
-            </div>
-            <button class="btn btn-dark btn-block" onclick="calcRental()">Analyze Property</button>
-            <div class="results" id="rp-res">
-              <div class="result-row"><span class="result-key">Monthly Cash Flow</span><span class="result-val big" id="rp-cf">—</span></div>
-              <div class="result-row"><span class="result-key">Cash-on-Cash Return</span><span class="result-val" id="rp-coc">—</span></div>
-              <div class="result-row"><span class="result-key">Cap Rate</span><span class="result-val" id="rp-cap">—</span></div>
-              <div class="result-row"><span class="result-key">Gross Rent Multiplier</span><span class="result-val" id="rp-grm">—</span></div>
-              <div class="result-row"><span class="result-key">Net Operating Income / yr</span><span class="result-val" id="rp-noi">—</span></div>
-              <div class="result-row"><span class="result-key">Total Cash Invested</span><span class="result-val" id="rp-inv">—</span></div>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <div class="section">
-      <div class="section-title">Code Generators</div>
-      <div class="tools-grid">
-
-        <div class="card">
-          <div class="card-header"><div class="card-title">QR Code Creator</div><div class="card-subtitle">Generate &amp; download instantly</div></div>
-          <div class="card-body">
-            <div class="field"><label>URL or Text</label><textarea id="qr-text" placeholder="https://hpkreutz.com" style="min-height:60px;"></textarea></div>
-            <div class="field-row">
-              <div class="field"><label>Size</label>
-                <select id="qr-size"><option value="128">Small (128px)</option><option value="256" selected>Medium (256px)</option><option value="512">Large (512px)</option></select>
-              </div>
-              <div class="field"><label>Color</label>
-                <select id="qr-color"><option value="#000000">Black</option><option value="#111111">Dark</option><option value="#c8401a">Red</option><option value="#1a7a3a">Green</option></select>
-              </div>
-            </div>
-            <button class="btn btn-dark btn-block" onclick="genQR()">Generate QR Code</button>
-            <div class="code-output" id="qr-out">
-              <div id="qr-wrap"></div>
-              <button class="btn btn-red" onclick="dlQR()" style="font-size:13px;padding:8px 18px;">Download PNG</button>
-            </div>
+      <div class="card">
+        <div class="chead"><div class="chead-title">Retirement Calculator</div><div class="chead-sub">Future nest egg projector</div></div>
+        <div class="cbody">
+          <div class="frow">
+            <div class="field"><label>Current Age</label><input type="number" id="ra" placeholder="30"/></div>
+            <div class="field"><label>Retirement Age</label><input type="number" id="rr" placeholder="65"/></div>
+          </div>
+          <div class="field"><label>Current Savings</label><input type="number" id="rs" placeholder="50,000"/></div>
+          <div class="frow">
+            <div class="field"><label>Monthly Contribution</label><input type="number" id="rc" placeholder="500"/></div>
+            <div class="field"><label>Annual Return (%)</label><input type="number" id="rrt" placeholder="7" step="0.1"/></div>
+          </div>
+          <button class="btn btn-dark btn-block" onclick="cRet()">Project Balance</button>
+          <div class="results" id="r-res">
+            <div class="rrow"><span class="rk">Projected Nest Egg</span><span class="rv green" id="r-n">—</span></div>
+            <div class="rrow"><span class="rk">Total Contributed</span><span class="rv" id="r-c">—</span></div>
+            <div class="rrow"><span class="rk">Investment Growth</span><span class="rv" id="r-g">—</span></div>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-header"><div class="card-title">Barcode Creator</div><div class="card-subtitle">Multiple formats supported</div></div>
-          <div class="card-body">
-            <div class="field"><label>Value</label><input type="text" id="bc-val" placeholder="123456789012" /></div>
-            <div class="field-row">
-              <div class="field"><label>Format</label>
-                <select id="bc-fmt"><option value="CODE128">Code 128</option><option value="EAN13">EAN-13</option><option value="UPC">UPC</option><option value="CODE39">Code 39</option><option value="ITF14">ITF-14</option></select>
-              </div>
-              <div class="field"><label>Height</label>
-                <select id="bc-h"><option value="40">Short</option><option value="70" selected>Medium</option><option value="110">Tall</option></select>
-              </div>
-            </div>
-            <button class="btn btn-dark btn-block" onclick="genBC()">Generate Barcode</button>
-            <div class="code-output" id="bc-out">
-              <svg id="bc-svg" style="width:100%;background:#fafafa;border-radius:6px;padding:8px;"></svg>
-              <button class="btn btn-red" onclick="dlBC()" style="font-size:13px;padding:8px 18px;">Download SVG</button>
-            </div>
-          </div>
-        </div>
-
       </div>
+
+      <div class="card">
+        <div class="chead"><div class="chead-title">Mortgage Calculator</div><div class="chead-sub">Full payment with taxes &amp; insurance</div></div>
+        <div class="cbody">
+          <div class="frow">
+            <div class="field"><label>Home Price</label><input type="number" id="mp" placeholder="350,000"/></div>
+            <div class="field"><label>Down Payment</label><input type="number" id="md" placeholder="70,000"/></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Rate (%)</label><input type="number" id="mr" placeholder="6.75" step="0.1"/></div>
+            <div class="field"><label>Term (years)</label><input type="number" id="mt" placeholder="30"/></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Annual Tax</label><input type="number" id="mx" placeholder="3,500"/></div>
+            <div class="field"><label>Annual Insurance</label><input type="number" id="mi" placeholder="1,400"/></div>
+          </div>
+          <div class="field"><label>Monthly HOA / PMI</label><input type="number" id="mh" placeholder="0"/></div>
+          <button class="btn btn-dark btn-block" onclick="cMort()">Calculate Full Payment</button>
+          <div class="results" id="m-res">
+            <div class="rrow"><span class="rk">Total Monthly (PITI)</span><span class="rv big" id="m-t">—</span></div>
+            <div class="rrow"><span class="rk">Principal &amp; Interest</span><span class="rv" id="m-pi">—</span></div>
+            <div class="rrow"><span class="rk">Tax / mo</span><span class="rv" id="m-tx">—</span></div>
+            <div class="rrow"><span class="rk">Insurance / mo</span><span class="rv" id="m-in">—</span></div>
+            <div class="rrow"><span class="rk">HOA / PMI</span><span class="rv" id="m-hoa">—</span></div>
+            <div class="rrow"><span class="rk">Loan Amount</span><span class="rv" id="m-ln">—</span></div>
+            <div class="rrow"><span class="rk">Total Interest Paid</span><span class="rv" id="m-int">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chead"><div class="chead-title">Rental Property Calculator</div><div class="chead-sub">Cash flow, ROI &amp; cap rate</div></div>
+        <div class="cbody">
+          <div class="sub-label">Income</div>
+          <div class="frow">
+            <div class="field"><label>Monthly Rent</label><input type="number" id="rp1" placeholder="2,000"/></div>
+            <div class="field"><label>Other Income</label><input type="number" id="rp2" placeholder="0"/></div>
+          </div>
+          <div class="field"><label>Vacancy Rate (%)</label><input type="number" id="rp3" placeholder="5" step="0.5"/></div>
+          <div class="sub-label">Purchase</div>
+          <div class="frow">
+            <div class="field"><label>Purchase Price</label><input type="number" id="rp4" placeholder="300,000"/></div>
+            <div class="field"><label>Down Payment</label><input type="number" id="rp5" placeholder="60,000"/></div>
+          </div>
+          <div class="field"><label>Closing Costs</label><input type="number" id="rp6" placeholder="6,000"/></div>
+          <div class="sub-label">Monthly Expenses</div>
+          <div class="frow">
+            <div class="field"><label>Mortgage P&amp;I</label><input type="number" id="rp7" placeholder="1,520"/></div>
+            <div class="field"><label>Insurance</label><input type="number" id="rp8" placeholder="120"/></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Taxes</label><input type="number" id="rp9" placeholder="250"/></div>
+            <div class="field"><label>Maintenance</label><input type="number" id="rp10" placeholder="100"/></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Management</label><input type="number" id="rp11" placeholder="0"/></div>
+            <div class="field"><label>HOA</label><input type="number" id="rp12" placeholder="0"/></div>
+          </div>
+          <button class="btn btn-dark btn-block" onclick="cRental()">Analyze Property</button>
+          <div class="results" id="rp-res">
+            <div class="rrow"><span class="rk">Monthly Cash Flow</span><span class="rv dyn" id="rp-cf">—</span></div>
+            <div class="rrow"><span class="rk">Cash-on-Cash Return</span><span class="rv" id="rp-coc">—</span></div>
+            <div class="rrow"><span class="rk">Cap Rate</span><span class="rv" id="rp-cap">—</span></div>
+            <div class="rrow"><span class="rk">Gross Rent Multiplier</span><span class="rv" id="rp-grm">—</span></div>
+            <div class="rrow"><span class="rk">Net Operating Income / yr</span><span class="rv" id="rp-noi">—</span></div>
+            <div class="rrow"><span class="rk">Total Cash Invested</span><span class="rv" id="rp-inv">—</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="slabel">Code Generators</div>
+    <div class="tools-grid">
+
+      <div class="card">
+        <div class="chead"><div class="chead-title">QR Code Creator</div><div class="chead-sub">Generate &amp; download instantly</div></div>
+        <div class="cbody">
+          <div class="field"><label>URL or Text</label><textarea id="qt" placeholder="https://hpkreutz.com" style="min-height:60px"></textarea></div>
+          <div class="frow">
+            <div class="field"><label>Size</label><select id="qs"><option value="128">Small (128px)</option><option value="256" selected>Medium (256px)</option><option value="512">Large (512px)</option></select></div>
+            <div class="field"><label>Color</label><select id="qc"><option value="#000000">Black</option><option value="#111111">Dark</option><option value="#c8401a">Red</option></select></div>
+          </div>
+          <button class="btn btn-dark btn-block" onclick="genQR()">Generate QR Code</button>
+          <div class="code-out" id="qr-out"><div id="qr-wrap"></div><button class="btn btn-red btn-sm" onclick="dlQR()">Download PNG</button></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="chead"><div class="chead-title">Barcode Creator</div><div class="chead-sub">Multiple formats supported</div></div>
+        <div class="cbody">
+          <div class="field"><label>Value</label><input type="text" id="bv" placeholder="123456789012"/></div>
+          <div class="frow">
+            <div class="field"><label>Format</label><select id="bf"><option value="CODE128">Code 128</option><option value="EAN13">EAN-13</option><option value="UPC">UPC</option><option value="CODE39">Code 39</option><option value="ITF14">ITF-14</option></select></div>
+            <div class="field"><label>Height</label><select id="bh"><option value="40">Short</option><option value="70" selected>Medium</option><option value="110">Tall</option></select></div>
+          </div>
+          <button class="btn btn-dark btn-block" onclick="genBC()">Generate Barcode</button>
+          <div class="code-out" id="bc-out"><svg id="bc-svg" style="width:100%;background:#fafafa;border-radius:6px;padding:8px"></svg><button class="btn btn-red btn-sm" onclick="dlBC()">Download SVG</button></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <span class="footer-copy">© 2026 hpkreutz.com — Hays, KS</span>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="markets.html">Markets</a>
-      <a href="sports.html">Sports</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-</footer>
-
+</div>
+<footer class="footer"><div class="foot-inner"><span class="foot-copy">© 2026 hpkreutz.com — Hays, KS</span><div class="foot-links"><a href="markets.html">Markets</a><a href="tools.html">Tools</a><a href="sports.html">Sports</a><a href="fitness.html">Fitness</a><a href="contact.html">Contact</a></div></div></footer>
 <script>
-const $ = id => document.getElementById(id);
-const fD = n => '$' + n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-const fR = n => '$' + Math.round(n).toLocaleString('en-US');
-const fP = n => n.toFixed(2) + '%';
-const show = id => $(id).classList.add('show');
-const set = (id, v) => { if($(id)) $(id).textContent = v; };
-
-function calcLoan() {
-  var p=parseFloat($('la').value), r=parseFloat($('lr').value)/100/12, n=parseFloat($('lt').value)*12;
-  if(!p||!r||!n){alert('Fill in all fields.');return;}
-  var m=p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1), t=m*n;
-  set('lr-m',fD(m)); set('lr-t',fR(t)); set('lr-i',fR(t-p)); show('lr-res');
-}
-function calcRet() {
-  var age=parseFloat($('ra').value), ret=parseFloat($('rr').value), pv=parseFloat($('rs').value)||0, pmt=parseFloat($('rc').value)||0, r=parseFloat($('rrt').value)/100/12, n=(ret-age)*12;
-  if(!age||!ret||!r||n<=0){alert('Fill in all fields.');return;}
-  var fv=pv*Math.pow(1+r,n)+pmt*(Math.pow(1+r,n)-1)/r, con=pv+pmt*n;
-  set('rr-n',fR(fv)); set('rr-c',fR(con)); set('rr-g',fR(fv-con)); show('rr-res');
-}
-function calcMort() {
-  var price=parseFloat($('mp').value), dn=parseFloat($('md').value)||0, r=parseFloat($('mr').value)/100/12, n=parseFloat($('mt').value)*12, tax=parseFloat($('mx').value)||0, ins=parseFloat($('mi').value)||0, hoa=parseFloat($('mh').value)||0;
-  if(!price||!r||!n){alert('Fill in required fields.');return;}
-  var loan=price-dn, pi=loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1), tmo=tax/12, imo=ins/12;
-  set('mr-t',fD(pi+tmo+imo+hoa)); set('mr-pi',fD(pi)); set('mr-tx',fD(tmo)); set('mr-in',fD(imo)); set('mr-hoa',fD(hoa)); set('mr-int',fR(pi*n-loan)); show('mr-res');
-}
-function calcRental() {
-  var rent=parseFloat($('rp-rent').value)||0, other=parseFloat($('rp-other').value)||0, vac=parseFloat($('rp-vac').value)||0;
-  var price=parseFloat($('rp-price').value)||0, dn=parseFloat($('rp-down').value)||0, close=parseFloat($('rp-close').value)||0;
-  var mort=parseFloat($('rp-mort').value)||0, ins=parseFloat($('rp-ins').value)||0, tax=parseFloat($('rp-tax').value)||0;
-  var maint=parseFloat($('rp-maint').value)||0, mgmt=parseFloat($('rp-mgmt').value)||0, hoa=parseFloat($('rp-hoa').value)||0;
-  if(!rent||!price){alert('Enter rent income and purchase price.');return;}
-  var gi=(rent+other)*(1-vac/100), opex=ins+tax+maint+mgmt+hoa, totex=mort+opex, cf=gi-totex;
-  var inv=dn+close, noi=(gi-opex)*12, cap=price>0?(noi/price)*100:0, coc=inv>0?(cf*12/inv)*100:0, grm=price>0?price/(rent*12):0;
-  var el=$('rp-cf'); el.textContent=(cf>=0?'+':'')+fD(cf)+'/mo'; el.style.color=cf>=0?'#1a7a3a':'#c8401a';
-  set('rp-coc',fP(coc)); set('rp-cap',fP(cap)); set('rp-grm',grm.toFixed(2)+'x'); set('rp-noi',fR(noi)); set('rp-inv',fR(inv)); show('rp-res');
-}
-function genQR() {
-  var txt=$('qr-text').value.trim(), sz=parseInt($('qr-size').value), col=$('qr-color').value;
-  if(!txt){alert('Enter text or URL.');return;}
-  $('qr-wrap').innerHTML='';
-  new QRCode($('qr-wrap'),{text:txt,width:sz,height:sz,colorDark:col,colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
-  $('qr-out').classList.add('show');
-}
-function dlQR() { var c=document.querySelector('#qr-wrap canvas'); if(!c)return; var a=document.createElement('a'); a.download='qrcode.png'; a.href=c.toDataURL(); a.click(); }
-function genBC() {
-  var val=$('bc-val').value.trim(), fmt=$('bc-fmt').value, h=parseInt($('bc-h').value);
-  if(!val){alert('Enter a value.');return;}
-  try { JsBarcode('#bc-svg',val,{format:fmt,height:h,displayValue:true,background:'#fafafa',lineColor:'#111',fontSize:13,margin:16,font:'inherit'}); $('bc-out').classList.add('show'); }
-  catch(e){ alert('Invalid value for this format. Try CODE128 or check your input.'); }
-}
-function dlBC() { var s=$('bc-svg'), b=new Blob([new XMLSerializer().serializeToString(s)],{type:'image/svg+xml'}), u=URL.createObjectURL(b), a=document.createElement('a'); a.download='barcode.svg'; a.href=u; a.click(); URL.revokeObjectURL(u); }
+var $=function(id){return document.getElementById(id);};
+var fD=function(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var fR=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+var fP=function(n){return n.toFixed(2)+'%';};
+var show=function(id){$(id).classList.add('show');};
+var set=function(id,v){if($(id))$(id).textContent=v;};
+function cLoan(){var p=parseFloat($('la').value),r=parseFloat($('lr').value)/100/12,n=parseFloat($('lt').value)*12;if(!p||!r||!n){alert('Fill in all fields.');return;}var m=p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),t=m*n;set('l-m',fD(m));set('l-t',fR(t));set('l-i',fR(t-p));show('l-res');}
+function cRet(){var age=parseFloat($('ra').value),ret=parseFloat($('rr').value),pv=parseFloat($('rs').value)||0,pmt=parseFloat($('rc').value)||0,r=parseFloat($('rrt').value)/100/12,n=(ret-age)*12;if(!age||!ret||!r||n<=0){alert('Fill in all fields.');return;}var fv=pv*Math.pow(1+r,n)+pmt*(Math.pow(1+r,n)-1)/r,con=pv+pmt*n;set('r-n',fR(fv));set('r-c',fR(con));set('r-g',fR(fv-con));show('r-res');}
+function cMort(){var p=parseFloat($('mp').value),d=parseFloat($('md').value)||0,r=parseFloat($('mr').value)/100/12,n=parseFloat($('mt').value)*12,tx=parseFloat($('mx').value)||0,ins=parseFloat($('mi').value)||0,hoa=parseFloat($('mh').value)||0;if(!p||!r||!n){alert('Fill in required fields.');return;}var loan=p-d,pi=loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),tmo=tx/12,imo=ins/12;set('m-t',fD(pi+tmo+imo+hoa));set('m-pi',fD(pi));set('m-tx',fD(tmo));set('m-in',fD(imo));set('m-hoa',fD(hoa));set('m-ln',fR(loan));set('m-int',fR(pi*n-loan));show('m-res');}
+function cRental(){var rent=parseFloat($('rp1').value)||0,oth=parseFloat($('rp2').value)||0,vac=parseFloat($('rp3').value)||0,price=parseFloat($('rp4').value)||0,dn=parseFloat($('rp5').value)||0,cl=parseFloat($('rp6').value)||0,mort=parseFloat($('rp7').value)||0,ins=parseFloat($('rp8').value)||0,tax=parseFloat($('rp9').value)||0,maint=parseFloat($('rp10').value)||0,mgmt=parseFloat($('rp11').value)||0,hoa=parseFloat($('rp12').value)||0;if(!rent||!price){alert('Enter rent and purchase price.');return;}var gi=(rent+oth)*(1-vac/100),opex=ins+tax+maint+mgmt+hoa,totex=mort+opex,cf=gi-totex,inv=dn+cl,noi=(gi-opex)*12,cap=price>0?(noi/price)*100:0,coc=inv>0?(cf*12/inv)*100:0,grm=price>0?price/(rent*12):0;var el=$('rp-cf');el.textContent=(cf>=0?'+':'')+fD(cf)+'/mo';el.style.color=cf>=0?'#1a7a3a':'#c8401a';set('rp-coc',fP(coc));set('rp-cap',fP(cap));set('rp-grm',grm.toFixed(2)+'x');set('rp-noi',fR(noi));set('rp-inv',fR(inv));show('rp-res');}
+function genQR(){var txt=$('qt').value.trim(),sz=parseInt($('qs').value),col=$('qc').value;if(!txt){alert('Enter text or URL.');return;}$('qr-wrap').innerHTML='';new QRCode($('qr-wrap'),{text:txt,width:sz,height:sz,colorDark:col,colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});$('qr-out').classList.add('show');}
+function dlQR(){var c=document.querySelector('#qr-wrap canvas');if(!c)return;var a=document.createElement('a');a.download='qrcode.png';a.href=c.toDataURL();a.click();}
+function genBC(){var val=$('bv').value.trim(),fmt=$('bf').value,h=parseInt($('bh').value);if(!val){alert('Enter a value.');return;}try{JsBarcode('#bc-svg',val,{format:fmt,height:h,displayValue:true,background:'#fafafa',lineColor:'#111',fontSize:13,margin:16,font:'inherit'});$('bc-out').classList.add('show');}catch(e){alert('Invalid value for this format.');}}
+function dlBC(){var s=$('bc-svg'),b=new Blob([new XMLSerializer().serializeToString(s)],{type:'image/svg+xml'}),u=URL.createObjectURL(b),a=document.createElement('a');a.download='barcode.svg';a.href=u;a.click();URL.revokeObjectURL(u);}
 </script>
 </body>
 </html>
