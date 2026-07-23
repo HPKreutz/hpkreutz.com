@@ -1,214 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>hpkreutz.com</title>
-<style>
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#111;height:56px;display:flex;align-items:center;padding:0 40px}
-.nav-logo{font-size:15px;font-weight:700;color:#fff;text-decoration:none;margin-right:auto}
-.nav-links{display:flex;align-items:center;gap:6px}
-.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s}
-.nav-links a:hover,.nav-links a.active{color:#fff}
-.nav-links .cta{background:#c8401a;color:#fff!important;padding:7px 14px;border-radius:6px;font-weight:600}
-.nav-links .cta:hover{background:#a83212}
-/* LAYOUT */
-.body-wrap{padding-top:56px}
-.page{width:100%;padding:0 40px;box-sizing:border-box}
-/* HERO */
-.hero{background:#111;padding:80px 5% 72px}
-.hero-inner{width:100%;padding:0}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
-.hero h1{font-size:clamp(38px,5.5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.02;color:#fff;margin-bottom:18px}
-.hero h1 em{font-style:italic;font-weight:300;color:rgba(255,255,255,.4)}
-.hero p{font-size:16px;color:rgba(255,255,255,.5);max-width:460px;line-height:1.7;margin-bottom:32px}
-.btn-row{display:flex;gap:10px;flex-wrap:wrap}
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;padding:10px 22px;border-radius:7px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
-.btn-dark{background:#111;color:#fff}
-.btn-dark:hover{background:#2d2d2d}
-.btn-red{background:#c8401a;color:#fff}
-.btn-red:hover{background:#a83212}
-.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)}
-.btn-ghost:hover{background:rgba(255,255,255,.08)}
-.btn-outline{background:#fff;color:#111;border:1px solid #ddd}
-.btn-outline:hover{background:#f5f5f5}
-.btn-block{width:100%;justify-content:center}
-.btn-sm{font-size:13px;padding:8px 16px}
-/* PAGE HEADER */
-.phead{padding:48px 0 36px;border-bottom:1px solid #ebebeb;margin-bottom:40px}
-.phead-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:10px}
-.phead h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:#111;margin-bottom:10px}
-.phead p{font-size:15px;color:#666;max-width:520px;line-height:1.65}
-/* SECTION */
-.section{margin-bottom:44px}
-.slabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;padding-bottom:10px;border-bottom:1px solid #ebebeb;margin-bottom:18px}
-/* GRID CARDS */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-/* CARD */
-.card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden;margin-bottom:0}
-.chead{padding:14px 20px;background:#fafafa;border-bottom:1px solid #e5e5e5}
-.chead-title{font-size:14px;font-weight:700;color:#111}
-.chead-sub{font-size:12px;color:#999;margin-top:2px}
-.cbody{padding:20px}
-/* FORM */
-.field{margin-bottom:14px}
-.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#999;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;padding:10px 13px;border:1px solid #ddd;border-radius:7px;font-family:inherit;font-size:14px;color:#111;background:#fff;outline:none;-webkit-appearance:none;transition:border-color .15s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:#111;box-shadow:0 0 0 3px rgba(17,17,17,.06)}
-.field textarea{resize:vertical;min-height:80px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-/* RESULTS */
-.results{display:none;margin-top:16px;padding-top:14px;border-top:1px solid #ebebeb}
-.results.show{display:block}
-.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
-.rrow:last-child{border-bottom:none}
-.rk{color:#666}
-.rv{font-weight:700;color:#111}
-.rv.big{font-size:18px}
-.rv.green{font-size:18px;color:#1a7a3a}
-.rv.dyn{font-size:18px}
-/* STAT TABLE */
-.srow{display:flex;justify-content:space-between;align-items:center;padding:9px 20px;border-bottom:1px solid #f0f0f0;font-size:13px}
-.srow:last-child{border-bottom:none}
-.sk{color:#666}
-.sv{font-weight:600;color:#111;text-align:right}
-.sv.up{color:#1a7a3a}
-.sv.down{color:#c8401a}
-/* CODE OUTPUT */
-.code-out{display:none;flex-direction:column;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #ebebeb}
-.code-out.show{display:flex}
-/* NAV CARD */
-.ncard{display:flex;flex-direction:column;padding:26px 24px;background:#fff;text-decoration:none;color:#111;transition:background .15s}
-.ncard:hover{background:#fafafa}
-.ncard-icon{font-size:24px;margin-bottom:14px}
-.ncard-name{font-size:15px;font-weight:700;margin-bottom:6px}
-.ncard-desc{font-size:13px;color:#888;line-height:1.55;flex:1}
-.ncard-arrow{font-size:13px;color:#ccc;margin-top:14px}
-/* TEAM CARD */
-.tcard-top{display:flex;align-items:center;gap:14px;padding:18px 22px;background:#fafafa;border-bottom:1px solid #e5e5e5}
-.tlogo{width:46px;height:46px;border-radius:8px;background:#fff;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
-.tlogo img{width:34px;height:34px;object-fit:contain}
-.tlogo-txt{font-size:12px;font-weight:800;color:#666}
-.tname{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
-.tmeta{font-size:12px;color:#999}
-.tbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;background:#f0f0f0;border:1px solid #e0e0e0;color:#666;margin-left:auto;flex-shrink:0}
-.tlinks{display:flex}
-.tlink{flex:1;display:flex;align-items:center;justify-content:center;padding:11px 6px;text-decoration:none;font-size:12px;font-weight:600;color:#555;border-right:1px solid #e5e5e5;transition:all .15s}
-.tlink:last-child{border-right:none}
-.tlink:hover{background:#f5f5f5;color:#111}
-.tlink.hi{color:#c8401a}
-.tlink.hi:hover{background:#c8401a;color:#fff}
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.cinfo{padding:36px;background:#fafafa;border-right:1px solid #e5e5e5}
-.cform{padding:36px;background:#fff}
-.cbiz{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
-.crole{font-size:13px;color:#999;margin-bottom:16px}
-.cbio{font-size:14px;color:#555;line-height:1.7;margin-bottom:24px}
-.drow-c{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
-.dicon{font-size:15px;width:20px;flex-shrink:0}
-.dlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin-bottom:2px}
-.dval{font-size:14px;color:#111;text-decoration:none;display:block}
-.dval:hover{color:#c8401a}
-.cext{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.ftitle{font-size:17px;font-weight:700;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #ebebeb}
-.submit{width:100%;padding:12px;background:#c8401a;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
-.submit:hover{background:#a83212}
-.form-ok{display:none;margin-top:10px;font-size:13px;font-weight:600;color:#1a7a3a;background:rgba(26,122,58,.08);padding:10px 14px;border-radius:6px}
-/* FOOTER */
-.footer{background:#111;margin-top:60px}
-.foot-inner{width:100%;padding:28px 40px;display:flex;align-items:center;justify-content:space-between}
-.foot-copy{font-size:12px;color:rgba(255,255,255,.35)}
-.foot-links{display:flex;gap:20px}
-.foot-links a{font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s}
-.foot-links a:hover{color:#fff}
-/* SUB LABEL */
-.sub-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:14px 0 10px}
-/* RESPONSIVE */
-@media(max-width:860px){
-  .page{width:100%;padding:0 40px;box-sizing:border-box}
-  .hero{padding:64px 24px 56px}
-  .grid-4{grid-template-columns:1fr 1fr}
-  .grid-3{grid-template-columns:1fr 1fr}
-  .foot-inner{width:100%;padding:28px 40px;display:flex;align-items:center;justify-content:space-between}
-}
-@media(max-width:640px){
-  .page{width:100%;padding:0 40px;box-sizing:border-box}
-  .hero{padding:48px 16px 44px}
-  .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#111;height:56px;display:flex;align-items:center;padding:0 40px}
-  .nav-links a:not(.cta){display:none}
-  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
-  .cinfo{border-right:none;border-bottom:1px solid #e5e5e5}
-  .frow,.frow3{grid-template-columns:1fr}
-  .foot-inner{width:100%;padding:28px 40px;display:flex;align-items:center;justify-content:space-between}
-}
-
-.nc-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #e5e5e5;border-radius:10px;overflow:hidden}
-.nc-wrap .ncard{border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5}
-.nc-wrap .ncard:nth-child(3n){border-right:none}
-.nc-wrap .ncard:nth-last-child(-n+3){border-bottom:none}
-@media(max-width:640px){.nc-wrap{grid-template-columns:1fr}.nc-wrap .ncard{border-right:none}}
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<nav class="nav">
-  <a href="index.html" class="nav-logo">hpkreutz.com</a>
-  <div class="nav-links">
+
+<header class="top">
+  <div class="brand">
+    <div class="mark">◆</div>
+    <div>
+      <div class="name">The Desk</div>
+      <div class="sub">Hays, KS · daily dashboard</div>
+    </div>
+  </div>
+  <nav class="pages">
+    <a href="index.html">Home</a>
     <a href="markets.html">Markets</a>
-    <a href="tools.html">Tools</a>
     <a href="sports.html">Sports</a>
     <a href="fitness.html">Fitness</a>
     <a href="todo.html">To-Do</a>
+    <a href="tools.html">Tools</a>
     <a href="recipes.html">Recipes</a>
-    <a href="contact.html" class="cta">Contact →</a>
-  </div>
-</nav>
-<div class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">hpkreutz.com — Hays, KS</div>
-    <h1>Tools, Sports,<br><em>and Everything</em><br>In Between.</h1>
-    <p>A personal hub built for daily use — live markets, sports schedules, fitness programs, calculators, and more.</p>
-    <div class="btn-row">
-      <a href="markets.html" class="btn btn-red">Live Markets</a>
-      <a href="contact.html" class="btn btn-ghost">Get a Quote</a>
-    </div>
-  </div>
+  </nav>
+  <div id="clock">—</div>
+</header>
+
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack"></div>
 </div>
-<div class="body-wrap">
-  <div class="page">
-    <div style="padding:48px 0 60px">
-      <div class="slabel">What's Here</div>
-      <div class="nc-wrap">
-        <a href="markets.html" class="ncard"><div class="ncard-icon">📈</div><div class="ncard-name">Markets</div><div class="ncard-desc">Live stock indices, crypto, commodities, movers, and market news.</div><div class="ncard-arrow">View Markets →</div></a>
-        <a href="tools.html" class="ncard"><div class="ncard-icon">🧮</div><div class="ncard-name">Tools</div><div class="ncard-desc">Loan, mortgage, retirement, rental property calculators. QR &amp; barcode generator.</div><div class="ncard-arrow">Open Tools →</div></a>
-        <a href="sports.html" class="ncard"><div class="ncard-icon">🏈</div><div class="ncard-name">Sports</div><div class="ncard-desc">Chiefs, Royals, FHSU Tigers, Hays High — schedules, rosters, and links.</div><div class="ncard-arrow">View Sports →</div></a>
-        <a href="fitness.html" class="ncard"><div class="ncard-icon">💪</div><div class="ncard-name">Fitness</div><div class="ncard-desc">Bodyweight &amp; dumbbell programs for every level. ACV tonics and recipes.</div><div class="ncard-arrow">Get Moving →</div></a>
-        <a href="contact.html" class="ncard"><div class="ncard-icon">🛡️</div><div class="ncard-name">Insurance</div><div class="ncard-desc">The Insurance Guys — Hays, KS. Home, auto, commercial, life, and health.</div><div class="ncard-arrow">Get a Quote →</div></a>
+
+<main>
+  <h1 class="page-title" id="greeting">Good afternoon.</h1>
+  <p class="page-sub" id="dateline">—</p>
+
+  <div class="grid">
+
+    <div class="card" id="marketsCard">
+      <div class="card-head">
+        <div class="card-title"><span>📈</span>Markets</div>
+        <a class="go" href="markets.html">open →</a>
+      </div>
+      <div class="card-body" id="marketsBody">Loading snapshot…</div>
+    </div>
+
+    <div class="card span2" id="sportsCard">
+      <div class="card-head">
+        <div class="card-title"><span>🏈</span>Sports</div>
+        <a class="go" href="sports.html">open →</a>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span>Next up</span><span class="v">Chiefs @ Bills — Sun 3:25 PM</span></div>
+        <p class="empty" style="margin-top:10px;">Full schedules, rosters, and links on the Sports page. Bet tracker coming in a later pass.</p>
       </div>
     </div>
-  </div>
-</div>
-<footer class="footer">
-  <div class="foot-inner">
-    <span class="foot-copy">© 2026 hpkreutz.com — Hays, KS</span>
-    <div class="foot-links">
-      <a href="markets.html">Markets</a>
-      <a href="tools.html">Tools</a>
-      <a href="sports.html">Sports</a>
-      <a href="fitness.html">Fitness</a>
-      <a href="contact.html">Contact</a>
+
+    <div class="card" id="todoCard">
+      <div class="card-head">
+        <div class="card-title"><span>✅</span>To-Do</div>
+        <a class="go" href="todo.html">open →</a>
+      </div>
+      <div class="card-body">
+        <ul class="todo-mini" id="todoMini"></ul>
+      </div>
     </div>
+
+    <div class="card" id="fitnessCard">
+      <div class="card-head">
+        <div class="card-title"><span>💪</span>Fitness</div>
+        <a class="go" href="fitness.html">open →</a>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span>This week</span><span class="v" id="fitWeekCount">0 sessions logged</span></div>
+        <div class="stat-row"><span>Streak</span><span class="v" id="fitStreak">—</span></div>
+        <p class="empty" style="margin-top:10px;">Programs &amp; logging live on the Fitness page.</p>
+      </div>
+    </div>
+
+    <div class="card" id="toolsCard">
+      <div class="card-head">
+        <div class="card-title"><span>🧮</span>Tools</div>
+        <a class="go" href="tools.html">open →</a>
+      </div>
+      <div class="card-body">
+        <div class="stat-row"><span>Loan calculator</span><span class="v">→</span></div>
+        <div class="stat-row"><span>Mortgage calculator</span><span class="v">→</span></div>
+        <div class="stat-row"><span>Retirement calculator</span><span class="v">→</span></div>
+        <div class="stat-row"><span>QR / barcode generator</span><span class="v">→</span></div>
+      </div>
+    </div>
+
+    <div class="card" id="recipesCard">
+      <div class="card-head">
+        <div class="card-title"><span>🥗</span>Recipes</div>
+        <a class="go" href="recipes.html">open →</a>
+      </div>
+      <div class="card-body">
+        <p class="empty">ACV tonics, bodyweight-day snacks, and go-to meals.</p>
+      </div>
+    </div>
+
   </div>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> hpkreutz.com — Hays, KS</span>
+  <span>Markets · Sports · Fitness · Tasks · Tools · <a href="https://theinsuranceguysks.com" target="_blank" rel="noopener">Insurance quotes ↗</a></span>
 </footer>
+
+<script src="assets/app.js"></script>
+<script>
+  // Greeting (time-based, no name)
+  (function(){
+    const now = new Date();
+    const hrs = now.getHours();
+    const greetWord = hrs < 12 ? 'Good morning' : hrs < 18 ? 'Good afternoon' : 'Good evening';
+    document.getElementById('greeting').textContent = `${greetWord}.`;
+    document.getElementById('dateline').textContent = now.toLocaleDateString(undefined, { weekday:'long', month:'long', day:'numeric' });
+  })();
+
+  // To-do mini list
+  (function(){
+    const items = hkGetTodos();
+    const list = document.getElementById('todoMini');
+    if(!items.length){
+      list.innerHTML = '<li class="empty">No tasks yet — add some on the To-Do page.</li>';
+      return;
+    }
+    list.innerHTML = items.slice(0,5).map(t =>
+      `<li class="${t.done ? 'done':''}"><input type="checkbox" disabled ${t.done?'checked':''}/>${t.text}</li>`
+    ).join('');
+  })();
+
+  // Fitness mini-stats (reads log written by fitness.html)
+  (function(){
+    let log = [];
+    try{ log = JSON.parse(localStorage.getItem('hk_fitness_log') || '[]'); }catch(e){}
+    const now = Date.now();
+    const weekMs = 7*24*60*60*1000;
+    const thisWeek = log.filter(e => now - new Date(e.date).getTime() < weekMs);
+    document.getElementById('fitWeekCount').textContent = `${thisWeek.length} session${thisWeek.length===1?'':'s'} logged`;
+    document.getElementById('fitStreak').textContent = log.length ? `${log.length} total logged` : '—';
+  })();
+
+  // Ticker
+  hkBuildTicker([
+    {label:'S&P 500', value:'—'},
+    {label:'NASDAQ', value:'—'},
+    {label:'BTC', value:'—'},
+    {label:'Next game', value:'Chiefs @ Bills · Sun 3:25 PM'},
+    {label:'Tasks due', value: hkGetTodos().filter(t=>!t.done).length + ' open'},
+  ]);
+
+  // Live crypto snapshot
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true')
+    .then(r => r.json())
+    .then(d => {
+      const btc = d.bitcoin, eth = d.ethereum;
+      const fmt = n => '$' + n.toLocaleString(undefined,{maximumFractionDigits:0});
+      const chg = n => (n>=0?'+':'') + n.toFixed(2) + '%';
+      document.getElementById('marketsBody').innerHTML = `
+        <div class="stat-row"><span>BTC</span><span class="v ${btc.usd_24h_change>=0?'up':'down'}">${fmt(btc.usd)} (${chg(btc.usd_24h_change)})</span></div>
+        <div class="stat-row"><span>ETH</span><span class="v ${eth.usd_24h_change>=0?'up':'down'}">${fmt(eth.usd)} (${chg(eth.usd_24h_change)})</span></div>
+        <div class="stat-row"><span>Indices</span><span class="v">plug in Finnhub key on Markets page</span></div>
+      `;
+    })
+    .catch(() => {
+      document.getElementById('marketsBody').innerHTML = '<p class="empty">Snapshot unavailable right now — full data on the Markets page.</p>';
+    });
+</script>
+
 </body>
 </html>
