@@ -102,16 +102,60 @@
   <!-- RENTAL -->
   <div class="tab-panel" data-panel="rental" style="display:none;">
     <div class="card">
-      <div class="card-head"><div class="card-title">🏘️ Rental Property Calculator</div></div>
+      <div class="card-head"><div class="card-title">🏘️ Rental Property Calculator (APOD)</div></div>
       <div class="card-body">
+
+        <div class="group-label" style="margin-top:0;padding-top:0;border-top:none;">Purchase</div>
         <div class="field-row">
-          <div><label>Monthly rent ($)</label><input type="number" id="rentIncome" value="1500"></div>
-          <div><label>Monthly mortgage/expenses ($)</label><input type="number" id="rentExpenses" value="1000"></div>
+          <div><label>Purchase price ($)</label><input type="number" id="apodPrice" value="275000"></div>
+          <div><label>Acquisition costs ($)</label><input type="number" id="apodAcqCosts" value="2500"></div>
+        </div>
+
+        <div class="group-label">First Mortgage</div>
+        <div class="field-row">
+          <div><label>Loan-to-value (%)</label><input type="number" id="apodLtv1" value="80" step="0.1"></div>
+          <div><label>Rate (% APR)</label><input type="number" id="apodRate1" value="7.25" step="0.01"></div>
         </div>
         <div class="field-row">
-          <div><label>Purchase price ($)</label><input type="number" id="rentPrice" value="180000"></div>
-          <div><label>Down payment ($)</label><input type="number" id="rentDown" value="36000"></div>
+          <div><label>Term (years)</label><input type="number" id="apodTerm1" value="30"></div>
         </div>
+
+        <div class="group-label">Second Mortgage (optional)</div>
+        <div class="field-row">
+          <div><label>Loan-to-value (%)</label><input type="number" id="apodLtv2" value="0" step="0.1"></div>
+          <div><label>Rate (% APR)</label><input type="number" id="apodRate2" value="0" step="0.01"></div>
+        </div>
+        <div class="field-row">
+          <div><label>Term (years)</label><input type="number" id="apodTerm2" value="30"></div>
+        </div>
+
+        <div class="group-label">Income</div>
+        <div class="field-row">
+          <div><label>Gross scheduled income, monthly ($)</label><input type="number" id="apodIncome" value="3300"></div>
+          <div><label>Vacancy allowance (%)</label><input type="number" id="apodVacancy" value="1" step="0.1"></div>
+        </div>
+
+        <div class="group-label">Operating Expenses (annual $)</div>
+        <div class="field-row">
+          <div><label>Property taxes</label><input type="number" id="apodTaxes" value="3425"></div>
+          <div><label>Insurance</label><input type="number" id="apodInsurance" value="3500"></div>
+        </div>
+        <div class="field-row">
+          <div><label>Utilities</label><input type="number" id="apodUtilities" value="4020"></div>
+          <div><label>Repairs</label><input type="number" id="apodRepairs" value="500"></div>
+        </div>
+        <div class="field-row">
+          <div><label>Maintenance</label><input type="number" id="apodMaintenance" value="0"></div>
+          <div><label>Management (% of gross operating income)</label><input type="number" id="apodMgmtPct" value="0" step="0.1"></div>
+        </div>
+        <div class="field-row">
+          <div><label>HOA</label><input type="number" id="apodHoa" value="0"></div>
+          <div><label>Advertising</label><input type="number" id="apodAdvertising" value="0"></div>
+        </div>
+        <div class="field-row">
+          <div><label>Other expenses</label><input type="number" id="apodOther" value="0"></div>
+        </div>
+
         <button onclick="calcRental()">Calculate</button>
         <div class="result" id="rentResult" style="display:none;"></div>
       </div>
@@ -206,21 +250,82 @@
     `;
   }
 
+  // Excel-equivalent PMT/FV (type=0), matching the APOD spreadsheet's formulas
+  function excelPmt(rate, nper, pv, fv=0){
+    if(rate === 0) return -(pv+fv)/nper;
+    const pow = Math.pow(1+rate, nper);
+    return -(pv*pow + fv) * rate / (pow - 1);
+  }
+  function excelFv(rate, nper, pmt, pv=0){
+    if(rate === 0) return -(pv + pmt*nper);
+    const pow = Math.pow(1+rate, nper);
+    return -pv*pow - pmt*(pow-1)/rate;
+  }
+
   function calcRental(){
-    const income = parseFloat(document.getElementById('rentIncome').value);
-    const expenses = parseFloat(document.getElementById('rentExpenses').value);
-    const price = parseFloat(document.getElementById('rentPrice').value);
-    const down = parseFloat(document.getElementById('rentDown').value);
-    const monthlyCF = income - expenses;
-    const annualCF = monthlyCF*12;
-    const cocReturn = (annualCF/down)*100;
-    const capRate = (annualCF/price)*100;
+    const price = parseFloat(document.getElementById('apodPrice').value) || 0;
+    const acqCosts = parseFloat(document.getElementById('apodAcqCosts').value) || 0;
+
+    const ltv1 = (parseFloat(document.getElementById('apodLtv1').value) || 0)/100;
+    const rate1 = (parseFloat(document.getElementById('apodRate1').value) || 0)/100;
+    const term1 = parseFloat(document.getElementById('apodTerm1').value) || 0;
+
+    const ltv2 = (parseFloat(document.getElementById('apodLtv2').value) || 0)/100;
+    const rate2 = (parseFloat(document.getElementById('apodRate2').value) || 0)/100;
+    const term2 = parseFloat(document.getElementById('apodTerm2').value) || 0;
+
+    const monthlyIncome = parseFloat(document.getElementById('apodIncome').value) || 0;
+    const vacancyPct = (parseFloat(document.getElementById('apodVacancy').value) || 0)/100;
+
+    const taxes = parseFloat(document.getElementById('apodTaxes').value) || 0;
+    const insurance = parseFloat(document.getElementById('apodInsurance').value) || 0;
+    const utilities = parseFloat(document.getElementById('apodUtilities').value) || 0;
+    const repairs = parseFloat(document.getElementById('apodRepairs').value) || 0;
+    const maintenance = parseFloat(document.getElementById('apodMaintenance').value) || 0;
+    const mgmtPct = (parseFloat(document.getElementById('apodMgmtPct').value) || 0)/100;
+    const hoa = parseFloat(document.getElementById('apodHoa').value) || 0;
+    const advertising = parseFloat(document.getElementById('apodAdvertising').value) || 0;
+    const other = parseFloat(document.getElementById('apodOther').value) || 0;
+
+    const loan1 = price*ltv1;
+    const pay1 = loan1 === 0 ? 0 : -excelPmt(rate1/12, term1*12, loan1);
+    const loan2 = price*ltv2;
+    const pay2 = loan2 === 0 ? 0 : -excelPmt(rate2/12, term2*12, loan2);
+
+    const grossScheduledAnnual = monthlyIncome*12;
+    const vacancyLoss = -grossScheduledAnnual*vacancyPct;
+    const grossOperatingIncome = grossScheduledAnnual + vacancyLoss;
+
+    const management = -grossOperatingIncome*mgmtPct;
+    const totalExpenses = taxes+insurance+utilities+repairs+maintenance+management+hoa+advertising+other;
+
+    const noi = grossOperatingIncome - totalExpenses;
+    const annualDebtService = (pay1+pay2)*12;
+    const cashFlowBeforeTax = noi - annualDebtService;
+
+    const cashInvested = (price - loan1 - loan2) + acqCosts;
+    const cashOnCash = cashInvested === 0 ? 0 : cashFlowBeforeTax/cashInvested;
+
+    let equityBuildUp = 0;
+    if(loan1 > 0){
+      const remainingBalance = Math.abs(excelFv(rate1/12, 12, pay1, -loan1));
+      equityBuildUp = loan1 - remainingBalance;
+    }
+    const equityBuildUpReturn = cashInvested === 0 ? 0 : equityBuildUp/cashInvested;
+
+    const monthlyCashFlow = cashFlowBeforeTax/12;
+
     document.getElementById('rentResult').style.display = 'block';
     document.getElementById('rentResult').innerHTML = `
-      <div class="lbl">Monthly cash flow</div><div class="big">${fmt$(monthlyCF)}</div>
-      <div class="stat-row" style="margin-top:10px;"><span>Annual cash flow</span><span class="v ${annualCF>=0?'up':'down'}">${fmt$(annualCF)}</span></div>
-      <div class="stat-row"><span>Cash-on-cash return</span><span class="v">${cocReturn.toFixed(2)}%</span></div>
-      <div class="stat-row"><span>Cap rate</span><span class="v">${capRate.toFixed(2)}%</span></div>
+      <div class="lbl">Monthly cash flow before tax</div><div class="big">${fmt$(monthlyCashFlow)}</div>
+      <div class="stat-row" style="margin-top:10px;"><span>Net operating income (annual)</span><span class="v">${fmt$(noi)}</span></div>
+      <div class="stat-row"><span>Annual debt service</span><span class="v">${fmt$(annualDebtService)}</span></div>
+      <div class="stat-row"><span>Cash flow before tax (annual)</span><span class="v ${cashFlowBeforeTax>=0?'up':'down'}">${fmt$(cashFlowBeforeTax)}</span></div>
+      <div class="stat-row"><span>Cash-on-cash return</span><span class="v">${(cashOnCash*100).toFixed(2)}%</span></div>
+      <div class="stat-row"><span>Equity build-up (year 1)</span><span class="v">${fmt$(equityBuildUp)}</span></div>
+      <div class="stat-row"><span>Equity build-up return</span><span class="v">${(equityBuildUpReturn*100).toFixed(2)}%</span></div>
+      <div class="stat-row" style="margin-top:10px;"><span>1st mortgage payment (monthly)</span><span class="v">${fmt$(pay1)}</span></div>
+      ${loan2>0 ? `<div class="stat-row"><span>2nd mortgage payment (monthly)</span><span class="v">${fmt$(pay2)}</span></div>` : ''}
     `;
   }
 

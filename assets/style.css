@@ -131,6 +131,16 @@ button.ghost{background:transparent; border:1px solid var(--line); color:var(--t
 .field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
 @media (max-width:620px){ .field-row{grid-template-columns:1fr;} }
 
+.group-label{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--muted);
+  margin:18px 0 8px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+}
+
 .result{
   background:var(--surface-alt);
   border:1px solid var(--line);
