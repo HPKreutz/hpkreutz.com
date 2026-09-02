@@ -32,14 +32,34 @@
 
 <main>
   <h1 class="page-title">Markets</h1>
-  <p class="page-sub">Indices, crypto, and movers.</p>
+  <p class="page-sub">Stock indices, commodities, bonds, and crypto — one page.</p>
 
-  <div class="grid cols-2">
+  <div class="card" style="margin-bottom:18px;">
+    <div class="card-head"><div class="card-title">🔑 Live Data Setup</div></div>
+    <div class="card-body">
+      <p class="empty" style="margin-bottom:10px;">
+        Indices, commodities, and bonds use
+        <a href="https://finnhub.io/register" target="_blank" rel="noopener">Finnhub's</a>
+        free API (no credit card). Crypto below needs no key at all. Your key is saved only in this browser —
+        it's never stored on the website itself.
+      </p>
+      <div class="field-row">
+        <div><label>Finnhub API key</label><input type="password" id="finnhubKey" placeholder="Paste your free Finnhub API key"></div>
+        <div style="display:flex;align-items:flex-end;"><button onclick="loadMarketsData()">Load live data</button></div>
+      </div>
+      <div class="field-hint" id="marketsStatus"></div>
+    </div>
+  </div>
+
+  <div class="grid">
     <div class="card">
       <div class="card-head"><div class="card-title">📊 Indices</div></div>
-      <div class="card-body" id="indicesBody">
-        <p class="empty">Add your Finnhub API key in the script below to pull live index quotes. Paste it where it says <code>FINNHUB_KEY</code> near the bottom of this file.</p>
-      </div>
+      <div class="card-body" id="indicesBody"><p class="empty">Add a Finnhub key above to load live index quotes (tracked via SPY/QQQ/DIA/IWM).</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-title">🛢️ Commodities &amp; Bonds</div></div>
+      <div class="card-body" id="commoditiesBody"><p class="empty">Add a Finnhub key above to load live gold, oil, and treasury quotes.</p></div>
     </div>
 
     <div class="card">
@@ -51,7 +71,7 @@
   <div class="card" style="margin-top:18px;">
     <div class="card-head"><div class="card-title">📰 Notes</div></div>
     <div class="card-body">
-      <p class="empty">Market news feed can be wired in here once the Finnhub key is in place — same key covers indices, quotes, and a news endpoint.</p>
+      <p class="empty">Market news can be added later using the same Finnhub key's news endpoint.</p>
     </div>
   </div>
 </main>
@@ -66,40 +86,105 @@
   hkBuildTicker([
     {label:'S&P 500', value:'—'},
     {label:'NASDAQ', value:'—'},
+    {label:'Dow', value:'—'},
+    {label:'Gold', value:'—'},
     {label:'BTC', value:'—'},
   ]);
 
-  // Live crypto (no key needed)
-  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true')
+  const fmt$ = n => '$' + n.toLocaleString(undefined,{maximumFractionDigits:2});
+  const fmtChg = n => (n>=0?'+':'') + n.toFixed(2) + '%';
+
+  let tickerState = { 'S&P 500':'—', 'NASDAQ':'—', 'Dow':'—', 'Gold':'—', 'BTC':'—' };
+  function refreshTicker(){
+    hkBuildTicker(Object.entries(tickerState).map(([label,value]) => ({label, value})));
+  }
+
+  // ===== Crypto (CoinGecko, no key needed) =====
+  const cryptoLabels = { bitcoin:'BTC', ethereum:'ETH', solana:'SOL', dogecoin:'DOGE' };
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=' + Object.keys(cryptoLabels).join(',') + '&vs_currencies=usd&include_24hr_change=true')
     .then(r => r.json())
     .then(d => {
-      const fmt = n => '$' + n.toLocaleString(undefined,{maximumFractionDigits:2});
-      const chg = n => (n>=0?'+':'') + n.toFixed(2) + '%';
-      const rows = Object.entries(d).map(([k,v]) => `
-        <div class="stat-row"><span>${k.toUpperCase()}</span><span class="v ${v.usd_24h_change>=0?'up':'down'}">${fmt(v.usd)} (${chg(v.usd_24h_change)})</span></div>
-      `).join('');
-      document.getElementById('cryptoBody').innerHTML = rows;
+      const rows = Object.entries(cryptoLabels).map(([id,label]) => {
+        const v = d[id];
+        if(!v) return '';
+        return `<div class="stat-row"><span>${label}</span><span class="v ${v.usd_24h_change>=0?'up':'down'}">${fmt$(v.usd)} (${fmtChg(v.usd_24h_change)})</span></div>`;
+      }).join('');
+      document.getElementById('cryptoBody').innerHTML = rows || '<p class="empty">Crypto data unavailable right now.</p>';
+      if(d.bitcoin){
+        tickerState['BTC'] = `${fmt$(d.bitcoin.usd)} (${fmtChg(d.bitcoin.usd_24h_change)})`;
+        refreshTicker();
+      }
     })
     .catch(() => { document.getElementById('cryptoBody').innerHTML = '<p class="empty">Crypto data unavailable right now.</p>'; });
 
-  // ===== Indices (Finnhub) =====
-  // Get a free key at finnhub.io, then paste it below.
-  const FINNHUB_KEY = ''; // <-- paste your key here
+  // ===== Indices, Commodities & Bonds (Finnhub — proxied via widely-held ETFs) =====
+  async function fetchQuote(symbol, key){
+    const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(symbol)}&token=${key}`);
+    const data = await res.json();
+    if(data.error) throw new Error(data.error);
+    return data;
+  }
 
-  if (FINNHUB_KEY) {
-    const symbols = { 'S&P 500 (SPY)':'SPY', 'Nasdaq (QQQ)':'QQQ', 'Dow (DIA)':'DIA' };
-    Promise.all(Object.entries(symbols).map(([label, sym]) =>
-      fetch(`https://finnhub.io/api/v1/quote?symbol=${sym}&token=${FINNHUB_KEY}`)
-        .then(r => r.json())
-        .then(q => ({ label, price: q.c, change: q.dp }))
-    )).then(results => {
-      document.getElementById('indicesBody').innerHTML = results.map(r => `
-        <div class="stat-row"><span>${r.label}</span><span class="v ${r.change>=0?'up':'down'}">$${r.price?.toFixed(2)} (${r.change>=0?'+':''}${r.change?.toFixed(2)}%)</span></div>
+  async function loadFinnhubGroup(containerId, symbolMap, key, tickerKeys){
+    const el = document.getElementById(containerId);
+    try{
+      const entries = Object.entries(symbolMap);
+      const results = await Promise.all(entries.map(async ([label, sym]) => {
+        const q = await fetchQuote(sym, key);
+        return { label, price: q.c, change: q.dp };
+      }));
+      const anyValid = results.some(r => r.price);
+      if(!anyValid){
+        el.innerHTML = '<p class="empty">No data returned — double-check your Finnhub API key.</p>';
+        return;
+      }
+      el.innerHTML = results.map(r => `
+        <div class="stat-row">
+          <span>${r.label}</span>
+          <span class="v ${r.change>=0?'up':'down'}">${r.price ? fmt$(r.price) : '—'}${r.change!==undefined ? ' ('+fmtChg(r.change)+')' : ''}</span>
+        </div>
       `).join('');
-    }).catch(() => {
-      document.getElementById('indicesBody').innerHTML = '<p class="empty">Couldn\'t reach Finnhub — check the API key.</p>';
+      if(tickerKeys){
+        results.forEach((r, i) => {
+          const tk = tickerKeys[i];
+          if(tk && r.price) tickerState[tk] = `${fmt$(r.price)} (${fmtChg(r.change)})`;
+        });
+        refreshTicker();
+      }
+    }catch(err){
+      el.innerHTML = `<p class="empty">Couldn't load — ${err.message || 'check your API key'}.</p>`;
+    }
+  }
+
+  function loadMarketsData(){
+    const key = document.getElementById('finnhubKey').value.trim();
+    const statusEl = document.getElementById('marketsStatus');
+    if(!key){
+      statusEl.textContent = 'Paste a Finnhub API key above first.';
+      return;
+    }
+    localStorage.setItem('hk_finnhub_key', key);
+    statusEl.textContent = 'Loading…';
+
+    const indices = { 'S&P 500 (SPY)':'SPY', 'Nasdaq 100 (QQQ)':'QQQ', 'Dow Jones (DIA)':'DIA', 'Russell 2000 (IWM)':'IWM' };
+    const commodities = { 'Gold (GLD)':'GLD', 'Crude Oil (USO)':'USO', 'Long-Term Treasuries (TLT)':'TLT' };
+
+    Promise.all([
+      loadFinnhubGroup('indicesBody', indices, key, ['S&P 500', 'NASDAQ', 'Dow', null]),
+      loadFinnhubGroup('commoditiesBody', commodities, key, ['Gold', null, null]),
+    ]).then(() => {
+      statusEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
     });
   }
+
+  // Auto-load if a key was already saved on a previous visit
+  (function(){
+    const saved = localStorage.getItem('hk_finnhub_key');
+    if(saved){
+      document.getElementById('finnhubKey').value = saved;
+      loadMarketsData();
+    }
+  })();
 </script>
 
 </body>

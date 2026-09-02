@@ -157,22 +157,37 @@
     {label:'Tasks due', value: hkGetTodos().filter(t=>!t.done).length + ' open'},
   ]);
 
-  // Live crypto snapshot
-  fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true')
-    .then(r => r.json())
-    .then(d => {
-      const btc = d.bitcoin, eth = d.ethereum;
-      const fmt = n => '$' + n.toLocaleString(undefined,{maximumFractionDigits:0});
-      const chg = n => (n>=0?'+':'') + n.toFixed(2) + '%';
-      document.getElementById('marketsBody').innerHTML = `
-        <div class="stat-row"><span>BTC</span><span class="v ${btc.usd_24h_change>=0?'up':'down'}">${fmt(btc.usd)} (${chg(btc.usd_24h_change)})</span></div>
-        <div class="stat-row"><span>ETH</span><span class="v ${eth.usd_24h_change>=0?'up':'down'}">${fmt(eth.usd)} (${chg(eth.usd_24h_change)})</span></div>
-        <div class="stat-row"><span>Indices</span><span class="v">plug in Finnhub key on Markets page</span></div>
-      `;
-    })
-    .catch(() => {
-      document.getElementById('marketsBody').innerHTML = '<p class="empty">Snapshot unavailable right now — full data on the Markets page.</p>';
+  // Markets snapshot: crypto (no key needed) + indices (if a Finnhub key was saved on the Markets page)
+  (function(){
+    const fmt = n => '$' + n.toLocaleString(undefined,{maximumFractionDigits:0});
+    const chg = n => (n>=0?'+':'') + n.toFixed(2) + '%';
+    const body = document.getElementById('marketsBody');
+    const cryptoRows = [];
+    const indexRows = [];
+
+    const cryptoDone = fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true')
+      .then(r => r.json())
+      .then(d => {
+        cryptoRows.push(`<div class="stat-row"><span>BTC</span><span class="v ${d.bitcoin.usd_24h_change>=0?'up':'down'}">${fmt(d.bitcoin.usd)} (${chg(d.bitcoin.usd_24h_change)})</span></div>`);
+        cryptoRows.push(`<div class="stat-row"><span>ETH</span><span class="v ${d.ethereum.usd_24h_change>=0?'up':'down'}">${fmt(d.ethereum.usd)} (${chg(d.ethereum.usd_24h_change)})</span></div>`);
+      })
+      .catch(() => {});
+
+    const finnhubKey = localStorage.getItem('hk_finnhub_key');
+    const indicesDone = finnhubKey
+      ? Promise.all([['S&P 500','SPY'],['NASDAQ','QQQ']].map(([label, sym]) =>
+          fetch(`https://finnhub.io/api/v1/quote?symbol=${sym}&token=${finnhubKey}`)
+            .then(r => r.json())
+            .then(q => { if(q.c) indexRows.push(`<div class="stat-row"><span>${label}</span><span class="v ${q.dp>=0?'up':'down'}">${fmt(q.c)} (${chg(q.dp)})</span></div>`); })
+            .catch(() => {})
+        ))
+      : Promise.resolve(indexRows.push(`<div class="stat-row"><span>Indices</span><span class="v"><a href="markets.html">add a free key →</a></span></div>`));
+
+    Promise.all([cryptoDone, indicesDone]).then(() => {
+      const rows = [...indexRows, ...cryptoRows];
+      body.innerHTML = rows.length ? rows.join('') : '<p class="empty">Snapshot unavailable right now — full data on the Markets page.</p>';
     });
+  })();
 </script>
 
 </body>
