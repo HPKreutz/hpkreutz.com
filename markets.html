@@ -57,6 +57,47 @@
     </div>
   </div>
 
+  <div class="card" style="margin-bottom:18px;">
+    <div class="card-head"><div class="card-title">📈 Stock Lookup</div></div>
+    <div class="card-body">
+      <div id="twelveDataSetup">
+        <p class="empty" style="margin-bottom:10px;">
+          Charting any NASDAQ/NYSE symbol uses
+          <a href="https://twelvedata.com/pricing" target="_blank" rel="noopener">Twelve Data's</a>
+          free API (800 requests/day, no credit card). Saved only in this browser.
+        </p>
+        <div class="field-row">
+          <div><label>Twelve Data API key</label><input type="password" id="twelveDataKey" placeholder="Paste your free Twelve Data API key"></div>
+          <div style="display:flex;align-items:flex-end;"><button onclick="loadStockChart()">Save &amp; search</button></div>
+        </div>
+      </div>
+      <div id="twelveDataConnected" style="display:none;align-items:center;gap:12px;">
+        <span class="field-hint" style="margin:0;">✓ Twelve Data key saved in this browser.</span>
+        <button class="ghost" onclick="showKeySetup('twelveData')">Change key</button>
+      </div>
+
+      <div class="field-row" style="margin-top:14px;">
+        <div><label>Stock symbol</label><input type="text" id="stockSymbol" placeholder="e.g. AAPL, MSFT, TSLA" value="AAPL"></div>
+        <div style="display:flex;align-items:flex-end;"><button onclick="loadStockChart()">Search</button></div>
+      </div>
+
+      <div class="range-btns" style="margin-top:12px;">
+        <button class="range-btn" data-range="1H" onclick="loadStockChart('1H')">1H</button>
+        <button class="range-btn" data-range="1D" onclick="loadStockChart('1D')">1D</button>
+        <button class="range-btn active" data-range="1M" onclick="loadStockChart('1M')">1M</button>
+        <button class="range-btn" data-range="3M" onclick="loadStockChart('3M')">3M</button>
+        <button class="range-btn" data-range="6M" onclick="loadStockChart('6M')">6M</button>
+        <button class="range-btn" data-range="1Y" onclick="loadStockChart('1Y')">1Y</button>
+        <button class="range-btn" data-range="3Y" onclick="loadStockChart('3Y')">3Y</button>
+        <button class="range-btn" data-range="5Y" onclick="loadStockChart('5Y')">5Y</button>
+      </div>
+
+      <div id="stockPriceHead" style="margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:14px;"></div>
+      <div style="margin-top:8px;height:280px;"><canvas id="stockCanvas"></canvas></div>
+      <div class="field-hint" id="stockStatus" style="margin-top:8px;"></div>
+    </div>
+  </div>
+
   <div class="grid">
     <div class="card">
       <div class="card-head"><div class="card-title">📊 Indices</div></div>
@@ -87,6 +128,7 @@
   <span>Markets · Sports · Fitness · Tasks · Tools</span>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="assets/app.js"></script>
 <script>
   hkBuildTicker([
@@ -201,6 +243,116 @@
       document.getElementById('finnhubKey').value = saved;
       hideFinnhubSetup();
       loadMarketsData();
+    }
+  })();
+
+  // ===== Stock Lookup chart (Twelve Data) =====
+  function hideKeySetup(prefix){
+    document.getElementById(prefix + 'Setup').style.display = 'none';
+    document.getElementById(prefix + 'Connected').style.display = 'flex';
+  }
+  function showKeySetup(prefix){
+    document.getElementById(prefix + 'Setup').style.display = 'block';
+    document.getElementById(prefix + 'Connected').style.display = 'none';
+  }
+
+  const RANGE_CONFIG = {
+    '1H': { interval: '1min',  outputsize: 60  },
+    '1D': { interval: '5min',  outputsize: 78  },
+    '1M': { interval: '1day',  outputsize: 30  },
+    '3M': { interval: '1day',  outputsize: 90  },
+    '6M': { interval: '1day',  outputsize: 130 },
+    '1Y': { interval: '1day',  outputsize: 260 },
+    '3Y': { interval: '1week', outputsize: 156 },
+    '5Y': { interval: '1week', outputsize: 260 },
+  };
+  let currentRange = '1M';
+  let stockChart = null;
+
+  function formatStockLabel(datetimeStr, interval){
+    const d = new Date(datetimeStr.replace(' ', 'T'));
+    if(interval === '1min' || interval === '5min') return d.toLocaleTimeString(undefined, {hour:'numeric', minute:'2-digit'});
+    if(interval === '1week') return d.toLocaleDateString(undefined, {month:'short', day:'numeric', year:'2-digit'});
+    return d.toLocaleDateString(undefined, {month:'short', day:'numeric'});
+  }
+
+  async function fetchTimeSeries(symbol, interval, outputsize, key){
+    const url = `https://api.twelvedata.com/time_series?symbol=${encodeURIComponent(symbol)}&interval=${interval}&outputsize=${outputsize}&apikey=${key}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if(data.status === 'error' || data.code) throw new Error(data.message || 'Twelve Data returned an error.');
+    if(!data.values || !data.values.length) throw new Error('No data came back for that symbol.');
+    return data;
+  }
+
+  function renderStockChart(labels, closes){
+    const canvas = document.getElementById('stockCanvas');
+    const brass = getComputedStyle(document.documentElement).getPropertyValue('--brass').trim() || '#C89B3C';
+    const gridColor = 'rgba(139,151,168,0.15)';
+    const tickColor = getComputedStyle(document.documentElement).getPropertyValue('--muted').trim() || '#8B97A8';
+    if(stockChart) stockChart.destroy();
+    stockChart = new Chart(canvas.getContext('2d'), {
+      type: 'line',
+      data: { labels, datasets: [{ data: closes, borderColor: brass, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.15 }] },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: tickColor, maxTicksLimit: 8 }, grid: { color: gridColor } },
+          y: { ticks: { color: tickColor }, grid: { color: gridColor } },
+        },
+      },
+    });
+  }
+
+  async function loadStockChart(range){
+    const statusEl = document.getElementById('stockStatus');
+    const symbol = document.getElementById('stockSymbol').value.trim().toUpperCase();
+    const key = document.getElementById('twelveDataKey').value.trim();
+
+    if(!key){ statusEl.style.color = 'var(--down)'; statusEl.textContent = 'Paste your Twelve Data API key above first.'; return; }
+    if(!symbol){ statusEl.style.color = 'var(--down)'; statusEl.textContent = 'Type a stock symbol first (e.g. AAPL).'; return; }
+
+    if(range) currentRange = range;
+    document.querySelectorAll('.range-btn').forEach(b => b.classList.toggle('active', b.dataset.range === currentRange));
+
+    const cfg = RANGE_CONFIG[currentRange];
+    statusEl.style.color = 'var(--muted)';
+    statusEl.textContent = `Loading ${symbol} — ${currentRange}…`;
+
+    try{
+      const data = await fetchTimeSeries(symbol, cfg.interval, cfg.outputsize, key);
+      localStorage.setItem('hk_twelvedata_key', key);
+      hideKeySetup('twelveData');
+
+      const values = [...data.values].reverse();
+      const labels = values.map(v => formatStockLabel(v.datetime, cfg.interval));
+      const closes = values.map(v => parseFloat(v.close));
+      renderStockChart(labels, closes);
+
+      const first = closes[0], last = closes[closes.length - 1];
+      const change = last - first;
+      const pct = first ? (change / first) * 100 : 0;
+      document.getElementById('stockPriceHead').innerHTML = `
+        <span style="font-weight:600;">${symbol}</span>
+        <span style="margin-left:10px;">$${last.toFixed(2)}</span>
+        <span class="v ${change>=0?'up':'down'}" style="margin-left:8px;">${change>=0?'+':''}${change.toFixed(2)} (${pct>=0?'+':''}${pct.toFixed(2)}%) over ${currentRange}</span>
+      `;
+      statusEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
+    }catch(err){
+      statusEl.style.color = 'var(--down)';
+      statusEl.textContent = err.message || 'Could not load that symbol.';
+    }
+  }
+
+  // Auto-load a default chart if a Twelve Data key was already saved
+  (function(){
+    const saved = localStorage.getItem('hk_twelvedata_key');
+    if(saved){
+      document.getElementById('twelveDataKey').value = saved;
+      hideKeySetup('twelveData');
+      loadStockChart('1M');
     }
   })();
 </script>

@@ -162,6 +162,21 @@ button.ghost{background:transparent; border:1px solid var(--line); color:var(--t
 .rc-listing-addr{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--text);}
 .rc-listing-meta{font-size:11.5px; color:var(--muted); margin-top:2px;}
 
+.range-btns{display:flex; gap:6px; flex-wrap:wrap;}
+.range-btn{
+  padding:6px 12px;
+  font-size:12px;
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--muted);
+  border-radius:6px;
+  cursor:pointer;
+  font-family:'IBM Plex Mono', monospace;
+  transition:opacity .15s ease;
+}
+.range-btn.active{background:var(--brass); border-color:var(--brass); color:var(--ink);}
+.range-btn:hover{opacity:0.85;}
+
 .result{
   background:var(--surface-alt);
   border:1px solid var(--line);
