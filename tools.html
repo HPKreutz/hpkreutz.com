@@ -101,6 +101,41 @@
 
   <!-- RENTAL -->
   <div class="tab-panel" data-panel="rental" style="display:none;">
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-head"><div class="card-title">🔎 Load a Real Property (RentCast)</div></div>
+      <div class="card-body">
+        <p class="empty" style="margin-bottom:10px;">
+          Pull real numbers into the calculator below using
+          <a href="https://app.rentcast.io/app/api" target="_blank" rel="noopener">RentCast's</a>
+          free API (50 lookups/month). Your API key is saved only in this browser — it's never stored on the website itself.
+        </p>
+        <div class="field-row">
+          <div>
+            <label>RentCast API key</label>
+            <input type="password" id="rcApiKey" placeholder="Paste your RentCast API key">
+            <div class="field-hint">Get a free key at rentcast.io/api, then paste it here once.</div>
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button onclick="rcBrowseListings()">Browse active Hays, KS listings</button>
+          </div>
+        </div>
+
+        <div id="rcStatus" class="field-hint" style="margin-top:10px;"></div>
+        <div id="rcListings" style="margin-top:6px;"></div>
+
+        <div class="group-label">Or look up one address</div>
+        <div class="field-row">
+          <div>
+            <label>Property address</label>
+            <input type="text" id="rcAddress" placeholder="123 Main St, Hays, KS 67601">
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button onclick="rcLookupAddress()">Get rent &amp; tax estimate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="card-head"><div class="card-title">🏘️ Rental Property Calculator</div></div>
       <div class="card-body">
@@ -294,6 +329,150 @@
     if(rate === 0) return -(pv + pmt*nper);
     const pow = Math.pow(1+rate, nper);
     return -pv*pow - pmt*(pow-1)/rate;
+  }
+
+  // ===== RentCast integration =====
+  const RC_BASE = 'https://api.rentcast.io/v1';
+  let rcLastListings = [];
+
+  (function(){
+    const saved = localStorage.getItem('hk_rentcast_key');
+    if(saved) document.getElementById('rcApiKey').value = saved;
+  })();
+  document.getElementById('rcApiKey').addEventListener('change', () => {
+    localStorage.setItem('hk_rentcast_key', document.getElementById('rcApiKey').value.trim());
+  });
+
+  function rcSetStatus(msg, isError){
+    const el = document.getElementById('rcStatus');
+    el.textContent = msg;
+    el.style.color = isError ? 'var(--down)' : 'var(--muted)';
+  }
+
+  function rcGetKey(){
+    const key = document.getElementById('rcApiKey').value.trim();
+    if(!key){
+      rcSetStatus('Paste your RentCast API key above first.', true);
+      return null;
+    }
+    return key;
+  }
+
+  async function rcFetch(path){
+    const key = rcGetKey();
+    if(!key) return null;
+    const res = await fetch(RC_BASE + path, { headers: { 'X-Api-Key': key, 'Accept': 'application/json' } });
+    if(!res.ok){
+      if(res.status === 401) throw new Error('RentCast rejected that API key (401). Double-check it was copied correctly.');
+      if(res.status === 429) throw new Error('RentCast free-tier limit reached (429) — you get 50 lookups/month.');
+      throw new Error(`RentCast returned an error (HTTP ${res.status}).`);
+    }
+    return res.json();
+  }
+
+  // Reads a value that may live under a few different possible key names
+  function rcPick(obj, keys){
+    for(const k of keys){
+      if(obj && obj[k] !== undefined && obj[k] !== null) return obj[k];
+    }
+    return undefined;
+  }
+
+  // propertyTaxes / taxAssessments come back keyed by year, e.g. {"2023":{total:1234}}
+  function rcLatestYearTotal(obj){
+    if(!obj || typeof obj !== 'object') return undefined;
+    const years = Object.keys(obj).sort();
+    if(!years.length) return undefined;
+    const latest = obj[years[years.length-1]];
+    if(typeof latest === 'number') return latest;
+    return rcPick(latest, ['total','value','amount']);
+  }
+
+  async function rcBrowseListings(){
+    const listingsEl = document.getElementById('rcListings');
+    listingsEl.innerHTML = '';
+    rcSetStatus('Loading active listings in Hays, KS…');
+    try{
+      const data = await rcFetch('/listings/sale?city=Hays&state=KS&status=Active&limit=20');
+      if(!data) return;
+      rcLastListings = Array.isArray(data) ? data : (data.listings || []);
+      if(!rcLastListings.length){
+        rcSetStatus('No active listings came back for Hays, KS right now.');
+        return;
+      }
+      rcSetStatus(`${rcLastListings.length} active listing(s) found. Click one to use its price below.`);
+      listingsEl.innerHTML = rcLastListings.map((l, i) => {
+        const addr = rcPick(l, ['formattedAddress']) || [rcPick(l,['addressLine1']), rcPick(l,['city']), rcPick(l,['state'])].filter(Boolean).join(', ');
+        const price = rcPick(l, ['price','listPrice']);
+        const beds = rcPick(l, ['bedrooms']);
+        const baths = rcPick(l, ['bathrooms']);
+        const sqft = rcPick(l, ['squareFootage']);
+        const meta = [
+          price ? fmt$(price) : null,
+          (beds!==undefined && baths!==undefined) ? `${beds} bd / ${baths} ba` : null,
+          sqft ? `${sqft.toLocaleString()} sqft` : null,
+        ].filter(Boolean).join(' · ');
+        return `
+          <div class="rc-listing">
+            <div>
+              <div class="rc-listing-addr">${addr || 'Address unavailable'}</div>
+              <div class="rc-listing-meta">${meta || 'Details unavailable'}</div>
+            </div>
+            <button class="ghost" onclick="rcUseListing(${i})">Use this →</button>
+          </div>`;
+      }).join('');
+    }catch(err){
+      rcSetStatus(err.message + ' (If this looks like a network/CORS failure rather than the message above, RentCast may not allow direct browser calls — tell Claude so we can add a small proxy.)', true);
+    }
+  }
+
+  function rcUseListing(i){
+    const l = rcLastListings[i];
+    if(!l) return;
+    const price = rcPick(l, ['price','listPrice']);
+    const addr = rcPick(l, ['formattedAddress']) || [rcPick(l,['addressLine1']), rcPick(l,['city']), rcPick(l,['state']), rcPick(l,['zipCode'])].filter(Boolean).join(', ');
+    if(price) document.getElementById('apodPrice').value = price;
+    document.getElementById('rcAddress').value = addr;
+    rcSetStatus(`Loaded "${addr}" — price filled in. Click "Get rent & tax estimate" to also pull rent and tax numbers for it.`);
+    document.querySelector('[data-panel="rental"] .card:nth-child(2)').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  async function rcLookupAddress(){
+    const address = document.getElementById('rcAddress').value.trim();
+    if(!address){
+      rcSetStatus('Type or select an address first.', true);
+      return;
+    }
+    rcSetStatus('Looking up rent estimate and tax records…');
+    try{
+      const encoded = encodeURIComponent(address);
+      const [rent, property] = await Promise.all([
+        rcFetch(`/avm/rent/long-term?address=${encoded}`),
+        rcFetch(`/properties?address=${encoded}`),
+      ]);
+      if(!rent && !property) return;
+
+      const rentValue = rcPick(rent, ['rent','rentEstimate']);
+      if(rentValue) document.getElementById('apodIncome').value = Math.round(rentValue);
+
+      const propRecord = Array.isArray(property) ? property[0] : property;
+      if(propRecord){
+        const taxes = rcLatestYearTotal(rcPick(propRecord, ['propertyTaxes']));
+        if(taxes) document.getElementById('apodTaxes').value = Math.round(taxes);
+
+        const hoaFee = rcPick(propRecord.hoa || {}, ['fee','monthlyFee']);
+        if(hoaFee) document.getElementById('apodHoa').value = Math.round(hoaFee * 12);
+
+        if(!document.getElementById('apodPrice').value || Number(document.getElementById('apodPrice').value) === 0){
+          const lastSale = rcPick(propRecord, ['lastSalePrice']);
+          if(lastSale) document.getElementById('apodPrice').value = lastSale;
+        }
+      }
+
+      rcSetStatus('Filled in what RentCast returned — double-check the numbers, then hit Calculate below.');
+    }catch(err){
+      rcSetStatus(err.message + ' (If this looks like a network/CORS failure rather than the message above, RentCast may not allow direct browser calls — tell Claude so we can add a small proxy.)', true);
+    }
   }
 
   function toggleSecondLoan(){
