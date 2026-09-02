@@ -37,17 +37,23 @@
   <div class="card" style="margin-bottom:18px;">
     <div class="card-head"><div class="card-title">🔑 Live Data Setup</div></div>
     <div class="card-body">
-      <p class="empty" style="margin-bottom:10px;">
-        Indices, commodities, and bonds use
-        <a href="https://finnhub.io/register" target="_blank" rel="noopener">Finnhub's</a>
-        free API (no credit card). Crypto below needs no key at all. Your key is saved only in this browser —
-        it's never stored on the website itself.
-      </p>
-      <div class="field-row">
-        <div><label>Finnhub API key</label><input type="password" id="finnhubKey" placeholder="Paste your free Finnhub API key"></div>
-        <div style="display:flex;align-items:flex-end;"><button onclick="loadMarketsData()">Load live data</button></div>
+      <div id="finnhubSetup">
+        <p class="empty" style="margin-bottom:10px;">
+          Indices, commodities, and bonds use
+          <a href="https://finnhub.io/register" target="_blank" rel="noopener">Finnhub's</a>
+          free API (no credit card). Crypto below needs no key at all. Your key is saved only in this browser —
+          it's never stored on the website itself.
+        </p>
+        <div class="field-row">
+          <div><label>Finnhub API key</label><input type="password" id="finnhubKey" placeholder="Paste your free Finnhub API key"></div>
+          <div style="display:flex;align-items:flex-end;"><button onclick="loadMarketsData()">Load live data</button></div>
+        </div>
       </div>
-      <div class="field-hint" id="marketsStatus"></div>
+      <div id="finnhubConnected" style="display:none;align-items:center;gap:12px;">
+        <span class="field-hint" style="margin:0;">✓ Finnhub key saved in this browser.</span>
+        <button class="ghost" onclick="showFinnhubSetup()">Change key</button>
+      </div>
+      <div class="field-hint" id="marketsStatus" style="margin-top:8px;"></div>
     </div>
   </div>
 
@@ -175,13 +181,25 @@
     ]).then(() => {
       statusEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
     });
+
+    hideFinnhubSetup();
   }
 
-  // Auto-load if a key was already saved on a previous visit
+  function hideFinnhubSetup(){
+    document.getElementById('finnhubSetup').style.display = 'none';
+    document.getElementById('finnhubConnected').style.display = 'flex';
+  }
+  function showFinnhubSetup(){
+    document.getElementById('finnhubSetup').style.display = 'block';
+    document.getElementById('finnhubConnected').style.display = 'none';
+  }
+
+  // Auto-load if a key was already saved on a previous visit — stays hidden for good, no re-prompting
   (function(){
     const saved = localStorage.getItem('hk_finnhub_key');
     if(saved){
       document.getElementById('finnhubKey').value = saved;
+      hideFinnhubSetup();
       loadMarketsData();
     }
   })();
