@@ -141,6 +141,22 @@ button.ghost{background:transparent; border:1px solid var(--line); color:var(--t
   border-top:1px solid var(--line);
 }
 
+.field-hint{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:4px;
+  line-height:1.35;
+  font-family:'Public Sans', sans-serif;
+}
+.hint-inline{
+  display:block;
+  font-size:10.5px;
+  color:var(--muted);
+  font-weight:400;
+  margin-top:2px;
+  line-height:1.35;
+}
+
 .result{
   background:var(--surface-alt);
   border:1px solid var(--line);

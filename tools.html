@@ -102,58 +102,92 @@
   <!-- RENTAL -->
   <div class="tab-panel" data-panel="rental" style="display:none;">
     <div class="card">
-      <div class="card-head"><div class="card-title">🏘️ Rental Property Calculator (APOD)</div></div>
+      <div class="card-head"><div class="card-title">🏘️ Rental Property Calculator</div></div>
       <div class="card-body">
+        <p class="empty" style="margin-bottom:4px;">Fill in what you know — everything else has a sensible default. Hover the field names if a term is unfamiliar.</p>
 
-        <div class="group-label" style="margin-top:0;padding-top:0;border-top:none;">Purchase</div>
+        <div class="group-label" style="margin-top:0;padding-top:0;border-top:none;">The property</div>
         <div class="field-row">
-          <div><label>Purchase price ($)</label><input type="number" id="apodPrice" value="275000"></div>
-          <div><label>Acquisition costs ($)</label><input type="number" id="apodAcqCosts" value="2500"></div>
-        </div>
-
-        <div class="group-label">First Mortgage</div>
-        <div class="field-row">
-          <div><label>Loan-to-value (%)</label><input type="number" id="apodLtv1" value="80" step="0.1"></div>
-          <div><label>Rate (% APR)</label><input type="number" id="apodRate1" value="7.25" step="0.01"></div>
-        </div>
-        <div class="field-row">
-          <div><label>Term (years)</label><input type="number" id="apodTerm1" value="30"></div>
+          <div><label>Purchase price ($)</label><input type="number" id="apodPrice" value="275000">
+            <div class="field-hint">What you're paying for the property.</div>
+          </div>
+          <div><label>Closing costs ($)</label><input type="number" id="apodAcqCosts" value="2500">
+            <div class="field-hint">One-time fees to close the deal — inspection, title, lender fees, etc.</div>
+          </div>
         </div>
 
-        <div class="group-label">Second Mortgage (optional)</div>
+        <div class="group-label">Your loan</div>
         <div class="field-row">
-          <div><label>Loan-to-value (%)</label><input type="number" id="apodLtv2" value="0" step="0.1"></div>
-          <div><label>Rate (% APR)</label><input type="number" id="apodRate2" value="0" step="0.01"></div>
+          <div><label>Down payment (%)</label><input type="number" id="apodDownPct" value="20" step="0.1">
+            <div class="field-hint">The share of the price you pay upfront in cash. The rest gets financed.</div>
+          </div>
+          <div><label>Interest rate (%)</label><input type="number" id="apodRate1" value="7.25" step="0.01">
+            <div class="field-hint">The annual interest rate on your loan.</div>
+          </div>
         </div>
         <div class="field-row">
-          <div><label>Term (years)</label><input type="number" id="apodTerm2" value="30"></div>
+          <div><label>Loan length (years)</label><input type="number" id="apodTerm1" value="30">
+            <div class="field-hint">How many years you'll take to pay it off — 30 is typical.</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding-top:22px;">
+            <input type="checkbox" id="apodHasSecond" style="width:auto;" onchange="toggleSecondLoan()">
+            <label for="apodHasSecond" style="margin:0;">I'm using a second loan too</label>
+          </div>
         </div>
 
-        <div class="group-label">Income</div>
-        <div class="field-row">
-          <div><label>Gross scheduled income, monthly ($)</label><input type="number" id="apodIncome" value="3300"></div>
-          <div><label>Vacancy allowance (%)</label><input type="number" id="apodVacancy" value="1" step="0.1"></div>
+        <div id="secondLoanFields" style="display:none;">
+          <div class="field-row">
+            <div><label>Second loan — share of price financed (%)</label><input type="number" id="apodLtv2" value="0" step="0.1">
+              <div class="field-hint">The portion of the purchase price this second loan covers.</div>
+            </div>
+            <div><label>Second loan — interest rate (%)</label><input type="number" id="apodRate2" value="0" step="0.01">
+              <div class="field-hint">Its annual interest rate.</div>
+            </div>
+          </div>
+          <div class="field-row">
+            <div><label>Second loan — length (years)</label><input type="number" id="apodTerm2" value="30"></div>
+          </div>
         </div>
 
-        <div class="group-label">Operating Expenses (annual $)</div>
+        <div class="group-label">Rent you'll collect</div>
         <div class="field-row">
-          <div><label>Property taxes</label><input type="number" id="apodTaxes" value="3425"></div>
-          <div><label>Insurance</label><input type="number" id="apodInsurance" value="3500"></div>
+          <div><label>Monthly rent ($)</label><input type="number" id="apodIncome" value="3300">
+            <div class="field-hint">What you expect to charge per month.</div>
+          </div>
+          <div><label>Vacancy cushion (%)</label><input type="number" id="apodVacancy" value="1" step="0.1">
+            <div class="field-hint">A buffer for months it might sit empty between tenants.</div>
+          </div>
+        </div>
+
+        <div class="group-label">Yearly costs of owning it</div>
+        <div class="field-row">
+          <div><label>Property taxes ($/yr)</label><input type="number" id="apodTaxes" value="3425"></div>
+          <div><label>Insurance ($/yr)</label><input type="number" id="apodInsurance" value="3500"></div>
         </div>
         <div class="field-row">
-          <div><label>Utilities</label><input type="number" id="apodUtilities" value="4020"></div>
-          <div><label>Repairs</label><input type="number" id="apodRepairs" value="500"></div>
+          <div><label>Utilities ($/yr)</label><input type="number" id="apodUtilities" value="4020">
+            <div class="field-hint">Only what you pay — leave at 0 if the tenant covers utilities.</div>
+          </div>
+          <div><label>Repairs ($/yr)</label><input type="number" id="apodRepairs" value="500"></div>
         </div>
         <div class="field-row">
-          <div><label>Maintenance</label><input type="number" id="apodMaintenance" value="0"></div>
-          <div><label>Management (% of gross operating income)</label><input type="number" id="apodMgmtPct" value="0" step="0.1"></div>
+          <div><label>Maintenance ($/yr)</label><input type="number" id="apodMaintenance" value="0">
+            <div class="field-hint">Routine upkeep — lawn care, cleaning, filters, etc.</div>
+          </div>
+          <div><label>Property management fee (%)</label><input type="number" id="apodMgmtPct" value="0" step="0.1">
+            <div class="field-hint">If you hire a manager, the % of rent they keep. Leave at 0 if you self-manage.</div>
+          </div>
         </div>
         <div class="field-row">
-          <div><label>HOA</label><input type="number" id="apodHoa" value="0"></div>
-          <div><label>Advertising</label><input type="number" id="apodAdvertising" value="0"></div>
+          <div><label>HOA dues ($/yr)</label><input type="number" id="apodHoa" value="0"></div>
+          <div><label>Advertising ($/yr)</label><input type="number" id="apodAdvertising" value="0">
+            <div class="field-hint">Cost to advertise the rental when it's vacant.</div>
+          </div>
         </div>
         <div class="field-row">
-          <div><label>Other expenses</label><input type="number" id="apodOther" value="0"></div>
+          <div><label>Other expenses ($/yr)</label><input type="number" id="apodOther" value="0">
+            <div class="field-hint">Anything not covered above.</div>
+          </div>
         </div>
 
         <button onclick="calcRental()">Calculate</button>
@@ -262,11 +296,21 @@
     return -pv*pow - pmt*(pow-1)/rate;
   }
 
+  function toggleSecondLoan(){
+    const on = document.getElementById('apodHasSecond').checked;
+    document.getElementById('secondLoanFields').style.display = on ? 'block' : 'none';
+    if(!on){
+      document.getElementById('apodLtv2').value = 0;
+      document.getElementById('apodRate2').value = 0;
+    }
+  }
+
   function calcRental(){
     const price = parseFloat(document.getElementById('apodPrice').value) || 0;
     const acqCosts = parseFloat(document.getElementById('apodAcqCosts').value) || 0;
 
-    const ltv1 = (parseFloat(document.getElementById('apodLtv1').value) || 0)/100;
+    const downPct = (parseFloat(document.getElementById('apodDownPct').value) || 0)/100;
+    const ltv1 = 1 - downPct;
     const rate1 = (parseFloat(document.getElementById('apodRate1').value) || 0)/100;
     const term1 = parseFloat(document.getElementById('apodTerm1').value) || 0;
 
@@ -317,15 +361,36 @@
 
     document.getElementById('rentResult').style.display = 'block';
     document.getElementById('rentResult').innerHTML = `
-      <div class="lbl">Monthly cash flow before tax</div><div class="big">${fmt$(monthlyCashFlow)}</div>
-      <div class="stat-row" style="margin-top:10px;"><span>Net operating income (annual)</span><span class="v">${fmt$(noi)}</span></div>
-      <div class="stat-row"><span>Annual debt service</span><span class="v">${fmt$(annualDebtService)}</span></div>
-      <div class="stat-row"><span>Cash flow before tax (annual)</span><span class="v ${cashFlowBeforeTax>=0?'up':'down'}">${fmt$(cashFlowBeforeTax)}</span></div>
-      <div class="stat-row"><span>Cash-on-cash return</span><span class="v">${(cashOnCash*100).toFixed(2)}%</span></div>
-      <div class="stat-row"><span>Equity build-up (year 1)</span><span class="v">${fmt$(equityBuildUp)}</span></div>
-      <div class="stat-row"><span>Equity build-up return</span><span class="v">${(equityBuildUpReturn*100).toFixed(2)}%</span></div>
-      <div class="stat-row" style="margin-top:10px;"><span>1st mortgage payment (monthly)</span><span class="v">${fmt$(pay1)}</span></div>
-      ${loan2>0 ? `<div class="stat-row"><span>2nd mortgage payment (monthly)</span><span class="v">${fmt$(pay2)}</span></div>` : ''}
+      <div class="lbl">Monthly profit (before taxes)</div><div class="big">${fmt$(monthlyCashFlow)}</div>
+      <div class="stat-row" style="margin-top:10px;">
+        <span>Yearly income after expenses<span class="hint-inline">Rent left over after running costs, before the loan payment (aka "net operating income")</span></span>
+        <span class="v">${fmt$(noi)}</span>
+      </div>
+      <div class="stat-row">
+        <span>Yearly loan payments<span class="hint-inline">Total of all mortgage payments for the year</span></span>
+        <span class="v">${fmt$(annualDebtService)}</span>
+      </div>
+      <div class="stat-row">
+        <span>Yearly profit (before taxes)<span class="hint-inline">What's left after the loan payments too</span></span>
+        <span class="v ${cashFlowBeforeTax>=0?'up':'down'}">${fmt$(cashFlowBeforeTax)}</span>
+      </div>
+      <div class="stat-row">
+        <span>Return on your cash<span class="hint-inline">Yearly profit ÷ the cash you put in (down payment + closing costs) — aka "cash-on-cash return"</span></span>
+        <span class="v">${(cashOnCash*100).toFixed(2)}%</span>
+      </div>
+      <div class="stat-row">
+        <span>Loan paid down (year 1)<span class="hint-inline">How much of the loan balance you pay off in the first year</span></span>
+        <span class="v">${fmt$(equityBuildUp)}</span>
+      </div>
+      <div class="stat-row">
+        <span>Paydown as a return<span class="hint-inline">That paydown as a % of the cash you put in</span></span>
+        <span class="v">${(equityBuildUpReturn*100).toFixed(2)}%</span>
+      </div>
+      <div class="stat-row" style="margin-top:10px;">
+        <span>Monthly loan payment</span>
+        <span class="v">${fmt$(pay1)}</span>
+      </div>
+      ${loan2>0 ? `<div class="stat-row"><span>Monthly payment (2nd loan)</span><span class="v">${fmt$(pay2)}</span></div>` : ''}
     `;
   }
 
